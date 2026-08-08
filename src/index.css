@@ -26,7 +26,7 @@ html {
 
 body {
   margin: 0;
-  background: #EFF9FF;
+  background: #f4f6f7;
   color: #0F172A;
   font-family:
     Inter,
@@ -379,7 +379,6 @@ a {
 
 .hero-section {
   position: relative;
-
   min-height: calc(100vh - 76px);
 
   display: flex;
@@ -391,19 +390,20 @@ a {
 
   background:
     radial-gradient(
-      circle at 5% 15%,
-      rgba(13, 148, 136, 0.13),
-      transparent 30%
+      circle at 10% 20%,
+      rgba(7, 92, 129, 0.18),
+      transparent 32%
     ),
     radial-gradient(
-      circle at 95% 25%,
-      rgba(2, 132, 199, 0.12),
+      circle at 90% 25%,
+      rgba(14, 165, 233, 0.14),
       transparent 30%
     ),
     linear-gradient(
-      180deg,
-      #f8fafc 0%,
-      #ffffff 100%
+      135deg,
+      #EFF9FF 0%,
+      #E0F2FE 50%,
+      #F0FDFA 100%
     );
 }
 
@@ -426,7 +426,7 @@ a {
   border-radius: 50%;
 
   background:
-    rgba(13, 148, 136, 0.07);
+    rgba(10, 149, 137, 0.07);
 
   filter: blur(2px);
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import TrustBanner from '../components/TrustBanner';
 
 export default function Home({ onOpenAppointment }) {
   return (
@@ -10,6 +11,7 @@ export default function Home({ onOpenAppointment }) {
       <main>
         <Hero onOpenAppointment={onOpenAppointment} />
       </main>
+      <TrustBanner />
     </div>
   );
 }

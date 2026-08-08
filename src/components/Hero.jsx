@@ -5,14 +5,14 @@ import { Calendar, PhoneCall, Sparkles, Award, ShieldCheck, Heart, Star, UserChe
 export default function Hero({ onOpenAppointment }) {
   return (
     <section className="relative pt-28 pb-20 md:pt-36 md:pb-32 overflow-hidden bg-gradient-hero">
-      {/* Wave Divider at Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none z-10 pointer-events-none opacity-40">
+      {/* Modern Clean Bottom Curve Section Divider */}
+      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
         <svg
-          className="relative block w-full h-12 md:h-20 text-white fill-current"
+          className="relative block w-full h-10 sm:h-16 md:h-20 text-[#F8FAFC] fill-current"
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
         >
-          <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z" />
+          <path d="M0,40 C300,110 900,110 1200,40 L1200,120 L0,120 Z" />
         </svg>
       </div>
 
@@ -48,7 +48,7 @@ export default function Hero({ onOpenAppointment }) {
 
             {/* Subheading */}
             <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              Experience compassionate, expert-led dental services tailored to your needs, all in a modern and welcoming environment.
+              Experience gentle, zero-pain dental care in a soothing, kid-friendly environment. From preventive checkups to 3D implants, Sakthi Dental Clinic delivers international standards with 20+ years of trusted smiles.
             </p>
 
             {/* CTA Buttons */}
@@ -75,24 +75,28 @@ export default function Hero({ onOpenAppointment }) {
             </div>
 
             {/* Quick Metrics */}
-            <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200/60 max-w-lg mx-auto lg:mx-0">
-              <div className="text-center lg:text-left">
-                <p className="text-2xl sm:text-3xl font-extrabold text-slate-900">20+</p>
-                <p className="text-xs font-semibold text-slate-500">Years Excellence</p>
-              </div>
-              <div className="text-center lg:text-left">
-                <p className="text-2xl sm:text-3xl font-extrabold text-[#0D9488]">15,000+</p>
-                <p className="text-xs font-semibold text-slate-500">Happy Patients</p>
-              </div>
-              <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
-                <div className="flex items-center text-amber-400">
-                  <Star className="w-4 h-4 fill-current" />
-                  <Star className="w-4 h-4 fill-current" />
-                  <Star className="w-4 h-4 fill-current" />
-                  <Star className="w-4 h-4 fill-current" />
-                  <Star className="w-4 h-4 fill-current" />
+            <div className="pt-4 max-w-xl mx-auto lg:mx-0">
+              <div className="grid grid-cols-3 gap-3">
+                <div className="p-3.5 rounded-2xl bg-white/80 border border-slate-200/90 shadow-sm backdrop-blur-md text-center lg:text-left">
+                  <p className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">20+</p>
+                  <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-0.5">Years Exp.</p>
                 </div>
-                <p className="text-xs font-semibold text-slate-500 mt-1">4.9 Star Ratings</p>
+
+                <div className="p-3.5 rounded-2xl bg-white/80 border border-teal-200/90 shadow-sm backdrop-blur-md text-center lg:text-left">
+                  <p className="text-2xl sm:text-3xl font-black text-[#0D9488] tracking-tight">15,000+</p>
+                  <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-0.5">Patients</p>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-white/80 border border-amber-200/90 shadow-sm backdrop-blur-md text-center lg:text-left flex flex-col justify-center items-center lg:items-start">
+                  <div className="flex items-center text-amber-400">
+                    <Star className="w-3.5 h-3.5 fill-current" />
+                    <Star className="w-3.5 h-3.5 fill-current" />
+                    <Star className="w-3.5 h-3.5 fill-current" />
+                    <Star className="w-3.5 h-3.5 fill-current" />
+                    <Star className="w-3.5 h-3.5 fill-current" />
+                  </div>
+                  <p className="text-[11px] font-bold text-slate-700 tracking-wider mt-1">4.9 / 5.0 Rating</p>
+                </div>
               </div>
             </div>
           </motion.div>
