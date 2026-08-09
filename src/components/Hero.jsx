@@ -111,7 +111,7 @@ export default function Hero({ onOpenAppointment }) {
             {/* Main Visual Image Card */}
             <div className="relative w-full max-w-md lg:max-w-none rounded-[32px] overflow-hidden p-3 bg-white/60 backdrop-blur-xl border border-white/80 shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=900"
+                src="/doc.png"
                 alt="Happy family dental care at Sakthi Dental Clinic"
                 className="w-full h-[380px] sm:h-[440px] object-cover rounded-[24px]"
               />
