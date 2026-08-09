@@ -48,7 +48,7 @@ export default function Hero({ onOpenAppointment }) {
 
             {/* Subheading */}
             <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              Experience gentle, zero-pain dental care in a soothing, kid-friendly environment. From preventive checkups to 3D implants, Sakthi Dental Clinic delivers international standards with 20+ years of trusted smiles.
+              Experience compassionate, expert-led dental services tailored to your needs, all in a modern and welcoming environment.
             </p>
 
             {/* CTA Buttons */}
