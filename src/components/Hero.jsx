@@ -12,19 +12,26 @@ import {
 
 export default function Hero({ onOpenAppointment }) {
   return (
-    <section className="relative overflow-hidden pt-20 lg:pt-24">
+    <section className="relative overflow-hidden py-28 lg:py-32">
+
       {/* Modern Clean Bottom Curve Section Divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-slate-50/80 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
-          {/* Left Column: Headline & Action Buttons */}
+        {/* Main Hero Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-14 items-center">
+
+          {/* =====================================================
+              LEFT COLUMN
+          ====================================================== */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
-            className="lg:col-span-7 space-y-6 text-center lg:text-left"
+            className="lg:col-span-7 space-y-8 text-center lg:text-left"
           >
+
             {/* Top Badge */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -52,12 +59,12 @@ export default function Hero({ onOpenAppointment }) {
 
             {/* Subheading */}
             <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              Experience compassionate, expert-led dental services tailored to
-              your needs, all in a modern and welcoming environment.
+              Experience compassionate, expert-led dental services tailored
+              to your needs, all in a modern and welcoming environment.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5 pt-3">
 
               {/* Appointment Button */}
               <motion.button
@@ -81,36 +88,39 @@ export default function Hero({ onOpenAppointment }) {
 
                 <span>Emergency Dental Support</span>
               </a>
+
             </div>
 
             {/* Quick Metrics */}
-            <div className="pt-4 max-w-xl mx-auto lg:mx-0">
-              <div className="grid grid-cols-3 gap-3">
+            <div className="pt-6 max-w-xl mx-auto lg:mx-0">
+
+              <div className="grid grid-cols-3 gap-4">
 
                 {/* Years Experience */}
-                <div className="p-3.5 rounded-2xl bg-white/80 border border-slate-200/90 shadow-sm backdrop-blur-md text-center lg:text-left">
+                <div className="p-4 rounded-2xl bg-white/80 border border-slate-200/90 shadow-sm backdrop-blur-md text-center lg:text-left">
                   <p className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                     20+
                   </p>
 
-                  <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-0.5">
+                  <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-1">
                     Years Exp.
                   </p>
                 </div>
 
                 {/* Patients */}
-                <div className="p-3.5 rounded-2xl bg-white/80 border border-teal-200/90 shadow-sm backdrop-blur-md text-center lg:text-left">
+                <div className="p-4 rounded-2xl bg-white/80 border border-teal-200/90 shadow-sm backdrop-blur-md text-center lg:text-left">
                   <p className="text-2xl sm:text-3xl font-black text-[#0D9488] tracking-tight">
                     15,000+
                   </p>
 
-                  <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-0.5">
+                  <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-1">
                     Patients
                   </p>
                 </div>
 
                 {/* Rating */}
-                <div className="p-3.5 rounded-2xl bg-white/80 border border-amber-200/90 shadow-sm backdrop-blur-md text-center lg:text-left flex flex-col justify-center items-center lg:items-start">
+                <div className="p-4 rounded-2xl bg-white/80 border border-amber-200/90 shadow-sm backdrop-blur-md text-center lg:text-left flex flex-col justify-center items-center lg:items-start">
+
                   <div className="flex items-center text-amber-400">
                     <Star className="w-3.5 h-3.5 fill-current" />
                     <Star className="w-3.5 h-3.5 fill-current" />
@@ -122,19 +132,24 @@ export default function Hero({ onOpenAppointment }) {
                   <p className="text-[11px] font-bold text-slate-700 tracking-wider mt-1">
                     4.9 / 5.0 Rating
                   </p>
+
                 </div>
 
               </div>
             </div>
+
           </motion.div>
 
-          {/* Right Column: Doctor Image & Floating Cards */}
+          {/* =====================================================
+              RIGHT COLUMN
+          ====================================================== */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 relative flex justify-center"
+            className="lg:col-span-5 relative flex justify-center lg:mt-4"
           >
+
             {/* Main Visual Image Card */}
             <div className="relative w-full max-w-md lg:max-w-none rounded-4xl overflow-hidden p-3 bg-white/60 backdrop-blur-xl border border-white/80 shadow-2xl">
 
@@ -146,9 +161,12 @@ export default function Hero({ onOpenAppointment }) {
 
               {/* Overlay Gradient */}
               <div className="absolute inset-0 rounded-4xl bg-linear-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+
             </div>
 
-            {/* Floating Card 1: Senior Doctor */}
+            {/* =================================================
+                FLOATING CARD 1 — SENIOR DOCTOR
+            ================================================== */}
             <motion.div
               animate={{ y: [-8, 8, -8] }}
               transition={{
@@ -156,8 +174,9 @@ export default function Hero({ onOpenAppointment }) {
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="absolute -top-6 -left-4 sm:-left-8 glass-card p-3.5 items-center gap-3 shadow-xl max-w-55 hidden sm:flex"
+              className="absolute -top-8 -left-4 sm:-left-8 glass-card p-3.5 items-center gap-3 shadow-xl max-w-55 hidden sm:flex"
             >
+
               <div className="w-11 h-11 rounded-full bg-[#0D9488]/10 flex items-center justify-center text-[#0D9488] shrink-0">
                 <UserCheck className="w-6 h-6" />
               </div>
@@ -171,9 +190,12 @@ export default function Hero({ onOpenAppointment }) {
                   Chief Implantologist
                 </p>
               </div>
+
             </motion.div>
 
-            {/* Floating Card 2: Experience */}
+            {/* =================================================
+                FLOATING CARD 2 — EXPERIENCE
+            ================================================== */}
             <motion.div
               animate={{ y: [8, -8, 8] }}
               transition={{
@@ -183,6 +205,7 @@ export default function Hero({ onOpenAppointment }) {
               }}
               className="absolute top-1/2 -right-4 sm:-right-8 glass-card p-3.5 flex items-center gap-3 shadow-xl max-w-52.5"
             >
+
               <div className="w-10 h-10 rounded-2xl bg-linear-to-tr from-[#0D9488] to-[#0284C7] text-white flex items-center justify-center shrink-0 shadow-md">
                 <Award className="w-5 h-5" />
               </div>
@@ -196,9 +219,12 @@ export default function Hero({ onOpenAppointment }) {
                   Top Dental Surgeons
                 </p>
               </div>
+
             </motion.div>
 
-            {/* Floating Card 3: Emergency Care */}
+            {/* =================================================
+                FLOATING CARD 3 — EMERGENCY CARE
+            ================================================== */}
             <motion.div
               animate={{ y: [-6, 6, -6] }}
               transition={{
@@ -206,8 +232,9 @@ export default function Hero({ onOpenAppointment }) {
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="absolute -bottom-6 left-6 sm:left-12 glass-card p-3.5 flex items-center gap-3 shadow-xl"
+              className="absolute -bottom-8 left-6 sm:left-12 glass-card p-3.5 flex items-center gap-3 shadow-xl"
             >
+
               <div className="w-10 h-10 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-md">
                 <ShieldCheck className="w-5 h-5" />
               </div>
@@ -221,9 +248,11 @@ export default function Hero({ onOpenAppointment }) {
                   Instant Emergency Care
                 </p>
               </div>
+
             </motion.div>
 
           </motion.div>
+
         </div>
       </div>
     </section>
