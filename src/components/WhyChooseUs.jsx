@@ -1,136 +1,228 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, HeartPulse, UserCheck, Heart, Cpu, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Sparkles, HeartPulse, UserCheck, Heart, Cpu, CheckCircle2, Zap, Award } from 'lucide-react';
 
 export default function WhyChooseUs() {
-  const features = [
-    {
-      id: 'all-in-one',
-      title: 'Complete Dental Ecosystem',
-      badge: 'Integrated Care',
-      desc: 'An all-under-one-roof clinical environment — from preventive checkups to 3D guided implants, invisible braces, and specialized pediatric suites.',
-      icon: HeartPulse,
-      gradient: 'from-[#0D9488] to-teal-700',
-      accentColor: 'text-[#0D9488]',
-      badgeBg: 'bg-[#0D9488]/10 text-[#0D9488]',
-      borderColor: 'group-hover:border-[#0D9488]/50',
-      shadow: 'shadow-[#0D9488]/20'
-    },
-    {
-      id: 'doctors',
-      title: '20+ Yrs Master Surgeons',
-      badge: 'MDS Specialists',
-      desc: 'Led by Chief Surgeon Dr. Sakthi Saravanan, our team brings together board-certified MDS specialists in every advanced dental discipline.',
-      icon: UserCheck,
-      gradient: 'from-[#0284C7] to-sky-700',
-      accentColor: 'text-[#0284C7]',
-      badgeBg: 'bg-[#0284C7]/10 text-[#0284C7]',
-      borderColor: 'group-hover:border-[#0284C7]/50',
-      shadow: 'shadow-[#0284C7]/20'
-    },
-    {
-      id: 'patient-centric',
-      title: 'Zero-Anxiety Patient Comfort',
-      badge: 'Pain-Free Protocol',
-      desc: 'Gentle, transparent consultations with 100% upfront pricing, pain-free computer-assisted anesthesia, and soothing child-friendly environments.',
-      icon: Heart,
-      gradient: 'from-[#059669] to-emerald-700',
-      accentColor: 'text-[#059669]',
-      badgeBg: 'bg-[#059669]/10 text-[#059669]',
-      borderColor: 'group-hover:border-[#059669]/50',
-      shadow: 'shadow-[#059669]/20'
-    },
-    {
-      id: 'technology',
-      title: 'Next-Gen 3D Robotics & Scans',
-      badge: 'German Tech',
-      desc: 'Powered by low-radiation 3D CBCT digital imaging, soft-tissue laser drills, CAD/CAM ceramic crowns, and Class-B autoclave sterilization.',
-      icon: Cpu,
-      gradient: 'from-cyan-600 to-teal-600',
-      accentColor: 'text-cyan-600',
-      badgeBg: 'bg-cyan-500/10 text-cyan-700',
-      borderColor: 'group-hover:border-cyan-500/50',
-      shadow: 'shadow-cyan-500/20'
-    }
-  ];
-
   return (
-    <section className="py-24 bg-gradient-to-b from-slate-50 via-slate-100/60 to-slate-50 relative overflow-hidden">
-      {/* Background Subtle Tech Mesh Blur */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#0D9488]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-[#0284C7]/10 rounded-full blur-3xl pointer-events-none" />
+    <section className="py-24 bg-gradient-to-b from-sky-50/90 via-blue-50/50 to-teal-50/40 text-slate-900 relative overflow-hidden">
+      {/* Soft Light Blue Background Decorative Blurs */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-sky-200/40 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-teal-200/35 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 text-xs font-extrabold text-[#0D9488] uppercase tracking-wider shadow-sm">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-sky-200/80 text-xs font-extrabold text-[#0D9488] uppercase tracking-widest shadow-sm"
+          >
             <Sparkles className="w-3.5 h-3.5 text-[#0284C7]" /> The Sakthi Clinical Distinction
-          </div>
+          </motion.div>
 
-          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            Pioneering the Future of <span className="text-gradient">Precision Dental Care</span>
-          </h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight"
+          >
+            Pioneering a <span className="text-gradient">New Standard</span> in Family Dentistry
+          </motion.h2>
 
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
-            We blend world-class 3D technology, zero-pain protocols, and compassionate family-first care to establish an unmatched experience in oral health.
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto"
+          >
+            We combine 3D robotic accuracy, gentle painless protocols, and 20+ years of clinical mastery in a soothing, kid-friendly hospital environment.
+          </motion.p>
         </div>
 
-        {/* 4 Premium Modern Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {features.map((feature, idx) => {
-            const Icon = feature.icon;
-            return (
-              <motion.div
-                key={feature.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ y: -8 }}
-                className={`glass-card p-6 sm:p-8 flex flex-col justify-between relative group overflow-hidden transition-all duration-300 border border-slate-200/90 ${feature.borderColor} hover:shadow-2xl hover:shadow-slate-200/80 rounded-[28px] bg-white/90 backdrop-blur-xl`}
-              >
-                {/* Top Subtle Color Accent Strip */}
-                <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${feature.gradient}`} />
+        {/* Modern Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          
+          {/* Card 1: Featured Complete Dental Ecosystem (Spans 7 Cols) */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -6 }}
+            className="md:col-span-7 group relative rounded-[32px] overflow-hidden border border-sky-100 bg-white/90 backdrop-blur-xl p-8 flex flex-col justify-between h-[400px] sm:h-[440px] shadow-xl shadow-sky-900/5 hover:shadow-2xl hover:border-[#0D9488]/40 transition-all duration-500"
+          >
+            {/* Image Overlay */}
+            <div className="absolute inset-0 z-0">
+              <img
+                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1000"
+                alt="Modern Dental Ecosystem Clinic"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-15 group-hover:opacity-25"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/85 to-transparent" />
+            </div>
 
-                <div>
-                  {/* Top Bar: Icon Box + Category Badge */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-tr ${feature.gradient} text-white flex items-center justify-center shadow-lg ${feature.shadow} group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="w-7 h-7" />
-                    </div>
+            {/* Top Bar */}
+            <div className="relative z-10 flex items-center justify-between gap-2">
+              <span className="px-3.5 py-1.5 rounded-full bg-[#0D9488]/10 border border-[#0D9488]/20 text-[#0D9488] text-[11px] font-extrabold uppercase tracking-wider">
+                Integrated Clinical Care
+              </span>
+              <div className="w-10 h-10 rounded-2xl bg-[#0D9488]/10 border border-[#0D9488]/20 flex items-center justify-center text-[#0D9488]">
+                <HeartPulse className="w-5 h-5" />
+              </div>
+            </div>
 
-                    <span className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider ${feature.badgeBg}`}>
-                      {feature.badge}
-                    </span>
-                  </div>
+            {/* Bottom Content */}
+            <div className="relative z-10 space-y-4">
+              <div>
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-[#0D9488] transition-colors">
+                  Complete Dental Ecosystem
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed font-normal max-w-lg">
+                  Everything your family needs under one roof — from gentle pediatric suites and clear aligners to 3D guided implants, root canals, and cosmetic smile designs.
+                </p>
+              </div>
 
-                  {/* Title */}
-                  <h3 className="text-xl font-extrabold text-slate-900 tracking-tight mb-3 group-hover:text-[#0D9488] transition-colors leading-snug">
-                    {feature.title}
-                  </h3>
+              {/* Mini Features Pills */}
+              <div className="flex flex-wrap gap-2 pt-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-xs font-bold text-slate-700 border border-slate-200">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> 10+ MDS Specialties
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-xs font-bold text-slate-700 border border-slate-200">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> In-House 3D Scan Lab
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-xs font-bold text-slate-700 border border-slate-200">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Kid Play Zone
+                </span>
+              </div>
+            </div>
+          </motion.div>
 
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                    {feature.desc}
-                  </p>
-                </div>
+          {/* Card 2: 20+ Yrs Master Surgeons (Spans 5 Cols) */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            whileHover={{ y: -6 }}
+            className="md:col-span-5 group relative rounded-[32px] overflow-hidden border border-sky-100 bg-gradient-to-br from-white via-sky-50/50 to-blue-50/80 p-8 flex flex-col justify-between h-[400px] sm:h-[440px] shadow-xl shadow-sky-900/5 hover:shadow-2xl hover:border-[#0284C7]/40 transition-all duration-500"
+          >
+            {/* Top Bar */}
+            <div className="relative z-10 flex items-center justify-between">
+              <span className="px-3.5 py-1.5 rounded-full bg-[#0284C7]/10 border border-[#0284C7]/20 text-[#0284C7] text-[11px] font-extrabold uppercase tracking-wider">
+                Expert MDS Leadership
+              </span>
+              <div className="w-10 h-10 rounded-2xl bg-[#0284C7]/10 border border-[#0284C7]/20 flex items-center justify-center text-[#0284C7]">
+                <UserCheck className="w-5 h-5" />
+              </div>
+            </div>
 
-                {/* Bottom Footer Accent Link */}
-                <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between text-xs font-extrabold text-slate-800 group-hover:text-[#0D9488] transition-colors">
-                  <span>Explore Standard</span>
-                  <div className={`p-1.5 rounded-full bg-slate-100 group-hover:${feature.badgeBg} group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300`}>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+            {/* Middle Doctor Badge Avatar */}
+            <div className="relative z-10 p-4 rounded-2xl bg-white border border-sky-200/80 shadow-md flex items-center gap-3.5 my-auto">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#0284C7] to-[#0D9488] text-white flex items-center justify-center font-black text-lg shrink-0 shadow-md">
+                DS
+              </div>
+              <div>
+                <p className="text-sm font-extrabold text-slate-900">Dr. Sakthi Saravanan</p>
+                <p className="text-xs text-[#0284C7] font-bold">Chief Dental Implantologist</p>
+                <p className="text-[10px] text-slate-500 font-medium mt-0.5">20+ Years Clinical Practice • 15,000+ Patients</p>
+              </div>
+            </div>
+
+            {/* Bottom Content */}
+            <div className="relative z-10 space-y-2">
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight group-hover:text-[#0284C7] transition-colors">
+                20+ Years Master Surgeons
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                Board-certified specialists delivering precise surgical outcomes with soft-tissue lasers and zero-error digital planning.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 3: Zero-Anxiety Patient Comfort (Spans 5 Cols) */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            whileHover={{ y: -6 }}
+            className="md:col-span-5 group relative rounded-[32px] overflow-hidden border border-emerald-100 bg-gradient-to-br from-white via-emerald-50/40 to-teal-50/60 p-8 flex flex-col justify-between h-[360px] shadow-xl shadow-emerald-900/5 hover:shadow-2xl hover:border-emerald-500/40 transition-all duration-500"
+          >
+            <div className="relative z-10 flex items-center justify-between">
+              <span className="px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 text-[11px] font-extrabold uppercase tracking-wider">
+                100% Pain-Free Protocol
+              </span>
+              <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600">
+                <Heart className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="relative z-10 space-y-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white border border-emerald-200 text-emerald-700 text-xs font-bold shadow-sm">
+                <Zap className="w-4 h-4 text-emerald-500" /> Computer-Assisted Anesthesia
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight group-hover:text-emerald-700 transition-colors">
+                Zero-Anxiety Patient Comfort
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                Transparent consultations with zero hidden fees, gentle local numbing, quiet ergonomic dental chairs, and personalized care for nervous patients.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 4: Next-Gen 3D Robotics & Scans (Spans 7 Cols) */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            whileHover={{ y: -6 }}
+            className="md:col-span-7 group relative rounded-[32px] overflow-hidden border border-sky-100 bg-white/90 backdrop-blur-xl p-8 flex flex-col justify-between h-[360px] shadow-xl shadow-sky-900/5 hover:shadow-2xl hover:border-cyan-500/40 transition-all duration-500"
+          >
+            <div className="absolute inset-0 z-0">
+              <img
+                src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1000"
+                alt="3D Digital Scanner Tech"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-15 group-hover:opacity-25"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/85 to-transparent" />
+            </div>
+
+            <div className="relative z-10 flex items-center justify-between">
+              <span className="px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-700 text-[11px] font-extrabold uppercase tracking-wider">
+                German 3D Robotics
+              </span>
+              <div className="w-10 h-10 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-600">
+                <Cpu className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="relative z-10 space-y-3">
+              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight group-hover:text-cyan-700 transition-colors">
+                Next-Gen 3D Scans & Laser Surgery
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-lg">
+                Ultra-low radiation 3D CBCT digital imaging, CAD/CAM same-day ceramic crowns, soft-tissue laser drills, and medical-grade autoclave sterilization.
+              </p>
+
+              <div className="pt-2 flex items-center gap-4 text-xs font-extrabold text-cyan-700">
+                <span className="flex items-center gap-1">
+                  <Award className="w-4 h-4 text-cyan-600" /> ISO 9001:2026 Certified Facility
+                </span>
+                <span className="text-slate-300">•</span>
+                <span>Zero Cross-Contamination</span>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
 
       </div>
     </section>
   );
 }
+
 
