@@ -1,29 +1,24 @@
 import React from "react";
-
 import Hero from "../components/Hero";
+import Services from "../components/Services";
+import DoctorsAndSpecialities from "../components/DoctorsAndSpecialties";
 import TrustBanner from "../components/TrustBanner";
 import WhyChooseUs from "../components/WhyChooseUs";
-import DoctorsAndSpecialties from "../components/DoctorsAndSpecialties";
-import Services from "../components/Services";
 
 export default function Home({ onOpenAppointment }) {
   return (
     <>
-      <main>
+      <section className="relative overflow-hidden bg-gradient-hero">
         <Hero onOpenAppointment={onOpenAppointment} />
-      </main>
+      </section>
+
+      <Services />
+
+      <DoctorsAndSpecialities />
 
       <TrustBanner />
 
       <WhyChooseUs />
-
-      <DoctorsAndSpecialties
-        onOpenAppointment={onOpenAppointment}
-      />
-
-      <Services
-        onOpenAppointment={onOpenAppointment}
-      />
     </>
   );
 }

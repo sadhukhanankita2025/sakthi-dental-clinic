@@ -9,11 +9,22 @@ import {
 
 export default function About() {
   return (
-    <section className="min-h-screen bg-[#EFF9FF] pt-32 pb-20">
+    <section className="relative overflow-hidden py-20 md:py-24 bg-linear-to-b from-white via-slate-50 to-white">
 
-      <div className="max-w-7xl mx-auto px-6">
+      {/* ================================
+          BACKGROUND DECORATION
+      ================================= */}
 
-        {/* Heading */}
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-teal-100/30 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="absolute bottom-0 -left-32 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* ================================
+            HEADING
+        ================================= */}
+
         <motion.div
           initial={{
             opacity: 0,
@@ -32,23 +43,29 @@ export default function About() {
             About Us
           </p>
 
-          <h1 className="mt-4 text-4xl md:text-6xl font-black text-slate-900">
+          <h1 className="mt-4 text-4xl md:text-6xl font-black text-slate-900 leading-tight">
             About{" "}
-            <span className="text-gradient">
+            <span className="bg-linear-to-r from-[#0D9488] via-[#0284C7] to-[#059669] bg-clip-text text-transparent">
               Sakthi Dental Clinic
             </span>
           </h1>
 
-          <p className="mt-6 text-lg leading-relaxed text-slate-600">
+          <p className="mt-6 text-lg leading-relaxed text-slate-600 max-w-2xl">
             Providing compassionate, modern and patient-focused
             dental care for women, children and families.
           </p>
         </motion.div>
 
-        {/* Content */}
-        <div className="mt-16 grid lg:grid-cols-2 gap-12 items-center">
+        {/* ================================
+            MAIN CONTENT
+        ================================= */}
 
-          {/* Image */}
+        <div className="mt-16 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* ================================
+              IMAGE
+          ================================= */}
+
           <motion.div
             initial={{
               opacity: 0,
@@ -61,28 +78,19 @@ export default function About() {
             transition={{
               duration: 0.7,
             }}
-            className="
-              overflow-hidden
-              rounded-[32px]
-              bg-white
-              p-3
-              shadow-2xl
-            "
+            className="overflow-hidden rounded-4xl bg-white p-3 shadow-2xl shadow-slate-900/10 border border-slate-100"
           >
             <img
               src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&q=80&w=1000"
-              alt="Dental care"
-              className="
-                w-full
-                h-[400px]
-                md:h-[500px]
-                object-cover
-                rounded-[24px]
-              "
+              alt="Dental care at Sakthi Dental Clinic"
+              className="w-full h-100 md:h-125 object-cover rounded-3xl"
             />
           </motion.div>
 
-          {/* Text */}
+          {/* ================================
+              TEXT CONTENT
+          ================================= */}
+
           <motion.div
             initial={{
               opacity: 0,
@@ -96,7 +104,8 @@ export default function About() {
               duration: 0.7,
             }}
           >
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900">
+
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
               Your Smile, Our Commitment
             </h2>
 
@@ -112,10 +121,15 @@ export default function About() {
               experience for women, children and families.
             </p>
 
-            {/* Features */}
+            {/* ================================
+                FEATURES
+            ================================= */}
+
             <div className="mt-8 grid sm:grid-cols-2 gap-4">
 
-              <div className="glass-card p-5">
+              {/* Patient First */}
+              <div className="glass-card p-5 rounded-2xl border border-slate-200/70 hover:shadow-lg transition-all duration-300">
+
                 <div className="w-11 h-11 rounded-xl bg-[#0D9488]/10 text-[#0D9488] flex items-center justify-center">
                   <Heart className="w-5 h-5" />
                 </div>
@@ -124,12 +138,15 @@ export default function About() {
                   Patient First
                 </h3>
 
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-2 text-sm text-slate-500 leading-relaxed">
                   Comfortable and personalized dental care.
                 </p>
+
               </div>
 
-              <div className="glass-card p-5">
+              {/* Safe Care */}
+              <div className="glass-card p-5 rounded-2xl border border-slate-200/70 hover:shadow-lg transition-all duration-300">
+
                 <div className="w-11 h-11 rounded-xl bg-[#0284C7]/10 text-[#0284C7] flex items-center justify-center">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
@@ -138,12 +155,15 @@ export default function About() {
                   Safe Care
                 </h3>
 
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-2 text-sm text-slate-500 leading-relaxed">
                   Modern standards and hygienic treatment.
                 </p>
+
               </div>
 
-              <div className="glass-card p-5">
+              {/* Excellence */}
+              <div className="glass-card p-5 rounded-2xl border border-slate-200/70 hover:shadow-lg transition-all duration-300">
+
                 <div className="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
                   <Award className="w-5 h-5" />
                 </div>
@@ -152,12 +172,15 @@ export default function About() {
                   Excellence
                 </h3>
 
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-2 text-sm text-slate-500 leading-relaxed">
                   Experienced dental professionals.
                 </p>
+
               </div>
 
-              <div className="glass-card p-5">
+              {/* Family Care */}
+              <div className="glass-card p-5 rounded-2xl border border-slate-200/70 hover:shadow-lg transition-all duration-300">
+
                 <div className="w-11 h-11 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
                   <Users className="w-5 h-5" />
                 </div>
@@ -166,12 +189,14 @@ export default function About() {
                   Family Care
                 </h3>
 
-                <p className="mt-2 text-sm text-slate-500">
+                <p className="mt-2 text-sm text-slate-500 leading-relaxed">
                   Dental care for the whole family.
                 </p>
+
               </div>
 
             </div>
+
           </motion.div>
 
         </div>

@@ -1,24 +1,21 @@
 @import "tailwindcss";
 
-/* =========================================================
-   GLOBAL
-   ========================================================= */
+/* =========================================
+   ROOT COLORS
+========================================= */
 
 :root {
-  --primary: #0d9488;
-  --primary-dark: #0f766e;
-  --secondary: #0284c7;
-  --accent: #059669;
-
-  --background: #f8fafc;
-  --white: #ffffff;
-
-  --text-dark: #0f172a;
-  --text: #334155;
-  --text-muted: #64748b;
-
-  --border: #e2e8f0;
+  --primary: #8b5cf6;
+  --primary-dark: #6d28d9;
+  --secondary: #0d9488;
+  --accent: #ec4899;
+  --bg-main: #faf5ff;
+  --text-dark: #1e1b4b;
 }
+
+/* =========================================
+   BASE
+========================================= */
 
 html {
   scroll-behavior: smooth;
@@ -26,1247 +23,284 @@ html {
 
 body {
   margin: 0;
-  background: #f4f6f7;
-  color: #0F172A;
+  padding: 0;
+  background-color: var(--bg-main);
+  color: var(--text-dark);
   font-family:
-    Inter,
-    ui-sans-serif,
+    "Plus Jakarta Sans",
+    "Outfit",
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
-    Roboto,
-    Helvetica,
-    Arial,
     sans-serif;
-
   overflow-x: hidden;
+  letter-spacing: -0.01em;
 }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
+/* =========================================
+   HEADINGS
+========================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family:
+    "Outfit",
+    "Plus Jakarta Sans",
+    system-ui,
+    sans-serif;
 }
 
-
-/* =========================================================
-   NAVBAR
-   ========================================================= */
-
-.navbar {
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 76px;
-
-  z-index: 1000;
-
-  background: rgba(255, 255, 255, 0.94);
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-
-  box-shadow:
-    0 4px 20px rgba(15, 23, 42, 0.04);
-
-  transition:
-    background 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.navbar-container {
-  width: 100%;
-  max-width: 1280px;
-
-  height: 100%;
-
-  margin: 0 auto;
-  padding: 0 24px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-/* =========================================================
-   NAVBAR LOGO
-   ========================================================= */
-
-.navbar-logo {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-
-  text-decoration: none;
-
-  cursor: pointer;
-}
-
-.navbar-logo-icon {
-  width: 45px;
-  height: 45px;
-
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 14px;
-
-  color: white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #0d9488 0%,
-      #0284c7 55%,
-      #059669 100%
-    );
-
-  box-shadow:
-    0 8px 20px rgba(13, 148, 136, 0.25);
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.navbar-logo:hover .navbar-logo-icon {
-  transform: translateY(-2px) rotate(-3deg);
-
-  box-shadow:
-    0 12px 26px rgba(13, 148, 136, 0.3);
-}
-
-.navbar-logo-text {
-  display: flex;
-  flex-direction: column;
-
-  line-height: 1.1;
-}
-
-.navbar-logo-title {
-  color: #0f172a;
-
-  font-size: 18px;
-  font-weight: 900;
-
-  letter-spacing: -0.03em;
-}
-
-.navbar-logo-subtitle {
-  margin-top: 4px;
-
-  color: #64748b;
-
-  font-size: 9px;
-  font-weight: 700;
-
-  letter-spacing: 0.13em;
-
-  text-transform: uppercase;
-}
-
-
-/* =========================================================
-   NAVIGATION LINKS
-   ========================================================= */
-
-.navbar-links {
-  display: flex;
-  align-items: center;
-
-  gap: 4px;
-}
-
-.navbar-link {
-  position: relative;
-
-  padding: 10px 14px;
-
-  color: #475569;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  text-decoration: none;
-
-  border-radius: 10px;
-
-  transition:
-    color 0.25s ease,
-    background 0.25s ease;
-}
-
-.navbar-link:hover {
-  color: var(--primary);
-
-  background: rgba(13, 148, 136, 0.06);
-}
-
-.navbar-link.active {
-  color: var(--primary);
-}
-
-.navbar-link.active::after {
-  content: "";
-
-  position: absolute;
-
-  left: 14px;
-  right: 14px;
-  bottom: 4px;
-
-  height: 2px;
-
-  border-radius: 10px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #0d9488,
-      #0284c7
-    );
-}
-
-
-/* =========================================================
-   NAVBAR APPOINTMENT BUTTON
-   ========================================================= */
-
-.navbar-appointment {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 8px;
-
-  padding: 11px 20px;
-
-  border: none;
-  border-radius: 999px;
-
-  color: white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #0d9488,
-      #0284c7
-    );
-
-  font-size: 12px;
-  font-weight: 800;
-
-  letter-spacing: 0.03em;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 8px 22px rgba(13, 148, 136, 0.25);
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.navbar-appointment:hover {
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 14px 30px rgba(13, 148, 136, 0.32);
-}
-
-.navbar-appointment:active {
-  transform: scale(0.97);
-}
-
-
-/* =========================================================
-   MOBILE NAVBAR
-   ========================================================= */
-
-.navbar-mobile-button {
-  display: none;
-
-  width: 42px;
-  height: 42px;
-
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-
-  background: white;
-
-  color: #0f172a;
-
-  cursor: pointer;
-
-  transition: all 0.25s ease;
-}
-
-.navbar-mobile-button:hover {
-  color: #0d9488;
-
-  border-color: #99f6e4;
-
-  background: #f0fdfa;
-}
-
-
-/* =========================================================
-   MOBILE NAV MENU
-   ========================================================= */
-
-.navbar-mobile-menu {
-  position: absolute;
-
-  top: 76px;
-  left: 0;
-
-  width: 100%;
-
-  padding: 14px 20px 20px;
-
-  background: rgba(255, 255, 255, 0.98);
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  border-bottom: 1px solid #e2e8f0;
-
-  box-shadow:
-    0 15px 35px rgba(15, 23, 42, 0.08);
-}
-
-.navbar-mobile-link {
-  display: block;
-
-  width: 100%;
-
-  padding: 13px 15px;
-
-  color: #334155;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  text-decoration: none;
-
-  border-radius: 10px;
-
-  transition: all 0.25s ease;
-}
-
-.navbar-mobile-link:hover {
-  color: #0d9488;
-
-  background: #f0fdfa;
-}
-
-
-/* =========================================================
-   HERO SECTION
-   ========================================================= */
-
-.hero-section {
-  position: relative;
-  min-height: calc(100vh - 76px);
-
-  display: flex;
-  align-items: center;
-
-  overflow: hidden;
-
-  padding: 80px 0;
-
-  background:
-    radial-gradient(
-      circle at 10% 20%,
-      rgba(7, 92, 129, 0.18),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 90% 25%,
-      rgba(14, 165, 233, 0.14),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #EFF9FF 0%,
-      #E0F2FE 50%,
-      #F0FDFA 100%
-    );
-}
-
-
-/* =========================================================
-   HERO DECORATIVE ELEMENTS
-   ========================================================= */
-
-.hero-section::before {
-  content: "";
-
-  position: absolute;
-
-  width: 450px;
-  height: 450px;
-
-  top: -220px;
-  right: -120px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(10, 149, 137, 0.07);
-
-  filter: blur(2px);
-
-  pointer-events: none;
-}
-
-.hero-section::after {
-  content: "";
-
-  position: absolute;
-
-  width: 350px;
-  height: 350px;
-
-  bottom: -200px;
-  left: -120px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(2, 132, 199, 0.07);
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   HERO CONTAINER
-   ========================================================= */
-
-.hero-container {
-  position: relative;
-
-  z-index: 10;
-
-  width: 100%;
-  max-width: 1280px;
-
-  margin: 0 auto;
-
-  padding: 0 24px;
-}
-
-
-/* =========================================================
-   HERO GRID
-   ========================================================= */
-
-.hero-grid {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.25fr)
-    minmax(400px, 0.75fr);
-
-  align-items: center;
-
-  gap: 60px;
-}
-
-
-/* =========================================================
-   HERO LEFT CONTENT
-   ========================================================= */
-
-.hero-content {
-  position: relative;
-
-  z-index: 10;
-}
-
-.hero-badge {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  padding: 9px 15px;
-
-  border:
-    1px solid rgba(226, 232, 240, 0.9);
-
-  border-radius: 999px;
-
-  background:
-    rgba(255, 255, 255, 0.82);
-
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  box-shadow:
-    0 8px 24px rgba(15, 23, 42, 0.05);
-}
-
-.hero-badge-dot {
-  width: 8px;
-  height: 8px;
-
-  border-radius: 50%;
-
-  background: #10b981;
-
-  animation:
-    hero-pulse 2s ease-in-out infinite;
-}
-
-.hero-badge-text {
-  color: #334155;
-
-  font-size: 11px;
-  font-weight: 800;
-
-  letter-spacing: 0.03em;
-}
-
-
-/* =========================================================
-   HERO TITLE
-   ========================================================= */
-
-.hero-title {
-  max-width: 850px;
-
-  margin-top: 24px;
-
-  color: #0f172a;
-
-  font-size:
-    clamp(2.7rem, 5vw, 4.6rem);
-
-  line-height: 1.08;
-
-  font-weight: 900;
-
-  letter-spacing: -0.05em;
-}
-
-.hero-title span,
-.text-gradient {
-  background:
-    linear-gradient(
-      135deg,
-      #0d9488 0%,
-      #0284c7 50%,
-      #059669 100%
-    );
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-}
-
-
-/* =========================================================
-   HERO DESCRIPTION
-   ========================================================= */
-
-.hero-description {
-  max-width: 680px;
-
-  margin-top: 24px;
-
-  color: #64748b;
-
-  font-size: 17px;
-
-  line-height: 1.8;
-
-  font-weight: 400;
-}
-
-
-/* =========================================================
-   HERO ACTION BUTTONS
-   ========================================================= */
-
-.hero-actions {
-  display: flex;
-
-  align-items: center;
-
-  gap: 14px;
-
-  margin-top: 30px;
-}
-
-.hero-primary-button {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 10px;
-
-  min-height: 54px;
-
-  padding: 0 27px;
-
-  border: none;
-  border-radius: 999px;
-
-  color: white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #0d9488 0%,
-      #0284c7 55%,
-      #059669 100%
-    );
-
-  font-size: 12px;
-
-  font-weight: 800;
-
-  letter-spacing: 0.06em;
-
-  text-transform: uppercase;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 14px 32px rgba(13, 148, 136, 0.28);
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.hero-primary-button:hover {
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 20px 40px rgba(13, 148, 136, 0.35);
-}
-
-.hero-primary-button:active {
-  transform: scale(0.97);
-}
-
-
-.hero-secondary-button {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 10px;
-
-  min-height: 54px;
-
-  padding: 0 22px;
-
-  border:
-    1px solid rgba(226, 232, 240, 0.95);
-
-  border-radius: 999px;
-
-  color: #334155;
-
-  background:
-    rgba(255, 255, 255, 0.9);
-
-  font-size: 12px;
-
-  font-weight: 800;
-
-  text-decoration: none;
-
-  box-shadow:
-    0 8px 22px rgba(15, 23, 42, 0.05);
-
-  transition:
-    transform 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    background 0.3s ease;
-}
-
-.hero-secondary-button:hover {
-  transform: translateY(-2px);
-
-  color: #0d9488;
-
-  border-color: #99f6e4;
-
-  background: #ffffff;
-}
-
-
-/* =========================================================
-   HERO STATS
-   ========================================================= */
-
-.hero-stats {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  max-width: 580px;
-
-  margin-top: 40px;
-
-  padding-top: 24px;
-
-  border-top:
-    1px solid rgba(226, 232, 240, 0.8);
-}
-
-.hero-stat {
-  padding-right: 20px;
-}
-
-.hero-stat-number {
-  color: #0f172a;
-
-  font-size: 30px;
-
-  line-height: 1;
-
-  font-weight: 900;
-}
-
-.hero-stat-number.teal {
-  color: #0d9488;
-}
-
-.hero-stat-label {
-  margin-top: 7px;
-
-  color: #64748b;
-
-  font-size: 11px;
-
-  font-weight: 700;
-}
-
-
-/* =========================================================
-   HERO STAR RATING
-   ========================================================= */
-
-.hero-rating {
-  display: flex;
-
-  align-items: center;
-
-  gap: 2px;
-
-  color: #fbbf24;
-}
-
-.hero-rating svg {
-  width: 16px;
-  height: 16px;
-
-  fill: currentColor;
-}
-
-.hero-rating-text {
-  margin-top: 7px;
-
-  color: #64748b;
-
-  font-size: 11px;
-
-  font-weight: 700;
-}
-
-
-/* =========================================================
-   HERO IMAGE
-   ========================================================= */
-
-.hero-visual {
-  position: relative;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-image-wrapper {
-  position: relative;
-
-  width: 100%;
-  max-width: 500px;
-
-  padding: 12px;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.9);
-
-  border-radius: 34px;
-
-  background:
-    rgba(255, 255, 255, 0.62);
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  box-shadow:
-    0 30px 70px rgba(15, 23, 42, 0.12),
-    0 10px 30px rgba(13, 148, 136, 0.08);
-}
-
-.hero-image {
-  display: block;
-
-  width: 100%;
-
-  height: 470px;
-
-  object-fit: cover;
-
-  border-radius: 25px;
-}
-
-
-/* =========================================================
-   HERO IMAGE OVERLAY
-   ========================================================= */
-
-.hero-image-wrapper::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 12px;
-
-  border-radius: 25px;
-
-  background:
-    linear-gradient(
-      to top,
-      rgba(15, 23, 42, 0.38),
-      transparent 45%
-    );
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   FLOATING CARDS
-   ========================================================= */
+/* =========================================
+   GLASS CARD
+========================================= */
 
 .glass-card {
-  background:
-    rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  border:
-    1px solid rgba(226, 232, 240, 0.8);
-
-  border-radius: 20px;
+  border: 1px solid rgba(233, 213, 255, 0.7);
+  border-radius: 24px;
 
   box-shadow:
-    0 18px 40px rgba(15, 23, 42, 0.1);
+    0 10px 30px -10px rgba(139, 92, 246, 0.07),
+    0 4px 12px -2px rgba(0, 0, 0, 0.02);
 }
 
-.hero-floating-card {
-  position: absolute;
-
-  z-index: 20;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 14px;
-
-  border-radius: 18px;
-
-  background:
-    rgba(255, 255, 255, 0.9);
-
-  border:
-    1px solid rgba(226, 232, 240, 0.8);
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  box-shadow:
-    0 18px 40px rgba(15, 23, 42, 0.12);
-}
-
-.hero-floating-icon {
-  width: 43px;
-  height: 43px;
-
-  flex-shrink: 0;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 14px;
-
-  color: white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #0d9488,
-      #0284c7
-    );
-
-  box-shadow:
-    0 7px 15px rgba(13, 148, 136, 0.2);
-}
-
-.hero-floating-title {
-  color: #0f172a;
-
-  font-size: 12px;
-
-  font-weight: 800;
-}
-
-.hero-floating-text {
-  margin-top: 3px;
-
-  color: #64748b;
-
-  font-size: 10px;
-
-  font-weight: 600;
-}
-
-
-/* =========================================================
-   EXISTING HERO GLASS CARD SUPPORT
-   ========================================================= */
+/* =========================================
+   GLASS CARD HOVER
+========================================= */
 
 .glass-card-hover {
   transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     border-color 0.35s ease;
 }
 
 .glass-card-hover:hover {
   transform: translateY(-6px);
 
-  border-color:
-    rgba(13, 148, 136, 0.3);
-
   box-shadow:
-    0 20px 40px rgba(13, 148, 136, 0.14);
+    0 20px 40px -12px rgba(139, 92, 246, 0.15),
+    0 8px 16px -4px rgba(13, 148, 136, 0.08);
+
+  border-color: rgba(167, 139, 250, 0.5);
 }
 
+/* =========================================
+   GLASS NAVBAR
+========================================= */
 
-/* =========================================================
-   HERO FLOAT ANIMATIONS
-   ========================================================= */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 
-@keyframes hero-pulse {
+  border-bottom: 1px solid rgba(233, 213, 255, 0.6);
+}
+
+/* =========================================
+   TEXT GRADIENT
+========================================= */
+
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    #7c3aed 0%,
+    #0d9488 50%,
+    #2563eb 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* =========================================
+   PRIMARY TEXT GRADIENT
+========================================= */
+
+.text-gradient-primary {
+  background: linear-gradient(
+    135deg,
+    #6d28d9 0%,
+    #8b5cf6 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* =========================================
+   PRIMARY BACKGROUND GRADIENT
+========================================= */
+
+.bg-gradient-primary {
+  background: linear-gradient(
+    135deg,
+    #8b5cf6 0%,
+    #0d9488 100%
+  );
+}
+
+/* =========================================
+   HERO BACKGROUND
+========================================= */
+
+.bg-gradient-hero {
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(245, 243, 255, 1) 0%,
+      rgba(238, 242, 255, 0.9) 40%,
+      rgba(240, 253, 250, 0.8) 100%
+    );
+}
+
+/* =========================================
+   SOFT BACKGROUND
+========================================= */
+
+.bg-gradient-soft {
+  background: linear-gradient(
+    135deg,
+    rgba(237, 233, 254, 0.5) 0%,
+    rgba(204, 251, 241, 0.4) 100%
+  );
+}
+
+/* =========================================
+   CUSTOM SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3e8ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8b5cf6;
+}
+
+/* =========================================
+   FLOATING ANIMATIONS
+========================================= */
+
+@keyframes floatSlow {
   0%,
   100% {
-    opacity: 1;
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+}
+
+@keyframes floatReverse {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(10px) rotate(-3deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.4;
     transform: scale(1);
   }
 
   50% {
-    opacity: 0.4;
-    transform: scale(1.4);
+    opacity: 0.7;
+    transform: scale(1.08);
   }
 }
 
-@keyframes hero-float-up {
-  0%,
-  100% {
-    transform: translateY(-8px);
-  }
+/* =========================================
+   ANIMATION UTILITIES
+========================================= */
 
-  50% {
-    transform: translateY(8px);
-  }
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
 }
 
-@keyframes hero-float-down {
-  0%,
-  100% {
-    transform: translateY(8px);
-  }
-
-  50% {
-    transform: translateY(-8px);
-  }
+.animate-float-reverse {
+  animation: floatReverse 7s ease-in-out infinite;
 }
 
-.animate-hero-float {
-  animation:
-    hero-float-up 5s ease-in-out infinite;
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
 }
 
-.animate-hero-float-reverse {
-  animation:
-    hero-float-down 6s ease-in-out infinite;
+/* =========================================
+   SWIPER PAGINATION
+========================================= */
+
+.swiper-pagination-bullet {
+  background: #ddd6fe !important;
+  opacity: 0.6 !important;
+
+  width: 10px !important;
+  height: 10px !important;
+
+  transition: all 0.3s ease !important;
 }
 
+.swiper-pagination-bullet-active {
+  background: #8b5cf6 !important;
+  opacity: 1 !important;
 
-/* =========================================================
-   RESPONSIVE - TABLET
-   ========================================================= */
-
-@media (max-width: 1100px) {
-  .navbar-container {
-    padding: 0 20px;
-  }
-
-  .navbar-link {
-    padding-left: 9px;
-    padding-right: 9px;
-
-    font-size: 13px;
-  }
-
-  .hero-grid {
-    grid-template-columns:
-      minmax(0, 1fr)
-      minmax(350px, 0.75fr);
-
-    gap: 35px;
-  }
-
-  .hero-title {
-    font-size: 3.5rem;
-  }
-
-  .hero-image {
-    height: 420px;
-  }
+  width: 28px !important;
+  border-radius: 12px !important;
 }
 
+/* =========================================
+   SELECTION
+========================================= */
 
-/* =========================================================
-   RESPONSIVE - MOBILE
-   ========================================================= */
-
-@media (max-width: 768px) {
-  .navbar {
-    height: 68px;
-  }
-
-  .navbar-container {
-    padding: 0 16px;
-  }
-
-  .navbar-links {
-    display: none;
-  }
-
-  .navbar-appointment {
-    display: none;
-  }
-
-  .navbar-mobile-button {
-    display: flex;
-  }
-
-  .navbar-mobile-menu {
-    top: 68px;
-  }
-
-  .hero-section {
-    min-height: auto;
-
-    padding:
-      55px 0
-      75px;
-  }
-
-  .hero-container {
-    padding: 0 18px;
-  }
-
-  .hero-grid {
-    grid-template-columns: 1fr;
-
-    gap: 45px;
-  }
-
-  .hero-content {
-    text-align: center;
-  }
-
-  .hero-badge {
-    justify-content: center;
-  }
-
-  .hero-title {
-    max-width: 100%;
-
-    margin-top: 20px;
-
-    font-size: 2.7rem;
-
-    line-height: 1.12;
-  }
-
-  .hero-description {
-    margin-left: auto;
-    margin-right: auto;
-
-    font-size: 15px;
-
-    line-height: 1.7;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-
-    width: 100%;
-  }
-
-  .hero-primary-button,
-  .hero-secondary-button {
-    width: 100%;
-  }
-
-  .hero-stats {
-    max-width: 100%;
-
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-stat {
-    padding: 0 5px;
-
-    text-align: center;
-  }
-
-  .hero-stat-number {
-    font-size: 22px;
-  }
-
-  .hero-stat-label {
-    font-size: 9px;
-  }
-
-  .hero-visual {
-    width: 100%;
-  }
-
-  .hero-image-wrapper {
-    max-width: 500px;
-  }
-
-  .hero-image {
-    height: 380px;
-  }
+::selection {
+  background: #ddd6fe;
+  color: #1e1b4b;
 }
 
+/* =========================================
+   BUTTON / LINK
+========================================= */
 
-/* =========================================================
-   RESPONSIVE - SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 480px) {
-  .navbar-logo-icon {
-    width: 40px;
-    height: 40px;
-
-    border-radius: 12px;
-  }
-
-  .navbar-logo-title {
-    font-size: 15px;
-  }
-
-  .navbar-logo-subtitle {
-    font-size: 7px;
-  }
-
-  .hero-section {
-    padding:
-      40px 0
-      60px;
-  }
-
-  .hero-title {
-    font-size: 2.15rem;
-  }
-
-  .hero-badge {
-    padding: 8px 11px;
-  }
-
-  .hero-badge-text {
-    font-size: 9px;
-  }
-
-  .hero-description {
-    font-size: 14px;
-  }
-
-  .hero-image {
-    height: 320px;
-  }
-
-  .hero-floating-card {
-    display: none;
-  }
-
-  .hero-stats {
-    gap: 4px;
-  }
-
-  .hero-stat-number {
-    font-size: 19px;
-  }
-
-  .hero-stat-label {
-    font-size: 8px;
-  }
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* =========================================
+   IMAGE
+========================================= */
 
-/* =========================================================
-   ACCESSIBILITY
-   ========================================================= */
-
-.navbar-link:focus-visible,
-.navbar-appointment:focus-visible,
-.navbar-mobile-button:focus-visible,
-.hero-primary-button:focus-visible,
-.hero-secondary-button:focus-visible {
-  outline: 3px solid rgba(2, 132, 199, 0.3);
-
-  outline-offset: 3px;
+img {
+  max-width: 100%;
+  display: block;
 }

@@ -18,29 +18,38 @@ import {
 
 export default function Footer({ onOpenAppointment }) {
   return (
-    <footer className="relative bg-slate-900 text-slate-300 pt-16 pb-8 overflow-hidden border-t border-slate-800">
+    <footer className="relative overflow-hidden bg-slate-950 text-white pt-16 pb-6">
 
-      {/* Background Glow */}
+      {/* =========================
+          BACKGROUND GLOW
+      ========================== */}
+
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0D9488]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#0284C7]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* Main Footer */}
+        {/* =========================
+            MAIN FOOTER
+        ========================== */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800/80">
 
           {/* =========================
               COLUMN 1 - CLINIC
           ========================== */}
+
           <div className="space-y-4">
 
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
+            <Link
+              to="/"
+              className="flex items-center gap-3"
+            >
+              <div className="w-10 h-10 rounded-2xl bg-linear-to-tr from-[#0D9488] via-[#0284C7] to-[#059669] p-0.5 shadow-md shadow-[#0D9488]/20">
 
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#0D9488] via-[#0284C7] to-[#059669] p-0.5 shadow-md shadow-[#0D9488]/20">
-
-                <div className="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center text-[#0D9488]">
+                <div className="w-full h-full bg-slate-900 rounded-xl flex items-center justify-center text-[#0D9488]">
 
                   <svg
                     className="w-5 h-5 fill-current"
@@ -57,7 +66,9 @@ export default function Footer({ onOpenAppointment }) {
 
                 <span className="text-xl font-extrabold tracking-tight text-white leading-tight">
                   Sakthi
-                  <span className="text-[#0D9488]">Dental</span>
+                  <span className="text-[#0D9488]">
+                    Dental
+                  </span>
                 </span>
 
                 <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
@@ -65,7 +76,6 @@ export default function Footer({ onOpenAppointment }) {
                 </span>
 
               </div>
-
             </Link>
 
             {/* Description */}
@@ -140,6 +150,7 @@ export default function Footer({ onOpenAppointment }) {
             {/* Appointment Button */}
             {onOpenAppointment && (
               <button
+                type="button"
                 onClick={onOpenAppointment}
                 className="w-full mt-4 px-4 py-3 rounded-xl bg-[#0D9488] text-white font-bold hover:bg-[#0F766E] transition-all shadow-lg shadow-[#0D9488]/20"
               >
@@ -152,6 +163,7 @@ export default function Footer({ onOpenAppointment }) {
           {/* =========================
               COLUMN 2 - QUICK LINKS
           ========================== */}
+
           <div className="space-y-4">
 
             <h4 className="text-sm font-extrabold uppercase tracking-widest text-white border-l-2 border-[#0D9488] pl-3">
@@ -165,7 +177,9 @@ export default function Footer({ onOpenAppointment }) {
                   to="/"
                   className="hover:text-[#0D9488] transition-colors flex items-center gap-1.5"
                 >
-                  <span className="text-[#0D9488]">›</span>
+                  <span className="text-[#0D9488]">
+                    ›
+                  </span>
                   Home
                 </Link>
               </li>
@@ -175,7 +189,9 @@ export default function Footer({ onOpenAppointment }) {
                   to="/about"
                   className="hover:text-[#0D9488] transition-colors flex items-center gap-1.5"
                 >
-                  <span className="text-[#0D9488]">›</span>
+                  <span className="text-[#0D9488]">
+                    ›
+                  </span>
                   About Our Clinic
                 </Link>
               </li>
@@ -185,7 +201,9 @@ export default function Footer({ onOpenAppointment }) {
                   to="/treatments"
                   className="hover:text-[#0D9488] transition-colors flex items-center gap-1.5"
                 >
-                  <span className="text-[#0D9488]">›</span>
+                  <span className="text-[#0D9488]">
+                    ›
+                  </span>
                   Full Treatments List
                 </Link>
               </li>
@@ -195,7 +213,9 @@ export default function Footer({ onOpenAppointment }) {
                   to="/faqs"
                   className="hover:text-[#0D9488] transition-colors flex items-center gap-1.5"
                 >
-                  <span className="text-[#0D9488]">›</span>
+                  <span className="text-[#0D9488]">
+                    ›
+                  </span>
                   Patient FAQs
                 </Link>
               </li>
@@ -205,7 +225,9 @@ export default function Footer({ onOpenAppointment }) {
                   to="/privacy"
                   className="hover:text-[#0D9488] transition-colors flex items-center gap-1.5"
                 >
-                  <span className="text-[#0D9488]">›</span>
+                  <span className="text-[#0D9488]">
+                    ›
+                  </span>
                   Privacy Policy
                 </Link>
               </li>
@@ -215,7 +237,9 @@ export default function Footer({ onOpenAppointment }) {
                   to="/contact"
                   className="hover:text-[#0D9488] transition-colors flex items-center gap-1.5"
                 >
-                  <span className="text-[#0D9488]">›</span>
+                  <span className="text-[#0D9488]">
+                    ›
+                  </span>
                   Contact & Directions
                 </Link>
               </li>
@@ -226,6 +250,7 @@ export default function Footer({ onOpenAppointment }) {
           {/* =========================
               COLUMN 3 - TREATMENTS
           ========================== */}
+
           <div className="space-y-4">
 
             <h4 className="text-sm font-extrabold uppercase tracking-widest text-white border-l-2 border-[#0284C7] pl-3">
@@ -303,6 +328,7 @@ export default function Footer({ onOpenAppointment }) {
           {/* =========================
               COLUMN 4 - HOURS & SOCIAL
           ========================== */}
+
           <div className="space-y-4">
 
             <h4 className="text-sm font-extrabold uppercase tracking-widest text-white border-l-2 border-[#059669] pl-3">
@@ -401,15 +427,16 @@ export default function Footer({ onOpenAppointment }) {
                 </a>
 
               </div>
-
             </div>
 
           </div>
+
         </div>
 
         {/* =========================
             BOTTOM FOOTER
         ========================== */}
+
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
 
           <p className="text-center sm:text-left">
