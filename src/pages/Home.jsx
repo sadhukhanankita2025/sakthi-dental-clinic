@@ -1,9 +1,9 @@
 import React from "react";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
-import DoctorsAndSpecialities from "../components/DoctorsAndSpecialties";
 import TrustBanner from "../components/TrustBanner";
 import WhyChooseUs from "../components/WhyChooseUs";
+import CTA from '../components/CTA';
 
 export default function Home({ onOpenAppointment }) {
   return (
@@ -14,9 +14,7 @@ export default function Home({ onOpenAppointment }) {
       <TrustBanner />
       <WhyChooseUs />
       <Services />
-      
-
-      <DoctorsAndSpecialities />
+      <CTA onOpenAppointment={onOpenAppointment} />
       
 
     </>

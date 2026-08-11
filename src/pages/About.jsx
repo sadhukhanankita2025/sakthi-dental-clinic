@@ -14,6 +14,7 @@ import {
 import DoctorCard from "../components/DoctorCard";
 import { DOCTORS_DATA } from "../data/doctorsData";
 import CTA from "../components/CTA";
+import DoctorsAndSpecialities from "../components/DoctorsAndSpecialties";
 
 /* =========================================================
    SIMPLE LOCAL COUNT-UP COMPONENT
@@ -385,6 +386,8 @@ export default function About({ onOpenAppointment }) {
         </div>
 
       </section>
+
+      <DoctorsAndSpecialities />
 
       {/* =====================================================
           DOCTORS
