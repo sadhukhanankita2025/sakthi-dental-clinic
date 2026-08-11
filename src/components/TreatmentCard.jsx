@@ -1,222 +1,311 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Clock, Shield, Sparkles, X, Check, Calendar, Eye, Info, ChevronRight, PhoneCall } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  Clock,
+  Shield,
+  Sparkles,
+  X,
+  Check,
+  Calendar,
+  Eye,
+  Info,
+  ChevronRight,
+  PhoneCall,
+} from "lucide-react";
 
-export default function TreatmentCard({ treatment, onOpenAppointment }) {
+export default function TreatmentCard({
+  treatment,
+  onOpenAppointment,
+}) {
   const [modalOpen, setModalOpen] = useState(false);
+
+  // Prevent crash if treatment is missing
+  if (!treatment) {
+    console.warn("TreatmentCard: treatment prop is missing.");
+    return null;
+  }
 
   return (
     <>
-      {/* Modern Image-Centric Card */}
+      {/* =====================================================
+          TREATMENT CARD
+      ====================================================== */}
+
       <motion.div
         whileHover={{ y: -8 }}
         onClick={() => setModalOpen(true)}
-        className="group relative h-[360px] sm:h-[380px] rounded-[28px] overflow-hidden cursor-pointer border border-slate-200/80 hover:border-[#0D9488]/50 shadow-md hover:shadow-2xl hover:shadow-[#0D9488]/15 transition-all duration-500 bg-slate-900 flex flex-col justify-between"
+        className="group relative flex h-90 cursor-pointer flex-col justify-between overflow-hidden rounded-[28px] border border-slate-200/80 bg-slate-900 shadow-md transition-all duration-500 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-900/20 sm:h-95"
       >
-        {/* Background Image with Zoom Effect */}
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src={treatment.image}
-            alt={treatment.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+            src={treatment.image || "/images/default-treatment.jpg"}
+            alt={treatment.title || "Dental Treatment"}
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
-          {/* Dual Overlay Gradients for Crisp Readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-black/30 group-hover:via-slate-950/70 transition-colors duration-300" />
+
+          <div className="absolute inset-0 bg-linear-to-t from-purple-950 via-purple-950/60 to-slate-950/20 transition-colors duration-300 group-hover:via-purple-950/75" />
         </div>
 
-        {/* Top Badges Bar */}
-        <div className="relative z-10 p-5 flex items-center justify-between gap-2">
-          <span className="px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-slate-900 text-[10px] font-extrabold uppercase tracking-wider shadow-sm border border-white/40">
-            {treatment.category}
+        {/* Top Badges */}
+        <div className="relative z-10 flex items-center justify-between gap-2 p-5">
+          <span className="rounded-full border border-purple-200/40 bg-white/95 px-3.5 py-1.5 text-[10px] font-extrabold uppercase tracking-wider text-purple-900 shadow-sm backdrop-blur-md">
+            {treatment.category || "Dental Care"}
           </span>
 
           <div className="flex items-center gap-1.5">
             {treatment.painless && (
-              <span className="px-3 py-1 rounded-full bg-emerald-500/90 backdrop-blur-md text-white text-[10px] font-bold tracking-wide flex items-center gap-1 shadow-md">
-                <Sparkles className="w-3 h-3" /> Painless
+              <span className="flex items-center gap-1 rounded-full bg-purple-600/90 px-3 py-1 text-[10px] font-bold tracking-wide text-white shadow-md backdrop-blur-md">
+                <Sparkles className="h-3 w-3" />
+                Painless
               </span>
             )}
-            <span className="p-2 rounded-full bg-black/40 backdrop-blur-md text-white/80 group-hover:text-white group-hover:bg-[#0D9488] transition-all">
-              <Eye className="w-3.5 h-3.5" />
+
+            <span className="rounded-full bg-purple-950/50 p-2 text-purple-100 backdrop-blur-md transition-all group-hover:bg-purple-600 group-hover:text-white">
+              <Eye className="h-3.5 w-3.5" />
             </span>
           </div>
         </div>
 
-        {/* Hover Center Quick Hint Badge */}
-        <div className="relative z-10 my-auto text-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:scale-100 scale-90">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs font-bold shadow-lg">
-            <Info className="w-4 h-4 text-teal-300" />
+        {/* Hover Message */}
+        <div className="relative z-10 my-auto scale-90 text-center opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100">
+          <span className="inline-flex items-center gap-2 rounded-full border border-purple-200/30 bg-purple-900/30 px-4 py-2 text-xs font-bold text-white shadow-lg backdrop-blur-md">
+            <Info className="h-4 w-4 text-purple-300" />
             Click image for full details
           </span>
         </div>
 
-        {/* Bottom Content Area on Image */}
-        <div className="relative z-10 p-6 space-y-3">
+        {/* Bottom Content */}
+        <div className="relative z-10 space-y-3 p-6">
           <div>
-            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight group-hover:text-teal-300 transition-colors duration-200">
-              {treatment.title}
+            <h3 className="text-xl font-black tracking-tight text-white transition-colors duration-200 group-hover:text-purple-300 sm:text-2xl">
+              {treatment.title || "Dental Treatment"}
             </h3>
-            <p className="text-xs text-slate-300 line-clamp-2 mt-1.5 font-medium leading-relaxed">
-              {treatment.shortDesc}
+
+            <p className="mt-1.5 line-clamp-2 text-xs font-medium leading-relaxed text-purple-100/80">
+              {treatment.shortDesc || "Professional dental care and treatment."}
             </p>
           </div>
 
-          {/* Quick Specs Strip */}
-          <div className="flex items-center justify-between border-t border-white/15 pt-3 text-xs font-semibold text-slate-300">
-            <div className="flex items-center gap-1.5 text-teal-300">
-              <Clock className="w-3.5 h-3.5" />
-              <span>{treatment.duration}</span>
+          {/* Quick Specs */}
+          <div className="flex items-center justify-between border-t border-purple-200/20 pt-3 text-xs font-semibold text-purple-100/80">
+            <div className="flex items-center gap-1.5 text-purple-300">
+              <Clock className="h-3.5 w-3.5" />
+              <span>{treatment.duration || "Consultation"}</span>
             </div>
 
-            <div className="text-emerald-400 font-bold">
-              {treatment.priceEstimate}
+            <div className="font-bold text-purple-300">
+              {treatment.priceEstimate || "Contact Us"}
             </div>
 
-            <div className="flex items-center gap-1 text-white/90 group-hover:text-teal-300 transition-colors font-bold text-[11px] uppercase tracking-wider">
+            <div className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-white/90 transition-colors group-hover:text-purple-300">
               <span>Details</span>
-              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </div>
           </div>
         </div>
       </motion.div>
 
-      {/* Detailed Treatment Popup Lightbox Modal */}
+      {/* =====================================================
+          TREATMENT DETAILS MODAL
+      ====================================================== */}
+
       <AnimatePresence>
         {modalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-3 sm:p-6">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setModalOpen(false)}
-              className="fixed inset-0 bg-slate-950/75 backdrop-blur-md"
+              className="fixed inset-0 bg-purple-950/80 backdrop-blur-md"
             />
 
-            {/* Modal Card */}
+            {/* Modal */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 20 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-2xl rounded-[32px] bg-white shadow-2xl overflow-hidden z-10 border border-slate-100 my-auto max-h-[90vh] flex flex-col"
+              initial={{
+                opacity: 0,
+                scale: 0.92,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.92,
+                y: 20,
+              }}
+              transition={{
+                type: "spring",
+                damping: 25,
+                stiffness: 300,
+              }}
+              className="relative z-10 my-auto flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-[28px] border border-purple-100 bg-white shadow-2xl"
             >
-              {/* Header Image Cover */}
-              <div className="relative h-60 sm:h-72 overflow-hidden shrink-0">
+              {/* Modal Header Image */}
+              <div className="relative h-60 shrink-0 overflow-hidden sm:h-72">
                 <img
-                  src={treatment.image}
-                  alt={treatment.title}
-                  className="w-full h-full object-cover"
+                  src={
+                    treatment.image ||
+                    "/images/default-treatment.jpg"
+                  }
+                  alt={treatment.title || "Dental Treatment"}
+                  className="h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent" />
+
+                <div className="absolute inset-0 bg-linear-to-t from-purple-950 via-purple-900/40 to-transparent" />
 
                 {/* Close Button */}
                 <button
+                  type="button"
                   onClick={() => setModalOpen(false)}
-                  className="absolute top-4 right-4 p-2.5 rounded-full bg-slate-900/70 text-white hover:bg-slate-900 transition-all cursor-pointer hover:scale-105 z-20"
+                  className="absolute right-4 top-4 z-20 cursor-pointer rounded-full bg-purple-950/70 p-2.5 text-white shadow-lg backdrop-blur-md transition-all hover:scale-105 hover:bg-purple-950"
                   aria-label="Close procedure popup"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="h-5 w-5" />
                 </button>
 
-                {/* Badges and Title over Image Header */}
-                <div className="absolute bottom-5 left-6 right-6 text-white space-y-2">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="px-3 py-1 rounded-full bg-[#0D9488] text-[10px] font-extrabold uppercase tracking-wider text-white shadow-md">
-                      {treatment.category}
+                {/* Modal Title */}
+                <div className="absolute bottom-5 left-6 right-6 space-y-2 text-white">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full bg-purple-600 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white shadow-md">
+                      {treatment.category || "Dental Care"}
                     </span>
+
                     {treatment.painless && (
-                      <span className="px-3 py-1 rounded-full bg-emerald-500 text-[10px] font-extrabold uppercase tracking-wider text-white shadow-md flex items-center gap-1">
-                        <Sparkles className="w-3 h-3" /> 100% Painless Protocol
+                      <span className="flex items-center gap-1 rounded-full bg-violet-600 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white shadow-md">
+                        <Sparkles className="h-3 w-3" />
+                        100% Painless Protocol
                       </span>
                     )}
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-black tracking-tight drop-shadow-sm">
-                    {treatment.title}
+
+                  <h2 className="text-2xl font-black tracking-tight drop-shadow-sm sm:text-3xl">
+                    {treatment.title || "Dental Treatment"}
                   </h2>
                 </div>
               </div>
 
-              {/* Scrollable Body Content */}
-              <div className="p-6 sm:p-8 overflow-y-auto space-y-6">
-                
+              {/* Modal Body */}
+              <div className="space-y-6 overflow-y-auto p-6 sm:p-8">
                 {/* Description */}
                 <div>
-                  <h4 className="text-xs font-extrabold uppercase tracking-widest text-[#0D9488] mb-2">
+                  <h4 className="mb-2 text-xs font-extrabold uppercase tracking-widest text-purple-700">
                     Procedure Overview
                   </h4>
-                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
-                    {treatment.fullDesc}
+
+                  <p className="text-sm font-normal leading-relaxed text-slate-700 sm:text-base">
+                    {treatment.fullDesc ||
+                      treatment.shortDesc ||
+                      "Please contact our dental clinic for complete procedure information."}
                   </p>
                 </div>
 
-                {/* Key Benefits Grid */}
-                {treatment.benefits && (
-                  <div>
-                    <h4 className="text-xs font-extrabold uppercase tracking-widest text-[#0D9488] mb-3">
-                      Key Clinical Benefits
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {treatment.benefits.map((benefit, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-center gap-3 text-xs sm:text-sm font-semibold text-slate-800 bg-slate-50 p-3 rounded-2xl border border-slate-200/70"
-                        >
-                          <div className="p-1 rounded-full bg-emerald-100 text-emerald-600 shrink-0">
-                            <Check className="w-3.5 h-3.5 stroke-[3]" />
-                          </div>
-                          <span>{benefit}</span>
-                        </div>
-                      ))}
+                {/* Benefits */}
+                {Array.isArray(treatment.benefits) &&
+                  treatment.benefits.length > 0 && (
+                    <div>
+                      <h4 className="mb-3 text-xs font-extrabold uppercase tracking-widest text-purple-700">
+                        Key Clinical Benefits
+                      </h4>
+
+                      <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                        {treatment.benefits.map(
+                          (benefit, idx) => (
+                            <div
+                              key={`${benefit}-${idx}`}
+                              className="flex items-center gap-3 rounded-2xl border border-purple-100 bg-purple-50/70 p-3 text-xs font-semibold text-slate-800 sm:text-sm"
+                            >
+                              <div className="shrink-0 rounded-full bg-purple-100 p-1 text-purple-700">
+                                <Check className="h-3.5 w-3.5 stroke-3" />
+                              </div>
+
+                              <span>{benefit}</span>
+                            </div>
+                          )
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* Clinical Spec Highlights */}
+                {/* Clinical Highlights */}
                 <div className="grid grid-cols-3 gap-3 pt-2 text-center text-xs">
-                  <div className="p-4 rounded-2xl bg-teal-50/80 border border-teal-100">
-                    <Clock className="w-4 h-4 text-[#0D9488] mx-auto mb-1" />
-                    <span className="text-slate-400 block text-[10px] uppercase font-extrabold">Duration</span>
-                    <span className="font-extrabold text-slate-800 text-xs sm:text-sm">{treatment.duration}</span>
+                  {/* Duration */}
+                  <div className="rounded-2xl border border-purple-100 bg-purple-50/80 p-4">
+                    <Clock className="mx-auto mb-1 h-4 w-4 text-purple-700" />
+
+                    <span className="block text-[10px] font-extrabold uppercase text-slate-400">
+                      Duration
+                    </span>
+
+                    <span className="text-xs font-extrabold text-slate-800 sm:text-sm">
+                      {treatment.duration || "Varies"}
+                    </span>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-sky-50/80 border border-sky-100">
-                    <Shield className="w-4 h-4 text-[#0284C7] mx-auto mb-1" />
-                    <span className="text-slate-400 block text-[10px] uppercase font-extrabold">Recovery</span>
-                    <span className="font-extrabold text-slate-800 text-xs sm:text-sm">{treatment.recovery}</span>
+                  {/* Recovery */}
+                  <div className="rounded-2xl border border-violet-100 bg-violet-50/80 p-4">
+                    <Shield className="mx-auto mb-1 h-4 w-4 text-violet-700" />
+
+                    <span className="block text-[10px] font-extrabold uppercase text-slate-400">
+                      Recovery
+                    </span>
+
+                    <span className="text-xs font-extrabold text-slate-800 sm:text-sm">
+                      {treatment.recovery || "Varies"}
+                    </span>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-100">
-                    <Sparkles className="w-4 h-4 text-emerald-600 mx-auto mb-1" />
-                    <span className="text-slate-400 block text-[10px] uppercase font-extrabold">Estimate</span>
-                    <span className="font-extrabold text-slate-800 text-xs sm:text-sm">{treatment.priceEstimate}</span>
+                  {/* Estimate */}
+                  <div className="rounded-2xl border border-fuchsia-100 bg-fuchsia-50/80 p-4">
+                    <Sparkles className="mx-auto mb-1 h-4 w-4 text-fuchsia-600" />
+
+                    <span className="block text-[10px] font-extrabold uppercase text-slate-400">
+                      Estimate
+                    </span>
+
+                    <span className="text-xs font-extrabold text-slate-800 sm:text-sm">
+                      {treatment.priceEstimate || "Contact Us"}
+                    </span>
                   </div>
                 </div>
-
               </div>
 
-              {/* Action Buttons Footer */}
-              <div className="p-6 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center gap-3 shrink-0">
+              {/* Modal Footer */}
+              <div className="flex shrink-0 flex-col items-center gap-3 border-t border-purple-100 bg-purple-50/60 p-6 sm:flex-row">
+                {/* Appointment */}
                 <button
+                  type="button"
                   onClick={() => {
                     setModalOpen(false);
-                    if (onOpenAppointment) onOpenAppointment(treatment.title);
+
+                    if (onOpenAppointment) {
+                      onOpenAppointment(treatment.title);
+                    }
                   }}
-                  className="w-full sm:flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#0D9488] via-[#0284C7] to-[#059669] text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-[#0D9488]/25 hover:opacity-95 transition-all cursor-pointer flex items-center justify-center gap-2"
+                  className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-linear-to-r from-purple-700 via-violet-700 to-fuchsia-600 px-6 py-3.5 text-xs font-extrabold uppercase tracking-wider text-white shadow-lg shadow-purple-700/25 transition-all hover:scale-[1.01] hover:opacity-95 sm:flex-1"
                 >
-                  <Calendar className="w-4 h-4" />
-                  <span>Book Appointment For This Procedure</span>
+                  <Calendar className="h-4 w-4" />
+
+                  <span>
+                    Book Appointment For This Procedure
+                  </span>
                 </button>
 
+                {/* Call Doctor */}
                 <a
                   href="tel:+919876543210"
-                  className="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-white border border-slate-200 text-slate-800 hover:bg-slate-100 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors shrink-0"
+                  className="flex w-full shrink-0 items-center justify-center gap-2 rounded-2xl border border-purple-200 bg-white px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-slate-800 transition-colors hover:bg-purple-50 sm:w-auto"
                 >
-                  <PhoneCall className="w-4 h-4 text-[#0D9488]" />
+                  <PhoneCall className="h-4 w-4 text-purple-700" />
+
                   <span>Call Doctor</span>
                 </a>
               </div>
-
             </motion.div>
           </div>
         )}
@@ -224,4 +313,3 @@ export default function TreatmentCard({ treatment, onOpenAppointment }) {
     </>
   );
 }
-
