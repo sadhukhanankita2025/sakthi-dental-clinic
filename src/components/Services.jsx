@@ -1,100 +1,186 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  Stethoscope,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+
 import TreatmentCard from "./TreatmentCard";
-
-const treatments = [
-  {
-    title: "Teeth Cleaning",
-    category: "Preventive Care",
-    image:
-      "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=1200&q=80",
-    painless: true,
-    shortDesc:
-      "Professional cleaning to keep your teeth healthy and your smile bright.",
-    fullDesc:
-      "Professional dental cleaning removes plaque, tartar and surface stains while helping maintain healthy teeth and gums.",
-    duration: "30–45 min",
-    recovery: "None",
-    priceEstimate: "₹800+",
-    benefits: [
-      "Removes plaque and tartar",
-      "Helps prevent gum disease",
-      "Freshens breath",
-      "Maintains oral hygiene",
-    ],
-  },
-
-  {
-    title: "Dental Implants",
-    category: "Restorative",
-    image:
-      "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1200&q=80",
-    painless: true,
-    shortDesc:
-      "Natural-looking replacement for missing teeth with modern implant technology.",
-    fullDesc:
-      "Dental implants provide a stable and natural-looking solution for replacing missing teeth.",
-    duration: "60–90 min",
-    recovery: "Few days",
-    priceEstimate: "₹25,000+",
-    benefits: [
-      "Natural appearance",
-      "Strong and durable",
-      "Improved chewing",
-      "Long-term solution",
-    ],
-  },
-
-  {
-    title: "Teeth Whitening",
-    category: "Cosmetic Dentistry",
-    image:
-      "https://images.unsplash.com/photo-1606265752439-1f18756aa2f4?auto=format&fit=crop&w=1200&q=80",
-    painless: true,
-    shortDesc:
-      "Brighten your smile with professional teeth whitening treatment.",
-    fullDesc:
-      "Professional whitening treatment helps reduce stains and discoloration to create a brighter smile.",
-    duration: "45–60 min",
-    recovery: "None",
-    priceEstimate: "₹5,000+",
-    benefits: [
-      "Brighter smile",
-      "Professional treatment",
-      "Quick procedure",
-      "Minimal sensitivity",
-    ],
-  },
-];
+import { TREATMENTS_DATA } from "../data/treatmentsData";
 
 export default function Services({ onOpenAppointment }) {
+  const scrollRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  /* =========================================================
+     AUTO SCROLL
+  ========================================================= */
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      if (!scrollRef.current) return;
+
+      const {
+        scrollLeft,
+        scrollWidth,
+        clientWidth,
+      } = scrollRef.current;
+
+      // Return to beginning when carousel reaches the end
+      if (scrollLeft + clientWidth >= scrollWidth - 20) {
+        scrollRef.current.scrollTo({
+          left: 0,
+          behavior: "smooth",
+        });
+      } else {
+        scrollRef.current.scrollBy({
+          left: 380,
+          behavior: "smooth",
+        });
+      }
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  /* =========================================================
+     MANUAL CAROUSEL CONTROL
+  ========================================================= */
+
+  const handleScroll = (direction) => {
+    if (!scrollRef.current) return;
+
+    const scrollAmount = direction === "left" ? -380 : 380;
+
+    scrollRef.current.scrollBy({
+      left: scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 text-center">
-          <p className="mb-3 text-sm font-extrabold uppercase tracking-widest text-purple-600">
-            Our Treatments
-          </p>
+    <section className="py-20 bg-[#FAF5FF] relative overflow-hidden">
 
-          <h2 className="text-3xl font-black text-slate-900 sm:text-4xl">
-            Complete Dental Care
-          </h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <p className="mx-auto mt-4 max-w-2xl text-slate-600">
-            Modern, comfortable and personalized dental treatments for your
-            complete oral health.
-          </p>
+        {/* =====================================================
+            SECTION HEADER
+        ====================================================== */}
+
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+
+          <div className="space-y-2.5 max-w-2xl">
+
+            {/* Badge */}
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-100 text-purple-700 border border-purple-200/80 text-xs font-bold uppercase tracking-wider">
+
+              <Stethoscope className="w-3.5 h-3.5 text-purple-600" />
+
+              Comprehensive Dental Solutions
+
+            </div>
+
+            {/* Heading */}
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Specialized Treatments Tailored for You
+            </h2>
+
+            {/* Description */}
+            <p className="text-sm sm:text-base text-slate-600 font-normal">
+              Painless procedures using world-class equipment and biocompatible
+              dental materials.
+            </p>
+
+          </div>
+
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {treatments.map((treatment) => (
-            <TreatmentCard
-              key={treatment.title}
-              treatment={treatment}
-              onOpenAppointment={onOpenAppointment}
-            />
-          ))}
+        {/* =====================================================
+            CAROUSEL
+        ====================================================== */}
+
+        <div className="relative group/carousel">
+
+          {/* ===================================================
+              LEFT ARROW
+          ==================================================== */}
+
+          <button
+            type="button"
+            onClick={() => handleScroll("left")}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 sm:-translate-x-5 z-20 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md border border-purple-200 text-purple-950 shadow-xl hover:bg-purple-600 hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
+            aria-label="Previous Treatment"
+          >
+            <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+          </button>
+
+          {/* ===================================================
+              TREATMENT CARDS
+          ==================================================== */}
+
+          <div
+            ref={scrollRef}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            className="flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory py-4 px-1 scroll-smooth"
+          >
+
+            {TREATMENTS_DATA.map((treatment) => (
+              <div
+                key={treatment.id}
+                className="w-75 sm:w-87.5 md:w-95 shrink-0 snap-start"
+              >
+                <TreatmentCard
+                  treatment={treatment}
+                  onOpenAppointment={onOpenAppointment}
+                />
+              </div>
+            ))}
+
+          </div>
+
+          {/* ===================================================
+              RIGHT ARROW
+          ==================================================== */}
+
+          <button
+            type="button"
+            onClick={() => handleScroll("right")}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 sm:translate-x-5 z-20 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md border border-purple-200 text-purple-950 shadow-xl hover:bg-purple-600 hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
+            aria-label="Next Treatment"
+          >
+            <ChevronRight className="w-6 h-6 stroke-[2.5]" />
+          </button>
+
         </div>
+
+        {/* =====================================================
+            BOTTOM CTA
+        ====================================================== */}
+
+        <div className="mt-8 flex justify-end pt-4 border-t border-purple-100/80">
+
+          <Link
+            to="/treatments"
+            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-purple-950 hover:bg-purple-900 text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all group cursor-pointer shrink-0"
+          >
+
+            <span>
+              View All Treatments Grid
+            </span>
+
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+
+          </Link>
+
+        </div>
+
       </div>
+
     </section>
   );
 }
