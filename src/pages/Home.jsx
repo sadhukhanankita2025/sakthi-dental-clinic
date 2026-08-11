@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Services from "../components/Services";
 import TrustBanner from "../components/TrustBanner";
 import WhyChooseUs from "../components/WhyChooseUs";
+import Testimonials from '../components/Testimonials';
 import CTA from '../components/CTA';
 
 export default function Home({ onOpenAppointment }) {
@@ -14,6 +15,7 @@ export default function Home({ onOpenAppointment }) {
       <TrustBanner />
       <WhyChooseUs />
       <Services />
+      <Testimonials />
       <CTA onOpenAppointment={onOpenAppointment} />
       
 

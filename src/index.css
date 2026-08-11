@@ -1,7 +1,15 @@
 @import "tailwindcss";
 
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 html {
   scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -15,20 +23,126 @@ body {
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
+
   background: #faf5ff;
   color: #0f172a;
 }
 
-* {
-  box-sizing: border-box;
-}
+/* =========================================================
+   BUTTONS & LINKS
+========================================================= */
 
 button,
 a {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* =========================================================
+   IMAGES
+========================================================= */
+
 img {
   max-width: 100%;
   display: block;
+}
+
+/* =========================================================
+   TESTIMONIAL HORIZONTAL SCROLL
+========================================================= */
+
+.testimonials-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.testimonials-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================================
+   TESTIMONIAL POPUP
+========================================================= */
+
+@keyframes testimonialPopup {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-testimonial-popup {
+  animation: testimonialPopup 0.3s ease-out;
+}
+
+/* =========================================================
+   OPTIONAL FADE EFFECT
+========================================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* =========================================================
+   OPTIONAL FLOAT EFFECT
+========================================================= */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+  background: rgba(13, 148, 136, 0.2);
+  color: #0f172a;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #99f6e4;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0d9488;
 }
