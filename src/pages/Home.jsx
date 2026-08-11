@@ -12,13 +12,11 @@ export default function Home({ onOpenAppointment }) {
         <Hero onOpenAppointment={onOpenAppointment} />
       </section>
       <TrustBanner />
+      <WhyChooseUs />
       <Services />
 
       <DoctorsAndSpecialities />
 
-
-
-      <WhyChooseUs />
     </>
   );
 }

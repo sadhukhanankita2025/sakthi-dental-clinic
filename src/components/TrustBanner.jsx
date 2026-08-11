@@ -2,64 +2,20 @@ import React from 'react';
 import { motion } from 'motion/react';
 import {
   ShieldCheck,
-  Award,
-  Users,
-  HeartHandshake,
-  CheckCircle2,
   Sparkles,
+  Check,
 } from 'lucide-react';
 
 export default function TrustBanner() {
-  const trustItems = [
-    {
-      icon: ShieldCheck,
-      title: 'Safe & Trusted',
-      description: 'Patient-first dental care',
-    },
-    {
-      icon: Award,
-      title: '20+ Years',
-      description: 'Experienced professionals',
-    },
-    {
-      icon: Users,
-      title: '15,000+',
-      description: 'Happy patients',
-    },
-    {
-      icon: HeartHandshake,
-      title: 'Family Care',
-      description: 'Comfort for every age',
-    },
-  ];
-
   return (
-    <section className="relative overflow-hidden bg-linear-to-r from-purple-700 via-indigo-600 to-teal-600 py-10 sm:py-12">
+    <section className="relative z-20 bg-purple-50 py-8">
 
-      {/* =====================================================
-          BACKGROUND DECORATION
-      ====================================================== */}
-
-      <div className="pointer-events-none absolute -top-24 -left-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-
-      <div className="pointer-events-none absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-teal-300/10 blur-3xl" />
-
-      <div className="pointer-events-none absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 blur-3xl" />
-
-      {/* =====================================================
-          MAIN CONTAINER
-      ====================================================== */}
-
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-        {/* ===================================================
-            TOP TRUST MESSAGE
-        ==================================================== */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         <motion.div
           initial={{
             opacity: 0,
-            y: 15,
+            y: 20,
           }}
           whileInView={{
             opacity: 1,
@@ -67,137 +23,119 @@ export default function TrustBanner() {
           }}
           viewport={{
             once: true,
-            amount: 0.2,
           }}
           transition={{
-            duration: 0.6,
+            duration: 0.5,
           }}
-          className="mb-8 flex flex-col items-center justify-center text-center"
+          className="relative overflow-hidden rounded-3xl border border-purple-200/70 bg-linear-to-r from-purple-100 via-violet-50 to-fuchsia-100 p-6 shadow-lg backdrop-blur-md sm:p-8"
         >
 
-          {/* Badge */}
+          {/* =====================================================
+              BACKGROUND GLOW
+          ====================================================== */}
 
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md">
-            <Sparkles className="h-4 w-4 text-purple-100" />
+          <div className="pointer-events-none absolute -right-10 -top-10 h-64 w-64 rounded-full bg-linear-to-bl from-purple-300/40 to-transparent blur-2xl" />
 
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-white sm:text-xs">
-              Trusted Dental Care
-            </span>
-          </div>
+          <div className="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-purple-200/30 blur-3xl" />
 
-          {/* Heading */}
+          {/* =====================================================
+              MAIN CONTENT
+          ====================================================== */}
 
-          <h2 className="text-2xl font-black tracking-tight text-white sm:text-3xl lg:text-4xl">
-            Your Smile Is in{' '}
-            <span className="text-teal-200">
-              Safe Hands
-            </span>
-          </h2>
+          <div className="relative z-10 flex flex-col items-center justify-between gap-6 md:flex-row">
 
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-purple-100 sm:text-base">
-            Advanced technology, experienced professionals, and compassionate
-            care come together to give you a confident and healthy smile.
-          </p>
+            {/* =================================================
+                LEFT CONTENT
+            ================================================== */}
 
-        </motion.div>
+            <div className="flex items-center gap-5 text-center md:text-left">
 
-        {/* ===================================================
-            TRUST ITEMS
-        ==================================================== */}
+              {/* Shield Icon */}
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-linear-to-tr from-purple-600 via-violet-600 to-fuchsia-600 text-white shadow-lg shadow-purple-500/25 sm:h-16 sm:w-16">
 
-          {trustItems.map((item, index) => {
-            const Icon = item.icon;
+                <motion.div
+                  animate={{
+                    scale: [1, 1.12, 1],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                >
+                  <ShieldCheck className="h-8 w-8 sm:h-9 sm:w-9" />
+                </motion.div>
 
-            return (
-              <motion.div
-                key={item.title}
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                  amount: 0.15,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.08,
-                }}
-                whileHover={{
-                  y: -4,
-                }}
-                className="group rounded-2xl border border-white/15 bg-white/10 p-4 text-center backdrop-blur-md transition-all duration-300 hover:bg-white/15 sm:p-5"
-              >
+              </div>
 
-                {/* Icon */}
+              {/* Text */}
 
-                <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white transition-transform duration-300 group-hover:scale-110">
-                  <Icon className="h-5 w-5" />
+              <div>
+
+                {/* Label */}
+
+                <div className="mb-1 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-purple-700">
+
+                  <Sparkles className="h-3.5 w-3.5 text-purple-600" />
+
+                  Safety First Commitment
+
                 </div>
 
-                {/* Title */}
+                {/* Heading */}
 
-                <h3 className="text-sm font-black text-white sm:text-base">
-                  {item.title}
+                <h3 className="text-xl font-black tracking-tight text-purple-950 sm:text-2xl">
+                  You are always in safe hands.
                 </h3>
 
                 {/* Description */}
 
-                <p className="mt-1 text-[10px] font-medium text-purple-100 sm:text-xs">
-                  {item.description}
+                <p className="mt-1 max-w-xl text-xs font-normal leading-relaxed text-purple-900/65 sm:text-sm">
+                  Class-B German Autoclave sterilization, 100% disposable
+                  kits, and gentle bio-friendly materials ensure a safe,
+                  infection-free environment.
                 </p>
 
-              </motion.div>
-            );
-          })}
+              </div>
+            </div>
 
-        </div>
+            {/* =================================================
+                RIGHT BADGES
+            ================================================== */}
 
-        {/* ===================================================
-            BOTTOM TRUST STRIP
-        ==================================================== */}
+            <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-bold text-purple-950">
 
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.6,
-            delay: 0.3,
-          }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 border-t border-white/15 pt-6"
-        >
+              {/* Zero Cross Infection */}
 
-          <div className="flex items-center gap-2 text-xs font-semibold text-white/90">
-            <CheckCircle2 className="h-4 w-4 text-teal-200" />
-            <span>Modern Technology</span>
-          </div>
+              <div className="flex items-center gap-2 rounded-xl border border-purple-200 bg-white/90 px-3.5 py-2 shadow-sm backdrop-blur-sm">
 
-          <div className="flex items-center gap-2 text-xs font-semibold text-white/90">
-            <CheckCircle2 className="h-4 w-4 text-teal-200" />
-            <span>Experienced Doctors</span>
-          </div>
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-100">
+                  <Check className="h-4 w-4 stroke-3 text-purple-700" />
+                </div>
 
-          <div className="flex items-center gap-2 text-xs font-semibold text-white/90">
-            <CheckCircle2 className="h-4 w-4 text-teal-200" />
-            <span>Comfortable Environment</span>
-          </div>
+                <span>
+                  Zero Cross-Infection
+                </span>
 
-          <div className="flex items-center gap-2 text-xs font-semibold text-white/90">
-            <CheckCircle2 className="h-4 w-4 text-teal-200" />
-            <span>Patient-Centered Care</span>
+              </div>
+
+              {/* Painless Protocol */}
+
+              <div className="flex items-center gap-2 rounded-xl border border-purple-200 bg-white/90 px-3.5 py-2 shadow-sm backdrop-blur-sm">
+
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-fuchsia-100">
+                  <Check className="h-4 w-4 stroke-3 text-fuchsia-600" />
+                </div>
+
+                <span>
+                  100% Painless Protocol
+                </span>
+
+              </div>
+
+            </div>
+
           </div>
 
         </motion.div>
