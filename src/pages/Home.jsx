@@ -11,12 +11,12 @@ export default function Home({ onOpenAppointment }) {
       <section className="relative overflow-hidden bg-gradient-hero">
         <Hero onOpenAppointment={onOpenAppointment} />
       </section>
-
+      <TrustBanner />
       <Services />
 
       <DoctorsAndSpecialities />
 
-      <TrustBanner />
+
 
       <WhyChooseUs />
     </>

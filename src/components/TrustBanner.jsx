@@ -1,58 +1,207 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ShieldCheck, HeartHandshake, Sparkles, Check } from 'lucide-react';
+import {
+  ShieldCheck,
+  Award,
+  Users,
+  HeartHandshake,
+  CheckCircle2,
+  Sparkles,
+} from 'lucide-react';
 
 export default function TrustBanner() {
+  const trustItems = [
+    {
+      icon: ShieldCheck,
+      title: 'Safe & Trusted',
+      description: 'Patient-first dental care',
+    },
+    {
+      icon: Award,
+      title: '20+ Years',
+      description: 'Experienced professionals',
+    },
+    {
+      icon: Users,
+      title: '15,000+',
+      description: 'Happy patients',
+    },
+    {
+      icon: HeartHandshake,
+      title: 'Family Care',
+      description: 'Comfort for every age',
+    },
+  ];
+
   return (
-    <section className="py-8 bg-slate-50/50 relative z-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-linear-to-r from-purple-700 via-indigo-600 to-teal-600 py-10 sm:py-12">
+
+      {/* =====================================================
+          BACKGROUND DECORATION
+      ====================================================== */}
+
+      <div className="pointer-events-none absolute -top-24 -left-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+
+      <div className="pointer-events-none absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-teal-300/10 blur-3xl" />
+
+      <div className="pointer-events-none absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 blur-3xl" />
+
+      {/* =====================================================
+          MAIN CONTAINER
+      ====================================================== */}
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        {/* ===================================================
+            TOP TRUST MESSAGE
+        ==================================================== */}
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#0D9488]/10 via-[#0284C7]/10 to-[#059669]/10 p-6 sm:p-8 border border-white/80 shadow-lg backdrop-blur-md"
+          initial={{
+            opacity: 0,
+            y: 15,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.2,
+          }}
+          transition={{
+            duration: 0.6,
+          }}
+          className="mb-8 flex flex-col items-center justify-center text-center"
         >
-          {/* Animated Glow Dot */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#0284C7]/20 to-transparent rounded-full blur-2xl pointer-events-none" />
 
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-            {/* Left Content */}
-            <div className="flex items-center gap-5 text-center md:text-left">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr from-[#0D9488] via-[#0284C7] to-[#059669] text-white flex items-center justify-center shrink-0 shadow-lg shadow-[#0D9488]/25">
-                <motion.div
-                  animate={{ scale: [1, 1.12, 1] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  <ShieldCheck className="w-8 h-8 sm:w-9 sm:h-9" />
-                </motion.div>
-              </div>
+          {/* Badge */}
 
-              <div>
-                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0D9488] uppercase tracking-wider mb-1">
-                  <Sparkles className="w-3.5 h-3.5" /> Safety First Commitment
-                </div>
-                <h3 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">
-                  You are always in safe hands.
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-xl">
-                  Class-B German Autoclave sterilization, 100% disposable kits, and gentle bio-friendly materials ensure a safe, infection-free environment.
-                </p>
-              </div>
-            </div>
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md">
+            <Sparkles className="h-4 w-4 text-purple-100" />
 
-            {/* Right Quick Badges */}
-            <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-bold text-slate-700">
-              <div className="px-3.5 py-2 rounded-xl bg-white/80 shadow-sm border border-slate-200/60 flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-500 stroke-[3]" />
-                <span>Zero Cross-Infection</span>
-              </div>
-              <div className="px-3.5 py-2 rounded-xl bg-white/80 shadow-sm border border-slate-200/60 flex items-center gap-2">
-                <Check className="w-4 h-4 text-[#0D9488] stroke-[3]" />
-                <span>100% Painless Protocol</span>
-              </div>
-            </div>
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-white sm:text-xs">
+              Trusted Dental Care
+            </span>
           </div>
+
+          {/* Heading */}
+
+          <h2 className="text-2xl font-black tracking-tight text-white sm:text-3xl lg:text-4xl">
+            Your Smile Is in{' '}
+            <span className="text-teal-200">
+              Safe Hands
+            </span>
+          </h2>
+
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-purple-100 sm:text-base">
+            Advanced technology, experienced professionals, and compassionate
+            care come together to give you a confident and healthy smile.
+          </p>
+
         </motion.div>
+
+        {/* ===================================================
+            TRUST ITEMS
+        ==================================================== */}
+
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+
+          {trustItems.map((item, index) => {
+            const Icon = item.icon;
+
+            return (
+              <motion.div
+                key={item.title}
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                  amount: 0.15,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.08,
+                }}
+                whileHover={{
+                  y: -4,
+                }}
+                className="group rounded-2xl border border-white/15 bg-white/10 p-4 text-center backdrop-blur-md transition-all duration-300 hover:bg-white/15 sm:p-5"
+              >
+
+                {/* Icon */}
+
+                <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white transition-transform duration-300 group-hover:scale-110">
+                  <Icon className="h-5 w-5" />
+                </div>
+
+                {/* Title */}
+
+                <h3 className="text-sm font-black text-white sm:text-base">
+                  {item.title}
+                </h3>
+
+                {/* Description */}
+
+                <p className="mt-1 text-[10px] font-medium text-purple-100 sm:text-xs">
+                  {item.description}
+                </p>
+
+              </motion.div>
+            );
+          })}
+
+        </div>
+
+        {/* ===================================================
+            BOTTOM TRUST STRIP
+        ==================================================== */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.6,
+            delay: 0.3,
+          }}
+          className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 border-t border-white/15 pt-6"
+        >
+
+          <div className="flex items-center gap-2 text-xs font-semibold text-white/90">
+            <CheckCircle2 className="h-4 w-4 text-teal-200" />
+            <span>Modern Technology</span>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs font-semibold text-white/90">
+            <CheckCircle2 className="h-4 w-4 text-teal-200" />
+            <span>Experienced Doctors</span>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs font-semibold text-white/90">
+            <CheckCircle2 className="h-4 w-4 text-teal-200" />
+            <span>Comfortable Environment</span>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs font-semibold text-white/90">
+            <CheckCircle2 className="h-4 w-4 text-teal-200" />
+            <span>Patient-Centered Care</span>
+          </div>
+
+        </motion.div>
+
       </div>
     </section>
   );
