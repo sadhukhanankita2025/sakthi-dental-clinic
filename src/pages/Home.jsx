@@ -4,6 +4,7 @@ import Services from "../components/Services";
 import TrustBanner from "../components/TrustBanner";
 import WhyChooseUs from "../components/WhyChooseUs";
 import Testimonials from '../components/Testimonials';
+import FacilitiesSection from '../components/FacilitiesSection';
 import CTA from '../components/CTA';
 
 export default function Home({ onOpenAppointment }) {
@@ -15,6 +16,7 @@ export default function Home({ onOpenAppointment }) {
       <TrustBanner />
       <WhyChooseUs />
       <Services />
+      <FacilitiesSection />
       <CTA onOpenAppointment={onOpenAppointment} />
       <Testimonials />
 
