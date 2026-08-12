@@ -15,9 +15,8 @@ export default function Home({ onOpenAppointment }) {
       <TrustBanner />
       <WhyChooseUs />
       <Services />
-      <Testimonials />
       <CTA onOpenAppointment={onOpenAppointment} />
-      
+      <Testimonials />
 
     </>
   );
