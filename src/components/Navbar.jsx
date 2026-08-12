@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState, useEffect } from "react";
+import { NavLink, Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "motion/react";
 import {
   Menu,
   X,
   Calendar,
   PhoneCall,
   ChevronRight,
-} from 'lucide-react';
+} from "lucide-react";
 
 export default function Navbar({ onOpenAppointment }) {
   const [scrolled, setScrolled] = useState(false);
@@ -23,10 +23,10 @@ export default function Navbar({ onOpenAppointment }) {
       setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -43,16 +43,20 @@ export default function Navbar({ onOpenAppointment }) {
   // =========================
   const navLinks = [
     {
-      name: 'Home',
-      path: '/',
+      name: "Home",
+      path: "/",
     },
     {
-      name: 'About',
-      path: '/about',
+      name: "About",
+      path: "/about",
     },
     {
-      name: 'Treatments',
-      path: '/treatments',
+      name: "Treatments",
+      path: "/treatments",
+    },
+    {
+      name: "FAQs",
+      path: "/faqs",
     },
   ];
 
@@ -64,20 +68,16 @@ export default function Navbar({ onOpenAppointment }) {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? 'glass-nav py-3.5 shadow-sm border-purple-100/60'
-            : 'bg-transparent py-5'
+            ? "glass-nav py-3.5 shadow-sm border-purple-100/60"
+            : "bg-transparent py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-
             {/* =================================================
                 LOGO
             ================================================= */}
-            <Link
-              to="/"
-              className="flex items-center gap-3 group"
-            >
+            <Link to="/" className="flex items-center gap-3 group">
               {/* Logo Icon */}
               <div className="w-11 h-11 rounded-2xl bg-linear-to-tr from-purple-600 via-indigo-600 to-teal-500 p-0.5 shadow-md shadow-purple-500/20 group-hover:scale-105 transition-transform duration-300">
                 <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center">
@@ -95,9 +95,7 @@ export default function Navbar({ onOpenAppointment }) {
               <div className="flex flex-col">
                 <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 leading-tight">
                   Sakthi
-                  <span className="text-purple-600">
-                    Dental
-                  </span>
+                  <span className="text-purple-600"> Dental</span>
                 </span>
 
                 <span className="text-[10px] font-bold text-purple-500/80 uppercase tracking-widest">
@@ -117,8 +115,8 @@ export default function Navbar({ onOpenAppointment }) {
                   className={({ isActive }) =>
                     `px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all duration-200 ${
                       isActive
-                        ? 'bg-linear-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/20'
-                        : 'text-slate-600 hover:text-purple-900 hover:bg-purple-50/70'
+                        ? "bg-linear-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/20"
+                        : "text-slate-600 hover:text-purple-900 hover:bg-purple-50/70"
                     }`
                   }
                 >
@@ -131,7 +129,6 @@ export default function Navbar({ onOpenAppointment }) {
                 DESKTOP RIGHT ACTIONS
             ================================================= */}
             <div className="hidden lg:flex items-center gap-3">
-
               {/* Phone Number */}
               <a
                 href="tel:+919876543210"
@@ -141,9 +138,7 @@ export default function Navbar({ onOpenAppointment }) {
                   <PhoneCall className="w-3.5 h-3.5" />
                 </div>
 
-                <span>
-                  +91 98765 43210
-                </span>
+                <span>+91 98765 43210</span>
               </a>
 
               {/* Book Appointment */}
@@ -155,18 +150,14 @@ export default function Navbar({ onOpenAppointment }) {
               >
                 <Calendar className="w-4 h-4" />
 
-                <span>
-                  Book Appointment
-                </span>
+                <span>Book Appointment</span>
               </motion.button>
-
             </div>
 
             {/* =================================================
                 MOBILE ACTIONS
             ================================================= */}
             <div className="lg:hidden flex items-center gap-2">
-
               {/* Mobile Phone */}
               <a
                 href="tel:+919876543210"
@@ -187,9 +178,7 @@ export default function Navbar({ onOpenAppointment }) {
 
               {/* Mobile Menu */}
               <button
-                onClick={() =>
-                  setMobileMenuOpen(!mobileMenuOpen)
-                }
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-2.5 rounded-2xl bg-white/90 border border-purple-100 text-slate-800 shadow-sm focus:outline-none"
                 aria-label="Toggle menu"
               >
@@ -199,7 +188,6 @@ export default function Navbar({ onOpenAppointment }) {
                   <Menu className="w-6 h-6 text-purple-950" />
                 )}
               </button>
-
             </div>
           </div>
         </div>
@@ -229,12 +217,10 @@ export default function Navbar({ onOpenAppointment }) {
             className="fixed inset-x-0 top-18 z-30 p-4 lg:hidden"
           >
             <div className="rounded-3xl bg-white/95 backdrop-blur-2xl border border-purple-100 p-6 shadow-2xl space-y-4">
-
               {/* =================================================
                   MOBILE NAVIGATION LINKS
               ================================================= */}
               <div className="flex flex-col space-y-1.5">
-
                 {navLinks.map((link) => (
                   <NavLink
                     key={link.path}
@@ -242,26 +228,22 @@ export default function Navbar({ onOpenAppointment }) {
                     className={({ isActive }) =>
                       `px-4 py-3 rounded-2xl text-sm font-bold flex items-center justify-between transition-all ${
                         isActive
-                          ? 'bg-purple-100/80 text-purple-800'
-                          : 'text-slate-700 hover:bg-purple-50/50'
+                          ? "bg-purple-100/80 text-purple-800"
+                          : "text-slate-700 hover:bg-purple-50/50"
                       }`
                     }
                   >
-                    <span>
-                      {link.name}
-                    </span>
+                    <span>{link.name}</span>
 
                     <ChevronRight className="w-4 h-4 opacity-50" />
                   </NavLink>
                 ))}
-
               </div>
 
               {/* =================================================
                   MOBILE ACTIONS
               ================================================= */}
               <div className="pt-4 border-t border-purple-100 space-y-3">
-
                 {/* Phone */}
                 <a
                   href="tel:+919876543210"
@@ -269,9 +251,7 @@ export default function Navbar({ onOpenAppointment }) {
                 >
                   <PhoneCall className="w-4 h-4 text-purple-600" />
 
-                  <span>
-                    +91 98765 43210
-                  </span>
+                  <span>+91 98765 43210</span>
                 </a>
 
                 {/* Book Appointment */}
@@ -287,11 +267,8 @@ export default function Navbar({ onOpenAppointment }) {
                 >
                   <Calendar className="w-4 h-4" />
 
-                  <span>
-                    Book Appointment
-                  </span>
+                  <span>Book Appointment</span>
                 </button>
-
               </div>
             </div>
           </motion.div>
