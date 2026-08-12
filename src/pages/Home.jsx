@@ -1,9 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import {
-  HelpCircle,
-  Sparkles,
-} from "lucide-react";
+import { HelpCircle, Sparkles } from "lucide-react";
 
 import Hero from "../components/Hero";
 import Services from "../components/Services";
@@ -20,7 +17,6 @@ export default function Home({ onOpenAppointment }) {
       {/* =====================================================
           HERO
       ====================================================== */}
-
       <section className="relative overflow-hidden bg-gradient-hero">
         <Hero onOpenAppointment={onOpenAppointment} />
       </section>
@@ -28,44 +24,37 @@ export default function Home({ onOpenAppointment }) {
       {/* =====================================================
           TRUST BANNER
       ====================================================== */}
-
       <TrustBanner />
 
       {/* =====================================================
           WHY CHOOSE US
       ====================================================== */}
-
       <WhyChooseUs />
 
       {/* =====================================================
           SERVICES
       ====================================================== */}
-
       <Services />
 
       {/* =====================================================
           FACILITIES
       ====================================================== */}
-
       <FacilitiesSection />
 
       {/* =====================================================
           CTA
       ====================================================== */}
-
       <CTA onOpenAppointment={onOpenAppointment} />
 
       {/* =====================================================
           TESTIMONIALS
       ====================================================== */}
-
       <Testimonials />
 
       {/* =====================================================
           FAQ SECTION
       ====================================================== */}
-
-      <section className="relative overflow-hidden py-20 bg-gradient-to-br from-purple-50 via-white to-indigo-50">
+      <section className="relative overflow-hidden py-20 bg-linear-to-br from-purple-50 via-white to-indigo-50">
 
         {/* =================================================
             BACKGROUND GLOW
@@ -98,6 +87,10 @@ export default function Home({ onOpenAppointment }) {
             pointer-events-none
           "
         />
+
+        {/* =================================================
+            MAIN CONTAINER
+        ================================================== */}
 
         <div
           className="
@@ -181,7 +174,7 @@ export default function Home({ onOpenAppointment }) {
 
               <span
                 className="
-                  bg-gradient-to-r
+                  bg-linear-to-r
                   from-purple-600
                   via-violet-600
                   to-indigo-600
@@ -211,7 +204,6 @@ export default function Home({ onOpenAppointment }) {
             </p>
 
           </motion.div>
-
 
           {/* =================================================
               IMAGE LEFT + FAQ RIGHT
@@ -259,6 +251,7 @@ export default function Home({ onOpenAppointment }) {
                   bg-purple-500/20
                   blur-3xl
                   rounded-full
+                  pointer-events-none
                 "
               />
 
@@ -276,7 +269,7 @@ export default function Home({ onOpenAppointment }) {
                   relative
                   bg-white
                   p-3
-                  rounded-[2rem]
+                  rounded-4xl
                   border
                   border-purple-200
                   shadow-2xl
@@ -290,10 +283,10 @@ export default function Home({ onOpenAppointment }) {
                   alt="Dental patient care"
                   className="
                     w-full
-                    h-[400px]
-                    sm:h-[480px]
+                    h-100
+                    sm:h-120
                     object-cover
-                    rounded-[1.5rem]
+                    rounded-3xl
                   "
                 />
 
@@ -303,8 +296,8 @@ export default function Home({ onOpenAppointment }) {
                   className="
                     absolute
                     inset-3
-                    rounded-[1.5rem]
-                    bg-gradient-to-t
+                    rounded-3xl
+                    bg-linear-to-t
                     from-purple-950/70
                     via-purple-900/10
                     to-transparent
@@ -397,7 +390,6 @@ export default function Home({ onOpenAppointment }) {
 
               </motion.div>
 
-
               {/* Floating Sparkle */}
 
               <motion.div
@@ -417,7 +409,7 @@ export default function Home({ onOpenAppointment }) {
                   w-16
                   h-16
                   rounded-2xl
-                  bg-gradient-to-br
+                  bg-linear-to-br
                   from-purple-600
                   to-indigo-600
                   shadow-xl
@@ -435,7 +427,6 @@ export default function Home({ onOpenAppointment }) {
                   "
                 />
               </motion.div>
-
 
               {/* Floating Circle */}
 
@@ -455,7 +446,7 @@ export default function Home({ onOpenAppointment }) {
                   w-14
                   h-14
                   rounded-full
-                  bg-gradient-to-br
+                  bg-linear-to-br
                   from-violet-500
                   to-purple-700
                   shadow-xl
@@ -464,7 +455,6 @@ export default function Home({ onOpenAppointment }) {
               />
 
             </motion.div>
-
 
             {/* =================================================
                 RIGHT FAQ
@@ -496,7 +486,8 @@ export default function Home({ onOpenAppointment }) {
                   -inset-4
                   bg-purple-500/10
                   blur-3xl
-                  rounded-[2rem]
+                  rounded-4xl
+                  pointer-events-none
                 "
               />
 
@@ -507,7 +498,7 @@ export default function Home({ onOpenAppointment }) {
                   relative
                   bg-white/95
                   backdrop-blur-xl
-                  rounded-[2rem]
+                  rounded-4xl
                   border
                   border-purple-200
                   shadow-2xl
@@ -523,7 +514,7 @@ export default function Home({ onOpenAppointment }) {
                     px-5
                     sm:px-6
                     py-5
-                    bg-gradient-to-r
+                    bg-linear-to-r
                     from-purple-600
                     via-violet-600
                     to-indigo-600
@@ -576,26 +567,22 @@ export default function Home({ onOpenAppointment }) {
 
                 </div>
 
-
                 {/* FAQ ACCORDION */}
 
                 <div
                   className="
                     p-4
                     sm:p-5
-                    bg-gradient-to-b
+                    bg-linear-to-b
                     from-white
                     to-purple-50/40
-                    max-h-[520px]
+                    max-h-130
                     overflow-y-auto
                     custom-scrollbar
                   "
                 >
-
                   <FAQAccordion />
-
                 </div>
-
 
                 {/* Bottom */}
 
