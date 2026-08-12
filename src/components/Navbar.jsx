@@ -54,10 +54,6 @@ export default function Navbar({ onOpenAppointment }) {
       name: "Treatments",
       path: "/treatments",
     },
-    {
-      name: "FAQs",
-      path: "/faqs",
-    },
   ];
 
   return (

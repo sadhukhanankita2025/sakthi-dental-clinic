@@ -7,7 +7,6 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Treatments from "./pages/Treatments";
-import FAQs from "./pages/FAQs";
 
 export default function App() {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
@@ -18,10 +17,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#FAF5FF] text-[#1E1B4B]">
-      <Navbar />
+
+      <Navbar onOpenAppointment={handleOpenAppointment} />
 
       <main>
         <Routes>
+
           {/* Home */}
           <Route
             path="/"
@@ -35,31 +36,29 @@ export default function App() {
           {/* About */}
           <Route
             path="/about"
-            element={<About />}
+            element={
+              <About
+                onOpenAppointment={handleOpenAppointment}
+              />
+            }
           />
 
           {/* Treatments */}
           <Route
             path="/treatments"
-            element={<Treatments />}
-          />
-
-          {/* FAQs */}
-          <Route
-            path="/faqs"
             element={
-              <FAQs
+              <Treatments
                 onOpenAppointment={handleOpenAppointment}
               />
             }
           />
+
         </Routes>
       </main>
 
       <Footer />
 
-      {/* Appointment modal */}
-      {/* Add AppointmentModal here when you are ready */}
+      {/* Appointment modal can be added here */}
     </div>
   );
 }
