@@ -11,8 +11,7 @@ import {
 
 /* =========================================================
    SOCIAL MEDIA ICONS
-   Using inline SVG instead of lucide-react because
-   Facebook / Instagram / YouTube are brand icons.
+   Inline SVG avoids lucide-react brand icon errors.
 ========================================================= */
 
 function InstagramIcon({ className = "w-4 h-4" }) {
@@ -29,7 +28,13 @@ function InstagramIcon({ className = "w-4 h-4" }) {
     >
       <rect x="3" y="3" width="18" height="18" rx="5" />
       <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      <circle
+        cx="17.5"
+        cy="6.5"
+        r="1"
+        fill="currentColor"
+        stroke="none"
+      />
     </svg>
   );
 }
@@ -65,7 +70,7 @@ export default function Footer({ onOpenAppointment }) {
     <footer className="relative bg-slate-950 text-slate-300 pt-16 pb-8 overflow-hidden border-t border-purple-950/80">
 
       {/* =====================================================
-          BACKGROUND SOFT GLOW BLOBS
+          BACKGROUND GLOW
       ====================================================== */}
 
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-900/20 rounded-full blur-3xl pointer-events-none" />
@@ -87,9 +92,10 @@ export default function Footer({ onOpenAppointment }) {
           <div className="space-y-4">
 
             {/* Logo */}
+
             <Link to="/" className="flex items-center gap-3">
 
-              <div className="w-10 h-10 rounded-2xl bg-linear-to-tr from-purple-600 via-indigo-600 to-teal-500 p-0.5 shadow-md shadow-purple-500/20">
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-teal-500 p-0.5 shadow-md shadow-purple-500/20">
 
                 <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-purple-400">
 
@@ -102,13 +108,14 @@ export default function Footer({ onOpenAppointment }) {
                   </svg>
 
                 </div>
+
               </div>
 
               <div className="flex flex-col">
 
                 <span className="text-xl font-extrabold tracking-tight text-white leading-tight">
                   Sakthi
-                  <span className="text-purple-400">Dental</span>
+                  <span className="text-purple-400"> Dental</span>
                 </span>
 
                 <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
@@ -120,16 +127,19 @@ export default function Footer({ onOpenAppointment }) {
             </Link>
 
             {/* Description */}
-            <p className="text-xs text-slate-400 leading-relaxed font-normal">
+
+            <p className="text-xs text-slate-400 leading-relaxed">
               Pioneering international standard dental care for women,
               children, and families with pain-free technology, 20+ years of
               clinical excellence, and 100% sterile protocols.
             </p>
 
             {/* Contact Details */}
+
             <div className="pt-2 space-y-2 text-xs">
 
               {/* Address */}
+
               <div className="flex items-start gap-2.5 text-slate-300">
 
                 <MapPin className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
@@ -142,6 +152,7 @@ export default function Footer({ onOpenAppointment }) {
               </div>
 
               {/* Phone */}
+
               <div className="flex items-center gap-2.5 text-slate-300">
 
                 <Phone className="w-4 h-4 text-indigo-400 shrink-0" />
@@ -156,6 +167,7 @@ export default function Footer({ onOpenAppointment }) {
               </div>
 
               {/* Email */}
+
               <div className="flex items-center gap-2.5 text-slate-300">
 
                 <Mail className="w-4 h-4 text-teal-400 shrink-0" />
@@ -293,7 +305,7 @@ export default function Footer({ onOpenAppointment }) {
                   to="/treatments?cat=Cosmetic+Dentistry"
                   className="hover:text-indigo-400 transition-colors"
                 >
-                  Laser Teeth Whitening (Bleaching)
+                  Laser Teeth Whitening
                 </Link>
               </li>
 
@@ -339,6 +351,7 @@ export default function Footer({ onOpenAppointment }) {
             </h4>
 
             {/* Working Schedule */}
+
             <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2 text-xs">
 
               <div className="flex items-center gap-2 text-teal-400 font-bold">
@@ -380,6 +393,7 @@ export default function Footer({ onOpenAppointment }) {
             </div>
 
             {/* Social Media */}
+
             <div className="space-y-2">
 
               <span className="text-xs font-semibold text-slate-400 block">
@@ -389,6 +403,7 @@ export default function Footer({ onOpenAppointment }) {
               <div className="flex items-center gap-2">
 
                 {/* Instagram */}
+
                 <a
                   href="https://instagram.com"
                   target="_blank"
@@ -400,6 +415,7 @@ export default function Footer({ onOpenAppointment }) {
                 </a>
 
                 {/* Facebook */}
+
                 <a
                   href="https://facebook.com"
                   target="_blank"
@@ -411,6 +427,7 @@ export default function Footer({ onOpenAppointment }) {
                 </a>
 
                 {/* YouTube */}
+
                 <a
                   href="https://youtube.com"
                   target="_blank"
@@ -452,9 +469,13 @@ export default function Footer({ onOpenAppointment }) {
             <span>•</span>
 
             <span className="flex items-center gap-1">
+
               Crafted with
+
               <Heart className="w-3 h-3 text-purple-400 fill-current" />
+
               for Healthy Smiles
+
             </span>
 
           </div>
@@ -462,6 +483,7 @@ export default function Footer({ onOpenAppointment }) {
         </div>
 
       </div>
+
     </footer>
   );
 }
