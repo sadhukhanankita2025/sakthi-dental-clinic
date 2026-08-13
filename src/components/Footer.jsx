@@ -60,7 +60,7 @@ function YoutubeIcon({ className = "w-4 h-4" }) {
       fill="currentColor"
       aria-hidden="true"
     >
-      <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8ZM9.6 15.9V8.1l6.5 3.9-6.5 3.9Z" />
+      <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8-.5-5.8s0-3.9-.5-5.8ZM9.6 15.9V8.1l6.5 3.9-6.5 3.9Z" />
     </svg>
   );
 }
@@ -197,6 +197,8 @@ export default function Footer({ onOpenAppointment }) {
 
             <ul className="space-y-2.5 text-xs text-slate-400">
 
+              {/* Home */}
+
               <li>
                 <Link
                   to="/"
@@ -206,6 +208,8 @@ export default function Footer({ onOpenAppointment }) {
                   Home
                 </Link>
               </li>
+
+              {/* About */}
 
               <li>
                 <Link
@@ -217,6 +221,8 @@ export default function Footer({ onOpenAppointment }) {
                 </Link>
               </li>
 
+              {/* Treatments */}
+
               <li>
                 <Link
                   to="/treatments"
@@ -227,15 +233,7 @@ export default function Footer({ onOpenAppointment }) {
                 </Link>
               </li>
 
-              <li>
-                <Link
-                  to="/faqs"
-                  className="hover:text-purple-400 transition-colors flex items-center gap-1.5"
-                >
-                  <span className="text-purple-400">›</span>
-                  Patient FAQs
-                </Link>
-              </li>
+              {/* Privacy */}
 
               <li>
                 <Link
@@ -246,6 +244,8 @@ export default function Footer({ onOpenAppointment }) {
                   Privacy Policy
                 </Link>
               </li>
+
+              {/* Contact */}
 
               <li>
                 <Link
