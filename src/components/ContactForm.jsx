@@ -77,7 +77,7 @@ export default function ContactForm() {
       [field]: value,
     }));
 
-    // Remove error once user starts correcting field
+    // Clear field error while typing
     if (errors[field]) {
       setErrors((previous) => ({
         ...previous,
@@ -119,7 +119,11 @@ export default function ContactForm() {
   return (
     <div className="glass-card p-6 sm:p-10 border border-white/80 shadow-xl rounded-3xl">
       {!submitted ? (
-        <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-5"
+          noValidate
+        >
           {/* ==================================
               HEADER
           ================================== */}
@@ -129,13 +133,13 @@ export default function ContactForm() {
             </h3>
 
             <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-              Have a question about treatments, costs, or appointments? Send
-              us a message and our patient desk will reply promptly.
+              Have a question about treatments, costs, or appointments?
+              Send us a message and our patient desk will reply promptly.
             </p>
           </div>
 
           {/* ==================================
-              NAME
+              NAME FIELD
           ================================== */}
           <div>
             <label
@@ -251,7 +255,7 @@ export default function ContactForm() {
           </div>
 
           {/* ==================================
-              MESSAGE
+              MESSAGE FIELD
           ================================== */}
           <div>
             <label
@@ -295,7 +299,7 @@ export default function ContactForm() {
             whileTap={!loading ? { scale: 0.98 } : {}}
             disabled={loading}
             type="submit"
-            className={`w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#0D9488] via-[#0284C7] to-[#059669] text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-[#0D9488]/25 flex items-center justify-center gap-2 transition-all ${
+            className={`w-full py-3.5 px-6 rounded-2xl bg-linear-to-r from-[#0D9488] via-[#0284C7] to-[#059669] text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-[#0D9488]/25 flex items-center justify-center gap-2 transition-all ${
               loading
                 ? "opacity-70 cursor-not-allowed"
                 : "cursor-pointer hover:opacity-95"
@@ -323,6 +327,7 @@ export default function ContactForm() {
           animate={{ opacity: 1, scale: 1 }}
           className="text-center py-12 space-y-4"
         >
+          {/* SUCCESS ICON */}
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -336,10 +341,12 @@ export default function ContactForm() {
             <CheckCircle2 className="w-10 h-10" />
           </motion.div>
 
+          {/* TITLE */}
           <h3 className="text-2xl font-black text-slate-800">
             Message Received!
           </h3>
 
+          {/* MESSAGE */}
           <p className="text-xs text-slate-600 max-w-sm mx-auto leading-relaxed">
             Thank you,{" "}
             <span className="font-bold text-slate-900">
@@ -349,6 +356,7 @@ export default function ContactForm() {
             shortly.
           </p>
 
+          {/* RESET BUTTON */}
           <button
             type="button"
             onClick={handleReset}
