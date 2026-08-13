@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Treatments from "./pages/Treatments";
 
 import Privacy from './pages/Privacy';
+import Contact from './pages/Contact';
 
 export default function App() {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
@@ -56,6 +57,7 @@ export default function App() {
           />
 
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/contact" element={<Contact />} />
 
         </Routes>
       </main>
