@@ -95,7 +95,7 @@ export default function Footer({ onOpenAppointment }) {
 
             <Link to="/" className="flex items-center gap-3">
 
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-teal-500 p-0.5 shadow-md shadow-purple-500/20">
+              <div className="w-10 h-10 rounded-2xl bg-linear-to-tr from-purple-600 via-indigo-600 to-teal-500 p-0.5 shadow-md shadow-purple-500/20">
 
                 <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-purple-400">
 
@@ -197,8 +197,6 @@ export default function Footer({ onOpenAppointment }) {
 
             <ul className="space-y-2.5 text-xs text-slate-400">
 
-              {/* Home */}
-
               <li>
                 <Link
                   to="/"
@@ -208,8 +206,6 @@ export default function Footer({ onOpenAppointment }) {
                   Home
                 </Link>
               </li>
-
-              {/* About */}
 
               <li>
                 <Link
@@ -221,8 +217,6 @@ export default function Footer({ onOpenAppointment }) {
                 </Link>
               </li>
 
-              {/* Treatments */}
-
               <li>
                 <Link
                   to="/treatments"
@@ -233,8 +227,6 @@ export default function Footer({ onOpenAppointment }) {
                 </Link>
               </li>
 
-              {/* Privacy */}
-
               <li>
                 <Link
                   to="/privacy"
@@ -244,8 +236,6 @@ export default function Footer({ onOpenAppointment }) {
                   Privacy Policy
                 </Link>
               </li>
-
-              {/* Contact */}
 
               <li>
                 <Link
