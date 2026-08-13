@@ -3,13 +3,13 @@ import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Treatments from "./pages/Treatments";
-
-import Privacy from './pages/Privacy';
-import Contact from './pages/Contact';
+import Privacy from "./pages/Privacy";
+import Contact from "./pages/Contact";
 
 export default function App() {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
@@ -21,12 +21,21 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#FAF5FF] text-[#1E1B4B]">
 
-      <Navbar onOpenAppointment={handleOpenAppointment} />
+      {/* Scroll to top whenever the route changes */}
+      <ScrollToTop />
 
+      {/* Navbar */}
+      <Navbar
+        onOpenAppointment={handleOpenAppointment}
+      />
+
+      {/* Main Content */}
       <main>
         <Routes>
 
-          {/* Home */}
+          {/* =========================
+              HOME
+          ========================= */}
           <Route
             path="/"
             element={
@@ -36,7 +45,9 @@ export default function App() {
             }
           />
 
-          {/* About */}
+          {/* =========================
+              ABOUT
+          ========================= */}
           <Route
             path="/about"
             element={
@@ -46,7 +57,9 @@ export default function App() {
             }
           />
 
-          {/* Treatments */}
+          {/* =========================
+              TREATMENTS
+          ========================= */}
           <Route
             path="/treatments"
             element={
@@ -56,15 +69,56 @@ export default function App() {
             }
           />
 
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/contact" element={<Contact />} />
+          {/* =========================
+              PRIVACY
+          ========================= */}
+          <Route
+            path="/privacy"
+            element={<Privacy />}
+          />
+
+          {/* =========================
+              CONTACT
+          ========================= */}
+          <Route
+            path="/contact"
+            element={<Contact />}
+          />
+
+          {/* =========================
+              FALLBACK
+          ========================= */}
+          <Route
+            path="*"
+            element={
+              <Home
+                onOpenAppointment={handleOpenAppointment}
+              />
+            }
+          />
 
         </Routes>
       </main>
 
-      <Footer />
+      {/* Footer */}
+      <Footer
+        onOpenAppointment={handleOpenAppointment}
+      />
 
-      {/* Appointment modal can be added here */}
+      {/* 
+        Appointment Modal
+
+        If you already have an AppointmentModal component,
+        add it here.
+
+        Example:
+
+        <AppointmentModal
+          isOpen={appointmentOpen}
+          onClose={() => setAppointmentOpen(false)}
+        />
+      */}
+
     </div>
   );
 }
