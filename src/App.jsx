@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import AppointmentModal from './components/AppointmentModal';
+import AppointmentModal from "./components/AppointmentModal";
 import ScrollToTop from "./components/ScrollToTop";
 
 import Home from "./pages/Home";
@@ -17,6 +17,10 @@ export default function App() {
 
   const handleOpenAppointment = () => {
     setAppointmentOpen(true);
+  };
+
+  const handleCloseAppointment = () => {
+    setAppointmentOpen(false);
   };
 
   return (
@@ -106,19 +110,13 @@ export default function App() {
         onOpenAppointment={handleOpenAppointment}
       />
 
-      {/* 
-        Appointment Modal
-
-        If you already have an AppointmentModal component,
-        add it here.
-
-        Example:
-
-        <AppointmentModal
-          isOpen={appointmentOpen}
-          onClose={() => setAppointmentOpen(false)}
-        />
-      */}
+      {/* =========================
+          APPOINTMENT MODAL
+      ========================= */}
+      <AppointmentModal
+        isOpen={appointmentOpen}
+        onClose={handleCloseAppointment}
+      />
 
     </div>
   );
