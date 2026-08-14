@@ -42,7 +42,7 @@ export default function Navbar({ onOpenAppointment }) {
   }, []);
 
   // =====================================================
-  // CURSOR POSITION
+  // CURSOR SPOTLIGHT
   // =====================================================
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -178,7 +178,7 @@ export default function Navbar({ onOpenAppointment }) {
                 }}
                 className="relative w-11 h-11 rounded-2xl bg-linear-to-tr from-purple-600 via-indigo-600 to-teal-500 p-0.5 shadow-xl shadow-purple-500/20"
               >
-                {/* Logo shine */}
+                {/* Logo Shine */}
                 <motion.div
                   animate={{
                     x: ["-120%", "120%"],
@@ -213,7 +213,7 @@ export default function Navbar({ onOpenAppointment }) {
                 </div>
               </motion.div>
 
-              {/* BRAND */}
+              {/* BRAND TEXT */}
               <motion.div
                 initial={{
                   opacity: 0,
@@ -327,7 +327,7 @@ export default function Navbar({ onOpenAppointment }) {
                             {link.name}
                           </span>
 
-                          {/* UNDERLINE */}
+                          {/* HOVER UNDERLINE */}
                           {!isActive && (
                             <motion.span
                               initial={{
@@ -341,7 +341,7 @@ export default function Navbar({ onOpenAppointment }) {
                               transition={{
                                 duration: 0.25,
                               }}
-                              className="absolute bottom-1 left-1/2 -translate-x-1/2 h-[2px] rounded-full bg-purple-500"
+                              className="absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 rounded-full bg-purple-500"
                             />
                           )}
                         </>
@@ -385,7 +385,7 @@ export default function Navbar({ onOpenAppointment }) {
               </motion.a>
 
               {/* =================================================
-                  MAGNETIC APPOINTMENT BUTTON
+                  APPOINTMENT BUTTON
               ================================================= */}
               <motion.button
                 whileHover={{
@@ -420,11 +420,11 @@ export default function Navbar({ onOpenAppointment }) {
                     repeat: Infinity,
                     ease: "linear",
                   }}
-                  className="absolute inset-0 bg-linear-to-r from-purple-600 via-indigo-500 to-teal-500 bg-[length:200%_200%]"
+                  className="absolute inset-0 bg-linear-to-r from-purple-600 via-indigo-500 to-teal-500 bg-size-[200%_200%]"
                 />
 
                 {/* Dark Glass Layer */}
-                <span className="absolute inset-[1px] rounded-full bg-slate-950/80" />
+                <span className="absolute inset-px rounded-full bg-slate-950/80" />
 
                 {/* Icon */}
                 <motion.span
@@ -437,11 +437,12 @@ export default function Navbar({ onOpenAppointment }) {
                   <Calendar className="w-4 h-4" />
                 </motion.span>
 
+                {/* Text */}
                 <span className="relative z-10">
                   Book Appointment
                 </span>
 
-                {/* Mouse Hover Shine */}
+                {/* Hover Shine */}
                 <motion.span
                   initial={{
                     x: "-100%",
@@ -601,7 +602,7 @@ export default function Navbar({ onOpenAppointment }) {
               className="fixed inset-0 z-20 bg-slate-950/20 backdrop-blur-sm lg:hidden"
             />
 
-            {/* MENU */}
+            {/* MOBILE MENU PANEL */}
             <motion.div
               initial={{
                 opacity: 0,
@@ -663,6 +664,7 @@ export default function Navbar({ onOpenAppointment }) {
                             <>
                               <span className="flex items-center gap-3">
 
+                                {/* ICON */}
                                 <motion.span
                                   whileHover={{
                                     scale: 1.2,
@@ -680,6 +682,7 @@ export default function Navbar({ onOpenAppointment }) {
                                 {link.name}
                               </span>
 
+                              {/* ARROW */}
                               <motion.span
                                 whileHover={{
                                   x: 5,
@@ -696,7 +699,9 @@ export default function Navbar({ onOpenAppointment }) {
 
                 </div>
 
-                {/* MOBILE ACTIONS */}
+                {/* =================================================
+                    MOBILE ACTIONS
+                ================================================= */}
                 <motion.div
                   initial={{
                     opacity: 0,
@@ -749,7 +754,7 @@ export default function Navbar({ onOpenAppointment }) {
                     className="relative overflow-hidden w-full py-3.5 px-6 rounded-2xl bg-linear-to-r from-purple-600 via-indigo-600 to-teal-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-purple-500/25 flex items-center justify-center gap-2 cursor-pointer"
                   >
 
-                    {/* Animated shine */}
+                    {/* Animated Shine */}
                     <motion.span
                       animate={{
                         x: ["-150%", "250%"],
