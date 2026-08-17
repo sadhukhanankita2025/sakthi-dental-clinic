@@ -36,6 +36,7 @@ const colorThemes = {
     border: "hover:border-violet-300",
     glow: "bg-violet-300/20",
     borderGlow: "from-violet-300 via-purple-400 to-violet-300",
+    ring: "group-hover:ring-violet-300/60",
   },
 
   Accessibility: {
@@ -45,6 +46,7 @@ const colorThemes = {
     border: "hover:border-sky-300",
     glow: "bg-sky-300/20",
     borderGlow: "from-sky-300 via-blue-400 to-sky-300",
+    ring: "group-hover:ring-sky-300/60",
   },
 
   Truck: {
@@ -54,6 +56,7 @@ const colorThemes = {
     border: "hover:border-rose-300",
     glow: "bg-rose-300/20",
     borderGlow: "from-rose-300 via-pink-400 to-rose-300",
+    ring: "group-hover:ring-rose-300/60",
   },
 
   UserCheck: {
@@ -63,6 +66,7 @@ const colorThemes = {
     border: "hover:border-emerald-300",
     glow: "bg-emerald-300/20",
     borderGlow: "from-emerald-300 via-teal-400 to-emerald-300",
+    ring: "group-hover:ring-emerald-300/60",
   },
 
   MapPin: {
@@ -72,6 +76,7 @@ const colorThemes = {
     border: "hover:border-amber-300",
     glow: "bg-amber-300/20",
     borderGlow: "from-amber-300 via-orange-400 to-amber-300",
+    ring: "group-hover:ring-amber-300/60",
   },
 
   Gamepad2: {
@@ -81,6 +86,7 @@ const colorThemes = {
     border: "hover:border-fuchsia-300",
     glow: "bg-fuchsia-300/20",
     borderGlow: "from-fuchsia-300 via-purple-400 to-fuchsia-300",
+    ring: "group-hover:ring-fuchsia-300/60",
   },
 
   Scan: {
@@ -90,6 +96,7 @@ const colorThemes = {
     border: "hover:border-cyan-300",
     glow: "bg-cyan-300/20",
     borderGlow: "from-cyan-300 via-teal-400 to-cyan-300",
+    ring: "group-hover:ring-cyan-300/60",
   },
 
   ShieldCheck: {
@@ -99,13 +106,17 @@ const colorThemes = {
     border: "hover:border-indigo-300",
     glow: "bg-indigo-300/20",
     borderGlow: "from-indigo-300 via-violet-400 to-indigo-300",
+    ring: "group-hover:ring-indigo-300/60",
   },
 };
 
 // =====================================================
 // FACILITY CARD
 // =====================================================
-export default function FacilityCard({ facility, index = 0 }) {
+export default function FacilityCard({
+  facility,
+  index = 0,
+}) {
   const IconComponent =
     iconMap[facility?.iconName] || ShieldCheck;
 
@@ -137,9 +148,8 @@ export default function FacilityCard({ facility, index = 0 }) {
         delay: index * 0.08,
         ease: "easeOut",
       }}
-
       // =================================================
-      // CONTINUOUS FLOATING EFFECT
+      // FLOATING EFFECT
       // =================================================
       animate={{
         y: [0, -4, 0],
@@ -147,25 +157,22 @@ export default function FacilityCard({ facility, index = 0 }) {
       className="relative group"
     >
       {/* =================================================
-          OUTER BORDER GLOW
+          OUTER GLOWING BORDER
       ================================================= */}
       <motion.div
         className={`
           absolute
-          -inset-[2px]
+          -inset-0.5
           rounded-[26px]
           bg-linear-to-r
           ${theme.borderGlow}
-          blur-[4px]
+          blur-xs
           pointer-events-none
           transition-opacity
           duration-500
         `}
         animate={{
           opacity: [0.25, 0.5, 0.25],
-        }}
-        whileHover={{
-          opacity: 1,
         }}
         transition={{
           duration: 2.5,
@@ -176,16 +183,15 @@ export default function FacilityCard({ facility, index = 0 }) {
       />
 
       {/* =================================================
-          SECOND SOFT BORDER GLOW
+          STRONG HOVER BORDER GLOW
       ================================================= */}
       <motion.div
         className={`
           absolute
-          -inset-[1px]
+          -inset-px
           rounded-[25px]
           bg-linear-to-r
           ${theme.borderGlow}
-          blur-[1px]
           opacity-40
           pointer-events-none
           group-hover:opacity-100
@@ -227,7 +233,7 @@ export default function FacilityCard({ facility, index = 0 }) {
         `}
       >
         {/* =================================================
-            TOP RIGHT DECORATIVE GLOW
+            TOP RIGHT GLOW
         ================================================= */}
         <motion.div
           className={`
@@ -254,7 +260,7 @@ export default function FacilityCard({ facility, index = 0 }) {
         />
 
         {/* =================================================
-            BOTTOM LEFT DECORATIVE GLOW
+            BOTTOM LEFT GLOW
         ================================================= */}
         <motion.div
           className="
@@ -416,7 +422,7 @@ export default function FacilityCard({ facility, index = 0 }) {
               rounded-2xl
               ring-2
               ring-transparent
-              ${theme.ring || ""}
+              ${theme.ring}
               transition-all
               duration-500
             `}
@@ -562,7 +568,7 @@ export default function FacilityCard({ facility, index = 0 }) {
             inset-y-0
             left-0
             w-1/3
-            -translate-x-[180%]
+            -translate-x-45
             pointer-events-none
             bg-linear-to-r
             from-transparent
@@ -588,7 +594,7 @@ export default function FacilityCard({ facility, index = 0 }) {
             bottom-0
             left-1/2
             -translate-x-1/2
-            h-[2px]
+            h-0.5
             w-0
             rounded-full
             bg-linear-to-r
