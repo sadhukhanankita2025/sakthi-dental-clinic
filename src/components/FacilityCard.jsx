@@ -34,6 +34,7 @@ const colorThemes = {
     iconBg: "bg-violet-50",
     hover: "group-hover:text-violet-600",
     border: "hover:border-violet-200",
+    glow: "bg-violet-300/20",
   },
 
   Accessibility: {
@@ -41,6 +42,7 @@ const colorThemes = {
     iconBg: "bg-sky-50",
     hover: "group-hover:text-sky-600",
     border: "hover:border-sky-200",
+    glow: "bg-sky-300/20",
   },
 
   Truck: {
@@ -48,6 +50,7 @@ const colorThemes = {
     iconBg: "bg-rose-50",
     hover: "group-hover:text-rose-600",
     border: "hover:border-rose-200",
+    glow: "bg-rose-300/20",
   },
 
   UserCheck: {
@@ -55,6 +58,7 @@ const colorThemes = {
     iconBg: "bg-emerald-50",
     hover: "group-hover:text-emerald-600",
     border: "hover:border-emerald-200",
+    glow: "bg-emerald-300/20",
   },
 
   MapPin: {
@@ -62,6 +66,7 @@ const colorThemes = {
     iconBg: "bg-amber-50",
     hover: "group-hover:text-amber-600",
     border: "hover:border-amber-200",
+    glow: "bg-amber-300/20",
   },
 
   Gamepad2: {
@@ -69,6 +74,7 @@ const colorThemes = {
     iconBg: "bg-fuchsia-50",
     hover: "group-hover:text-fuchsia-600",
     border: "hover:border-fuchsia-200",
+    glow: "bg-fuchsia-300/20",
   },
 
   Scan: {
@@ -76,6 +82,7 @@ const colorThemes = {
     iconBg: "bg-cyan-50",
     hover: "group-hover:text-cyan-600",
     border: "hover:border-cyan-200",
+    glow: "bg-cyan-300/20",
   },
 
   ShieldCheck: {
@@ -83,6 +90,7 @@ const colorThemes = {
     iconBg: "bg-indigo-50",
     hover: "group-hover:text-indigo-600",
     border: "hover:border-indigo-200",
+    glow: "bg-indigo-300/20",
   },
 };
 
@@ -90,7 +98,8 @@ const colorThemes = {
 // FACILITY CARD
 // =====================================================
 export default function FacilityCard({ facility, index = 0 }) {
-  const IconComponent = iconMap[facility?.iconName] || ShieldCheck;
+  const IconComponent =
+    iconMap[facility?.iconName] || ShieldCheck;
 
   const theme =
     colorThemes[facility?.iconName] || colorThemes.ShieldCheck;
@@ -99,7 +108,7 @@ export default function FacilityCard({ facility, index = 0 }) {
     <motion.div
       initial={{
         opacity: 0,
-        y: 20,
+        y: 25,
       }}
       whileInView={{
         opacity: 1,
@@ -110,12 +119,12 @@ export default function FacilityCard({ facility, index = 0 }) {
         amount: 0.2,
       }}
       transition={{
-        duration: 0.45,
+        duration: 0.5,
         delay: index * 0.08,
         ease: "easeOut",
       }}
       whileHover={{
-        y: -6,
+        y: -7,
         scale: 1.015,
       }}
       className={`
@@ -123,7 +132,7 @@ export default function FacilityCard({ facility, index = 0 }) {
         relative
         overflow-hidden
         rounded-3xl
-        bg-white/90
+        bg-white/95
         p-5
         sm:p-6
         flex
@@ -132,80 +141,138 @@ export default function FacilityCard({ facility, index = 0 }) {
         border
         border-violet-100
         shadow-[0_8px_30px_rgba(139,92,246,0.06)]
-        hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)]
+        hover:shadow-[0_20px_50px_rgba(139,92,246,0.16)]
         ${theme.border}
         transition-all
         duration-300
       `}
     >
       {/* =================================================
-          SOFT DECORATIVE BACKGROUND
+          DECORATIVE GLOW
       ================================================= */}
+      <div
+        className={`
+          absolute
+          -right-12
+          -top-12
+          w-32
+          h-32
+          rounded-full
+          ${theme.glow}
+          blur-3xl
+          pointer-events-none
+          transition-all
+          duration-700
+          group-hover:scale-[1.8]
+          group-hover:opacity-100
+        `}
+      />
+
+      {/* Second glow */}
       <div
         className="
           absolute
-          -right-10
-          -top-10
-          w-24
-          h-24
+          -bottom-12
+          -left-12
+          w-28
+          h-28
           rounded-full
-          bg-violet-100/40
-          blur-2xl
+          bg-purple-200/20
+          blur-3xl
           pointer-events-none
-          transition-transform
-          duration-500
+          transition-all
+          duration-700
           group-hover:scale-150
         "
       />
 
       {/* =================================================
-          ICON
+          IMAGE / ICON
       ================================================= */}
       <div
         className={`
           relative
+          z-10
           ${theme.iconBg}
-          w-12
-          h-12
-          sm:w-14
-          sm:h-14
+          w-14
+          h-14
+          sm:w-16
+          sm:h-16
           rounded-2xl
           flex
           items-center
           justify-center
           shrink-0
           shadow-sm
-          transition-transform
-          duration-300
+          border
+          border-white
+          transition-all
+          duration-500
           group-hover:scale-110
+          group-hover:-rotate-2
         `}
       >
-        <div
-          className={`
-            w-10
-            h-10
-            sm:w-11
-            sm:h-11
-            rounded-xl
-            ${theme.icon}
-            text-white
-            flex
-            items-center
-            justify-center
-            shadow-sm
-          `}
-        >
-          <IconComponent
-            className="w-5 h-5 sm:w-6 sm:h-6"
-            strokeWidth={2}
+        {facility?.image ? (
+          <img
+            src={facility.image}
+            alt={facility.title || "Clinic facility"}
+            loading="lazy"
+            className="
+              w-11
+              h-11
+              sm:w-12
+              sm:h-12
+              object-contain
+              transition-transform
+              duration-500
+              group-hover:scale-110
+            "
           />
-        </div>
+        ) : (
+          <div
+            className={`
+              w-10
+              h-10
+              sm:w-11
+              sm:h-11
+              rounded-xl
+              ${theme.icon}
+              text-white
+              flex
+              items-center
+              justify-center
+              shadow-sm
+              transition-transform
+              duration-500
+              group-hover:rotate-6
+            `}
+          >
+            <IconComponent
+              className="w-5 h-5 sm:w-6 sm:h-6"
+              strokeWidth={2}
+            />
+          </div>
+        )}
+
+        {/* Image glow ring */}
+        <div
+          className="
+            absolute
+            inset-0
+            rounded-2xl
+            ring-2
+            ring-transparent
+            group-hover:ring-violet-200/60
+            transition-all
+            duration-500
+          "
+        />
       </div>
 
       {/* =================================================
           CONTENT
       ================================================= */}
-      <div className="relative min-w-0 pt-0.5">
+      <div className="relative z-10 min-w-0 pt-0.5">
         <h4
           className={`
             text-sm
@@ -235,6 +302,26 @@ export default function FacilityCard({ facility, index = 0 }) {
             "Comfortable and convenient facilities designed for our patients."}
         </p>
       </div>
+
+      {/* =================================================
+          HOVER SHINE
+      ================================================= */}
+      <div
+        className="
+          absolute
+          inset-0
+          -translate-x-full
+          group-hover:translate-x-full
+          transition-transform
+          duration-1000
+          pointer-events-none
+          bg-linear-to-r
+          from-transparent
+          via-white/40
+          to-transparent
+          skew-x-12
+        "
+      />
     </motion.div>
   );
 }
