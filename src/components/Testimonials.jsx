@@ -9,6 +9,7 @@ import {
   Sparkles,
   MessageCircle,
   UserRound,
+  Smile,
 } from "lucide-react";
 
 import { TESTIMONIALS_DATA } from "../data/testimonialsData";
@@ -121,20 +122,23 @@ export default function Testimonials() {
   };
 
   // =========================================================
-  // INITIALS
+  // GET PATIENT ICON
   // =========================================================
 
-  const getInitials = (name) => {
-    if (!name) {
-      return "P";
+  const getPatientIcon = (testimonial) => {
+    if (testimonial.icon === "Smile") {
+      return Smile;
     }
 
-    return name
-      .split(" ")
-      .map((word) => word.charAt(0))
-      .slice(0, 2)
-      .join("")
-      .toUpperCase();
+    if (testimonial.icon === "Sparkles") {
+      return Sparkles;
+    }
+
+    if (testimonial.icon === "Heart") {
+      return Heart;
+    }
+
+    return UserRound;
   };
 
   // =========================================================
@@ -148,7 +152,8 @@ export default function Testimonials() {
       ====================================================== */}
 
       <section className="relative overflow-hidden py-20 sm:py-24 bg-slate-50">
-        {/* Background Decoration */}
+
+        {/* Background Glow */}
 
         <div className="absolute top-0 left-0 w-72 h-72 rounded-full bg-teal-200/30 blur-3xl pointer-events-none" />
 
@@ -159,14 +164,17 @@ export default function Testimonials() {
         {/* Main Container */}
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
           {/* =================================================
               HEADER
           ================================================== */}
 
           <div className="text-center max-w-3xl mx-auto mb-14">
+
             {/* Badge */}
 
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-teal-100 shadow-sm mb-5">
+
               <Sparkles className="w-4 h-4 text-teal-500" />
 
               <span className="text-xs font-extrabold uppercase tracking-widest text-teal-700">
@@ -174,16 +182,19 @@ export default function Testimonials() {
               </span>
 
               <Heart className="w-4 h-4 text-emerald-500 fill-emerald-500" />
+
             </div>
 
             {/* Heading */}
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-              Loved by{" "}
+
+              What Our{" "}
+
               <span className="bg-linear-to-r from-[#0D9488] via-[#0284C7] to-purple-600 bg-clip-text text-transparent">
-                Thousands
-              </span>{" "}
-              of Families
+                Patients Say
+              </span>
+
             </h2>
 
             {/* Description */}
@@ -196,6 +207,7 @@ export default function Testimonials() {
             {/* Rating */}
 
             <div className="mt-6 inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-white border border-slate-200 shadow-md">
+
               {renderStars(5)}
 
               <div className="h-5 w-px bg-slate-200" />
@@ -207,6 +219,7 @@ export default function Testimonials() {
               <span className="text-xs font-semibold text-slate-500">
                 Patient Rating
               </span>
+
             </div>
           </div>
 
@@ -219,6 +232,7 @@ export default function Testimonials() {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
+
             {/* LEFT BUTTON */}
 
             <button
@@ -241,29 +255,36 @@ export default function Testimonials() {
               <ChevronRight className="w-6 h-6" />
             </button>
 
-            {/* CARDS CONTAINER */}
+            {/* CARDS */}
 
             <div
               ref={scrollRef}
               className="flex gap-6 overflow-x-auto scroll-smooth py-5 px-2 snap-x snap-mandatory testimonials-scroll"
             >
+
               {testimonials.map((testimonial, index) => {
                 const rating = Math.min(
                   Math.max(Number(testimonial.rating) || 5, 1),
                   5
                 );
 
+                const PatientIcon =
+                  getPatientIcon(testimonial);
+
                 return (
                   <article
                     key={testimonial.id ?? index}
                     className="group flex-none w-80 sm:w-96 snap-start"
                   >
+
                     {/* OUTER CARD */}
 
                     <div className="h-full rounded-3xl p-px bg-linear-to-br from-white via-teal-50 to-purple-100 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3">
+
                       {/* INNER CARD */}
 
                       <div className="relative h-full min-h-90 rounded-3xl bg-white p-7 overflow-hidden">
+
                         {/* Hover Glow */}
 
                         <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-teal-200/20 blur-3xl group-hover:bg-teal-300/30 transition-all duration-500" />
@@ -273,22 +294,29 @@ export default function Testimonials() {
                         {/* QUOTE ICON */}
 
                         <div className="absolute top-6 right-6">
+
                           <div className="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center group-hover:bg-teal-100 group-hover:rotate-6 transition-all duration-300">
+
                             <Quote className="w-6 h-6 text-[#0D9488]/40 group-hover:text-[#0D9488]/70" />
+
                           </div>
+
                         </div>
 
                         {/* CONTENT */}
 
                         <div className="relative z-10">
+
                           {/* Stars */}
 
                           <div className="flex items-center gap-1 mb-5">
+
                             {renderStars(rating)}
 
                             <span className="ml-2 text-[9px] font-black tracking-wider text-emerald-500">
                               VERIFIED
                             </span>
+
                           </div>
 
                           {/* Review */}
@@ -306,6 +334,7 @@ export default function Testimonials() {
                             }
                             className="mt-5 inline-flex items-center gap-2 text-xs font-extrabold text-[#0D9488] hover:text-purple-600 transition-colors"
                           >
+
                             <MessageCircle className="w-4 h-4" />
 
                             Read Full Review
@@ -313,61 +342,65 @@ export default function Testimonials() {
                             <span className="transition-transform group-hover:translate-x-1">
                               →
                             </span>
+
                           </button>
+
                         </div>
 
                         {/* FOOTER */}
 
                         <div className="relative z-10 pt-6 mt-6 border-t border-slate-200">
+
                           <div className="flex items-center justify-between gap-3">
-                            {/* Patient */}
+
+                            {/* PATIENT ICON + NAME */}
 
                             <div className="flex items-center gap-3 min-w-0">
-                              {testimonial.image ? (
-                                <img
-                                  src={testimonial.image}
-                                  alt={
-                                    testimonial.name ||
-                                    "Dental patient"
-                                  }
-                                  loading="lazy"
-                                  className="w-14 h-14 rounded-2xl object-cover border-2 border-white shadow-lg group-hover:scale-110 transition-transform duration-300"
-                                />
-                              ) : (
-                                <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-[#0D9488] to-[#0284C7] text-white flex items-center justify-center font-black shadow-lg">
-                                  {getInitials(testimonial.name)}
-                                </div>
-                              )}
+
+                              <div className="relative w-14 h-14 shrink-0 rounded-2xl bg-linear-to-br from-teal-500 via-cyan-500 to-purple-600 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+
+                                <PatientIcon className="w-7 h-7 text-white" />
+
+                                <div className="absolute inset-0 rounded-2xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                              </div>
 
                               <div className="min-w-0">
+
                                 <h4 className="text-sm font-black text-slate-900 truncate">
-                                  {testimonial.name ||
-                                    "Happy Patient"}
+                                  {testimonial.name || "Happy Patient"}
                                 </h4>
 
                                 <p className="text-[11px] font-bold text-[#0D9488] truncate">
-                                  {testimonial.treatment ||
-                                    "Dental Treatment"}
+                                  {testimonial.treatment || "Dental Treatment"}
                                 </p>
 
                                 <p className="text-[10px] text-slate-400 truncate">
                                   {testimonial.role || "Patient"}
                                 </p>
+
                               </div>
+
                             </div>
 
-                            {/* Heart */}
+                            {/* HEART */}
 
                             <div className="w-9 h-9 rounded-full bg-emerald-50 flex items-center justify-center group-hover:scale-110 transition-transform">
+
                               <Heart className="w-4 h-4 text-emerald-500 fill-emerald-500" />
+
                             </div>
+
                           </div>
+
                         </div>
+
                       </div>
                     </div>
                   </article>
                 );
               })}
+
             </div>
           </div>
 
@@ -376,14 +409,19 @@ export default function Testimonials() {
           ================================================== */}
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
+
             {/* Rating */}
 
             <div className="group flex items-center gap-3 px-5 py-3 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+
               <div className="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center group-hover:scale-110 transition-transform">
+
                 <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+
               </div>
 
               <div>
+
                 <p className="text-xs font-black text-slate-800">
                   4.9/5 Rating
                 </p>
@@ -391,17 +429,23 @@ export default function Testimonials() {
                 <p className="text-[10px] text-slate-400">
                   Patient Satisfaction
                 </p>
+
               </div>
+
             </div>
 
             {/* Patients */}
 
             <div className="group flex items-center gap-3 px-5 py-3 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+
               <div className="w-9 h-9 rounded-xl bg-teal-50 flex items-center justify-center group-hover:scale-110 transition-transform">
+
                 <Heart className="w-4 h-4 text-[#0D9488] fill-[#0D9488]" />
+
               </div>
 
               <div>
+
                 <p className="text-xs font-black text-slate-800">
                   15,000+
                 </p>
@@ -409,17 +453,23 @@ export default function Testimonials() {
                 <p className="text-[10px] text-slate-400">
                   Happy Smiles
                 </p>
+
               </div>
+
             </div>
 
-            {/* Expert Doctors */}
+            {/* Doctors */}
 
             <div className="group flex items-center gap-3 px-5 py-3 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+
               <div className="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center group-hover:scale-110 transition-transform">
+
                 <UserRound className="w-4 h-4 text-purple-500" />
+
               </div>
 
               <div>
+
                 <p className="text-xs font-black text-slate-800">
                   Expert Doctors
                 </p>
@@ -427,8 +477,11 @@ export default function Testimonials() {
                 <p className="text-[10px] text-slate-400">
                   Trusted Care
                 </p>
+
               </div>
+
             </div>
+
           </div>
         </div>
       </section>
@@ -442,15 +495,17 @@ export default function Testimonials() {
           className="fixed inset-0 z-9999 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-md"
           onClick={() => setSelectedTestimonial(null)}
         >
+
           <div
             className="relative w-full max-w-lg rounded-3xl bg-white shadow-2xl overflow-hidden animate-testimonial-popup"
             onClick={(event) => event.stopPropagation()}
           >
-            {/* Top Gradient */}
+
+            {/* TOP GRADIENT */}
 
             <div className="h-2 bg-linear-to-r from-[#0D9488] via-[#0284C7] to-purple-600" />
 
-            {/* Close */}
+            {/* CLOSE */}
 
             <button
               type="button"
@@ -461,16 +516,19 @@ export default function Testimonials() {
               <X className="w-5 h-5" />
             </button>
 
-            {/* Popup Content */}
+            {/* POPUP */}
 
             <div className="p-7 sm:p-9">
-              {/* Quote */}
+
+              {/* QUOTE */}
 
               <div className="w-14 h-14 rounded-2xl bg-teal-50 flex items-center justify-center mb-6">
+
                 <Quote className="w-7 h-7 text-[#0D9488]" />
+
               </div>
 
-              {/* Stars */}
+              {/* STARS */}
 
               <div className="mb-5">
                 {renderStars(
@@ -479,60 +537,63 @@ export default function Testimonials() {
                 )}
               </div>
 
-              {/* Full Comment */}
+              {/* COMMENT */}
 
               <p className="text-base sm:text-lg text-slate-700 leading-8 italic">
                 "{selectedTestimonial.comment}"
               </p>
 
-              {/* Divider */}
+              {/* DIVIDER */}
 
               <div className="my-7 h-px bg-slate-200" />
 
-              {/* Patient */}
+              {/* PATIENT ICON */}
 
               <div className="flex items-center gap-4">
-                {selectedTestimonial.image ? (
-                  <img
-                    src={selectedTestimonial.image}
-                    alt={
-                      selectedTestimonial.name ||
-                      "Dental patient"
-                    }
-                    className="w-16 h-16 rounded-2xl object-cover border-2 border-white shadow-lg"
-                  />
-                ) : (
-                  <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#0D9488] to-[#0284C7] text-white flex items-center justify-center font-black text-lg">
-                    {getInitials(selectedTestimonial.name)}
-                  </div>
-                )}
+
+                {(() => {
+                  const PopupIcon =
+                    getPatientIcon(selectedTestimonial);
+
+                  return (
+                    <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-teal-500 via-cyan-500 to-purple-600 text-white flex items-center justify-center shadow-lg">
+
+                      <PopupIcon className="w-8 h-8" />
+
+                    </div>
+                  );
+                })()}
 
                 <div>
+
                   <h3 className="text-base font-black text-slate-900">
-                    {selectedTestimonial.name ||
-                      "Happy Patient"}
+                    {selectedTestimonial.name || "Happy Patient"}
                   </h3>
 
                   <p className="text-xs font-bold text-[#0D9488]">
-                    {selectedTestimonial.treatment ||
-                      "Dental Treatment"}
+                    {selectedTestimonial.treatment || "Dental Treatment"}
                   </p>
 
                   <p className="text-xs text-slate-400">
                     {selectedTestimonial.role || "Patient"}
                   </p>
+
                 </div>
+
               </div>
 
-              {/* Bottom Message */}
+              {/* BOTTOM MESSAGE */}
 
               <div className="mt-7 flex items-center gap-2 px-4 py-3 rounded-2xl bg-emerald-50 border border-emerald-100">
+
                 <Heart className="w-4 h-4 text-emerald-500 fill-emerald-500 shrink-0" />
 
                 <span className="text-xs font-bold text-emerald-700">
                   Thank you for trusting Sakthi Dental Clinic
                 </span>
+
               </div>
+
             </div>
           </div>
         </div>
