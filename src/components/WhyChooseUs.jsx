@@ -119,7 +119,6 @@ export default function WhyChooseUs() {
             }}
             className="relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-purple-200/80 bg-white/90 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-purple-700 shadow-sm backdrop-blur-md"
           >
-
             {/* Badge Shine */}
 
             <motion.span
@@ -150,7 +149,6 @@ export default function WhyChooseUs() {
             <span className="relative">
               The Sakthi Clinical Distinction
             </span>
-
           </motion.div>
 
           {/* Heading */}
@@ -176,7 +174,6 @@ export default function WhyChooseUs() {
             Pioneering a{" "}
 
             <span className="relative inline-block">
-
               <span className="bg-linear-to-r from-purple-700 via-indigo-600 to-teal-600 bg-clip-text text-transparent">
                 New Standard
               </span>
@@ -197,11 +194,9 @@ export default function WhyChooseUs() {
                 }}
                 className="absolute -bottom-1 left-0 h-1 rounded-full bg-linear-to-r from-purple-500 via-indigo-500 to-teal-400 opacity-40"
               />
-
             </span>{" "}
 
             in Family Dentistry
-
           </motion.h2>
 
           {/* Description */}
@@ -228,7 +223,6 @@ export default function WhyChooseUs() {
             20+ years of clinical mastery in a soothing, kid-friendly
             hospital environment.
           </motion.p>
-
         </div>
 
         {/* =======================================================
@@ -264,13 +258,11 @@ export default function WhyChooseUs() {
               y: -10,
               scale: 1.01,
             }}
-            className="group relative min-h-[400px] overflow-hidden rounded-4xl border border-purple-100 bg-white/90 p-8 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-shadow duration-500 hover:border-purple-300/60 hover:shadow-2xl sm:min-h-[440px] md:col-span-7"
+            className="group relative min-h-100 overflow-hidden rounded-4xl border border-purple-100 bg-white/90 p-8 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-shadow duration-500 hover:border-purple-300/60 hover:shadow-2xl sm:min-h-110 md:col-span-7"
           >
-
             {/* Background Image */}
 
             <div className="absolute inset-0 z-0 overflow-hidden">
-
               <motion.img
                 src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1000"
                 alt="Modern Dental Ecosystem Clinic"
@@ -284,7 +276,6 @@ export default function WhyChooseUs() {
               />
 
               <div className="absolute inset-0 bg-linear-to-t from-white/90 via-white/55 to-white/20" />
-
             </div>
 
             {/* Moving Shine */}
@@ -304,7 +295,6 @@ export default function WhyChooseUs() {
             {/* Top Bar */}
 
             <div className="relative z-20 flex items-center justify-between gap-2">
-
               <motion.span
                 whileHover={{
                   scale: 1.05,
@@ -327,15 +317,12 @@ export default function WhyChooseUs() {
               >
                 <HeartPulse className="h-5 w-5" />
               </motion.div>
-
             </div>
 
             {/* Bottom Content */}
 
             <div className="relative z-20 mt-auto flex flex-col justify-end space-y-4 pt-20">
-
               <div>
-
                 <h3 className="text-2xl font-black tracking-tight text-slate-900 transition-colors group-hover:text-purple-700 sm:text-3xl">
                   Complete Dental Ecosystem
                 </h3>
@@ -345,13 +332,11 @@ export default function WhyChooseUs() {
                   pediatric suites and clear aligners to 3D guided implants,
                   root canals, and cosmetic smile designs.
                 </p>
-
               </div>
 
               {/* Feature Pills */}
 
               <div className="flex flex-wrap gap-2 pt-2">
-
                 {[
                   "10+ MDS Specialties",
                   "In-House 3D Scan Lab",
@@ -379,7 +364,6 @@ export default function WhyChooseUs() {
                     }}
                     className="inline-flex items-center gap-1.5 rounded-full border border-purple-100 bg-purple-50/95 px-3 py-1 text-xs font-bold text-purple-900 shadow-sm"
                   >
-
                     <motion.span
                       animate={{
                         scale: [1, 1.2, 1],
@@ -394,14 +378,10 @@ export default function WhyChooseUs() {
                     </motion.span>
 
                     {item}
-
                   </motion.span>
                 ))}
-
               </div>
-
             </div>
-
           </motion.div>
 
           {/* =====================================================
@@ -430,9 +410,8 @@ export default function WhyChooseUs() {
               y: -10,
               scale: 1.01,
             }}
-            className="group relative min-h-[400px] overflow-hidden rounded-4xl border border-indigo-100 bg-linear-to-br from-white via-purple-50/40 to-indigo-50/60 p-8 shadow-xl shadow-purple-900/5 transition-shadow duration-500 hover:border-indigo-300/60 hover:shadow-2xl sm:min-h-[440px] md:col-span-5"
+            className="group relative min-h-100 overflow-hidden rounded-4xl border border-indigo-100 bg-linear-to-br from-white via-purple-50/40 to-indigo-50/60 p-8 shadow-xl shadow-purple-900/5 transition-shadow duration-500 hover:border-indigo-300/60 hover:shadow-2xl sm:min-h-110 md:col-span-5"
           >
-
             {/* Decorative Glow */}
 
             <motion.div
@@ -450,7 +429,6 @@ export default function WhyChooseUs() {
             {/* Top */}
 
             <div className="relative z-10 flex items-center justify-between gap-2">
-
               <span className="rounded-full border border-indigo-200/80 bg-indigo-100/90 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-indigo-800 shadow-sm">
                 Expert MDS Leadership
               </span>
@@ -468,7 +446,6 @@ export default function WhyChooseUs() {
               >
                 <UserCheck className="h-5 w-5" />
               </motion.div>
-
             </div>
 
             {/* Doctor Card */}
@@ -480,7 +457,6 @@ export default function WhyChooseUs() {
               }}
               className="relative z-10 my-8 flex items-center gap-3.5 rounded-2xl border border-purple-100 bg-white/95 p-4 shadow-md backdrop-blur-sm"
             >
-
               <motion.div
                 animate={{
                   scale: [1, 1.08, 1],
@@ -496,7 +472,6 @@ export default function WhyChooseUs() {
               </motion.div>
 
               <div className="min-w-0">
-
                 <p className="truncate text-sm font-extrabold text-slate-900">
                   Dr. Sakthi Saravanan
                 </p>
@@ -508,15 +483,12 @@ export default function WhyChooseUs() {
                 <p className="mt-0.5 text-[10px] font-medium leading-relaxed text-slate-500">
                   20+ Years Clinical Practice • 15,000+ Patients
                 </p>
-
               </div>
-
             </motion.div>
 
             {/* Bottom */}
 
             <div className="relative z-10 mt-auto space-y-2">
-
               <h3 className="text-xl font-black tracking-tight text-slate-900 transition-colors group-hover:text-purple-700 sm:text-2xl">
                 20+ Years Master Surgeons
               </h3>
@@ -526,9 +498,7 @@ export default function WhyChooseUs() {
                 outcomes with soft-tissue lasers and zero-error digital
                 planning.
               </p>
-
             </div>
-
           </motion.div>
 
           {/* =====================================================
@@ -555,9 +525,8 @@ export default function WhyChooseUs() {
               y: -10,
               scale: 1.01,
             }}
-            className="group relative min-h-[360px] overflow-hidden rounded-4xl border border-teal-100 bg-linear-to-br from-white via-teal-50/30 to-emerald-50/50 p-8 shadow-xl shadow-teal-900/5 transition-shadow duration-500 hover:border-teal-300/60 hover:shadow-2xl md:col-span-5"
+            className="group relative min-h-90 overflow-hidden rounded-4xl border border-teal-100 bg-linear-to-br from-white via-teal-50/30 to-emerald-50/50 p-8 shadow-xl shadow-teal-900/5 transition-shadow duration-500 hover:border-teal-300/60 hover:shadow-2xl md:col-span-5"
           >
-
             {/* Animated Teal Glow */}
 
             <motion.div
@@ -575,7 +544,6 @@ export default function WhyChooseUs() {
             {/* Top */}
 
             <div className="relative z-10 flex items-center justify-between gap-2">
-
               <span className="rounded-full border border-teal-200/80 bg-teal-100/90 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-teal-800 shadow-sm">
                 100% Pain-Free Protocol
               </span>
@@ -593,13 +561,11 @@ export default function WhyChooseUs() {
               >
                 <Heart className="h-5 w-5" />
               </motion.div>
-
             </div>
 
             {/* Content */}
 
             <div className="relative z-10 mt-auto flex flex-col justify-end space-y-3 pt-20">
-
               <motion.div
                 whileHover={{
                   scale: 1.04,
@@ -607,7 +573,6 @@ export default function WhyChooseUs() {
                 }}
                 className="inline-flex w-fit items-center gap-2 rounded-xl border border-teal-200 bg-white/95 px-3.5 py-1.5 text-xs font-bold text-teal-800 shadow-sm"
               >
-
                 <motion.div
                   animate={{
                     rotate: [0, 15, -15, 0],
@@ -621,7 +586,6 @@ export default function WhyChooseUs() {
                 </motion.div>
 
                 Computer-Assisted Anesthesia
-
               </motion.div>
 
               <h3 className="text-xl font-black tracking-tight text-slate-900 transition-colors group-hover:text-teal-700 sm:text-2xl">
@@ -633,13 +597,11 @@ export default function WhyChooseUs() {
                 numbing, quiet ergonomic dental chairs, and personalized care
                 for nervous patients.
               </p>
-
             </div>
-
           </motion.div>
 
           {/* =====================================================
-              CARD 4 - FIXED VISIBILITY
+              CARD 4
           ===================================================== */}
 
           <motion.div
@@ -662,13 +624,11 @@ export default function WhyChooseUs() {
               y: -10,
               scale: 1.01,
             }}
-            className="group relative min-h-[400px] overflow-hidden rounded-4xl border border-purple-100 bg-white/90 p-8 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-shadow duration-500 hover:border-purple-300/60 hover:shadow-2xl sm:min-h-[420px] md:col-span-7"
+            className="group relative min-h-100 overflow-hidden rounded-4xl border border-purple-100 bg-white/90 p-8 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-shadow duration-500 hover:border-purple-300/60 hover:shadow-2xl sm:min-h-105 md:col-span-7"
           >
-
             {/* Background Image */}
 
             <div className="absolute inset-0 z-0 overflow-hidden">
-
               <motion.img
                 src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1000"
                 alt="3D Digital Scanner Technology"
@@ -681,10 +641,7 @@ export default function WhyChooseUs() {
                 className="h-full w-full object-cover opacity-30 transition-all duration-700 group-hover:opacity-40"
               />
 
-              {/* Softer Overlay */}
-
               <div className="absolute inset-0 bg-linear-to-t from-white/85 via-white/45 to-white/15" />
-
             </div>
 
             {/* Moving Shine */}
@@ -704,7 +661,6 @@ export default function WhyChooseUs() {
             {/* Top */}
 
             <div className="relative z-20 flex items-center justify-between gap-3">
-
               <span className="rounded-full border border-purple-200/80 bg-purple-100/95 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-purple-800 shadow-sm">
                 German 3D Robotics
               </span>
@@ -722,7 +678,6 @@ export default function WhyChooseUs() {
               >
                 <Cpu className="h-5 w-5" />
               </motion.div>
-
             </div>
 
             {/* Content */}
@@ -743,7 +698,7 @@ export default function WhyChooseUs() {
 
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-2 text-xs font-extrabold text-purple-800">
 
-                {/* ISO */}
+                {/* ISO 9001 */}
 
                 <motion.span
                   whileHover={{
@@ -751,7 +706,6 @@ export default function WhyChooseUs() {
                   }}
                   className="inline-flex min-w-0 items-center gap-1.5 rounded-lg border border-purple-100 bg-white/75 px-2 py-1"
                 >
-
                   <motion.span
                     animate={{
                       scale: [1, 1.2, 1],
@@ -768,7 +722,6 @@ export default function WhyChooseUs() {
                   <span className="whitespace-normal leading-relaxed">
                     ISO 9001:2026 Certified Facility
                   </span>
-
                 </motion.span>
 
                 {/* Divider */}
@@ -777,7 +730,7 @@ export default function WhyChooseUs() {
                   •
                 </span>
 
-                {/* Cross Contamination */}
+                {/* Zero Cross Contamination */}
 
                 <motion.span
                   whileHover={{
@@ -785,25 +738,19 @@ export default function WhyChooseUs() {
                   }}
                   className="inline-flex min-w-0 items-center gap-1.5 rounded-lg border border-teal-100 bg-white/75 px-2 py-1"
                 >
-
                   <ShieldCheck className="h-4 w-4 shrink-0 text-teal-500" />
 
                   <span className="whitespace-normal leading-relaxed">
                     Zero Cross-Contamination
                   </span>
-
                 </motion.span>
 
               </div>
-
             </div>
-
           </motion.div>
 
         </div>
-
       </div>
-
     </section>
   );
 }
