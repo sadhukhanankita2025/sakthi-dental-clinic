@@ -27,16 +27,12 @@ const fadeUp = {
   },
 };
 
-const floatingAnimation = {
-  y: [0, -7, 0, 7, 0],
-};
-
-export default function WhyChooseUs() {
+export default function WhyChooseUs({ onOpenAppointment }) {
   return (
     <section className="relative isolate overflow-hidden bg-linear-to-b from-[#FAF5FF] via-purple-50/40 to-indigo-50/30 py-24 text-slate-900 sm:py-28">
 
       {/* =========================================================
-          BACKGROUND AMBIENT GLOW
+          BACKGROUND GLOW
       ========================================================= */}
 
       <motion.div
@@ -97,7 +93,10 @@ export default function WhyChooseUs() {
         ].map(([left, top, color, duration], index) => (
           <motion.div
             key={index}
-            style={{ left, top }}
+            style={{
+              left,
+              top,
+            }}
             animate={{
               y: [0, -22, 0, 18, 0],
               x: [0, 10, -8, 5, 0],
@@ -142,8 +141,7 @@ export default function WhyChooseUs() {
           }}
           className="mx-auto mb-16 max-w-3xl text-center"
         >
-
-          {/* Premium Badge */}
+          {/* Badge */}
 
           <motion.div
             variants={fadeUp}
@@ -157,9 +155,6 @@ export default function WhyChooseUs() {
             }}
             className="relative mb-5 inline-flex items-center gap-2 overflow-hidden rounded-full border border-purple-200/80 bg-white/85 px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-purple-700 shadow-lg shadow-purple-900/5 backdrop-blur-xl sm:text-xs"
           >
-
-            {/* Shimmer */}
-
             <motion.span
               animate={{
                 x: ["-150%", "250%"],
@@ -201,7 +196,6 @@ export default function WhyChooseUs() {
             className="text-3xl font-black leading-[1.08] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
           >
             Pioneering a{" "}
-
             <span className="relative inline-block">
               <span className="bg-linear-to-r from-purple-700 via-indigo-600 to-teal-600 bg-clip-text text-transparent">
                 New Standard
@@ -225,9 +219,7 @@ export default function WhyChooseUs() {
                 className="absolute -bottom-2 left-0 h-1 rounded-full bg-linear-to-r from-purple-500 via-indigo-500 to-teal-400 opacity-50"
               />
             </span>{" "}
-
             <br className="hidden sm:block" />
-
             in Family Dentistry
           </motion.h2>
 
@@ -246,7 +238,7 @@ export default function WhyChooseUs() {
             hospital environment.
           </motion.p>
 
-          {/* Small Decorative Stars */}
+          {/* Stars */}
 
           <motion.div
             variants={fadeUp}
@@ -300,8 +292,7 @@ export default function WhyChooseUs() {
             }}
             className="group relative min-h-100 overflow-hidden rounded-4xl border border-purple-100 bg-white/80 p-7 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-shadow duration-500 hover:border-purple-300/70 hover:shadow-2xl hover:shadow-purple-900/10 sm:min-h-110 sm:p-8 md:col-span-7"
           >
-
-            {/* Card Glow */}
+            {/* Glow */}
 
             <motion.div
               initial={{
@@ -318,7 +309,7 @@ export default function WhyChooseUs() {
             <div className="absolute inset-0 z-0 overflow-hidden">
               <motion.img
                 src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1000"
-                alt="Modern Dental Ecosystem Clinic"
+                alt="Modern Dental Clinic"
                 initial={{
                   scale: 1.05,
                 }}
@@ -339,7 +330,7 @@ export default function WhyChooseUs() {
               <div className="absolute inset-0 bg-linear-to-t from-white/90 via-white/55 to-white/15" />
             </div>
 
-            {/* Animated Shine */}
+            {/* Shine */}
 
             <motion.div
               animate={{
@@ -352,8 +343,6 @@ export default function WhyChooseUs() {
               }}
               className="pointer-events-none absolute inset-y-0 z-10 w-24 skew-x-12 bg-white/20 blur-xl"
             />
-
-            {/* Top */}
 
             <div className="relative z-20 flex items-center justify-between gap-3">
 
@@ -385,8 +374,6 @@ export default function WhyChooseUs() {
               </motion.div>
             </div>
 
-            {/* Content */}
-
             <div className="relative z-20 mt-auto flex flex-col justify-end space-y-4 pt-20">
 
               <div>
@@ -405,8 +392,6 @@ export default function WhyChooseUs() {
                   root canals, and cosmetic smile designs.
                 </p>
               </div>
-
-              {/* Feature Pills */}
 
               <div className="flex flex-wrap gap-2 pt-1">
                 {[
@@ -479,9 +464,6 @@ export default function WhyChooseUs() {
             }}
             className="group relative min-h-100 overflow-hidden rounded-4xl border border-indigo-100 bg-linear-to-br from-white via-purple-50/50 to-indigo-50/70 p-7 shadow-xl shadow-purple-900/5 transition-all duration-500 hover:border-indigo-300/70 hover:shadow-2xl hover:shadow-indigo-900/10 sm:min-h-110 sm:p-8 md:col-span-5"
           >
-
-            {/* Decorative Glow */}
-
             <motion.div
               animate={{
                 scale: [1, 1.3, 1],
@@ -493,8 +475,6 @@ export default function WhyChooseUs() {
               }}
               className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-indigo-300/30 blur-3xl"
             />
-
-            {/* Top */}
 
             <div className="relative z-10 flex items-center justify-between gap-3">
 
@@ -521,8 +501,6 @@ export default function WhyChooseUs() {
               </motion.div>
             </div>
 
-            {/* Doctor Card */}
-
             <motion.div
               initial={{
                 opacity: 0,
@@ -545,7 +523,6 @@ export default function WhyChooseUs() {
               }}
               className="relative z-10 my-8 flex items-center gap-3.5 rounded-2xl border border-purple-100 bg-white/95 p-4 shadow-lg backdrop-blur-md"
             >
-
               <motion.div
                 animate={{
                   scale: [1, 1.08, 1],
@@ -574,8 +551,6 @@ export default function WhyChooseUs() {
                 </p>
               </div>
             </motion.div>
-
-            {/* Bottom */}
 
             <div className="relative z-10 mt-auto space-y-2">
 
@@ -619,9 +594,6 @@ export default function WhyChooseUs() {
             }}
             className="group relative min-h-90 overflow-hidden rounded-4xl border border-teal-100 bg-linear-to-br from-white via-teal-50/40 to-emerald-50/60 p-7 shadow-xl shadow-teal-900/5 transition-all duration-500 hover:border-teal-300/70 hover:shadow-2xl hover:shadow-teal-900/10 sm:p-8 md:col-span-5"
           >
-
-            {/* Animated Glow */}
-
             <motion.div
               animate={{
                 scale: [1, 1.4, 1],
@@ -633,8 +605,6 @@ export default function WhyChooseUs() {
               }}
               className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-teal-300/30 blur-3xl"
             />
-
-            {/* Top */}
 
             <div className="relative z-10 flex items-center justify-between gap-3">
 
@@ -659,8 +629,6 @@ export default function WhyChooseUs() {
                 <Heart className="h-5 w-5" />
               </motion.div>
             </div>
-
-            {/* Content */}
 
             <div className="relative z-10 mt-auto flex flex-col justify-end space-y-3 pt-20">
 
@@ -726,14 +694,13 @@ export default function WhyChooseUs() {
             }}
             className="group relative min-h-100 overflow-hidden rounded-4xl border border-purple-100 bg-white/85 p-7 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-all duration-500 hover:border-purple-300/70 hover:shadow-2xl hover:shadow-purple-900/10 sm:min-h-105 sm:p-8 md:col-span-7"
           >
-
             {/* Background Image */}
 
             <div className="absolute inset-0 z-0 overflow-hidden">
 
               <motion.img
                 src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1000"
-                alt="3D Digital Scanner Technology"
+                alt="Dental Technology"
                 initial={{
                   scale: 1.05,
                 }}
@@ -755,7 +722,7 @@ export default function WhyChooseUs() {
               <div className="absolute inset-0 bg-linear-to-t from-white/85 via-white/45 to-white/10" />
             </div>
 
-            {/* Animated Shine */}
+            {/* Shine */}
 
             <motion.div
               animate={{
@@ -768,8 +735,6 @@ export default function WhyChooseUs() {
               }}
               className="pointer-events-none absolute inset-y-0 z-10 w-24 skew-x-12 bg-white/25 blur-xl"
             />
-
-            {/* Top */}
 
             <div className="relative z-20 flex items-center justify-between gap-3">
 
@@ -800,8 +765,6 @@ export default function WhyChooseUs() {
               </motion.div>
             </div>
 
-            {/* Content */}
-
             <div className="relative z-20 mt-auto flex flex-col justify-end space-y-3 pt-20">
 
               <motion.h3
@@ -819,9 +782,9 @@ export default function WhyChooseUs() {
                 autoclave sterilization.
               </p>
 
-              {/* Bottom Features */}
+              {/* Features */}
 
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-2 text-xs font-extrabold text-purple-800">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-2 text-xs font-extrabold">
 
                 {/* ISO */}
 
@@ -844,9 +807,8 @@ export default function WhyChooseUs() {
                     scale: 1.04,
                     y: -2,
                   }}
-                  className="inline-flex min-w-0 items-center gap-1.5 rounded-lg border border-purple-100 bg-white/85 px-2.5 py-1.5 shadow-sm backdrop-blur-md"
+                  className="inline-flex min-w-0 items-center gap-1.5 rounded-lg border border-purple-100 bg-white/90 px-2.5 py-1.5 text-purple-800 shadow-sm backdrop-blur-md"
                 >
-
                   <motion.span
                     animate={{
                       scale: [1, 1.2, 1],
@@ -866,13 +828,11 @@ export default function WhyChooseUs() {
                   </span>
                 </motion.span>
 
-                {/* Divider */}
-
                 <span className="hidden text-purple-300 sm:inline">
                   •
                 </span>
 
-                {/* Cross Contamination */}
+                {/* Sterilization */}
 
                 <motion.span
                   initial={{
@@ -893,9 +853,8 @@ export default function WhyChooseUs() {
                     scale: 1.04,
                     y: -2,
                   }}
-                  className="inline-flex min-w-0 items-center gap-1.5 rounded-lg border border-teal-100 bg-white/85 px-2.5 py-1.5 text-teal-800 shadow-sm backdrop-blur-md"
+                  className="inline-flex min-w-0 items-center gap-1.5 rounded-lg border border-teal-100 bg-white/90 px-2.5 py-1.5 text-teal-800 shadow-sm backdrop-blur-md"
                 >
-
                   <motion.span
                     animate={{
                       scale: [1, 1.15, 1],
@@ -916,7 +875,7 @@ export default function WhyChooseUs() {
                 </motion.span>
               </div>
 
-              {/* Bottom Accent */}
+              {/* Accent */}
 
               <motion.div
                 initial={{
@@ -939,7 +898,8 @@ export default function WhyChooseUs() {
         </div>
 
         {/* =======================================================
-            BOTTOM TRUST INDICATOR
+            APPOINTMENT BUTTON
+            Uses YOUR existing AppointmentModal
         ======================================================= */}
 
         <motion.div
@@ -960,15 +920,35 @@ export default function WhyChooseUs() {
           }}
           className="mt-10 flex justify-center"
         >
-          <motion.div
+          <motion.button
+            type="button"
+            onClick={onOpenAppointment}
             whileHover={{
-              scale: 1.03,
-              y: -3,
+              scale: 1.05,
+              y: -4,
             }}
-            className="group flex items-center gap-3 rounded-full border border-white/80 bg-white/70 px-5 py-2.5 shadow-lg shadow-purple-900/5 backdrop-blur-xl"
+            whileTap={{
+              scale: 0.97,
+            }}
+            className="group relative flex cursor-pointer items-center gap-3 overflow-hidden rounded-full border border-purple-200/80 bg-white/90 px-5 py-3 shadow-lg shadow-purple-900/10 backdrop-blur-xl transition-all duration-300 hover:border-purple-400 hover:shadow-xl hover:shadow-purple-900/20"
           >
+            {/* Animated Shine */}
 
-            <motion.div
+            <motion.span
+              animate={{
+                x: ["-150%", "250%"],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatDelay: 3,
+              }}
+              className="pointer-events-none absolute inset-y-0 w-12 skew-x-12 bg-white/70 blur-md"
+            />
+
+            {/* Icon */}
+
+            <motion.span
               animate={{
                 scale: [1, 1.15, 1],
               }}
@@ -976,16 +956,20 @@ export default function WhyChooseUs() {
                 duration: 2,
                 repeat: Infinity,
               }}
-              className="flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-r from-purple-600 to-teal-500 text-white"
+              className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-linear-to-r from-purple-600 to-teal-500 text-white shadow-md"
             >
               <CheckCircle2 className="h-4 w-4" />
-            </motion.div>
+            </motion.span>
 
-            <span className="text-xs font-bold text-slate-600 sm:text-sm">
+            {/* Text */}
+
+            <span className="relative text-xs font-bold text-slate-700 transition-colors group-hover:text-purple-700 sm:text-sm">
               Advanced Technology • Expert Care • Patient First
             </span>
 
-            <motion.div
+            {/* Arrow */}
+
+            <motion.span
               animate={{
                 x: [0, 4, 0],
               }}
@@ -993,11 +977,11 @@ export default function WhyChooseUs() {
                 duration: 1.5,
                 repeat: Infinity,
               }}
+              className="relative"
             >
-              <ArrowUpRight className="h-4 w-4 text-purple-600" />
-            </motion.div>
-
-          </motion.div>
+              <ArrowUpRight className="h-4 w-4 text-purple-600 transition-transform duration-300 group-hover:rotate-45" />
+            </motion.span>
+          </motion.button>
         </motion.div>
 
       </div>

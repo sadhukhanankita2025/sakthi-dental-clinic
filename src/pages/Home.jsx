@@ -17,6 +17,7 @@ export default function Home({ onOpenAppointment }) {
       {/* =====================================================
           HERO
       ====================================================== */}
+
       <section className="relative overflow-hidden bg-gradient-hero">
         <Hero onOpenAppointment={onOpenAppointment} />
       </section>
@@ -24,37 +25,50 @@ export default function Home({ onOpenAppointment }) {
       {/* =====================================================
           TRUST BANNER
       ====================================================== */}
+
       <TrustBanner />
 
       {/* =====================================================
           WHY CHOOSE US
+          Appointment button connected to existing modal
       ====================================================== */}
-      <WhyChooseUs />
+
+      <WhyChooseUs
+        onOpenAppointment={onOpenAppointment}
+      />
 
       {/* =====================================================
           SERVICES
       ====================================================== */}
+
       <Services />
 
       {/* =====================================================
           FACILITIES
       ====================================================== */}
+
       <FacilitiesSection />
 
       {/* =====================================================
           CTA
+          Appointment button connected to existing modal
       ====================================================== */}
-      <CTA onOpenAppointment={onOpenAppointment} />
+
+      <CTA
+        onOpenAppointment={onOpenAppointment}
+      />
 
       {/* =====================================================
           TESTIMONIALS
       ====================================================== */}
+
       <Testimonials />
 
       {/* =====================================================
           FAQ SECTION
       ====================================================== */}
-      <section className="relative overflow-hidden py-20 bg-linear-to-br from-purple-50 via-white to-indigo-50">
+
+      <section className="relative overflow-hidden bg-linear-to-br from-purple-50 via-white to-indigo-50 py-20">
 
         {/* =================================================
             BACKGROUND GLOW
@@ -62,29 +76,29 @@ export default function Home({ onOpenAppointment }) {
 
         <div
           className="
-            absolute
-            top-10
-            left-0
-            w-80
-            h-80
-            bg-purple-400/20
-            rounded-full
-            blur-3xl
             pointer-events-none
+            absolute
+            left-0
+            top-10
+            h-80
+            w-80
+            rounded-full
+            bg-purple-400/20
+            blur-3xl
           "
         />
 
         <div
           className="
+            pointer-events-none
             absolute
             bottom-0
             right-0
-            w-96
             h-96
-            bg-indigo-400/20
+            w-96
             rounded-full
+            bg-indigo-400/20
             blur-3xl
-            pointer-events-none
           "
         />
 
@@ -94,13 +108,13 @@ export default function Home({ onOpenAppointment }) {
 
         <div
           className="
-            max-w-7xl
+            relative
+            z-10
             mx-auto
+            max-w-7xl
             px-4
             sm:px-6
             lg:px-8
-            relative
-            z-10
           "
         >
 
@@ -119,55 +133,60 @@ export default function Home({ onOpenAppointment }) {
             }}
             viewport={{
               once: true,
+              amount: 0.2,
             }}
             transition={{
               duration: 0.7,
             }}
             className="
-              text-center
-              max-w-3xl
               mx-auto
               mb-12
+              max-w-3xl
               space-y-4
+              text-center
             "
           >
 
             {/* Badge */}
 
-            <div
+            <motion.div
+              whileHover={{
+                scale: 1.04,
+                y: -2,
+              }}
               className="
                 inline-flex
                 items-center
                 gap-2
-                px-4
-                py-2
                 rounded-full
-                bg-purple-100
-                text-purple-700
                 border
                 border-purple-200
-                shadow-sm
+                bg-purple-100
+                px-4
+                py-2
                 text-xs
                 font-bold
                 uppercase
                 tracking-wider
+                text-purple-700
+                shadow-sm
               "
             >
-              <HelpCircle className="w-4 h-4 text-purple-600" />
+              <HelpCircle className="h-4 w-4 text-purple-600" />
 
               Patient Guidance & FAQs
-            </div>
+            </motion.div>
 
             {/* Heading */}
 
             <h2
               className="
                 text-3xl
-                sm:text-4xl
-                lg:text-5xl
                 font-black
                 tracking-tight
                 text-slate-900
+                sm:text-4xl
+                lg:text-5xl
               "
             >
               Frequently Asked{" "}
@@ -190,12 +209,12 @@ export default function Home({ onOpenAppointment }) {
 
             <p
               className="
-                text-sm
-                sm:text-base
-                text-slate-600
-                leading-7
-                max-w-2xl
                 mx-auto
+                max-w-2xl
+                text-sm
+                leading-7
+                text-slate-600
+                sm:text-base
               "
             >
               Everything you need to know about pain relief,
@@ -213,10 +232,10 @@ export default function Home({ onOpenAppointment }) {
             className="
               grid
               grid-cols-1
-              lg:grid-cols-2
-              gap-10
-              lg:gap-14
               items-center
+              gap-10
+              lg:grid-cols-2
+              lg:gap-14
             "
           >
 
@@ -235,6 +254,7 @@ export default function Home({ onOpenAppointment }) {
               }}
               viewport={{
                 once: true,
+                amount: 0.15,
               }}
               transition={{
                 duration: 0.7,
@@ -246,12 +266,12 @@ export default function Home({ onOpenAppointment }) {
 
               <div
                 className="
+                  pointer-events-none
                   absolute
                   -inset-6
+                  rounded-full
                   bg-purple-500/20
                   blur-3xl
-                  rounded-full
-                  pointer-events-none
                 "
               />
 
@@ -267,14 +287,14 @@ export default function Home({ onOpenAppointment }) {
                 }}
                 className="
                   relative
-                  bg-white
-                  p-3
+                  overflow-hidden
                   rounded-4xl
                   border
                   border-purple-200
+                  bg-white
+                  p-3
                   shadow-2xl
                   shadow-purple-500/20
-                  overflow-hidden
                 "
               >
 
@@ -282,11 +302,11 @@ export default function Home({ onOpenAppointment }) {
                   src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&q=85&w=900"
                   alt="Dental patient care"
                   className="
-                    w-full
                     h-100
-                    sm:h-120
-                    object-cover
+                    w-full
                     rounded-3xl
+                    object-cover
+                    sm:h-120
                   "
                 />
 
@@ -294,6 +314,7 @@ export default function Home({ onOpenAppointment }) {
 
                 <div
                   className="
+                    pointer-events-none
                     absolute
                     inset-3
                     rounded-3xl
@@ -301,7 +322,6 @@ export default function Home({ onOpenAppointment }) {
                     from-purple-950/70
                     via-purple-900/10
                     to-transparent
-                    pointer-events-none
                   "
                 />
 
@@ -323,42 +343,55 @@ export default function Home({ onOpenAppointment }) {
                     delay: 0.4,
                     duration: 0.5,
                   }}
+                  whileHover={{
+                    y: -4,
+                    scale: 1.02,
+                  }}
                   className="
                     absolute
                     bottom-8
                     left-8
                     right-8
-                    p-5
                     rounded-2xl
-                    bg-white/90
-                    backdrop-blur-xl
                     border
                     border-purple-100
+                    bg-white/90
+                    p-5
                     shadow-xl
+                    backdrop-blur-xl
                   "
                 >
 
                   <div className="flex items-center gap-3">
 
-                    <div
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.08, 1],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
                       className="
-                        w-11
-                        h-11
-                        rounded-xl
-                        bg-purple-100
                         flex
+                        h-11
+                        w-11
+                        shrink-0
                         items-center
                         justify-center
+                        rounded-xl
+                        bg-purple-100
                       "
                     >
                       <HelpCircle
                         className="
-                          w-5
                           h-5
+                          w-5
                           text-purple-600
                         "
                       />
-                    </div>
+                    </motion.div>
 
                     <div>
 
@@ -375,8 +408,8 @@ export default function Home({ onOpenAppointment }) {
                       <p
                         className="
                           text-xs
-                          text-purple-600
                           font-semibold
+                          text-purple-600
                         "
                       >
                         We are here to help you.
@@ -402,27 +435,31 @@ export default function Home({ onOpenAppointment }) {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
+                whileHover={{
+                  scale: 1.1,
+                  rotate: 15,
+                }}
                 className="
                   absolute
-                  -top-5
                   -right-5
-                  w-16
+                  -top-5
+                  flex
                   h-16
+                  w-16
+                  items-center
+                  justify-center
                   rounded-2xl
                   bg-linear-to-br
                   from-purple-600
                   to-indigo-600
                   shadow-xl
                   shadow-purple-500/30
-                  flex
-                  items-center
-                  justify-center
                 "
               >
                 <Sparkles
                   className="
-                    w-7
                     h-7
+                    w-7
                     text-white
                   "
                 />
@@ -433,6 +470,7 @@ export default function Home({ onOpenAppointment }) {
               <motion.div
                 animate={{
                   y: [0, 10, 0],
+                  rotate: [0, -5, 0],
                 }}
                 transition={{
                   duration: 3.5,
@@ -443,8 +481,8 @@ export default function Home({ onOpenAppointment }) {
                   absolute
                   -bottom-5
                   -left-5
-                  w-14
                   h-14
+                  w-14
                   rounded-full
                   bg-linear-to-br
                   from-violet-500
@@ -471,6 +509,7 @@ export default function Home({ onOpenAppointment }) {
               }}
               viewport={{
                 once: true,
+                amount: 0.15,
               }}
               transition={{
                 duration: 0.7,
@@ -482,12 +521,12 @@ export default function Home({ onOpenAppointment }) {
 
               <div
                 className="
+                  pointer-events-none
                   absolute
                   -inset-4
+                  rounded-4xl
                   bg-purple-500/10
                   blur-3xl
-                  rounded-4xl
-                  pointer-events-none
                 "
               />
 
@@ -496,14 +535,14 @@ export default function Home({ onOpenAppointment }) {
               <div
                 className="
                   relative
-                  bg-white/95
-                  backdrop-blur-xl
+                  overflow-hidden
                   rounded-4xl
                   border
                   border-purple-200
+                  bg-white/95
                   shadow-2xl
                   shadow-purple-500/10
-                  overflow-hidden
+                  backdrop-blur-xl
                 "
               >
 
@@ -511,40 +550,48 @@ export default function Home({ onOpenAppointment }) {
 
                 <div
                   className="
-                    px-5
-                    sm:px-6
-                    py-5
                     bg-linear-to-r
                     from-purple-600
                     via-violet-600
                     to-indigo-600
+                    px-5
+                    py-5
                     text-white
+                    sm:px-6
                   "
                 >
 
                   <div className="flex items-center gap-3">
 
-                    <div
+                    <motion.div
+                      animate={{
+                        rotate: [0, 5, -5, 0],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                      }}
                       className="
-                        w-11
+                        flex
                         h-11
+                        w-11
+                        shrink-0
+                        items-center
+                        justify-center
                         rounded-xl
                         bg-white/20
                         backdrop-blur-md
-                        flex
-                        items-center
-                        justify-center
                       "
                     >
-                      <HelpCircle className="w-5 h-5" />
-                    </div>
+                      <HelpCircle className="h-5 w-5" />
+                    </motion.div>
 
                     <div>
 
                       <h3
                         className="
-                          font-extrabold
                           text-sm
+                          font-extrabold
                           sm:text-base
                         "
                       >
@@ -554,8 +601,8 @@ export default function Home({ onOpenAppointment }) {
                       <p
                         className="
                           text-[11px]
-                          sm:text-xs
                           text-white/80
+                          sm:text-xs
                         "
                       >
                         Find answers to common dental questions
@@ -571,14 +618,14 @@ export default function Home({ onOpenAppointment }) {
 
                 <div
                   className="
-                    p-4
-                    sm:p-5
+                    custom-scrollbar
+                    max-h-130
+                    overflow-y-auto
                     bg-linear-to-b
                     from-white
                     to-purple-50/40
-                    max-h-130
-                    overflow-y-auto
-                    custom-scrollbar
+                    p-4
+                    sm:p-5
                   "
                 >
                   <FAQAccordion />
@@ -588,11 +635,11 @@ export default function Home({ onOpenAppointment }) {
 
                 <div
                   className="
-                    px-5
-                    py-3
                     border-t
                     border-purple-100
                     bg-purple-50
+                    px-5
+                    py-3
                     text-center
                   "
                 >
@@ -600,11 +647,11 @@ export default function Home({ onOpenAppointment }) {
                   <p
                     className="
                       text-[10px]
-                      sm:text-xs
                       font-bold
-                      text-purple-600
                       uppercase
                       tracking-wider
+                      text-purple-600
+                      sm:text-xs
                     "
                   >
                     Scroll inside to view more questions

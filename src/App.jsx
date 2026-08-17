@@ -13,12 +13,18 @@ import Privacy from "./pages/Privacy";
 import Contact from "./pages/Contact";
 
 export default function App() {
+  // =========================================================
+  // APPOINTMENT MODAL STATE
+  // =========================================================
+
   const [appointmentOpen, setAppointmentOpen] = useState(false);
 
+  // Open appointment modal
   const handleOpenAppointment = () => {
     setAppointmentOpen(true);
   };
 
+  // Close appointment modal
   const handleCloseAppointment = () => {
     setAppointmentOpen(false);
   };
@@ -26,21 +32,31 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#FAF5FF] text-[#1E1B4B]">
 
-      {/* Scroll to top whenever the route changes */}
+      {/* =====================================================
+          SCROLL TO TOP
+      ===================================================== */}
+
       <ScrollToTop />
 
-      {/* Navbar */}
+      {/* =====================================================
+          NAVBAR
+      ===================================================== */}
+
       <Navbar
         onOpenAppointment={handleOpenAppointment}
       />
 
-      {/* Main Content */}
+      {/* =====================================================
+          MAIN CONTENT
+      ===================================================== */}
+
       <main>
         <Routes>
 
-          {/* =========================
+          {/* =================================================
               HOME
-          ========================= */}
+          ================================================= */}
+
           <Route
             path="/"
             element={
@@ -50,9 +66,10 @@ export default function App() {
             }
           />
 
-          {/* =========================
+          {/* =================================================
               ABOUT
-          ========================= */}
+          ================================================= */}
+
           <Route
             path="/about"
             element={
@@ -62,9 +79,10 @@ export default function App() {
             }
           />
 
-          {/* =========================
+          {/* =================================================
               TREATMENTS
-          ========================= */}
+          ================================================= */}
+
           <Route
             path="/treatments"
             element={
@@ -74,25 +92,28 @@ export default function App() {
             }
           />
 
-          {/* =========================
+          {/* =================================================
               PRIVACY
-          ========================= */}
+          ================================================= */}
+
           <Route
             path="/privacy"
             element={<Privacy />}
           />
 
-          {/* =========================
+          {/* =================================================
               CONTACT
-          ========================= */}
+          ================================================= */}
+
           <Route
             path="/contact"
             element={<Contact />}
           />
 
-          {/* =========================
+          {/* =================================================
               FALLBACK
-          ========================= */}
+          ================================================= */}
+
           <Route
             path="*"
             element={
@@ -105,14 +126,19 @@ export default function App() {
         </Routes>
       </main>
 
-      {/* Footer */}
+      {/* =====================================================
+          FOOTER
+      ===================================================== */}
+
       <Footer
         onOpenAppointment={handleOpenAppointment}
       />
 
-      {/* =========================
-          APPOINTMENT MODAL
-      ========================= */}
+      {/* =====================================================
+          EXISTING APPOINTMENT MODAL
+          DO NOT CREATE ANOTHER MODAL
+      ===================================================== */}
+
       <AppointmentModal
         isOpen={appointmentOpen}
         onClose={handleCloseAppointment}
