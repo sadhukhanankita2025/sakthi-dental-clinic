@@ -53,7 +53,6 @@ export default function WhyChooseUs() {
       ========================================================= */}
 
       <div className="pointer-events-none absolute inset-0">
-
         {[
           ["10%", "20%", "bg-purple-400", 6],
           ["25%", "70%", "bg-indigo-400", 8],
@@ -80,7 +79,6 @@ export default function WhyChooseUs() {
             className={`absolute h-2 w-2 rounded-full ${color} blur-[1px]`}
           />
         ))}
-
       </div>
 
       {/* =========================================================
@@ -203,6 +201,7 @@ export default function WhyChooseUs() {
             </span>{" "}
 
             in Family Dentistry
+
           </motion.h2>
 
           {/* Description */}
@@ -265,7 +264,7 @@ export default function WhyChooseUs() {
               y: -10,
               scale: 1.01,
             }}
-            className="group relative h-100 overflow-hidden rounded-4xl border border-purple-100 bg-white/90 p-8 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-shadow duration-500 hover:border-purple-300/60 hover:shadow-2xl sm:h-110 md:col-span-7"
+            className="group relative min-h-[400px] overflow-hidden rounded-4xl border border-purple-100 bg-white/90 p-8 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-shadow duration-500 hover:border-purple-300/60 hover:shadow-2xl sm:min-h-[440px] md:col-span-7"
           >
 
             {/* Background Image */}
@@ -283,8 +282,6 @@ export default function WhyChooseUs() {
                 }}
                 className="h-full w-full object-cover opacity-30 transition-all duration-700 group-hover:opacity-40"
               />
-
-              {/* Softer Overlay */}
 
               <div className="absolute inset-0 bg-linear-to-t from-white/90 via-white/55 to-white/20" />
 
@@ -326,7 +323,7 @@ export default function WhyChooseUs() {
                   duration: 3,
                   repeat: Infinity,
                 }}
-                className="flex h-10 w-10 items-center justify-center rounded-2xl border border-purple-200/80 bg-purple-100/90 text-purple-700 shadow-sm"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-purple-200/80 bg-purple-100/90 text-purple-700 shadow-sm"
               >
                 <HeartPulse className="h-5 w-5" />
               </motion.div>
@@ -335,7 +332,7 @@ export default function WhyChooseUs() {
 
             {/* Bottom Content */}
 
-            <div className="relative z-20 flex h-full flex-col justify-end space-y-4 pb-1">
+            <div className="relative z-20 mt-auto flex flex-col justify-end space-y-4 pt-20">
 
               <div>
 
@@ -382,6 +379,7 @@ export default function WhyChooseUs() {
                     }}
                     className="inline-flex items-center gap-1.5 rounded-full border border-purple-100 bg-purple-50/95 px-3 py-1 text-xs font-bold text-purple-900 shadow-sm"
                   >
+
                     <motion.span
                       animate={{
                         scale: [1, 1.2, 1],
@@ -396,6 +394,7 @@ export default function WhyChooseUs() {
                     </motion.span>
 
                     {item}
+
                   </motion.span>
                 ))}
 
@@ -431,7 +430,7 @@ export default function WhyChooseUs() {
               y: -10,
               scale: 1.01,
             }}
-            className="group relative h-100 overflow-hidden rounded-4xl border border-indigo-100 bg-linear-to-br from-white via-purple-50/40 to-indigo-50/60 p-8 shadow-xl shadow-purple-900/5 transition-shadow duration-500 hover:border-indigo-300/60 hover:shadow-2xl sm:h-110 md:col-span-5"
+            className="group relative min-h-[400px] overflow-hidden rounded-4xl border border-indigo-100 bg-linear-to-br from-white via-purple-50/40 to-indigo-50/60 p-8 shadow-xl shadow-purple-900/5 transition-shadow duration-500 hover:border-indigo-300/60 hover:shadow-2xl sm:min-h-[440px] md:col-span-5"
           >
 
             {/* Decorative Glow */}
@@ -450,7 +449,7 @@ export default function WhyChooseUs() {
 
             {/* Top */}
 
-            <div className="relative z-10 flex items-center justify-between">
+            <div className="relative z-10 flex items-center justify-between gap-2">
 
               <span className="rounded-full border border-indigo-200/80 bg-indigo-100/90 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-indigo-800 shadow-sm">
                 Expert MDS Leadership
@@ -465,7 +464,7 @@ export default function WhyChooseUs() {
                   duration: 3,
                   repeat: Infinity,
                 }}
-                className="flex h-10 w-10 items-center justify-center rounded-2xl border border-indigo-200/80 bg-indigo-100/90 text-indigo-700 shadow-sm"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-indigo-200/80 bg-indigo-100/90 text-indigo-700 shadow-sm"
               >
                 <UserCheck className="h-5 w-5" />
               </motion.div>
@@ -479,7 +478,7 @@ export default function WhyChooseUs() {
                 scale: 1.04,
                 y: -5,
               }}
-              className="relative z-10 my-auto flex items-center gap-3.5 rounded-2xl border border-purple-100 bg-white/95 p-4 shadow-md backdrop-blur-sm"
+              className="relative z-10 my-8 flex items-center gap-3.5 rounded-2xl border border-purple-100 bg-white/95 p-4 shadow-md backdrop-blur-sm"
             >
 
               <motion.div
@@ -496,9 +495,9 @@ export default function WhyChooseUs() {
                 DS
               </motion.div>
 
-              <div>
+              <div className="min-w-0">
 
-                <p className="text-sm font-extrabold text-slate-900">
+                <p className="truncate text-sm font-extrabold text-slate-900">
                   Dr. Sakthi Saravanan
                 </p>
 
@@ -506,7 +505,7 @@ export default function WhyChooseUs() {
                   Chief Dental Implantologist
                 </p>
 
-                <p className="mt-0.5 text-[10px] font-medium text-slate-500">
+                <p className="mt-0.5 text-[10px] font-medium leading-relaxed text-slate-500">
                   20+ Years Clinical Practice • 15,000+ Patients
                 </p>
 
@@ -516,7 +515,7 @@ export default function WhyChooseUs() {
 
             {/* Bottom */}
 
-            <div className="relative z-10 space-y-2">
+            <div className="relative z-10 mt-auto space-y-2">
 
               <h3 className="text-xl font-black tracking-tight text-slate-900 transition-colors group-hover:text-purple-700 sm:text-2xl">
                 20+ Years Master Surgeons
@@ -556,7 +555,7 @@ export default function WhyChooseUs() {
               y: -10,
               scale: 1.01,
             }}
-            className="group relative h-90 overflow-hidden rounded-4xl border border-teal-100 bg-linear-to-br from-white via-teal-50/30 to-emerald-50/50 p-8 shadow-xl shadow-teal-900/5 transition-shadow duration-500 hover:border-teal-300/60 hover:shadow-2xl md:col-span-5"
+            className="group relative min-h-[360px] overflow-hidden rounded-4xl border border-teal-100 bg-linear-to-br from-white via-teal-50/30 to-emerald-50/50 p-8 shadow-xl shadow-teal-900/5 transition-shadow duration-500 hover:border-teal-300/60 hover:shadow-2xl md:col-span-5"
           >
 
             {/* Animated Teal Glow */}
@@ -575,7 +574,7 @@ export default function WhyChooseUs() {
 
             {/* Top */}
 
-            <div className="relative z-10 flex items-center justify-between">
+            <div className="relative z-10 flex items-center justify-between gap-2">
 
               <span className="rounded-full border border-teal-200/80 bg-teal-100/90 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-teal-800 shadow-sm">
                 100% Pain-Free Protocol
@@ -590,7 +589,7 @@ export default function WhyChooseUs() {
                   duration: 2,
                   repeat: Infinity,
                 }}
-                className="flex h-10 w-10 items-center justify-center rounded-2xl border border-teal-200/80 bg-teal-100/90 text-teal-700 shadow-sm"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-teal-200/80 bg-teal-100/90 text-teal-700 shadow-sm"
               >
                 <Heart className="h-5 w-5" />
               </motion.div>
@@ -599,7 +598,7 @@ export default function WhyChooseUs() {
 
             {/* Content */}
 
-            <div className="relative z-10 flex h-full flex-col justify-end space-y-3">
+            <div className="relative z-10 mt-auto flex flex-col justify-end space-y-3 pt-20">
 
               <motion.div
                 whileHover={{
@@ -640,7 +639,7 @@ export default function WhyChooseUs() {
           </motion.div>
 
           {/* =====================================================
-              CARD 4 - VISIBLE BACKGROUND IMAGE
+              CARD 4 - FIXED VISIBILITY
           ===================================================== */}
 
           <motion.div
@@ -663,7 +662,7 @@ export default function WhyChooseUs() {
               y: -10,
               scale: 1.01,
             }}
-            className="group relative h-90 overflow-hidden rounded-4xl border border-purple-100 bg-white/90 p-8 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-shadow duration-500 hover:border-purple-300/60 hover:shadow-2xl md:col-span-7"
+            className="group relative min-h-[400px] overflow-hidden rounded-4xl border border-purple-100 bg-white/90 p-8 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-shadow duration-500 hover:border-purple-300/60 hover:shadow-2xl sm:min-h-[420px] md:col-span-7"
           >
 
             {/* Background Image */}
@@ -684,7 +683,7 @@ export default function WhyChooseUs() {
 
               {/* Softer Overlay */}
 
-              <div className="absolute inset-0 bg-linear-to-t from-white/90 via-white/55 to-white/20" />
+              <div className="absolute inset-0 bg-linear-to-t from-white/85 via-white/45 to-white/15" />
 
             </div>
 
@@ -704,9 +703,9 @@ export default function WhyChooseUs() {
 
             {/* Top */}
 
-            <div className="relative z-20 flex items-center justify-between">
+            <div className="relative z-20 flex items-center justify-between gap-3">
 
-              <span className="rounded-full border border-purple-200/80 bg-purple-100/90 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-purple-800 shadow-sm">
+              <span className="rounded-full border border-purple-200/80 bg-purple-100/95 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-purple-800 shadow-sm">
                 German 3D Robotics
               </span>
 
@@ -719,7 +718,7 @@ export default function WhyChooseUs() {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="flex h-10 w-10 items-center justify-center rounded-2xl border border-purple-200/80 bg-purple-100/90 text-purple-700 shadow-sm"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-purple-200/80 bg-purple-100/95 text-purple-700 shadow-sm"
               >
                 <Cpu className="h-5 w-5" />
               </motion.div>
@@ -728,7 +727,7 @@ export default function WhyChooseUs() {
 
             {/* Content */}
 
-            <div className="relative z-20 flex h-full flex-col justify-end space-y-3">
+            <div className="relative z-20 mt-auto flex flex-col justify-end space-y-3 pt-20">
 
               <h3 className="text-2xl font-black tracking-tight text-slate-900 transition-colors group-hover:text-purple-700 sm:text-3xl">
                 Next-Gen 3D Scans & Laser Surgery
@@ -742,13 +741,15 @@ export default function WhyChooseUs() {
 
               {/* Bottom Features */}
 
-              <div className="flex flex-wrap items-center gap-4 pt-2 text-xs font-extrabold text-purple-800">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-2 text-xs font-extrabold text-purple-800">
+
+                {/* ISO */}
 
                 <motion.span
                   whileHover={{
                     scale: 1.03,
                   }}
-                  className="flex items-center gap-1"
+                  className="inline-flex min-w-0 items-center gap-1.5 rounded-lg border border-purple-100 bg-white/75 px-2 py-1"
                 >
 
                   <motion.span
@@ -759,28 +760,37 @@ export default function WhyChooseUs() {
                       duration: 2,
                       repeat: Infinity,
                     }}
+                    className="shrink-0"
                   >
                     <Award className="h-4 w-4 text-purple-600" />
                   </motion.span>
 
-                  ISO 9001:2026 Certified Facility
+                  <span className="whitespace-normal leading-relaxed">
+                    ISO 9001:2026 Certified Facility
+                  </span>
 
                 </motion.span>
 
-                <span className="text-purple-200">
+                {/* Divider */}
+
+                <span className="hidden text-purple-300 sm:inline">
                   •
                 </span>
+
+                {/* Cross Contamination */}
 
                 <motion.span
                   whileHover={{
                     scale: 1.03,
                   }}
-                  className="flex items-center gap-1"
+                  className="inline-flex min-w-0 items-center gap-1.5 rounded-lg border border-teal-100 bg-white/75 px-2 py-1"
                 >
 
-                  <ShieldCheck className="h-4 w-4 text-teal-500" />
+                  <ShieldCheck className="h-4 w-4 shrink-0 text-teal-500" />
 
-                  Zero Cross-Contamination
+                  <span className="whitespace-normal leading-relaxed">
+                    Zero Cross-Contamination
+                  </span>
 
                 </motion.span>
 
@@ -793,6 +803,7 @@ export default function WhyChooseUs() {
         </div>
 
       </div>
+
     </section>
   );
 }
