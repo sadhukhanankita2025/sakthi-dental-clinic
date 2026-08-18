@@ -8,6 +8,17 @@ import {
 } from "lucide-react";
 
 export default function CTA({ onOpenAppointment }) {
+  const handleAppointmentClick = () => {
+    if (typeof onOpenAppointment === "function") {
+      onOpenAppointment("");
+    } else {
+      console.error(
+        "CTA.jsx: onOpenAppointment is not connected. " +
+          "Make sure App.jsx passes onOpenAppointment to <CTA />."
+      );
+    }
+  };
+
   return (
     <section className="relative overflow-hidden bg-[#FAF5FF] py-24">
 
@@ -101,7 +112,8 @@ export default function CTA({ onOpenAppointment }) {
             className="pointer-events-none absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-purple-950/30 blur-2xl"
           />
 
-          {/* Decorative floating dots */}
+          {/* Decorative dots */}
+
           <motion.div
             animate={{
               y: [0, -12, 0],
@@ -125,7 +137,7 @@ export default function CTA({ onOpenAppointment }) {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="pointer-events-none absolute right-[15%] bottom-[20%] h-2.5 w-2.5 rounded-full bg-purple-200/70"
+            className="pointer-events-none absolute bottom-[20%] right-[15%] h-2.5 w-2.5 rounded-full bg-purple-200/70"
           />
 
           {/* =================================================
@@ -135,6 +147,7 @@ export default function CTA({ onOpenAppointment }) {
           <div className="relative z-10 mx-auto max-w-3xl space-y-6 text-center">
 
             {/* Badge */}
+
             <motion.div
               initial={{
                 opacity: 0,
@@ -170,6 +183,7 @@ export default function CTA({ onOpenAppointment }) {
             </motion.div>
 
             {/* Heading */}
+
             <motion.h2
               initial={{
                 opacity: 0,
@@ -191,6 +205,7 @@ export default function CTA({ onOpenAppointment }) {
             </motion.h2>
 
             {/* Description */}
+
             <motion.p
               initial={{
                 opacity: 0,
@@ -220,7 +235,9 @@ export default function CTA({ onOpenAppointment }) {
             <div className="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row">
 
               {/* Appointment Button */}
+
               <motion.button
+                type="button"
                 whileHover={{
                   scale: 1.06,
                   y: -3,
@@ -228,7 +245,7 @@ export default function CTA({ onOpenAppointment }) {
                 whileTap={{
                   scale: 0.96,
                 }}
-                onClick={onOpenAppointment}
+                onClick={handleAppointmentClick}
                 className="flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-white px-8 py-4 text-xs font-extrabold uppercase tracking-wider text-purple-950 shadow-xl shadow-purple-950/20 transition-all hover:bg-purple-50 sm:w-auto"
               >
                 <motion.div
@@ -248,6 +265,7 @@ export default function CTA({ onOpenAppointment }) {
               </motion.button>
 
               {/* Phone Button */}
+
               <motion.a
                 whileHover={{
                   scale: 1.04,
@@ -317,9 +335,7 @@ export default function CTA({ onOpenAppointment }) {
             </motion.div>
 
           </div>
-
         </motion.div>
-
       </div>
     </section>
   );

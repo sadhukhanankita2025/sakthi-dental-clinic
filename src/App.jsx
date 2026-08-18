@@ -27,9 +27,7 @@ export default function App() {
   // OPEN APPOINTMENT
   // =====================================================
 
-  const handleOpenAppointment = (
-    treatment = ""
-  ) => {
+  const handleOpenAppointment = (treatment = "") => {
     console.log(
       "APP: Opening appointment:",
       treatment
@@ -88,7 +86,9 @@ export default function App() {
     >
       <ScrollToTop />
 
-      {/* NAVBAR */}
+      {/* =====================================================
+          NAVBAR
+      ===================================================== */}
 
       <Navbar
         onOpenAppointment={() =>
@@ -96,11 +96,14 @@ export default function App() {
         }
       />
 
-      {/* ROUTES */}
+      {/* =====================================================
+          ROUTES
+      ===================================================== */}
 
       <main>
         <Routes>
 
+          {/* HOME */}
           <Route
             path="/"
             element={
@@ -112,6 +115,7 @@ export default function App() {
             }
           />
 
+          {/* ABOUT */}
           <Route
             path="/about"
             element={
@@ -123,21 +127,31 @@ export default function App() {
             }
           />
 
+          {/* TREATMENTS - FIXED */}
           <Route
             path="/treatments"
-            element={<Treatments />}
+            element={
+              <Treatments
+                onOpenAppointment={
+                  handleOpenAppointment
+                }
+              />
+            }
           />
 
+          {/* PRIVACY */}
           <Route
             path="/privacy"
             element={<Privacy />}
           />
 
+          {/* CONTACT */}
           <Route
             path="/contact"
             element={<Contact />}
           />
 
+          {/* FALLBACK */}
           <Route
             path="*"
             element={
@@ -152,7 +166,9 @@ export default function App() {
         </Routes>
       </main>
 
-      {/* FOOTER */}
+      {/* =====================================================
+          FOOTER
+      ===================================================== */}
 
       <Footer
         onOpenAppointment={() =>
@@ -160,7 +176,9 @@ export default function App() {
         }
       />
 
-      {/* SINGLE APPOINTMENT MODAL */}
+      {/* =====================================================
+          SINGLE APPOINTMENT MODAL
+      ===================================================== */}
 
       <AppointmentModal
         isOpen={appointmentOpen}
