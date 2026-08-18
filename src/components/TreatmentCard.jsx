@@ -16,9 +16,20 @@ import {
 export default function TreatmentCard({ treatment }) {
   const [modalOpen, setModalOpen] = useState(false);
 
-  if (!treatment) return null;
+  // =====================================================
+  // SAFETY CHECK
+  // =====================================================
 
-  const title = treatment.title || "Dental Treatment";
+  if (!treatment) {
+    return null;
+  }
+
+  // =====================================================
+  // TREATMENT DATA
+  // =====================================================
+
+  const title =
+    treatment.title || "Dental Treatment";
 
   const category =
     treatment.category || "Dental Care";
@@ -39,15 +50,33 @@ export default function TreatmentCard({ treatment }) {
     shortDesc;
 
   const duration =
-    treatment.duration || "Consultation";
+    treatment.duration ||
+    "Consultation";
 
   const recovery =
-    treatment.recovery || "Varies";
+    treatment.recovery ||
+    "Varies";
 
   const price =
     treatment.priceEstimate ||
     treatment.price ||
     "Contact Us";
+
+  // =====================================================
+  // OPEN DETAILS MODAL
+  // =====================================================
+
+  const handleOpenDetails = () => {
+    setModalOpen(true);
+  };
+
+  // =====================================================
+  // CLOSE DETAILS MODAL
+  // =====================================================
+
+  const handleCloseDetails = () => {
+    setModalOpen(false);
+  };
 
   // =====================================================
   // BOOK APPOINTMENT
@@ -65,7 +94,7 @@ export default function TreatmentCard({ treatment }) {
     // Close treatment details modal
     setModalOpen(false);
 
-    // Send appointment event to App.jsx
+    // Send appointment request to App.jsx
     window.dispatchEvent(
       new CustomEvent("openAppointment", {
         detail: {
@@ -73,14 +102,6 @@ export default function TreatmentCard({ treatment }) {
         },
       })
     );
-  };
-
-  // =====================================================
-  // CLOSE DETAILS
-  // =====================================================
-
-  const closeDetails = () => {
-    setModalOpen(false);
   };
 
   return (
@@ -92,12 +113,12 @@ export default function TreatmentCard({ treatment }) {
       <motion.div
         whileHover={{ y: -8 }}
         transition={{ duration: 0.25 }}
-        onClick={() => setModalOpen(true)}
+        onClick={handleOpenDetails}
         className="
           group
           relative
           flex
-          h-[360px]
+          h-90
           cursor-pointer
           flex-col
           justify-between
@@ -112,18 +133,19 @@ export default function TreatmentCard({ treatment }) {
           hover:border-purple-500/50
           hover:shadow-2xl
           hover:shadow-purple-900/20
-          sm:h-[380px]
+          sm:h-95
         "
       >
-        {/* IMAGE */}
+        {/* =================================================
+            BACKGROUND IMAGE
+        ================================================== */}
 
         <div className="absolute inset-0">
           <img
             src={image}
             alt={title}
             onError={(e) => {
-              e.currentTarget.style.display =
-                "none";
+              e.currentTarget.style.display = "none";
             }}
             className="
               h-full
@@ -134,6 +156,8 @@ export default function TreatmentCard({ treatment }) {
               group-hover:scale-110
             "
           />
+
+          {/* IMAGE OVERLAY */}
 
           <div
             className="
@@ -147,7 +171,9 @@ export default function TreatmentCard({ treatment }) {
           />
         </div>
 
-        {/* TOP */}
+        {/* =================================================
+            TOP SECTION
+        ================================================== */}
 
         <div
           className="
@@ -160,6 +186,8 @@ export default function TreatmentCard({ treatment }) {
             p-5
           "
         >
+          {/* CATEGORY */}
+
           <span
             className="
               rounded-full
@@ -178,6 +206,8 @@ export default function TreatmentCard({ treatment }) {
           >
             {category}
           </span>
+
+          {/* BADGES */}
 
           <div className="flex items-center gap-2">
             {treatment.painless && (
@@ -214,7 +244,9 @@ export default function TreatmentCard({ treatment }) {
           </div>
         </div>
 
-        {/* CENTER */}
+        {/* =================================================
+            CENTER HOVER CONTENT
+        ================================================== */}
 
         <div
           className="
@@ -246,11 +278,14 @@ export default function TreatmentCard({ treatment }) {
             "
           >
             <Info className="h-4 w-4 text-purple-300" />
+
             Click for full details
           </span>
         </div>
 
-        {/* BOTTOM */}
+        {/* =================================================
+            BOTTOM CONTENT
+        ================================================== */}
 
         <div
           className="
@@ -260,6 +295,8 @@ export default function TreatmentCard({ treatment }) {
             p-6
           "
         >
+          {/* TITLE */}
+
           <div>
             <h3
               className="
@@ -288,6 +325,8 @@ export default function TreatmentCard({ treatment }) {
             </p>
           </div>
 
+          {/* CARD FOOTER */}
+
           <div
             className="
               flex
@@ -299,6 +338,8 @@ export default function TreatmentCard({ treatment }) {
               pt-3
             "
           >
+            {/* DURATION */}
+
             <div
               className="
                 flex
@@ -310,8 +351,11 @@ export default function TreatmentCard({ treatment }) {
               "
             >
               <Clock className="h-3.5 w-3.5" />
+
               {duration}
             </div>
+
+            {/* PRICE */}
 
             <div
               className="
@@ -322,6 +366,8 @@ export default function TreatmentCard({ treatment }) {
             >
               {price}
             </div>
+
+            {/* DETAILS */}
 
             <div
               className="
@@ -336,6 +382,7 @@ export default function TreatmentCard({ treatment }) {
               "
             >
               Details
+
               <ChevronRight className="h-3.5 w-3.5" />
             </div>
           </div>
@@ -352,7 +399,7 @@ export default function TreatmentCard({ treatment }) {
             className="
               fixed
               inset-0
-              z-[9990]
+              z-9990
               flex
               items-center
               justify-center
@@ -361,13 +408,15 @@ export default function TreatmentCard({ treatment }) {
               sm:p-6
             "
           >
-            {/* BACKDROP */}
+            {/* =================================================
+                BACKDROP
+            ================================================== */}
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={closeDetails}
+              onClick={handleCloseDetails}
               className="
                 fixed
                 inset-0
@@ -376,7 +425,9 @@ export default function TreatmentCard({ treatment }) {
               "
             />
 
-            {/* MODAL */}
+            {/* =================================================
+                MODAL CONTAINER
+            ================================================== */}
 
             <motion.div
               initial={{
@@ -394,12 +445,10 @@ export default function TreatmentCard({ treatment }) {
                 scale: 0.92,
                 y: 20,
               }}
-              onClick={(e) =>
-                e.stopPropagation()
-              }
+              onClick={(e) => e.stopPropagation()}
               className="
                 relative
-                z-[9991]
+                z-9991
                 my-auto
                 flex
                 max-h-[90vh]
@@ -412,7 +461,9 @@ export default function TreatmentCard({ treatment }) {
                 shadow-2xl
               "
             >
-              {/* IMAGE */}
+              {/* =================================================
+                  MODAL IMAGE
+              ================================================== */}
 
               <div
                 className="
@@ -437,6 +488,8 @@ export default function TreatmentCard({ treatment }) {
                   "
                 />
 
+                {/* IMAGE OVERLAY */}
+
                 <div
                   className="
                     absolute
@@ -448,9 +501,12 @@ export default function TreatmentCard({ treatment }) {
                   "
                 />
 
+                {/* CLOSE BUTTON */}
+
                 <button
                   type="button"
-                  onClick={closeDetails}
+                  onClick={handleCloseDetails}
+                  aria-label="Close treatment details"
                   className="
                     absolute
                     right-4
@@ -466,6 +522,8 @@ export default function TreatmentCard({ treatment }) {
                 >
                   <X className="h-5 w-5" />
                 </button>
+
+                {/* TITLE */}
 
                 <div
                   className="
@@ -504,7 +562,9 @@ export default function TreatmentCard({ treatment }) {
                 </div>
               </div>
 
-              {/* BODY */}
+              {/* =================================================
+                  MODAL BODY
+              ================================================== */}
 
               <div
                 className="
@@ -514,6 +574,8 @@ export default function TreatmentCard({ treatment }) {
                   sm:p-8
                 "
               >
+                {/* OVERVIEW */}
+
                 <div>
                   <h4
                     className="
@@ -539,11 +601,11 @@ export default function TreatmentCard({ treatment }) {
                   </p>
                 </div>
 
-                {/* BENEFITS */}
+                {/* =================================================
+                    BENEFITS
+                ================================================== */}
 
-                {Array.isArray(
-                  treatment.benefits
-                ) &&
+                {Array.isArray(treatment.benefits) &&
                   treatment.benefits.length > 0 && (
                     <div>
                       <h4
@@ -568,12 +630,9 @@ export default function TreatmentCard({ treatment }) {
                         "
                       >
                         {treatment.benefits.map(
-                          (
-                            benefit,
-                            index
-                          ) => (
+                          (benefit, index) => (
                             <div
-                              key={index}
+                              key={`${benefit}-${index}`}
                               className="
                                 flex
                                 items-center
@@ -603,7 +662,9 @@ export default function TreatmentCard({ treatment }) {
                     </div>
                   )}
 
-                {/* INFORMATION */}
+                {/* =================================================
+                    INFORMATION
+                ================================================== */}
 
                 <div
                   className="
@@ -612,6 +673,8 @@ export default function TreatmentCard({ treatment }) {
                     gap-3
                   "
                 >
+                  {/* DURATION */}
+
                   <div
                     className="
                       rounded-xl
@@ -630,14 +693,28 @@ export default function TreatmentCard({ treatment }) {
                       "
                     />
 
-                    <p className="text-[10px] font-bold text-slate-400">
+                    <p
+                      className="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                      "
+                    >
                       DURATION
                     </p>
 
-                    <p className="text-xs font-bold text-slate-800">
+                    <p
+                      className="
+                        text-xs
+                        font-bold
+                        text-slate-800
+                      "
+                    >
                       {duration}
                     </p>
                   </div>
+
+                  {/* RECOVERY */}
 
                   <div
                     className="
@@ -657,14 +734,28 @@ export default function TreatmentCard({ treatment }) {
                       "
                     />
 
-                    <p className="text-[10px] font-bold text-slate-400">
+                    <p
+                      className="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                      "
+                    >
                       RECOVERY
                     </p>
 
-                    <p className="text-xs font-bold text-slate-800">
+                    <p
+                      className="
+                        text-xs
+                        font-bold
+                        text-slate-800
+                      "
+                    >
                       {recovery}
                     </p>
                   </div>
+
+                  {/* PRICE */}
 
                   <div
                     className="
@@ -684,18 +775,32 @@ export default function TreatmentCard({ treatment }) {
                       "
                     />
 
-                    <p className="text-[10px] font-bold text-slate-400">
+                    <p
+                      className="
+                        text-[10px]
+                        font-bold
+                        text-slate-400
+                      "
+                    >
                       ESTIMATE
                     </p>
 
-                    <p className="text-xs font-bold text-slate-800">
+                    <p
+                      className="
+                        text-xs
+                        font-bold
+                        text-slate-800
+                      "
+                    >
                       {price}
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* FOOTER */}
+              {/* =================================================
+                  MODAL FOOTER
+              ================================================== */}
 
               <div
                 className="
@@ -713,9 +818,7 @@ export default function TreatmentCard({ treatment }) {
 
                 <button
                   type="button"
-                  onClick={
-                    handleBookAppointment
-                  }
+                  onClick={handleBookAppointment}
                   className="
                     flex
                     w-full
@@ -741,6 +844,7 @@ export default function TreatmentCard({ treatment }) {
                   "
                 >
                   <Calendar className="h-4 w-4" />
+
                   Book Appointment
                 </button>
 
@@ -767,6 +871,7 @@ export default function TreatmentCard({ treatment }) {
                   "
                 >
                   <PhoneCall className="h-4 w-4 text-purple-700" />
+
                   Call Doctor
                 </a>
               </div>

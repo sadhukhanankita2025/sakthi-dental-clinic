@@ -1,113 +1,110 @@
 export const FAQS_DATA = [
   {
     id: 1,
-    question: "How often should I visit the dentist?",
+    question: "Can medication completely relieve tooth pain?",
     answer:
-      "It is generally recommended to visit your dentist every six months for a routine dental check-up and professional cleaning. However, your dentist may recommend more frequent visits depending on your oral health and individual needs.",
+      "Not entirely. While medications may offer short-term relief, long-lasting relief requires identifying and treating the root cause of the pain through professional dental care.",
   },
 
   {
     id: 2,
-    question: "Is dental scaling painful?",
+    question:
+      "Does teeth scaling cause enamel damage, sensitivity, or gaps between teeth?",
     answer:
-      "Dental scaling is usually a comfortable procedure. Some patients may experience mild sensitivity during or after scaling, especially if there is significant tartar buildup or gum inflammation. Any sensitivity is generally temporary.",
+      "No. Scaling safely removes plaque and tartar from teeth and below the gum line. It doesn’t damage enamel or create gaps. Some temporary sensitivity may occur, but it usually subsides as gums heal and reattach to the teeth.",
   },
 
   {
     id: 3,
-    question: "What is a root canal treatment?",
+    question: "Can fluorosis stains be removed through scaling?",
     answer:
-      "A root canal treatment is a dental procedure used to treat an infected or damaged tooth. The infected tissue is removed, the inside of the tooth is cleaned and disinfected, and the tooth is sealed to prevent further infection.",
+      "Scaling can remove surface (extrinsic) stains but not fluorosis, which is an internal (intrinsic) stain. Fluorosis may require treatments like bleaching, veneers, or crowns for cosmetic improvement.",
   },
 
   {
     id: 4,
-    question: "Are dental implants safe?",
+    question: "Can painful teeth be treated with fillings?",
     answer:
-      "Dental implants are a commonly used option for replacing missing teeth. Your dentist will evaluate your oral health, jawbone condition, and overall suitability before recommending dental implant treatment.",
+      "Not always. If the cavity has reached the pulp, the innermost layer of the tooth, simple filling won’t help. In such cases, root canal treatment or tooth extraction might be necessary. Fillings are effective only when the damage is limited to the outer layers (enamel and dentin).",
   },
 
   {
     id: 5,
-    question: "How can I prevent cavities?",
+    question:
+      "Is placing a cap or crown necessary after root canal treatment (RCT)?",
     answer:
-      "You can help prevent cavities by brushing your teeth twice a day with fluoride toothpaste, flossing daily, limiting sugary foods and drinks, drinking plenty of water, and visiting your dentist regularly for check-ups.",
+      "Yes. A crown is recommended after RCT to protect the treated tooth, which may be weaker due to decay. It prevents fractures and adds durability, especially during chewing.",
   },
 
   {
     id: 6,
-    question: "When should I consider braces?",
+    question: "Can milk teeth need root canal treatment (RCT)?",
     answer:
-      "Braces may be recommended for crowded teeth, gaps between teeth, crooked teeth, or problems with your bite. An orthodontic consultation can determine whether braces or another orthodontic treatment is suitable for you.",
+      "Yes. If a milk tooth has a deep cavity and is likely to remain in the mouth for some time, an RCT can preserve it and prevent infection or early loss.",
   },
 
   {
     id: 7,
-    question: "How can I book a dental appointment?",
+    question: "How can I maintain good oral hygiene?",
     answer:
-      "You can book an appointment through the appointment option available on our website or contact the dental clinic directly. Our team can help you choose a suitable date and time.",
+      "Brush your teeth twice daily with proper technique, rinse after meals, floss regularly, and schedule routine check-ups with your dentist to maintain healthy teeth and gums.",
   },
 
   {
     id: 8,
-    question: "How often should I brush my teeth?",
+    question: "What is the best age to get braces?",
     answer:
-      "You should generally brush your teeth twice a day for approximately two minutes each time. Use a soft-bristled toothbrush and fluoride toothpaste for effective daily cleaning.",
+      "Braces are most effective between ages 12 and 14, when the jaw and teeth are still developing. However, some cases may benefit from earlier intervention depending on the condition.",
   },
 
   {
     id: 9,
-    question: "Why are my gums bleeding when I brush?",
+    question: "Do all wisdom teeth need to be removed?",
     answer:
-      "Bleeding gums can be associated with plaque buildup, gum inflammation, or gingivitis. If bleeding continues regularly despite good oral hygiene, it is advisable to schedule a dental examination.",
+      "No. Wisdom teeth only require removal if they are impacted, infected, or causing pain due to crowding or damage to adjacent teeth.",
   },
 
   {
     id: 10,
-    question: "How long does a dental check-up take?",
+    question:
+      "Is it important to replace missing teeth after extraction?",
     answer:
-      "A routine dental check-up usually takes around 30 to 60 minutes, depending on your oral health, the examination required, and whether additional procedures such as cleaning or X-rays are needed.",
+      "Yes. Replacing extracted teeth helps maintain proper bite alignment and prevents adjacent teeth from shifting, which can affect chewing and overall oral function.",
   },
 
   {
     id: 11,
-    question: "What should I do if I have a toothache?",
+    question: "What are the benefits of dental implants?",
     answer:
-      "A toothache can have several causes, including tooth decay, infection, gum problems, or dental trauma. Avoid delaying professional evaluation, especially if the pain is severe, persistent, or accompanied by swelling.",
+      "Dental implants restore both the appearance and functionality of missing teeth. They provide a stable, natural-looking solution that can improve confidence and overall quality of life.",
   },
 
   {
     id: 12,
-    question: "Are dental braces painful?",
+    question:
+      "Which type of toothbrush and toothpaste should I use?",
     answer:
-      "It is normal to experience some mild discomfort or pressure after braces are fitted or adjusted. This usually improves within a few days as your mouth adapts to the treatment.",
+      "Use a soft or medium-bristled toothbrush with a small head for better reach. Choose a non-abrasive fluoride toothpaste and replace your toothbrush every three months for optimal hygiene.",
   },
 
   {
     id: 13,
-    question: "How long does a root canal take?",
+    question: "What causes tooth sensitivity?",
     answer:
-      "The duration of root canal treatment depends on the tooth and the complexity of the infection. Some treatments can be completed in one visit, while others may require multiple appointments.",
+      "Tooth sensitivity can result from enamel wear (due to attrition or abrasion), tooth decay, exposed tooth roots, or hairline cracks in the teeth.",
   },
 
   {
     id: 14,
-    question: "Can children visit the dentist?",
+    question: "How often should I see a dentist?",
     answer:
-      "Yes. Regular dental visits are important for children because they help monitor tooth development, identify potential problems early, and establish good oral hygiene habits from a young age.",
+      "Visiting your dentist every six months is recommended for routine check-ups, professional cleaning, and preventive care to maintain good oral health.",
   },
 
   {
     id: 15,
-    question: "What foods are good for healthy teeth?",
+    question: "How can I prevent dental problems?",
     answer:
-      "Foods such as vegetables, fruits, dairy products, nuts, and other nutrient-rich foods can support oral health. Limiting frequent consumption of sugary snacks and drinks can also help reduce the risk of tooth decay.",
-  },
-
-  {
-    id: 16,
-    question: "How can I maintain good oral hygiene?",
-    answer:
-      "Maintain good oral hygiene by brushing twice daily, flossing once a day, cleaning your tongue, limiting sugary foods and drinks, drinking enough water, and visiting your dentist regularly.",
+      "Maintain good oral hygiene by brushing twice daily, flossing regularly, limiting sugary foods and drinks, drinking enough water, and visiting your dentist regularly for check-ups and preventive care.",
   },
 ];
