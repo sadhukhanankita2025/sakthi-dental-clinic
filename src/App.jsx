@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, {
+  useEffect,
+  useState,
+} from "react";
+
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -13,112 +17,134 @@ import Privacy from "./pages/Privacy";
 import Contact from "./pages/Contact";
 
 export default function App() {
-  // =========================================================
-  // APPOINTMENT MODAL STATE
-  // =========================================================
+  const [appointmentOpen, setAppointmentOpen] =
+    useState(false);
 
-  const [appointmentOpen, setAppointmentOpen] = useState(false);
+  const [selectedTreatment, setSelectedTreatment] =
+    useState("");
 
-  // Open appointment modal
-  const handleOpenAppointment = () => {
+  // =====================================================
+  // OPEN APPOINTMENT
+  // =====================================================
+
+  const handleOpenAppointment = (
+    treatment = ""
+  ) => {
+    console.log(
+      "APP: Opening appointment:",
+      treatment
+    );
+
+    setSelectedTreatment(treatment);
     setAppointmentOpen(true);
   };
 
-  // Close appointment modal
+  // =====================================================
+  // CLOSE APPOINTMENT
+  // =====================================================
+
   const handleCloseAppointment = () => {
     setAppointmentOpen(false);
+    setSelectedTreatment("");
   };
 
+  // =====================================================
+  // LISTEN FOR TREATMENT CARD EVENT
+  // =====================================================
+
+  useEffect(() => {
+    const openAppointment = (event) => {
+      const treatment =
+        event?.detail?.treatment || "";
+
+      console.log(
+        "APP EVENT: Appointment requested:",
+        treatment
+      );
+
+      handleOpenAppointment(treatment);
+    };
+
+    window.addEventListener(
+      "openAppointment",
+      openAppointment
+    );
+
+    return () => {
+      window.removeEventListener(
+        "openAppointment",
+        openAppointment
+      );
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[#FAF5FF] text-[#1E1B4B]">
-
-      {/* =====================================================
-          SCROLL TO TOP
-      ===================================================== */}
-
+    <div
+      className="
+        min-h-screen
+        bg-[#FAF5FF]
+        text-[#1E1B4B]
+      "
+    >
       <ScrollToTop />
 
-      {/* =====================================================
-          NAVBAR
-      ===================================================== */}
+      {/* NAVBAR */}
 
       <Navbar
-        onOpenAppointment={handleOpenAppointment}
+        onOpenAppointment={() =>
+          handleOpenAppointment("")
+        }
       />
 
-      {/* =====================================================
-          MAIN CONTENT
-      ===================================================== */}
+      {/* ROUTES */}
 
       <main>
         <Routes>
-
-          {/* =================================================
-              HOME
-          ================================================= */}
 
           <Route
             path="/"
             element={
               <Home
-                onOpenAppointment={handleOpenAppointment}
+                onOpenAppointment={
+                  handleOpenAppointment
+                }
               />
             }
           />
-
-          {/* =================================================
-              ABOUT
-          ================================================= */}
 
           <Route
             path="/about"
             element={
               <About
-                onOpenAppointment={handleOpenAppointment}
+                onOpenAppointment={
+                  handleOpenAppointment
+                }
               />
             }
           />
-
-          {/* =================================================
-              TREATMENTS
-          ================================================= */}
 
           <Route
             path="/treatments"
-            element={
-              <Treatments
-                onOpenAppointment={handleOpenAppointment}
-              />
-            }
+            element={<Treatments />}
           />
-
-          {/* =================================================
-              PRIVACY
-          ================================================= */}
 
           <Route
             path="/privacy"
             element={<Privacy />}
           />
 
-          {/* =================================================
-              CONTACT
-          ================================================= */}
-
           <Route
             path="/contact"
             element={<Contact />}
           />
 
-          {/* =================================================
-              FALLBACK
-          ================================================= */}
-
           <Route
             path="*"
             element={
               <Home
-                onOpenAppointment={handleOpenAppointment}
+                onOpenAppointment={
+                  handleOpenAppointment
+                }
               />
             }
           />
@@ -126,24 +152,23 @@ export default function App() {
         </Routes>
       </main>
 
-      {/* =====================================================
-          FOOTER
-      ===================================================== */}
+      {/* FOOTER */}
 
       <Footer
-        onOpenAppointment={handleOpenAppointment}
+        onOpenAppointment={() =>
+          handleOpenAppointment("")
+        }
       />
 
-      {/* =====================================================
-          EXISTING APPOINTMENT MODAL
-          DO NOT CREATE ANOTHER MODAL
-      ===================================================== */}
+      {/* SINGLE APPOINTMENT MODAL */}
 
       <AppointmentModal
         isOpen={appointmentOpen}
         onClose={handleCloseAppointment}
+        selectedTreatment={
+          selectedTreatment
+        }
       />
-
     </div>
   );
 }
