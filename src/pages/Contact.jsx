@@ -304,7 +304,7 @@ export default function Contact() {
                 "
               >
                 <Clock className="h-4 w-4 text-purple-600" />
-                Mon - Sat: 9 AM - 8:30 PM
+                Mon - Sat: 9 AM - 7:00 PM
               </div>
 
               <a
@@ -335,7 +335,7 @@ export default function Contact() {
                 "
               >
                 <Phone className="h-4 w-4 text-teal-600" />
-                +91 98765 43210
+                +91 9862890897/ +91 9363298118
               </a>
             </motion.div>
           </motion.div>
@@ -503,7 +503,7 @@ export default function Contact() {
                     href="mailto:care@sakthidental.com"
                     className="wrap-break-word transition-colors hover:text-blue-600"
                   >
-                    care@sakthidental.com
+                    info@sakthidentalclinic.in 
                   </a>
                 </ContactInfoCard>
 
@@ -514,9 +514,7 @@ export default function Contact() {
                   iconClass="bg-emerald-100 text-emerald-600"
                   title="Clinic Timings"
                 >
-                  Mon - Sat: 9:00 AM - 8:30 PM
-                  <br />
-                  Sunday: 10:00 AM - 2:00 PM
+                  Mon - Sat: 9:00 AM - 7:00 PM
                   <br />
                   <span className="font-black text-emerald-600">
                     Emergency: 24x7

@@ -212,10 +212,6 @@ export default function Footer({ onOpenAppointment }) {
                     Dental
                   </span>
                 </span>
-
-                <span className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400">
-                  International Hospital
-                </span>
               </div>
             </Link>
 
@@ -488,7 +484,7 @@ export default function Footer({ onOpenAppointment }) {
                   <Mail className="h-4 w-4" />
                 </div>
 
-                care@sakthidental.com
+                info@sakthidentalclinic.in 
               </motion.a>
 
               {/* TIMING */}
@@ -504,7 +500,7 @@ export default function Footer({ onOpenAppointment }) {
                 </div>
 
                 <div className="text-sm leading-6 text-slate-400">
-                  <p>Sunday to Saturday: 9am to 7pm</p>
+                  <p>Sunday to Saturday: 9:00 am to 7:00 pm***</p>
                   
 
                   <p className="mt-1 font-bold text-emerald-400">
