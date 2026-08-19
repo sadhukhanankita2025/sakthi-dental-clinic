@@ -7,460 +7,552 @@ import {
   Clock,
   ShieldCheck,
   Heart,
+  ArrowUpRight,
 } from "lucide-react";
+import { motion } from "motion/react";
 
-/* =========================================================
-   SOCIAL MEDIA ICONS
-   Inline SVG avoids lucide-react brand icon errors.
-========================================================= */
-
-function InstagramIcon({ className = "w-4 h-4" }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle
-        cx="17.5"
-        cy="6.5"
-        r="1"
-        fill="currentColor"
-        stroke="none"
-      />
-    </svg>
-  );
-}
-
-function FacebookIcon({ className = "w-4 h-4" }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v4h4v-4h3.5l.5-4H13V9c0-.7.3-1 1-1Z" />
-    </svg>
-  );
-}
-
-function YoutubeIcon({ className = "w-4 h-4" }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8-.5-5.8s0-3.9-.5-5.8ZM9.6 15.9V8.1l6.5 3.9-6.5 3.9Z" />
-    </svg>
-  );
-}
+import sdcLogo from "../assets/SDC Logo.png";
 
 export default function Footer({ onOpenAppointment }) {
-  return (
-    <footer className="relative bg-slate-950 text-slate-300 pt-16 pb-8 overflow-hidden border-t border-purple-950/80">
+  const quickLinks = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Treatments", path: "/treatments" },
+    { name: "Contact", path: "/contact" },
+    { name: "Privacy", path: "/privacy" },
+  ];
 
+  const treatments = [
+    "General Dentistry",
+    "Dental Implants",
+    "Orthodontics",
+    "Teeth Whitening",
+    "Root Canal Treatment",
+    "Pediatric Dentistry",
+  ];
+
+  return (
+    <footer className="relative overflow-hidden bg-slate-950 text-slate-300">
       {/* =====================================================
           BACKGROUND GLOW
       ====================================================== */}
 
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-900/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <motion.div
+          animate={{
+            x: [0, 40, 0],
+            y: [0, -30, 0],
+            scale: [1, 1.08, 1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="
+            absolute
+            -left-32
+            -top-32
+            h-96
+            w-96
+            rounded-full
+            bg-purple-600/10
+            blur-3xl
+          "
+        />
 
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-teal-900/20 rounded-full blur-3xl pointer-events-none" />
+        <motion.div
+          animate={{
+            x: [0, -50, 0],
+            y: [0, 30, 0],
+            scale: [1, 1.12, 1],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="
+            absolute
+            -bottom-40
+            -right-32
+            h-96
+            w-96
+            rounded-full
+            bg-teal-500/10
+            blur-3xl
+          "
+        />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="absolute inset-0 bg-linear-to-b from-slate-950 via-slate-950 to-[#0f0b1f]" />
+      </div>
 
-        {/* =====================================================
-            MAIN FOOTER GRID
-        ====================================================== */}
+      {/* =====================================================
+          MAIN FOOTER
+      ====================================================== */}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800/80">
-
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* =================================================
-              COLUMN 1 - CLINIC DETAILS
+              BRAND
           ================================================== */}
 
-          <div className="space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="sm:col-span-2 lg:col-span-1"
+          >
+            {/* LOGO + BRAND */}
 
-            {/* Logo */}
+            <Link
+              to="/"
+              className="group inline-flex items-center gap-3"
+            >
+              {/* LOGO */}
 
-            <Link to="/" className="flex items-center gap-3">
+              <motion.div
+                whileHover={{
+                  scale: 1.08,
+                  rotate: 2,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 18,
+                }}
+                className="
+                  relative
+                  h-16
+                  w-16
+                  shrink-0
+                  overflow-hidden
+                  rounded-2xl
+                  border
+                  border-purple-300/20
+                  bg-white
+                  p-1
+                  shadow-xl
+                  shadow-purple-500/20
+                "
+              >
+                {/* GLOW */}
 
-              <div className="w-10 h-10 rounded-2xl bg-linear-to-tr from-purple-600 via-indigo-600 to-teal-500 p-0.5 shadow-md shadow-purple-500/20">
+                <motion.div
+                  animate={{
+                    opacity: [0.3, 0.7, 0.3],
+                    scale: [1, 1.08, 1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="
+                    pointer-events-none
+                    absolute
+                    -inset-2
+                    rounded-3xl
+                    bg-purple-500/30
+                    blur-xl
+                  "
+                />
 
-                <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-purple-400">
+                {/* LOGO IMAGE */}
 
-                  <svg
-                    className="w-5 h-5 fill-current"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M12,2 C8,2 5,4.5 5,8 C5,10.5 6,13 7,16 C8,19 9,22 10.5,22 C11.5,22 11.8,20 12,20 C12.2,20 12.5,22 13.5,22 C15,22 16,19 17,16 C18,13 19,10.5 19,8 C19,4.5 16,2 12,2 Z" />
-                  </svg>
+                <img
+                  src={sdcLogo}
+                  alt="Sakthi Dental Clinic Logo"
+                  className="
+                    relative
+                    z-10
+                    h-full
+                    w-full
+                    rounded-xl
+                    object-contain
+                  "
+                />
 
-                </div>
+                {/* SHINE */}
 
-              </div>
+                <motion.span
+                  animate={{
+                    x: ["-150%", "250%"],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    repeatDelay: 3,
+                    ease: "easeInOut",
+                  }}
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-y-0
+                    z-20
+                    w-6
+                    skew-x-12
+                    bg-white/40
+                    blur-md
+                  "
+                />
+              </motion.div>
+
+              {/* BRAND TEXT */}
 
               <div className="flex flex-col">
-
-                <span className="text-xl font-extrabold tracking-tight text-white leading-tight">
+                <span className="text-xl font-black leading-tight tracking-tight text-white sm:text-2xl">
                   Sakthi
-                  <span className="text-purple-400"> Dental</span>
+                  <span className="text-purple-400">
+                    {" "}
+                    Dental
+                  </span>
                 </span>
 
-                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
+                <span className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400">
                   International Hospital
                 </span>
-
               </div>
-
             </Link>
 
-            {/* Description */}
+            {/* DESCRIPTION */}
 
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Sakthi Dental Clinic, Hosur, provides trusted, modern dental care for women, children, and families—from routine check-ups to advanced treatments like implants and orthodontics—with a focus on comfort, quality, and compassionate care.
+            <p className="mt-6 max-w-sm text-sm leading-7 text-slate-400">
+              Sakthi Dental Clinic, Hosur, provides trusted,
+              modern dental care for women, children, and
+              families—from routine check-ups to advanced
+              treatments like implants and orthodontics—with
+              a focus on comfort, quality, and compassionate
+              care.
             </p>
 
-            {/* Contact Details */}
+            {/* APPOINTMENT BUTTON */}
 
-            <div className="pt-2 space-y-2 text-xs">
+            <motion.button
+              type="button"
+              onClick={() => {
+                if (onOpenAppointment) {
+                  onOpenAppointment();
+                }
+              }}
+              whileHover={{
+                scale: 1.04,
+                y: -2,
+              }}
+              whileTap={{
+                scale: 0.97,
+              }}
+              className="
+                group
+                mt-6
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                bg-linear-to-r
+                from-purple-600
+                via-indigo-600
+                to-teal-500
+                px-5
+                py-3
+                text-xs
+                font-bold
+                uppercase
+                tracking-wider
+                text-white
+                shadow-lg
+                shadow-purple-500/20
+              "
+            >
+              Book Appointment
 
-              {/* Address */}
-
-              <div className="flex items-start gap-2.5 text-slate-300">
-
-                <MapPin className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
-
-                <span>
-                  B2/8, SBM Layout, Anthivadi, Hosur, Tamil Nadu 635109, India******
-                </span>
-
-              </div>
-
-              {/* Phone */}
-
-              <div className="flex items-center gap-2.5 text-slate-300">
-
-                <Phone className="w-4 h-4 text-indigo-400 shrink-0" />
-
-                <a
-                  href="tel:+919876543210"
-                  className="hover:text-white transition-colors"
-                >
-                  +91 9862890897/ +91 9363298118
-                </a>
-
-              </div>
-
-              {/* Email */}
-
-              <div className="flex items-center gap-2.5 text-slate-300">
-
-                <Mail className="w-4 h-4 text-teal-400 shrink-0" />
-
-                <a
-                  href="mailto:care@sakthidental.com"
-                  className="hover:text-white transition-colors"
-                >
-                  info@sakthidentalclinic.in 
-                </a>
-
-              </div>
-
-            </div>
-
-          </div>
+              <motion.span
+                whileHover={{
+                  x: 4,
+                  y: -4,
+                }}
+              >
+                <ArrowUpRight className="h-4 w-4" />
+              </motion.span>
+            </motion.button>
+          </motion.div>
 
           {/* =================================================
-              COLUMN 2 - QUICK LINKS
+              QUICK LINKS
           ================================================== */}
 
-          <div className="space-y-4">
-
-            <h4 className="text-sm font-extrabold uppercase tracking-widest text-white border-l-2 border-purple-500 pl-3">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.6,
+              delay: 0.1,
+            }}
+          >
+            <h3 className="mb-5 text-sm font-black uppercase tracking-wider text-white">
               Quick Links
-            </h4>
+            </h3>
 
-            <ul className="space-y-2.5 text-xs text-slate-400">
-
-              <li>
-                <Link
-                  to="/"
-                  className="hover:text-purple-400 transition-colors flex items-center gap-1.5"
+            <ul className="space-y-3">
+              {quickLinks.map((link, index) => (
+                <motion.li
+                  key={link.path}
+                  initial={{
+                    opacity: 0,
+                    x: -10,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    delay: index * 0.05,
+                  }}
                 >
-                  <span className="text-purple-400">›</span>
-                  Home
-                </Link>
-              </li>
+                  <Link
+                    to={link.path}
+                    className="
+                      group
+                      inline-flex
+                      items-center
+                      gap-2
+                      text-sm
+                      text-slate-400
+                      transition-colors
+                      duration-300
+                      hover:text-purple-400
+                    "
+                  >
+                    <span
+                      className="
+                        h-1
+                        w-1
+                        rounded-full
+                        bg-purple-500
+                        opacity-0
+                        transition-all
+                        duration-300
+                        group-hover:opacity-100
+                      "
+                    />
 
-              <li>
-                <Link
-                  to="/about"
-                  className="hover:text-purple-400 transition-colors flex items-center gap-1.5"
-                >
-                  <span className="text-purple-400">›</span>
-                  About Us
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/treatments"
-                  className="hover:text-purple-400 transition-colors flex items-center gap-1.5"
-                >
-                  <span className="text-purple-400">›</span>
-                  Treatments 
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/privacy"
-                  className="hover:text-purple-400 transition-colors flex items-center gap-1.5"
-                >
-                  <span className="text-purple-400">›</span>
-                  Privacy Policy
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/contact"
-                  className="hover:text-purple-400 transition-colors flex items-center gap-1.5"
-                >
-                  <span className="text-purple-400">›</span>
-                  Contact & Directions
-                </Link>
-              </li>
-
+                    {link.name}
+                  </Link>
+                </motion.li>
+              ))}
             </ul>
-
-          </div>
+          </motion.div>
 
           {/* =================================================
-              COLUMN 3 - SPECIALIZED CARE
+              TREATMENTS
           ================================================== */}
 
-          <div className="space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.6,
+              delay: 0.2,
+            }}
+          >
+            <h3 className="mb-5 text-sm font-black uppercase tracking-wider text-white">
+              Treatments
+            </h3>
 
-            <h4 className="text-sm font-extrabold uppercase tracking-widest text-white border-l-2 border-indigo-500 pl-3">
-              Specialized Care
-            </h4>
-
-            <ul className="space-y-2.5 text-xs text-slate-400">
-
-              <li>
-                <Link
-                  to="/treatments?cat=General+Dentistry"
-                  className="hover:text-indigo-400 transition-colors"
+            <ul className="space-y-3">
+              {treatments.map((treatment, index) => (
+                <motion.li
+                  key={treatment}
+                  initial={{
+                    opacity: 0,
+                    x: -10,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    delay: index * 0.05,
+                  }}
                 >
-                  Painless Tooth Extraction
-                </Link>
-              </li>
+                  <Link
+                    to="/treatments"
+                    className="
+                      group
+                      inline-flex
+                      items-center
+                      gap-2
+                      text-sm
+                      text-slate-400
+                      transition-colors
+                      duration-300
+                      hover:text-teal-400
+                    "
+                  >
+                    <span
+                      className="
+                        h-1
+                        w-1
+                        rounded-full
+                        bg-teal-400
+                        opacity-0
+                        transition-all
+                        duration-300
+                        group-hover:opacity-100
+                      "
+                    />
 
-              <li>
-                <Link
-                  to="/treatments?cat=General+Dentistry"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  Composite Tooth Filling
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/treatments?cat=General+Dentistry"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  Deep Teeth Cleaning & Scaling
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/treatments?cat=Cosmetic+Dentistry"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  Laser Teeth Whitening
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/treatments?cat=Orthodontics"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  Ceramic Braces & Clear Aligners
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/treatments?cat=Surgical+%26+Implants"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  Titanium Dental Implants
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="/treatments?cat=Pediatric+Dentistry"
-                  className="hover:text-indigo-400 transition-colors"
-                >
-                  Pediatric Dental Care for Kids
-                </Link>
-              </li>
-
+                    {treatment}
+                  </Link>
+                </motion.li>
+              ))}
             </ul>
-
-          </div>
+          </motion.div>
 
           {/* =================================================
-              COLUMN 4 - HOURS & SOCIAL
+              CONTACT
           ================================================== */}
 
-          <div className="space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.6,
+              delay: 0.3,
+            }}
+          >
+            <h3 className="mb-5 text-sm font-black uppercase tracking-wider text-white">
+              Contact Us
+            </h3>
 
-            <h4 className="text-sm font-extrabold uppercase tracking-widest text-white border-l-2 border-teal-500 pl-3">
-              Clinic Hours & Connect
-            </h4>
+            <div className="space-y-4">
+              {/* ADDRESS */}
 
-            {/* Working Schedule */}
+              <motion.div
+                whileHover={{
+                  x: 4,
+                }}
+                className="flex items-start gap-3"
+              >
+                <div className="rounded-xl bg-purple-500/10 p-2 text-purple-400">
+                  <MapPin className="h-4 w-4" />
+                </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2 text-xs">
+                <p className="text-sm leading-6 text-slate-400">
+                  #42, Metro Grand Avenue,
+                  <br />
+                  Near Central Bus Station,
+                  <br />
+                  Hosur, Tamil Nadu
+                </p>
+              </motion.div>
 
-              <div className="flex items-center gap-2 text-teal-400 font-bold">
+              {/* PHONE */}
 
-                <Clock className="w-4 h-4" />
+              <motion.a
+                href="tel:+919876543210"
+                whileHover={{
+                  x: 4,
+                }}
+                className="flex items-center gap-3 text-sm text-slate-400 transition-colors hover:text-purple-400"
+              >
+                <div className="rounded-xl bg-purple-500/10 p-2 text-purple-400">
+                  <Phone className="h-4 w-4" />
+                </div>
 
-                <span>Working Schedule</span>
+                +91 98765 43210
+              </motion.a>
 
-              </div>
+              {/* EMAIL */}
 
-              <div className="flex justify-between text-slate-300">
+              <motion.a
+                href="mailto:care@sakthidental.com"
+                whileHover={{
+                  x: 4,
+                }}
+                className="flex items-center gap-3 text-sm text-slate-400 transition-colors hover:text-teal-400"
+              >
+                <div className="rounded-xl bg-teal-500/10 p-2 text-teal-400">
+                  <Mail className="h-4 w-4" />
+                </div>
 
-                <span>Mon - Sat :</span>
+                care@sakthidental.com
+              </motion.a>
 
-                <span className="font-semibold text-teal-300">
-                  9:00 AM - 7:00 PM
-                </span>
+              {/* TIMING */}
 
-              </div>
+              <motion.div
+                whileHover={{
+                  x: 4,
+                }}
+                className="flex items-start gap-3"
+              >
+                <div className="rounded-xl bg-emerald-500/10 p-2 text-emerald-400">
+                  <Clock className="h-4 w-4" />
+                </div>
 
-              <div className="pt-1 text-[11px] text-slate-400 flex items-center gap-1.5">
+                <div className="text-sm leading-6 text-slate-400">
+                  <p>Mon - Sat: 9:00 AM - 8:30 PM</p>
+                  <p>Sunday: 10:00 AM - 2:00 PM</p>
 
-                <ShieldCheck className="w-3.5 h-3.5 text-teal-400" />
-
-                <span>24/7 Emergency Dental On Call</span>
-
-              </div>
-
+                  <p className="mt-1 font-bold text-emerald-400">
+                    Emergency: 24x7
+                  </p>
+                </div>
+              </motion.div>
             </div>
-
-            {/* Social Media */}
-
-            <div className="space-y-2">
-
-              <span className="text-xs font-semibold text-slate-400 block">
-                Follow Us:
-              </span>
-
-              <div className="flex items-center gap-2">
-
-                {/* Instagram */}
-
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-purple-600 transition-all"
-                  aria-label="Instagram"
-                >
-                  <InstagramIcon className="w-4 h-4" />
-                </a>
-
-                {/* Facebook */}
-
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-purple-600 transition-all"
-                  aria-label="Facebook"
-                >
-                  <FacebookIcon className="w-4 h-4" />
-                </a>
-
-                {/* YouTube */}
-
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-teal-600 transition-all"
-                  aria-label="YouTube"
-                >
-                  <YoutubeIcon className="w-4 h-4" />
-                </a>
-
-              </div>
-
-            </div>
-
-          </div>
-
+          </motion.div>
         </div>
 
         {/* =====================================================
-            BOTTOM COPYRIGHT
+            DIVIDER
         ====================================================== */}
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div className="my-12 h-px bg-linear-to-r from-transparent via-purple-500/30 to-transparent" />
 
-          <p>
-            © {new Date().getFullYear()} Sakthi Dental Clinic. All Rights
-            Reserved.
+        {/* =====================================================
+            BOTTOM BAR
+        ====================================================== */}
+
+        <div className="flex flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left">
+          <p className="text-xs text-slate-500">
+            © {new Date().getFullYear()} Sakthi Dental Clinic.
+            All rights reserved.
           </p>
 
-          <div className="flex items-center gap-4">
-
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/privacy"
-              className="hover:text-slate-300 transition-colors"
+              className="text-xs text-slate-500 transition-colors hover:text-purple-400"
             >
               Privacy Policy
             </Link>
 
-            <span>•</span>
+            <span className="h-1 w-1 rounded-full bg-slate-700" />
 
-            <span className="flex items-center gap-1">
-
-              Crafted with
-
-              <Heart className="w-3 h-3 text-purple-400 fill-current" />
-
-              for Healthy Smiles
-
+            <span className="flex items-center gap-1.5 text-xs text-slate-500">
+              Made with
+              <Heart className="h-3.5 w-3.5 fill-current text-purple-500" />
+              for healthier smiles
             </span>
 
+            <ShieldCheck className="h-4 w-4 text-teal-500" />
           </div>
-
         </div>
-
       </div>
-
     </footer>
   );
 }
