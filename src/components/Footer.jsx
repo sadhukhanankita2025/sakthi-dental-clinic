@@ -452,11 +452,9 @@ export default function Footer({ onOpenAppointment }) {
                 </div>
 
                 <p className="text-sm leading-6 text-slate-400">
-                  #42, Metro Grand Avenue,
+                  B2/8, SBM Layout, Anthivadi, 
                   <br />
-                  Near Central Bus Station,
-                  <br />
-                  Hosur, Tamil Nadu
+                 Hosur, Tamil Nadu 635109, India
                 </p>
               </motion.div>
 
@@ -473,7 +471,8 @@ export default function Footer({ onOpenAppointment }) {
                   <Phone className="h-4 w-4" />
                 </div>
 
-                +91 98765 43210
+                +91 9862890897/ +91 9363298118
+
               </motion.a>
 
               {/* EMAIL */}
@@ -505,8 +504,8 @@ export default function Footer({ onOpenAppointment }) {
                 </div>
 
                 <div className="text-sm leading-6 text-slate-400">
-                  <p>Mon - Sat: 9:00 AM - 8:30 PM</p>
-                  <p>Sunday: 10:00 AM - 2:00 PM</p>
+                  <p>Sunday to Saturday: 9am to 7pm</p>
+                  
 
                   <p className="mt-1 font-bold text-emerald-400">
                     Emergency: 24x7

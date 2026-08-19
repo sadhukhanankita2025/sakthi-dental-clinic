@@ -9,9 +9,8 @@ import {
   Navigation,
   ExternalLink,
   ArrowRight,
-  Calendar,
-  ShieldCheck,
   HeartPulse,
+  ShieldCheck,
 } from "lucide-react";
 
 import ContactForm from "../components/ContactForm";
@@ -19,59 +18,20 @@ import FAQAccordion from "../components/FAQAccordion";
 
 import contactDental from "../assets/contact-dental.jpg";
 
-export default function Contact({ onOpenAppointment }) {
-  const handleAppointment = () => {
-    if (onOpenAppointment) {
-      onOpenAppointment("");
-      return;
-    }
-
-    window.dispatchEvent(
-      new CustomEvent("openAppointment", {
-        detail: {
-          treatment: "",
-        },
-      })
-    );
-  };
-
+export default function Contact() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-slate-50 pt-24 text-slate-900">
+    <main className="relative min-h-screen overflow-hidden bg-slate-50 pt-20 text-slate-900 sm:pt-24">
       {/* =====================================================
           ANIMATED BACKGROUND
       ====================================================== */}
 
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        {/* Purple Glow */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        {/* Purple glow */}
         <motion.div
           animate={{
-            x: [0, 70, -30, 0],
-            y: [0, -40, 50, 0],
-            scale: [1, 1.15, 0.95, 1],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="
-            absolute
-            -left-40
-            top-40
-            h-96
-            w-96
-            rounded-full
-            bg-purple-400/15
-            blur-3xl
-          "
-        />
-
-        {/* Teal Glow */}
-        <motion.div
-          animate={{
-            x: [0, -60, 40, 0],
-            y: [0, 50, -30, 0],
-            scale: [1, 0.9, 1.1, 1],
+            x: [0, 50, -30, 0],
+            y: [0, -30, 40, 0],
+            scale: [1, 1.12, 0.95, 1],
           }}
           transition={{
             duration: 16,
@@ -80,21 +40,24 @@ export default function Contact({ onOpenAppointment }) {
           }}
           className="
             absolute
-            -right-40
-            top-1/3
-            h-96
-            w-96
+            -left-32
+            top-32
+            h-72
+            w-72
             rounded-full
-            bg-teal-400/10
+            bg-purple-400/10
             blur-3xl
+            sm:h-96
+            sm:w-96
           "
         />
 
-        {/* Blue Glow */}
+        {/* Teal glow */}
         <motion.div
           animate={{
-            x: [0, 30, -30, 0],
-            y: [0, -30, 40, 0],
+            x: [0, -40, 30, 0],
+            y: [0, 40, -30, 0],
+            scale: [1, 0.9, 1.1, 1],
           }}
           transition={{
             duration: 18,
@@ -103,108 +66,125 @@ export default function Contact({ onOpenAppointment }) {
           }}
           className="
             absolute
+            -right-32
+            top-1/3
+            h-72
+            w-72
+            rounded-full
+            bg-teal-400/10
+            blur-3xl
+            sm:h-96
+            sm:w-96
+          "
+        />
+
+        {/* Blue glow */}
+        <motion.div
+          animate={{
+            x: [0, 30, -30, 0],
+            y: [0, -25, 30, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="
+            absolute
             bottom-0
             left-1/2
-            h-80
-            w-80
+            h-64
+            w-64
             -translate-x-1/2
             rounded-full
             bg-blue-400/10
             blur-3xl
+            sm:h-80
+            sm:w-80
           "
         />
 
-        {/* Floating Dots */}
-        {[
-          {
-            left: "8%",
-            top: "18%",
-            delay: 0,
-          },
-          {
-            left: "90%",
-            top: "24%",
+        {/* Floating dots */}
+        <motion.span
+          animate={{
+            y: [0, -20, 0, 15, 0],
+            x: [0, 8, -8, 5, 0],
+            opacity: [0.2, 0.7, 0.3, 0.6, 0.2],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="
+            absolute
+            left-[8%]
+            top-[25%]
+            h-2
+            w-2
+            rounded-full
+            bg-purple-500/50
+          "
+        />
+
+        <motion.span
+          animate={{
+            y: [0, 20, 0, -15, 0],
+            x: [0, -8, 8, -5, 0],
+            opacity: [0.2, 0.6, 0.25, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
             delay: 1,
-          },
-          {
-            left: "15%",
-            top: "68%",
-            delay: 2,
-          },
-          {
-            left: "92%",
-            top: "72%",
-            delay: 3,
-          },
-        ].map((dot, index) => (
-          <motion.span
-            key={index}
-            className="
-              absolute
-              h-2
-              w-2
-              rounded-full
-              bg-purple-400/40
-              blur-[1px]
-            "
-            style={{
-              left: dot.left,
-              top: dot.top,
-            }}
-            animate={{
-              y: [0, -20, 0, 15, 0],
-              x: [0, 8, -8, 5, 0],
-              opacity: [0.25, 0.7, 0.3, 0.6, 0.25],
-              scale: [1, 1.4, 0.8, 1.2, 1],
-            }}
-            transition={{
-              duration: 5,
-              delay: dot.delay,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+          }}
+          className="
+            absolute
+            right-[10%]
+            top-[50%]
+            h-2
+            w-2
+            rounded-full
+            bg-teal-500/50
+          "
+        />
       </div>
 
       {/* =====================================================
           HERO
       ====================================================== */}
 
-      <section className="relative bg-linear-to-br from-purple-50 via-white to-teal-50 py-14 sm:py-18 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section
+        className="
+          relative
+          overflow-hidden
+          bg-linear-to-br
+          from-purple-50
+          via-white
+          to-teal-50
+          py-12
+          sm:py-16
+          lg:py-20
+        "
+      >
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 30,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.7,
-              ease: [0.22, 1, 0.36, 1],
-            }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
             className="mx-auto max-w-4xl text-center"
           >
             {/* Badge */}
 
             <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.8,
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-              }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{
-                delay: 0.15,
+                delay: 0.1,
                 duration: 0.5,
               }}
               className="
-                mx-auto
                 inline-flex
                 items-center
                 gap-2
@@ -212,46 +192,41 @@ export default function Contact({ onOpenAppointment }) {
                 border
                 border-purple-200
                 bg-white/80
-                px-4
+                px-3
                 py-2
-                text-xs
+                text-[10px]
                 font-black
                 uppercase
-                tracking-wider
+                tracking-widest
                 text-purple-700
-                shadow-lg
-                shadow-purple-500/10
+                shadow-md
                 backdrop-blur-xl
+                sm:px-4
+                sm:text-xs
               "
             >
-              <Sparkles className="h-4 w-4 text-purple-600" />
-
-              <span>Get In Touch</span>
+              <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              Get In Touch
             </motion.div>
 
             {/* Heading */}
 
             <motion.h1
-              initial={{
-                opacity: 0,
-                y: 25,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{
-                delay: 0.25,
-                duration: 0.7,
+                delay: 0.2,
+                duration: 0.6,
               }}
               className="
-                mt-6
-                text-4xl
+                mt-5
+                text-3xl
                 font-black
                 leading-tight
                 tracking-tight
                 text-slate-950
-                sm:text-5xl
+                sm:text-4xl
+                md:text-5xl
                 lg:text-6xl
               "
             >
@@ -264,27 +239,22 @@ export default function Contact({ onOpenAppointment }) {
             {/* Description */}
 
             <motion.p
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{
-                delay: 0.4,
+                delay: 0.3,
                 duration: 0.6,
               }}
               className="
                 mx-auto
-                mt-5
+                mt-4
                 max-w-3xl
                 text-sm
-                leading-7
+                leading-6
                 text-slate-600
                 sm:text-base
-                sm:leading-8
+                sm:leading-7
+                lg:text-lg
               "
             >
               We're here to make your dental care experience simple,
@@ -292,36 +262,32 @@ export default function Contact({ onOpenAppointment }) {
               treatments, emergency care, or any dental questions.
             </motion.p>
 
-            {/* Quick Info */}
+            {/* Quick information */}
 
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{
-                delay: 0.5,
+                delay: 0.4,
                 duration: 0.6,
               }}
               className="
-                mt-7
+                mt-6
                 flex
                 flex-col
                 items-center
                 justify-center
                 gap-3
                 sm:flex-row
-                sm:gap-4
               "
             >
               <div
                 className="
                   flex
+                  w-full
+                  max-w-xs
                   items-center
+                  justify-center
                   gap-2
                   rounded-full
                   border
@@ -334,18 +300,21 @@ export default function Contact({ onOpenAppointment }) {
                   text-slate-700
                   shadow-md
                   backdrop-blur-xl
+                  sm:w-auto
                 "
               >
                 <Clock className="h-4 w-4 text-purple-600" />
-
-                <span>Mon - Sat: 9 AM - 8:30 PM</span>
+                Mon - Sat: 9 AM - 8:30 PM
               </div>
 
               <a
                 href="tel:+919876543210"
                 className="
                   flex
+                  w-full
+                  max-w-xs
                   items-center
+                  justify-center
                   gap-2
                   rounded-full
                   border
@@ -357,16 +326,16 @@ export default function Contact({ onOpenAppointment }) {
                   font-bold
                   text-slate-700
                   shadow-md
+                  backdrop-blur-xl
                   transition-all
                   hover:-translate-y-1
-                  hover:text-purple-700
+                  hover:text-teal-700
                   hover:shadow-lg
-                  backdrop-blur-xl
+                  sm:w-auto
                 "
               >
                 <Phone className="h-4 w-4 text-teal-600" />
-
-                <span>+91 98765 43210</span>
+                +91 98765 43210
               </a>
             </motion.div>
           </motion.div>
@@ -377,17 +346,17 @@ export default function Contact({ onOpenAppointment }) {
           REACH US + FAQ
       ====================================================== */}
 
-      <section className="relative py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      <section className="relative py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
             {/* =================================================
                 REACH US
             ================================================== */}
 
-            <motion.div
+            <motion.section
               initial={{
                 opacity: 0,
-                x: -50,
+                x: -40,
               }}
               whileInView={{
                 opacity: 1,
@@ -395,45 +364,54 @@ export default function Contact({ onOpenAppointment }) {
               }}
               viewport={{
                 once: true,
-                amount: 0.15,
+                amount: 0.1,
               }}
               transition={{
                 duration: 0.7,
-                ease: [0.22, 1, 0.36, 1],
               }}
               className="
                 relative
                 overflow-hidden
-                rounded-4xl
+                rounded-3xl
                 border
                 border-white
-                bg-white/85
-                p-6
+                bg-white/90
+                p-5
                 shadow-xl
                 shadow-purple-900/5
                 backdrop-blur-xl
-                sm:p-8
+                sm:p-7
+                lg:p-8
               "
             >
-              {/* Glow */}
+              {/* Animated glow */}
 
-              <div
+              <motion.div
+                animate={{
+                  scale: [1, 1.15, 1],
+                  opacity: [0.1, 0.25, 0.1],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="
                   pointer-events-none
                   absolute
                   -right-24
                   -top-24
-                  h-56
-                  w-56
+                  h-60
+                  w-60
                   rounded-full
-                  bg-purple-400/15
+                  bg-purple-400/20
                   blur-3xl
                 "
               />
 
-              {/* Header */}
-
               <div className="relative">
+                {/* Badge */}
+
                 <div
                   className="
                     inline-flex
@@ -443,15 +421,15 @@ export default function Contact({ onOpenAppointment }) {
                     bg-purple-100
                     px-3
                     py-1.5
-                    text-[11px]
+                    text-[10px]
                     font-black
                     uppercase
-                    tracking-wider
+                    tracking-widest
                     text-purple-700
+                    sm:text-xs
                   "
                 >
                   <MapPin className="h-3.5 w-3.5" />
-
                   Reach Us
                 </div>
 
@@ -468,349 +446,93 @@ export default function Contact({ onOpenAppointment }) {
                   Reach Us Directly
                 </h2>
 
-                <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">
+                <p className="mt-2 text-sm leading-6 text-slate-600">
                   We're always happy to help. Get in touch with our clinic
                   team for appointments, treatment information, or emergency
                   dental assistance.
                 </p>
               </div>
 
-              {/* Contact Items */}
+              {/* Contact Information */}
 
-              <div className="relative mt-7 space-y-4">
-                {/* ADDRESS */}
+              <div className="relative mt-6 space-y-3">
+                {/* Address */}
 
-                <motion.div
-                  whileHover={{
-                    x: 5,
-                    scale: 1.01,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20,
-                  }}
-                  className="
-                    flex
-                    items-start
-                    gap-4
-                    rounded-2xl
-                    border
-                    border-slate-100
-                    bg-white
-                    p-4
-                    shadow-sm
-                    transition-shadow
-                    hover:shadow-lg
-                  "
+                <ContactInfoCard
+                  icon={<MapPin className="h-5 w-5" />}
+                  iconClass="bg-purple-100 text-purple-600"
+                  title="Clinic Address"
                 >
-                  <div
-                    className="
-                      flex
-                      h-11
-                      w-11
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-purple-100
-                      text-purple-600
-                    "
-                  >
-                    <MapPin className="h-5 w-5" />
-                  </div>
+                  #42, Metro Grand Avenue,
+                  <br />
+                  Near Central Bus Station,
+                  <br />
+                  Chennai, Tamil Nadu - 600001
+                </ContactInfoCard>
 
-                  <div>
-                    <h3 className="text-xs font-black uppercase tracking-wider text-slate-900">
-                      Clinic Address
-                    </h3>
+                {/* Phone */}
 
-                    <p className="mt-1 text-sm leading-6 text-slate-600">
-                      #42, Metro Grand Avenue,
-                      <br />
-                      Near Central Bus Station,
-                      <br />
-                      Chennai, Tamil Nadu - 600001
-                    </p>
-                  </div>
-                </motion.div>
-
-                {/* PHONE */}
-
-                <motion.div
-                  whileHover={{
-                    x: 5,
-                    scale: 1.01,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20,
-                  }}
-                  className="
-                    flex
-                    items-start
-                    gap-4
-                    rounded-2xl
-                    border
-                    border-slate-100
-                    bg-white
-                    p-4
-                    shadow-sm
-                    transition-shadow
-                    hover:shadow-lg
-                  "
+                <ContactInfoCard
+                  icon={<Phone className="h-5 w-5" />}
+                  iconClass="bg-teal-100 text-teal-600"
+                  title="Phone & WhatsApp"
                 >
-                  <div
-                    className="
-                      flex
-                      h-11
-                      w-11
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-teal-100
-                      text-teal-600
-                    "
+                  <a
+                    href="tel:+919876543210"
+                    className="block transition-colors hover:text-teal-600"
                   >
-                    <Phone className="h-5 w-5" />
-                  </div>
+                    +91 98765 43210
+                  </a>
 
-                  <div>
-                    <h3 className="text-xs font-black uppercase tracking-wider text-slate-900">
-                      Phone & WhatsApp
-                    </h3>
+                  <a
+                    href="tel:04423456789"
+                    className="block transition-colors hover:text-teal-600"
+                  >
+                    044 2345 6789
+                  </a>
+                </ContactInfoCard>
 
-                    <div className="mt-1 space-y-1">
-                      <a
-                        href="tel:+919876543210"
-                        className="
-                          block
-                          text-sm
-                          font-semibold
-                          text-slate-600
-                          transition-colors
-                          hover:text-teal-600
-                        "
-                      >
-                        +91 98765 43210
-                      </a>
+                {/* Email */}
 
-                      <a
-                        href="tel:04423456789"
-                        className="
-                          block
-                          text-sm
-                          font-semibold
-                          text-slate-600
-                          transition-colors
-                          hover:text-teal-600
-                        "
-                      >
-                        044 2345 6789
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* EMAIL */}
-
-                <motion.div
-                  whileHover={{
-                    x: 5,
-                    scale: 1.01,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20,
-                  }}
-                  className="
-                    flex
-                    items-start
-                    gap-4
-                    rounded-2xl
-                    border
-                    border-slate-100
-                    bg-white
-                    p-4
-                    shadow-sm
-                    transition-shadow
-                    hover:shadow-lg
-                  "
+                <ContactInfoCard
+                  icon={<Mail className="h-5 w-5" />}
+                  iconClass="bg-blue-100 text-blue-600"
+                  title="Email Inquiry"
                 >
-                  <div
-                    className="
-                      flex
-                      h-11
-                      w-11
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-blue-100
-                      text-blue-600
-                    "
+                  <a
+                    href="mailto:care@sakthidental.com"
+                    className="wrap-break-word transition-colors hover:text-blue-600"
                   >
-                    <Mail className="h-5 w-5" />
-                  </div>
+                    care@sakthidental.com
+                  </a>
+                </ContactInfoCard>
 
-                  <div>
-                    <h3 className="text-xs font-black uppercase tracking-wider text-slate-900">
-                      Email Inquiry
-                    </h3>
+                {/* Timing */}
 
-                    <a
-                      href="mailto:care@sakthidental.com"
-                      className="
-                        mt-1
-                        block
-                        text-sm
-                        font-semibold
-                        text-slate-600
-                        transition-colors
-                        hover:text-blue-600
-                      "
-                    >
-                      care@sakthidental.com
-                    </a>
-                  </div>
-                </motion.div>
-
-                {/* TIMINGS */}
-
-                <motion.div
-                  whileHover={{
-                    x: 5,
-                    scale: 1.01,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20,
-                  }}
-                  className="
-                    flex
-                    items-start
-                    gap-4
-                    rounded-2xl
-                    border
-                    border-slate-100
-                    bg-white
-                    p-4
-                    shadow-sm
-                    transition-shadow
-                    hover:shadow-lg
-                  "
+                <ContactInfoCard
+                  icon={<Clock className="h-5 w-5" />}
+                  iconClass="bg-emerald-100 text-emerald-600"
+                  title="Clinic Timings"
                 >
-                  <div
-                    className="
-                      flex
-                      h-11
-                      w-11
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-xl
-                      bg-emerald-100
-                      text-emerald-600
-                    "
-                  >
-                    <Clock className="h-5 w-5" />
-                  </div>
-
-                  <div>
-                    <h3 className="text-xs font-black uppercase tracking-wider text-slate-900">
-                      Clinic Timings
-                    </h3>
-
-                    <p className="mt-1 text-sm leading-6 text-slate-600">
-                      Mon - Sat: 9:00 AM - 8:30 PM
-                      <br />
-                      Sunday: 10:00 AM - 2:00 PM
-                      <br />
-                      <span className="font-black text-emerald-600">
-                        Emergency: 24x7
-                      </span>
-                    </p>
-                  </div>
-                </motion.div>
+                  Mon - Sat: 9:00 AM - 8:30 PM
+                  <br />
+                  Sunday: 10:00 AM - 2:00 PM
+                  <br />
+                  <span className="font-black text-emerald-600">
+                    Emergency: 24x7
+                  </span>
+                </ContactInfoCard>
               </div>
-
-              {/* Appointment */}
-
-              <motion.button
-                type="button"
-                onClick={handleAppointment}
-                whileHover={{
-                  y: -3,
-                  scale: 1.01,
-                }}
-                whileTap={{
-                  scale: 0.97,
-                }}
-                className="
-                  relative
-                  mt-6
-                  flex
-                  w-full
-                  items-center
-                  justify-center
-                  gap-2
-                  overflow-hidden
-                  rounded-2xl
-                  bg-linear-to-r
-                  from-purple-600
-                  via-indigo-600
-                  to-teal-500
-                  px-5
-                  py-3.5
-                  text-sm
-                  font-black
-                  uppercase
-                  tracking-wider
-                  text-white
-                  shadow-lg
-                  shadow-purple-500/20
-                "
-              >
-                <motion.span
-                  animate={{
-                    x: ["-120%", "220%"],
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    repeatDelay: 2,
-                    ease: "easeInOut",
-                  }}
-                  className="
-                    absolute
-                    inset-y-0
-                    w-16
-                    skew-x-12
-                    bg-white/25
-                    blur-sm
-                  "
-                />
-
-                <Calendar className="relative z-10 h-4 w-4" />
-
-                <span className="relative z-10">
-                  Book an Appointment
-                </span>
-              </motion.button>
-            </motion.div>
+            </motion.section>
 
             {/* =================================================
                 FAQ
             ================================================== */}
 
-            <motion.div
+            <motion.section
               initial={{
                 opacity: 0,
-                x: 50,
+                x: 40,
               }}
               whileInView={{
                 opacity: 1,
@@ -818,32 +540,32 @@ export default function Contact({ onOpenAppointment }) {
               }}
               viewport={{
                 once: true,
-                amount: 0.15,
+                amount: 0.1,
               }}
               transition={{
                 duration: 0.7,
-                ease: [0.22, 1, 0.36, 1],
               }}
               className="
                 relative
                 overflow-hidden
-                rounded-4xl
+                rounded-3xl
                 border
                 border-white
-                bg-white/80
-                p-6
+                bg-white/90
+                p-5
                 shadow-xl
                 shadow-purple-900/5
                 backdrop-blur-xl
-                sm:p-8
+                sm:p-7
+                lg:p-8
               "
             >
-              {/* Floating Glow */}
+              {/* FAQ Glow */}
 
               <motion.div
                 animate={{
                   scale: [1, 1.15, 1],
-                  opacity: [0.15, 0.3, 0.15],
+                  opacity: [0.1, 0.3, 0.1],
                 }}
                 transition={{
                   duration: 5,
@@ -853,17 +575,17 @@ export default function Contact({ onOpenAppointment }) {
                 className="
                   pointer-events-none
                   absolute
-                  -right-20
-                  -top-20
-                  h-52
-                  w-52
+                  -left-24
+                  -top-24
+                  h-60
+                  w-60
                   rounded-full
                   bg-purple-500/20
                   blur-3xl
                 "
               />
 
-              <div className="relative mb-6">
+              <div className="relative mb-5">
                 <div
                   className="
                     inline-flex
@@ -873,15 +595,15 @@ export default function Contact({ onOpenAppointment }) {
                     bg-purple-100
                     px-3
                     py-1.5
-                    text-[11px]
+                    text-[10px]
                     font-black
                     uppercase
-                    tracking-wider
+                    tracking-widest
                     text-purple-700
+                    sm:text-xs
                   "
                 >
                   <Sparkles className="h-3.5 w-3.5" />
-
                   FAQ
                 </div>
 
@@ -904,10 +626,10 @@ export default function Contact({ onOpenAppointment }) {
                 </p>
               </div>
 
-              <div className="relative">
+              <div className="relative w-full min-w-0">
                 <FAQAccordion />
               </div>
-            </motion.div>
+            </motion.section>
           </div>
         </div>
       </section>
@@ -916,83 +638,86 @@ export default function Contact({ onOpenAppointment }) {
           CONTACT FORM + IMAGE
       ====================================================== */}
 
-      <section className="relative py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
+      <section className="relative py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Heading */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="mb-8 text-center sm:mb-10"
+          >
+            <div
               className="
                 inline-flex
                 items-center
                 gap-2
                 rounded-full
                 bg-teal-100
-                px-4
-                py-2
-                text-xs
+                px-3
+                py-1.5
+                text-[10px]
                 font-black
                 uppercase
-                tracking-wider
+                tracking-widest
                 text-teal-700
+                sm:px-4
+                sm:py-2
+                sm:text-xs
               "
             >
               <HeartPulse className="h-4 w-4" />
-
               We're Here For You
-            </motion.div>
+            </div>
 
-            <motion.h2
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                delay: 0.1,
-              }}
+            <h2
               className="
                 mt-4
-                text-3xl
+                text-2xl
                 font-black
                 tracking-tight
                 text-slate-950
-                sm:text-4xl
+                sm:text-3xl
+                lg:text-4xl
               "
             >
               Send Us a Message
-            </motion.h2>
+            </h2>
 
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-600">
+            <p
+              className="
+                mx-auto
+                mt-3
+                max-w-2xl
+                text-sm
+                leading-6
+                text-slate-600
+                sm:leading-7
+              "
+            >
               Have a question or want to schedule your visit? Fill out the
               form and our clinic team will get back to you.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2">
-            {/* =================================================
-                CONTACT FORM — LEFT
-            ================================================== */}
+          {/* Form + Image */}
+
+          <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
+            {/* Contact Form */}
 
             <motion.div
               initial={{
                 opacity: 0,
-                x: -50,
+                x: -40,
               }}
               whileInView={{
                 opacity: 1,
@@ -1000,64 +725,61 @@ export default function Contact({ onOpenAppointment }) {
               }}
               viewport={{
                 once: true,
-                amount: 0.15,
+                amount: 0.1,
               }}
               transition={{
                 duration: 0.7,
               }}
               className="
-                rounded-4xl
+                min-w-0
+                rounded-3xl
                 border
                 border-white
                 bg-white/90
-                p-5
+                p-4
                 shadow-xl
                 shadow-purple-900/5
                 backdrop-blur-xl
-                sm:p-8
+                sm:p-6
+                lg:p-8
               "
             >
               <ContactForm />
             </motion.div>
 
-            {/* =================================================
-                IMAGE — RIGHT
-            ================================================== */}
+            {/* Dental Image */}
 
             <motion.div
               initial={{
                 opacity: 0,
-                x: 50,
-                scale: 0.96,
+                x: 40,
               }}
               whileInView={{
                 opacity: 1,
                 x: 0,
-                scale: 1,
               }}
               viewport={{
                 once: true,
-                amount: 0.15,
+                amount: 0.1,
               }}
               transition={{
-                duration: 0.8,
+                duration: 0.7,
               }}
               className="
                 group
                 relative
-                min-h-80
+                min-h-70
                 overflow-hidden
-                rounded-4xl
+                rounded-3xl
                 border
                 border-white
-                bg-white
+                bg-slate-900
                 shadow-2xl
                 shadow-purple-900/10
-                sm:min-h-100
+                sm:min-h-90
+                lg:min-h-full
               "
             >
-              {/* Image */}
-
               <motion.img
                 src={contactDental}
                 alt="Sakthi Dental Clinic"
@@ -1086,20 +808,20 @@ export default function Contact({ onOpenAppointment }) {
                 "
               />
 
-              {/* Overlay */}
+              {/* Image overlay */}
 
               <div
                 className="
                   absolute
                   inset-0
                   bg-linear-to-t
-                  from-slate-950/80
-                  via-slate-950/20
+                  from-slate-950/85
+                  via-slate-950/25
                   to-transparent
                 "
               />
 
-              {/* Floating Badge */}
+              {/* Floating badge */}
 
               <motion.div
                 animate={{
@@ -1112,36 +834,40 @@ export default function Contact({ onOpenAppointment }) {
                 }}
                 className="
                   absolute
-                  right-5
-                  top-5
+                  right-4
+                  top-4
                   rounded-2xl
                   border
-                  border-white/40
+                  border-white/30
                   bg-white/90
-                  px-4
-                  py-3
+                  px-3
+                  py-2.5
                   shadow-xl
                   backdrop-blur-xl
+                  sm:right-6
+                  sm:top-6
+                  sm:px-4
+                  sm:py-3
                 "
               >
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-5 w-5 text-teal-600" />
 
                   <div>
-                    <p className="text-xs font-black text-slate-900">
+                    <p className="text-[11px] font-black text-slate-900 sm:text-xs">
                       Trusted Dental Care
                     </p>
 
-                    <p className="text-[10px] font-semibold text-slate-500">
+                    <p className="text-[9px] font-semibold text-slate-500 sm:text-[10px]">
                       Gentle & Comfortable
                     </p>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Bottom Content */}
+              {/* Image text */}
 
-              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-7 lg:p-8">
                 <div
                   className="
                     mb-3
@@ -1152,22 +878,41 @@ export default function Contact({ onOpenAppointment }) {
                     bg-white/15
                     px-3
                     py-1.5
-                    text-xs
+                    text-[10px]
                     font-bold
                     text-white
                     backdrop-blur-md
+                    sm:text-xs
                   "
                 >
                   <Sparkles className="h-3.5 w-3.5 text-teal-300" />
-
                   Modern Dental Care
                 </div>
 
-                <h3 className="max-w-lg text-2xl font-black text-white sm:text-3xl">
+                <h3
+                  className="
+                    text-xl
+                    font-black
+                    leading-tight
+                    text-white
+                    sm:text-2xl
+                    lg:text-3xl
+                  "
+                >
                   Your smile deserves gentle, modern care.
                 </h3>
 
-                <p className="mt-2 max-w-lg text-sm leading-6 text-white/80">
+                <p
+                  className="
+                    mt-2
+                    max-w-lg
+                    text-xs
+                    leading-5
+                    text-white/80
+                    sm:text-sm
+                    sm:leading-6
+                  "
+                >
                   Visit Sakthi Dental Clinic for comfortable treatment,
                   experienced professionals, and patient-focused care.
                 </p>
@@ -1181,30 +926,27 @@ export default function Contact({ onOpenAppointment }) {
           MAP CARD
       ====================================================== */}
 
-      <section className="relative pb-20 pt-8 sm:pb-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative pb-16 pt-4 sm:pb-20 lg:pb-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{
               opacity: 0,
-              y: 40,
-              scale: 0.97,
+              y: 30,
             }}
             whileInView={{
               opacity: 1,
               y: 0,
-              scale: 1,
             }}
             viewport={{
               once: true,
-              amount: 0.15,
+              amount: 0.1,
             }}
             transition={{
-              duration: 0.8,
+              duration: 0.7,
             }}
             className="
-              relative
               overflow-hidden
-              rounded-4xl
+              rounded-3xl
               border
               border-white
               bg-white
@@ -1220,25 +962,24 @@ export default function Contact({ onOpenAppointment }) {
                 flex-col
                 gap-4
                 bg-slate-950
-                p-5
+                p-4
                 text-white
                 sm:flex-row
                 sm:items-center
                 sm:justify-between
-                sm:px-7
-                sm:py-5
+                sm:p-6
               "
             >
-              <div>
+              <div className="min-w-0">
                 <div className="flex items-center gap-2">
-                  <Navigation className="h-5 w-5 text-teal-400" />
+                  <Navigation className="h-5 w-5 shrink-0 text-teal-400" />
 
-                  <h2 className="text-lg font-black">
+                  <h2 className="text-base font-black sm:text-lg">
                     Find Our Dental Clinic
                   </h2>
                 </div>
 
-                <p className="mt-1 text-xs text-slate-400">
+                <p className="mt-1 text-[11px] leading-5 text-slate-400 sm:text-xs">
                   #42, Metro Grand Avenue, Near Central Bus Station, Chennai
                 </p>
               </div>
@@ -1249,12 +990,13 @@ export default function Contact({ onOpenAppointment }) {
                 rel="noopener noreferrer"
                 className="
                   inline-flex
+                  shrink-0
                   items-center
                   justify-center
                   gap-2
                   rounded-xl
                   border
-                  border-white/15
+                  border-white/10
                   bg-white/10
                   px-4
                   py-2.5
@@ -1266,14 +1008,21 @@ export default function Contact({ onOpenAppointment }) {
                 "
               >
                 Open in Google Maps
-
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             </div>
 
             {/* Map */}
 
-            <div className="relative h-80 overflow-hidden sm:h-100 lg:h-115">
+            <div
+              className="
+                relative
+                h-72
+                overflow-hidden
+                sm:h-96
+                lg:h-115
+              "
+            >
               <iframe
                 title="Sakthi Dental Clinic Location Map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.837861922572!2d80.27071831482278!3d13.082680190783168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d333f%3A0x6d3e336b1103f7e3!2sChennai%20Central!5e0!3m2!1sen!2sin!4v1628000000000!5m2!1sen!2sin"
@@ -1297,7 +1046,7 @@ export default function Contact({ onOpenAppointment }) {
                 "
               />
 
-              {/* Treatments Button */}
+              {/* Treatments */}
 
               <motion.a
                 href="/treatments"
@@ -1310,11 +1059,12 @@ export default function Contact({ onOpenAppointment }) {
                 }}
                 className="
                   absolute
-                  bottom-5
+                  bottom-4
                   left-1/2
                   flex
                   -translate-x-1/2
                   items-center
+                  justify-center
                   gap-2
                   whitespace-nowrap
                   rounded-full
@@ -1322,20 +1072,22 @@ export default function Contact({ onOpenAppointment }) {
                   from-purple-600
                   via-indigo-600
                   to-teal-500
-                  px-5
-                  py-3
-                  text-xs
+                  px-4
+                  py-2.5
+                  text-[10px]
                   font-black
                   uppercase
                   tracking-wider
                   text-white
                   shadow-2xl
                   shadow-purple-900/30
-                  sm:bottom-7
+                  sm:bottom-6
+                  sm:px-5
+                  sm:py-3
+                  sm:text-xs
                 "
               >
-                <span>See Treatments</span>
-
+                See Treatments
                 <ArrowRight className="h-4 w-4" />
               </motion.a>
             </div>
@@ -1343,5 +1095,91 @@ export default function Contact({ onOpenAppointment }) {
         </div>
       </section>
     </main>
+  );
+}
+
+/* ============================================================
+   CONTACT INFORMATION CARD
+============================================================ */
+
+function ContactInfoCard({
+  icon,
+  iconClass,
+  title,
+  children,
+}) {
+  return (
+    <motion.div
+      whileHover={{
+        y: -3,
+        scale: 1.01,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
+      }}
+      className="
+        flex
+        items-start
+        gap-3
+        rounded-2xl
+        border
+        border-slate-100
+        bg-white
+        p-3.5
+        shadow-sm
+        transition-shadow
+        hover:shadow-lg
+        sm:gap-4
+        sm:p-4
+      "
+    >
+      <div
+        className={`
+          flex
+          h-10
+          w-10
+          shrink-0
+          items-center
+          justify-center
+          rounded-xl
+          sm:h-11
+          sm:w-11
+          ${iconClass}
+        `}
+      >
+        {icon}
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <h3
+          className="
+            text-[10px]
+            font-black
+            uppercase
+            tracking-wider
+            text-slate-900
+            sm:text-xs
+          "
+        >
+          {title}
+        </h3>
+
+        <div
+          className="
+            mt-1
+            wrap-break-word
+            text-xs
+            leading-5
+            text-slate-600
+            sm:text-sm
+            sm:leading-6
+          "
+        >
+          {children}
+        </div>
+      </div>
+    </motion.div>
   );
 }
