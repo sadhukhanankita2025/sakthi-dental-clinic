@@ -129,9 +129,7 @@ export default function Footer({ onOpenAppointment }) {
             {/* Description */}
 
             <p className="text-xs text-slate-400 leading-relaxed">
-              Pioneering international standard dental care for women,
-              children, and families with pain-free technology, 20+ years of
-              clinical excellence, and 100% sterile protocols.
+              Sakthi Dental Clinic, Hosur, provides trusted, modern dental care for women, children, and families—from routine check-ups to advanced treatments like implants and orthodontics—with a focus on comfort, quality, and compassionate care.
             </p>
 
             {/* Contact Details */}
@@ -145,8 +143,7 @@ export default function Footer({ onOpenAppointment }) {
                 <MapPin className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
 
                 <span>
-                  #42, Metro Grand Avenue, Near Central Bus Station,
-                  Chennai - 600001
+                  B2/8, SBM Layout, Anthivadi, Hosur, Tamil Nadu 635109, India******
                 </span>
 
               </div>
@@ -161,7 +158,7 @@ export default function Footer({ onOpenAppointment }) {
                   href="tel:+919876543210"
                   className="hover:text-white transition-colors"
                 >
-                  +91 98765 43210 / 044 2345 6789
+                  +91 9862890897/ +91 9363298118
                 </a>
 
               </div>
@@ -176,7 +173,7 @@ export default function Footer({ onOpenAppointment }) {
                   href="mailto:care@sakthidental.com"
                   className="hover:text-white transition-colors"
                 >
-                  care@sakthidental.com
+                  info@sakthidentalclinic.in 
                 </a>
 
               </div>
@@ -213,7 +210,7 @@ export default function Footer({ onOpenAppointment }) {
                   className="hover:text-purple-400 transition-colors flex items-center gap-1.5"
                 >
                   <span className="text-purple-400">›</span>
-                  About Our Clinic
+                  About Us
                 </Link>
               </li>
 
@@ -223,7 +220,7 @@ export default function Footer({ onOpenAppointment }) {
                   className="hover:text-purple-400 transition-colors flex items-center gap-1.5"
                 >
                   <span className="text-purple-400">›</span>
-                  Full Treatments List
+                  Treatments 
                 </Link>
               </li>
 
@@ -354,20 +351,10 @@ export default function Footer({ onOpenAppointment }) {
 
               <div className="flex justify-between text-slate-300">
 
-                <span>Mon - Sat:</span>
-
-                <span className="font-semibold text-white">
-                  9:00 AM - 8:30 PM
-                </span>
-
-              </div>
-
-              <div className="flex justify-between text-slate-300">
-
-                <span>Sunday:</span>
+                <span>Mon - Sat :</span>
 
                 <span className="font-semibold text-teal-300">
-                  10:00 AM - 2:00 PM
+                  9:00 AM - 7:00 PM
                 </span>
 
               </div>
