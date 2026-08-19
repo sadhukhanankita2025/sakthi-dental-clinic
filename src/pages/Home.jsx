@@ -299,7 +299,7 @@ export default function Home({ onOpenAppointment }) {
               >
 
                 <img
-                  src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&q=85&w=900"
+                  src="../src/assets/Banner Images/Banner_img_3.jpg"
                   alt="Dental patient care"
                   className="
                     h-100
