@@ -308,7 +308,7 @@ export default function WhyChooseUs({ onOpenAppointment }) {
 
             <div className="absolute inset-0 z-0 overflow-hidden">
               <motion.img
-                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1000"
+                src="../src/assets/Banner Images/Banner_img_2.jpg"
                 alt="Modern Dental Clinic"
                 initial={{
                   scale: 1.05,
@@ -699,7 +699,7 @@ export default function WhyChooseUs({ onOpenAppointment }) {
             <div className="absolute inset-0 z-0 overflow-hidden">
 
               <motion.img
-                src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1000"
+                src="../src/assets/Banner Images/Banner_img_1.jpg"
                 alt="Dental Technology"
                 initial={{
                   scale: 1.05,
