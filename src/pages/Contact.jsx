@@ -16,7 +16,7 @@ import {
 import ContactForm from "../components/ContactForm";
 import FAQAccordion from "../components/FAQAccordion";
 
-import contactDental from "../assets/contact-dental.jpg";
+import contactDental from "../assets/Banner Images/contact-dental.jpg";
 
 export default function Contact() {
   return (

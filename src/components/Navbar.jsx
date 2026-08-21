@@ -118,7 +118,7 @@ export default function Navbar({ onOpenAppointment }) {
           lg:px-8
         "
       >
-        <div className="mx-auto max-w-355">
+        <div className="mx-auto max-w-7xl">
           <motion.div
             animate={{
               y: scrolled ? -2 : 0,
@@ -136,13 +136,14 @@ export default function Navbar({ onOpenAppointment }) {
               items-center
               rounded-full
               border
-              border-white
-              bg-white
+              border-purple-100/80
+              bg-white/90
+              backdrop-blur-md
               px-4
-              shadow-[0_12px_40px_rgba(72,54,130,0.14)]
+              shadow-[0_12px_40px_rgba(107,33,168,0.08)]
               transition-shadow
               duration-500
-              hover:shadow-[0_16px_45px_rgba(72,54,130,0.18)]
+              hover:shadow-[0_16px_45px_rgba(107,33,168,0.12)]
               sm:px-5
               lg:px-6
             "
@@ -192,7 +193,7 @@ export default function Navbar({ onOpenAppointment }) {
                   justify-center
                   overflow-hidden
                   rounded-2xl
-                  bg-white
+                  bg-transparent
                   sm:h-14
                   sm:w-42.5
                 "
@@ -231,7 +232,7 @@ export default function Navbar({ onOpenAppointment }) {
                 hidden
                 h-8
                 w-px
-                bg-slate-200
+                bg-purple-100
                 lg:block
               "
             />
@@ -246,7 +247,7 @@ export default function Navbar({ onOpenAppointment }) {
                 flex-1
                 items-center
                 justify-center
-                gap-1
+                gap-1.5
                 lg:flex
               "
             >
@@ -293,9 +294,10 @@ export default function Navbar({ onOpenAppointment }) {
                                 inset-0
                                 rounded-full
                                 bg-linear-to-r
-                                from-blue-600
-                                to-cyan-500
-                                shadow-[0_5px_15px_rgba(37,99,235,0.25)]
+                                from-purple-600
+                                via-violet-600
+                                to-indigo-600
+                                shadow-[0_5px_15px_rgba(107,33,168,0.25)]
                               "
                               transition={{
                                 type: "spring",
@@ -324,7 +326,7 @@ export default function Navbar({ onOpenAppointment }) {
                                 absolute
                                 inset-0
                                 rounded-full
-                                bg-blue-50
+                                bg-purple-50/80
                               "
                             />
                           )}
@@ -346,7 +348,7 @@ export default function Navbar({ onOpenAppointment }) {
                               ${
                                 isActive
                                   ? "text-white"
-                                  : "text-slate-600 group-hover:text-blue-700"
+                                  : "text-slate-600 group-hover:text-purple-700"
                               }
                             `}
                           >
@@ -386,7 +388,7 @@ export default function Navbar({ onOpenAppointment }) {
                                 h-0.5
                                 -translate-x-1/2
                                 rounded-full
-                                bg-blue-500
+                                bg-purple-500
                               "
                             />
                           )}
@@ -409,7 +411,7 @@ export default function Navbar({ onOpenAppointment }) {
                 ml-auto
                 hidden
                 items-center
-                gap-2
+                gap-3
                 lg:flex
               "
             >
@@ -444,8 +446,8 @@ export default function Navbar({ onOpenAppointment }) {
                   text-slate-700
                   transition-colors
                   duration-300
-                  hover:bg-blue-50
-                  hover:text-blue-700
+                  hover:bg-purple-50
+                  hover:text-purple-700
                 "
               >
                 <motion.span
@@ -462,8 +464,8 @@ export default function Navbar({ onOpenAppointment }) {
                     items-center
                     justify-center
                     rounded-full
-                    bg-blue-50
-                    text-blue-600
+                    bg-purple-100/70
+                    text-purple-700
                   "
                 >
                   <PhoneCall className="h-4 w-4" />
@@ -495,7 +497,7 @@ export default function Navbar({ onOpenAppointment }) {
                   scale: 1.04,
                   y: -2,
                   boxShadow:
-                    "0 12px 25px rgba(37,99,235,0.28)",
+                    "0 12px 25px rgba(107,33,168,0.25)",
                 }}
                 whileTap={{
                   scale: 0.96,
@@ -510,8 +512,9 @@ export default function Navbar({ onOpenAppointment }) {
                   overflow-hidden
                   rounded-full
                   bg-linear-to-r
-                  from-blue-600
-                  to-cyan-500
+                  from-purple-600
+                  via-violet-600
+                  to-indigo-600
                   px-5
                   py-3
                   text-xs
@@ -519,7 +522,7 @@ export default function Navbar({ onOpenAppointment }) {
                   uppercase
                   tracking-wide
                   text-white
-                  shadow-[0_8px_20px_rgba(37,99,235,0.25)]
+                  shadow-[0_8px_20px_rgba(107,33,168,0.2)]
                 "
               >
                 {/* MOVING SHINE */}
@@ -594,8 +597,8 @@ export default function Navbar({ onOpenAppointment }) {
                   items-center
                   justify-center
                   rounded-full
-                  bg-blue-50
-                  text-blue-600
+                  bg-purple-50
+                  text-purple-700
                 "
                 aria-label="Call Sakthi Dental"
               >
@@ -623,8 +626,8 @@ export default function Navbar({ onOpenAppointment }) {
                   overflow-hidden
                   rounded-full
                   bg-linear-to-r
-                  from-blue-600
-                  to-cyan-500
+                  from-purple-600
+                  to-indigo-600
                   text-white
                   shadow-md
                 "
@@ -672,7 +675,7 @@ export default function Navbar({ onOpenAppointment }) {
                   justify-center
                   rounded-full
                   border
-                  border-slate-200
+                  border-purple-100
                   bg-white
                   text-slate-700
                   shadow-sm
@@ -805,7 +808,7 @@ export default function Navbar({ onOpenAppointment }) {
                 className="
                   rounded-3xl
                   border
-                  border-slate-100
+                  border-purple-100
                   bg-white
                   p-4
                   shadow-2xl
@@ -848,8 +851,8 @@ export default function Navbar({ onOpenAppointment }) {
                             duration-300
                             ${
                               isActive
-                                ? "bg-blue-50 text-blue-700"
-                                : "text-slate-700 hover:bg-slate-50"
+                                ? "bg-purple-50 text-purple-700"
+                                : "text-slate-700 hover:bg-purple-50/50"
                             }
                             `
                           }
@@ -871,8 +874,8 @@ export default function Navbar({ onOpenAppointment }) {
                                     rounded-xl
                                     ${
                                       isActive
-                                        ? "bg-blue-600 text-white"
-                                        : "bg-blue-50 text-blue-600"
+                                        ? "bg-purple-600 text-white"
+                                        : "bg-purple-50 text-purple-600"
                                     }
                                   `}
                                 >
@@ -899,7 +902,7 @@ export default function Navbar({ onOpenAppointment }) {
 
                 {/* DIVIDER */}
 
-                <div className="my-4 h-px bg-slate-100" />
+                <div className="my-4 h-px bg-purple-50" />
 
                 {/* PHONE */}
 
@@ -917,11 +920,11 @@ export default function Navbar({ onOpenAppointment }) {
                     justify-center
                     gap-2
                     rounded-2xl
-                    bg-blue-50
+                    bg-purple-50
                     py-3
                     text-sm
                     font-bold
-                    text-blue-700
+                    text-purple-700
                   "
                 >
                   <PhoneCall className="h-4 w-4" />
@@ -956,8 +959,8 @@ export default function Navbar({ onOpenAppointment }) {
                     overflow-hidden
                     rounded-2xl
                     bg-linear-to-r
-                    from-blue-600
-                    to-cyan-500
+                    from-purple-600
+                    to-indigo-600
                     py-3.5
                     text-sm
                     font-extrabold

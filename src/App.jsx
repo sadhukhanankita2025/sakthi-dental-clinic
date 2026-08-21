@@ -1,8 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-} from "react";
-
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -17,175 +13,116 @@ import Privacy from "./pages/Privacy";
 import Contact from "./pages/Contact";
 
 export default function App() {
-  const [appointmentOpen, setAppointmentOpen] =
-    useState(false);
-
-  const [selectedTreatment, setSelectedTreatment] =
-    useState("");
+  // =====================================================
+  // APPOINTMENT MODAL STATE
+  // =====================================================
+  const [appointmentOpen, setAppointmentOpen] = useState(false);
+  const [selectedTreatment, setSelectedTreatment] = useState("");
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
 
   // =====================================================
-  // OPEN APPOINTMENT
+  // OPEN APPOINTMENT MODAL
+  // Works for Hero Button, Doctor Cards, Treatments, CTA
   // =====================================================
+  const handleOpenAppointment = (doctorOrTreatment = null, treatment = "") => {
+    // If first argument is a doctor object
+    if (
+      doctorOrTreatment &&
+      typeof doctorOrTreatment === "object" &&
+      doctorOrTreatment.name
+    ) {
+      setSelectedDoctor(doctorOrTreatment);
+      setSelectedTreatment(treatment || "");
+    } else {
+      // If first argument is a treatment string
+      setSelectedDoctor(null);
+      setSelectedTreatment(doctorOrTreatment || "");
+    }
 
-  const handleOpenAppointment = (treatment = "") => {
-    console.log(
-      "APP: Opening appointment:",
-      treatment
-    );
-
-    setSelectedTreatment(treatment);
     setAppointmentOpen(true);
   };
 
   // =====================================================
-  // CLOSE APPOINTMENT
+  // CLOSE APPOINTMENT MODAL
   // =====================================================
-
   const handleCloseAppointment = () => {
     setAppointmentOpen(false);
+    setSelectedDoctor(null);
     setSelectedTreatment("");
   };
 
   // =====================================================
-  // LISTEN FOR TREATMENT CARD EVENT
+  // LISTEN FOR CUSTOM EVENT (Treatment Cards)
   // =====================================================
-
   useEffect(() => {
     const openAppointment = (event) => {
-      const treatment =
-        event?.detail?.treatment || "";
+      const doctor = event?.detail?.doctor || null;
+      const treatment = event?.detail?.treatment || "";
 
-      console.log(
-        "APP EVENT: Appointment requested:",
-        treatment
-      );
-
-      handleOpenAppointment(treatment);
+      handleOpenAppointment(doctor || treatment, treatment);
     };
 
-    window.addEventListener(
-      "openAppointment",
-      openAppointment
-    );
+    window.addEventListener("openAppointment", openAppointment);
 
     return () => {
-      window.removeEventListener(
-        "openAppointment",
-        openAppointment
-      );
+      window.removeEventListener("openAppointment", openAppointment);
     };
   }, []);
 
+  // Prevent background scroll while modal is open
+  useEffect(() => {
+    document.body.style.overflow = appointmentOpen ? "hidden" : "auto";
+  }, [appointmentOpen]);
+
   return (
-    <div
-      className="
-        min-h-screen
-        bg-[#FAF5FF]
-        text-[#1E1B4B]
-      "
-    >
+    <div className="min-h-screen bg-[#FAF5FF] text-[#1E1B4B]">
       <ScrollToTop />
 
-      {/* =====================================================
-          NAVBAR
-      ===================================================== */}
+      {/* ================= NAVBAR ================= */}
+      <Navbar onOpenAppointment={handleOpenAppointment} />
 
-      <Navbar
-        onOpenAppointment={() =>
-          handleOpenAppointment("")
-        }
-      />
-
-      {/* =====================================================
-          ROUTES
-      ===================================================== */}
-
+      {/* ================= ROUTES ================= */}
       <main>
         <Routes>
-
-          {/* HOME */}
           <Route
             path="/"
-            element={
-              <Home
-                onOpenAppointment={
-                  handleOpenAppointment
-                }
-              />
-            }
+            element={<Home onOpenAppointment={handleOpenAppointment} />}
           />
 
-          {/* ABOUT */}
           <Route
             path="/about"
-            element={
-              <About
-                onOpenAppointment={
-                  handleOpenAppointment
-                }
-              />
-            }
+            element={<About onOpenAppointment={handleOpenAppointment} />}
           />
 
-          {/* TREATMENTS - FIXED */}
           <Route
             path="/treatments"
-            element={
-              <Treatments
-                onOpenAppointment={
-                  handleOpenAppointment
-                }
-              />
-            }
+            element={<Treatments onOpenAppointment={handleOpenAppointment} />}
           />
 
-          {/* PRIVACY */}
-          <Route
-            path="/privacy"
-            element={<Privacy />}
-          />
+          <Route path="/privacy" element={<Privacy />} />
 
-          {/* CONTACT */}
           <Route
             path="/contact"
-            element={<Contact />}
+            element={<Contact onOpenAppointment={handleOpenAppointment} />}
           />
 
-          {/* FALLBACK */}
+          {/* Fallback */}
           <Route
             path="*"
-            element={
-              <Home
-                onOpenAppointment={
-                  handleOpenAppointment
-                }
-              />
-            }
+            element={<Home onOpenAppointment={handleOpenAppointment} />}
           />
-
         </Routes>
       </main>
 
-      {/* =====================================================
-          FOOTER
-      ===================================================== */}
+      {/* ================= FOOTER ================= */}
+      <Footer onOpenAppointment={handleOpenAppointment} />
 
-      <Footer
-        onOpenAppointment={() =>
-          handleOpenAppointment("")
-        }
-      />
-
-      {/* =====================================================
-          SINGLE APPOINTMENT MODAL
-      ===================================================== */}
-
+      {/* ================= APPOINTMENT MODAL ================= */}
       <AppointmentModal
         isOpen={appointmentOpen}
         onClose={handleCloseAppointment}
-        selectedTreatment={
-          selectedTreatment
-        }
+        selectedDoctor={selectedDoctor}
+        selectedTreatment={selectedTreatment}
       />
     </div>
   );

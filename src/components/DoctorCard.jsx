@@ -70,16 +70,14 @@ export default function DoctorCard({ doctor, onOpenAppointment }) {
 
         <div className="absolute left-4 top-4">
           <span
-            className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold shadow-md backdrop-blur-md ${
-              available
-                ? "bg-emerald-500/90 text-white"
-                : "bg-slate-700/90 text-white"
-            }`}
+            className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold shadow-md backdrop-blur-md ${available
+              ? "bg-emerald-500/90 text-white"
+              : "bg-slate-700/90 text-white"
+              }`}
           >
             <span
-              className={`h-2 w-2 rounded-full ${
-                available ? "bg-white" : "bg-slate-300"
-              }`}
+              className={`h-2 w-2 rounded-full ${available ? "bg-white" : "bg-slate-300"
+                }`}
             />
 
             {available ? "Available Today" : "Currently Unavailable"}
@@ -208,19 +206,21 @@ export default function DoctorCard({ doctor, onOpenAppointment }) {
         </motion.div>
 
         {/* =========================
-            Appointment Button
-        ========================== */}
+           Appointment Button
+          ========================== */}
 
-        <div className="mt-5 flex gap-3">
+        <div className="mt-6">
           <motion.button
             type="button"
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => onOpenAppointment?.(doctor)}
-            className="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl bg-purple-700 px-4 py-3 text-sm font-extrabold text-white shadow-lg shadow-purple-700/20 transition-colors duration-300 hover:bg-purple-800"
+            onClick={() => {
+              // Open Appointment Modal with selected doctor
+              onOpenAppointment?.(doctor);
+            }}
+            className="w-full flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 px-5 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-purple-600/30 transition-all duration-300 hover:shadow-xl hover:shadow-purple-700/40 hover:from-purple-700 hover:via-violet-700 hover:to-indigo-700"
           >
-            <Calendar className="h-4 w-4" />
-
+            <Calendar className="h-5 w-5" />
             Book Appointment
           </motion.button>
         </div>

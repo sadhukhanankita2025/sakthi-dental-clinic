@@ -1,3 +1,13 @@
+// Doctor Images
+import drAnupriya from "../assets/1doc.jpg";
+import drArvind  from "../assets/doc.png";
+import drSrinivas from "../assets/doc2.png";
+import drAnanya from "../assets/doc3.jpg";
+import drSneha from "../assets/doc4.jpg";
+import drMeera from "../assets/doc5.jpg";
+import drBalu from "../assets/doc6.png";
+import drVikram from "../assets/doc7.jpg";
+
 export const DOCTORS_DATA = [
   {
     id: "dr-anupriya",
@@ -17,7 +27,7 @@ export const DOCTORS_DATA = [
       "Founder, Sakthi Dental Clinic, Hosur",
     ],
     availableDays: "Monday – Saturday (9:00 AM – 8:00 PM)",
-    image: "/images/doctors/dr-anupriya.jpg",
+    image: drAnupriya,
     bio: "Founder of Sakthi Dental Clinic, Hosur. With over two decades of experience, Dr. Anupriya is known for gentle, patient-centered dentistry and advanced treatment planning for families and individuals.",
   },
 
@@ -37,8 +47,8 @@ export const DOCTORS_DATA = [
       "Indian Prosthodontic Society",
       "Indian Dental Association",
     ],
-    availableDays: "Monday, Wednesday & Friday",
-    image: "/images/doctors/dr-ananya-iyer.jpg",
+    availableDays: "Monday, Wednesday ",
+    image: drAnanya,
     bio: "Specialist in restoring missing and damaged teeth with advanced prosthetic and cosmetic dental solutions for long-lasting smiles.",
   },
 
@@ -59,7 +69,7 @@ export const DOCTORS_DATA = [
       "Federation of Operative Dentistry of India",
     ],
     availableDays: "Monday – Friday",
-    image: "/images/doctors/dr-meera-subramanian.jpg",
+    image: drMeera,
     bio: "Expert in painless microscopic root canal treatments using advanced rotary endodontic technology for maximum tooth preservation.",
   },
 
@@ -80,7 +90,7 @@ export const DOCTORS_DATA = [
       "Association of Dental Surgeons",
     ],
     availableDays: "Tuesday – Saturday",
-    image: "/images/doctors/dr-arvind-kumar.jpg",
+    image: drArvind,
     bio: "Experienced dental surgeon providing painless extractions, restorative procedures, and comprehensive oral healthcare.",
   },
 
@@ -101,7 +111,7 @@ export const DOCTORS_DATA = [
       "Indian Dental Association",
     ],
     availableDays: "Wednesday, Friday & Saturday",
-    image: "/images/doctors/dr-sneha-n.jpg",
+    image: drSneha,
     bio: "Specializes in modern orthodontic treatments including ceramic braces and clear aligners for children, teenagers, and adults.",
   },
 
@@ -122,7 +132,7 @@ export const DOCTORS_DATA = [
       "Indian Society of Oral Implantologists",
     ],
     availableDays: "Monday, Thursday & Saturday",
-    image: "/images/doctors/dr-srinivas-rohit.jpg",
+    image: drSrinivas,
     bio: "Advanced implantologist experienced in single-tooth implants, full-mouth rehabilitation, and digital implant planning.",
   },
 
@@ -143,7 +153,7 @@ export const DOCTORS_DATA = [
       "Academy of Laser Dentistry",
     ],
     availableDays: "Tuesday, Thursday & Saturday",
-    image: "/images/doctors/dr-balu.jpg",
+    image: drBalu,
     bio: "Expert in minimally invasive laser dental procedures with faster healing, less bleeding, and greater patient comfort.",
   },
 
@@ -164,7 +174,7 @@ export const DOCTORS_DATA = [
       "Certified Clear Aligner Provider",
     ],
     availableDays: "Friday & Saturday",
-    image: "/images/doctors/dr-vikram-raj-kishore.jpg",
+    image: drVikram,
     bio: "Partner specialist for invisible aligner treatments, helping patients achieve straighter smiles with digital treatment planning.",
   },
 ];

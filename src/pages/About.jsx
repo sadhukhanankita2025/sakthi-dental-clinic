@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 
 import {
   Award,
@@ -9,24 +9,29 @@ import {
   Sparkles,
   Target,
   Eye,
-  CheckCircle2,
   HelpCircle,
   MapPin,
   Building2,
   ShieldCheck,
   Calendar,
+  ArrowRight,
+  X,
+  Cpu,
+  Zap,
+  Smile,
+  Shield,
+  Sun,
+  Activity,
 } from "lucide-react";
 
-import DoctorCard from "../components/DoctorCard";
 import DoctorsAndSpecialties from "../components/DoctorsAndSpecialties";
 import FAQAccordion from "../components/FAQAccordion";
 import CTA from "../components/CTA";
+import ContactForm from "../components/ContactForm";
 
-import { DOCTORS_DATA } from "../data/doctorsData";
 import backgroundImage from "../assets/1doc.jpg";
 import Visionimg from "../assets/Banner Images/Banner_img_1.jpg";
 import Missionimg from "../assets/Banner Images/Banner_img_1.jpg";
-
 
 /* =========================================================
    ANIMATED NUMBER
@@ -46,9 +51,7 @@ function AnimatedNumber({ end, duration = 2500 }) {
 
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-
-      // Ease-out animation
-      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const easedProgress = 1 - Math.pow(1 - progress, 3); // Ease-out
 
       setValue(Math.floor(easedProgress * end));
 
@@ -76,9 +79,7 @@ function AnimatedNumber({ end, duration = 2500 }) {
 ========================================================= */
 
 export default function About({ onOpenAppointment }) {
-  /* =======================================================
-     STATISTICS
-  ======================================================= */
+  const [selectedService, setSelectedService] = useState(null);
 
   const stats = [
     {
@@ -86,139 +87,209 @@ export default function About({ onOpenAppointment }) {
       value: 15000,
       suffix: "+",
       icon: Users,
-      color: "text-purple-600",
+      color: "text-purple-600 bg-purple-50 border-purple-100",
     },
     {
       label: "Years Clinical Experience",
       value: 20,
       suffix: "+",
       icon: Award,
-      color: "text-indigo-600",
+      color: "text-indigo-600 bg-indigo-50 border-indigo-100",
     },
     {
       label: "Specialized Treatments",
       value: 18,
       suffix: "+",
       icon: Stethoscope,
-      color: "text-violet-600",
+      color: "text-violet-600 bg-violet-50 border-violet-100",
     },
     {
       label: "Patient Satisfaction",
       value: 99,
       suffix: "%",
       icon: Heart,
-      color: "text-fuchsia-600",
+      color: "text-fuchsia-600 bg-fuchsia-50 border-fuchsia-100",
     },
   ];
 
-  /* =======================================================
-     TIMELINE
-  ======================================================= */
+  const specialtyServices = [
+    {
+      badge: "5,000+ Implants",
+      title: "3D Computer-Guided Implantology",
+      subtitle: "Permanent tooth replacement with lifetime warranty",
+      desc: "Flapless, keyhole implant placement guided by 3D digital scans for immediate loading and zero post-op swelling.",
+      equipment: "German CBCT 3D X-Ray & Swiss Titanium Implants",
+      highlights: ["Surgical Precision", "Lifetime Warranty", "Natural Chewing Power"],
+      icon: Cpu,
+      queryName: "3D Implants",
+    },
+    {
+      badge: "8,000+ RCTs",
+      title: "Rotary Micro-Endodontics (RCT)",
+      subtitle: "Single-visit painless root canal therapy",
+      desc: "Precision nerve cleaning using German rotary files and laser sterilizing beams. Pain is eliminated before procedure starts.",
+      equipment: "Carl Zeiss Dental Microscope & Computerized Anesthesia",
+      highlights: ["Single Sitting", "Zero Needle Pain", "99.4% Tooth Saving"],
+      icon: Zap,
+      queryName: "Rotary",
+    },
+    {
+      badge: "3,200+ Cases",
+      title: "Digital Orthodontics & Clear Aligners",
+      subtitle: "Invisalign & invisible aligner alignment",
+      desc: "Straighten misaligned teeth using custom medical-grade clear aligner trays without metal wires or mouth sores.",
+      equipment: "iTero Element 5D Intraoral Scanner",
+      highlights: ["100% Removable", "Invisible Aesthetics", "0% Interest EMI"],
+      icon: Activity,
+      queryName: "Digital",
+    },
+    {
+      badge: "10,000+ Happy Kids",
+      title: "Anxiety-Free Pediatric Dentistry",
+      subtitle: "Gentle child-friendly dental play environment",
+      desc: "Dedicated kid-friendly treatment lounge with cartoon displays, preventive fluoride varnish, and painless cavity fillings.",
+      equipment: "Pain-Free Wand Anesthesia & Nitrous Sedation",
+      highlights: ["Fear-Free Protocol", "Preventive Fluoride", "Kids Play Suite"],
+      icon: Smile,
+      queryName: "Anxiety-Free",
+    },
+    {
+      badge: "100% Bloodless",
+      title: "Laser Periodontics & Gum Care",
+      subtitle: "Bloodless gum reshaping & deep cleaning",
+      desc: "Treat bleeding gums, pyorrhea, and dark gum hyperpigmentation without scalpels, sutures, or heavy bleeding.",
+      equipment: "Biolase Waterlase Diode Laser System",
+      highlights: ["No Scalpel / Sutures", "Instant Healing", "Gummy Smile Correction"],
+      icon: Shield,
+      queryName: "Laser",
+    },
+    {
+      badge: "1-Hour Whitening",
+      title: "Cosmetic Veneers & Digital Smile Design",
+      subtitle: "Hollywood porcelain veneers & teeth whitening",
+      desc: "Transform discolored, chipped, or gapped teeth into a stunning picture-perfect smile customized to your facial symmetry.",
+      equipment: "Digital Smile Design (DSD) Software & Zoom Bleaching",
+      highlights: ["Custom Shade Match", "1-Hour Transformation", "Stain Resistant"],
+      icon: Sun,
+      queryName: "Cosmetic",
+    },
+  ];
 
   const timelineEvents = [
     {
       year: "2000",
       title: "Professional Journey Begins",
-      desc: "Dr. Anupriya graduated and started her career in modern dentistry, later refining her clinical skills during 6 impactful years at Mathura Clinic.",
+      desc: "Dr. Anupriya graduated and started her career in modern dentistry, later refining clinical skills over 6 years at Mathura Clinic.",
     },
     {
       year: "2004",
-      title: "Foundation of Sakthi Dental Clinic",
+      title: "Foundation of Sakthi Dental",
       desc: "Established in Hosur with a clear vision to make high-quality, patient-centric dental care accessible to all.",
     },
     {
       year: "2014+",
-      title: "Decade of Healthcare Consultancy",
-      desc: "Marked long-standing service as a trusted dental consultant with the Primary Health Center at Chandara Hospital for over a decade.",
+      title: "Healthcare Consultancy",
+      desc: "Marked long-standing service as a trusted dental consultant with the Primary Health Center at Chandara Hospital.",
     },
     {
       year: "2026",
       title: "Excellence in Modern Dentistry",
-      desc: "Bringing over 20 years of expertise, combining advanced technology with compassionate, personalized care.",
+      desc: "Bringing over 2 decades of expertise, combining advanced technology with compassionate, personalized care.",
     },
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-16 space-y-20 bg-slate-50">
+    <div className="min-h-screen pt-24 pb-16 space-y-24 bg-linear-to-b from-purple-50/40 via-white to-slate-50 relative overflow-hidden">
+      
+      {/* =====================================================
+          SOFT PASTEL AMBIENT GLOW EFFECTS
+      ====================================================== */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-200 h-125 bg-linear-to-br from-purple-200/40 via-indigo-100/30 to-transparent rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 -right-20 w-125 h-125 bg-purple-100/60 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/3 -left-20 w-125 h-125 bg-indigo-100/50 rounded-full blur-[120px] pointer-events-none" />
+
       {/* =====================================================
           HERO SECTION
       ====================================================== */}
-
-      {/* Hero: Get to Know Dr. Anupriya */}
-      <section className="relative overflow-hidden bg-linear-to-b from-purple-100/70 via-indigo-50/40 to-[#FAF5FF] py-16 sm:py-24">
-        {/* Soft pastel ambient orbs */}
-        <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-200 h-125 bg-linear-to-br from-purple-300/30 via-indigo-200/35 to-teal-100/30 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute top-1/3 -right-24 w-95 h-95 bg-purple-200/30 rounded-full blur-[100px] pointer-events-none" />
-
+      <section className="relative overflow-hidden py-12 sm:py-16 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-purple-200/80 text-xs font-black text-purple-950 uppercase tracking-wider shadow-sm">
+            {/* Left Content */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-7 space-y-6"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-purple-200 text-xs font-bold text-purple-950 uppercase tracking-wider shadow-sm">
                 <span className="flex h-2 w-2 rounded-full bg-purple-600 animate-ping" />
                 <Sparkles className="w-3.5 h-3.5 text-purple-600" /> About Us • Sakthi Dental Clinic
               </div>
 
-              <div className="space-y-2">
-                <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+              <div className="space-y-3">
+                <h1 className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
                   Get to Know <span className="bg-linear-to-r from-purple-700 via-indigo-600 to-teal-600 bg-clip-text text-transparent">Dr. Anupriya</span>
                 </h1>
-                <p className="text-lg sm:text-xl font-extrabold text-purple-800">
+                <p className="text-lg sm:text-xl font-bold text-purple-800">
                   Your Trusted Partner in Dental Care & Smile Transformation
                 </p>
               </div>
 
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  With more than two decades of dedicated practice, Dr. Anupriya has built a reputation for clinical excellence, gentle care, and a patient-first philosophy. After graduating in 2000, she spent six formative years (2000–2006) at Mathura Clinic refining her expertise before establishing Sakthi Dental Clinic in Hosur in 2004.
+                  With more than two decades of dedicated practice, Dr. Anupriya has built a reputation for clinical excellence, gentle care, and a patient-first philosophy. After graduating in 2000, she spent six formative years at Mathura Clinic before establishing Sakthi Dental Clinic in Hosur in 2004.
                 </p>
-                <p>
-                  For over a decade, she has also been a trusted dental consultant at the Primary Health Center (PHC) at Chandara Hospital, extending quality healthcare to diverse communities.
-                </p>
-                <p>
-                  At Sakthi Dental Clinic, we believe that a healthy smile is a gateway to confidence and wellbeing. Our clinic blends advanced dental technology with a warm, patient-friendly environment to ensure every visit is comfortable and stress-free. From routine check-ups to specialized treatments, we prioritize personalized care tailored to your unique dental needs.
-                </p>
-                <div className="font-semibold text-slate-900 bg-white/90 p-4 sm:p-5 rounded-2xl border border-purple-100 shadow-sm flex items-start gap-3">
+                <div className="font-medium text-slate-800 bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-purple-100 shadow-sm flex items-start gap-3">
                   <Heart className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
-                  <span>Whether you're looking for preventive care, cosmetic enhancements, or restorative solutions, Dr. Anupriya and her team are committed to delivering excellence at every step. Because here, your smile isn’t just treated — it’s celebrated.</span>
+                  <span>Whether you're looking for preventive care, cosmetic enhancements, or restorative solutions, Dr. Anupriya and her team are committed to delivering excellence at every step.</span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs font-bold text-slate-700">
-                <div className="flex items-center gap-2 p-3 rounded-2xl bg-white shadow-sm border border-purple-100">
+              {/* Quick Info Badges */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-bold text-slate-700">
+                <div className="flex items-center gap-2 p-3 rounded-2xl bg-white shadow-sm border border-purple-100/80">
                   <MapPin className="w-4 h-4 text-purple-600 shrink-0" />
                   <span>Hosur, Tamil Nadu</span>
                 </div>
-                <div className="flex items-center gap-2 p-3 rounded-2xl bg-white shadow-sm border border-purple-100">
+                <div className="flex items-center gap-2 p-3 rounded-2xl bg-white shadow-sm border border-purple-100/80">
                   <Building2 className="w-4 h-4 text-indigo-600 shrink-0" />
                   <span>Est. 2004 in Hosur</span>
                 </div>
-                <div className="flex items-center gap-2 p-3 rounded-2xl bg-white shadow-sm border border-purple-100">
+                <div className="flex items-center gap-2 p-3 rounded-2xl bg-white shadow-sm border border-purple-100/80">
                   <ShieldCheck className="w-4 h-4 text-teal-600 shrink-0" />
                   <span>PHC Dental Consultant</span>
                 </div>
               </div>
 
               <div className="pt-2">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={onOpenAppointment}
-                  className="px-8 py-4 rounded-full bg-linear-to-r from-purple-600 via-indigo-600 to-teal-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-purple-500/20 hover:shadow-xl transition-all cursor-pointer flex items-center gap-2"
+                  className="px-8 py-4 rounded-full bg-linear-to-r from-purple-600 via-indigo-600 to-teal-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-purple-500/25 hover:shadow-xl transition-all cursor-pointer flex items-center gap-2"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>Book Appointment with Dr. Anupriya</span>
-                </button>
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </motion.button>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Founder Doctor Profile Card */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative rounded-[36px] overflow-hidden p-3.5 bg-white/90 shadow-2xl border border-white shadow-purple-900/15">
+            {/* Founder Profile Card */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:col-span-5 relative"
+            >
+              <div className="relative rounded-[36px] overflow-hidden p-3.5 bg-white/90 backdrop-blur-md shadow-xl border border-purple-100/80 shadow-purple-900/10 group">
                 <img
                   src={backgroundImage}
                   alt="Dr. Anupriya Founder & Chief Dental Surgeon"
-                  className="w-full h-110 object-cover rounded-[28px]"
+                  className="w-full h-112.5 object-cover rounded-[28px] group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-purple-100 shadow-xl">
+                <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-purple-100 shadow-lg">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-base font-black text-slate-900">Dr. Anupriya</p>
@@ -228,12 +299,9 @@ export default function About({ onOpenAppointment }) {
                       20+ Yrs Exp
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-500 font-medium mt-1">
-                    Leading Modern Dentistry in Hosur Since 2004
-                  </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -242,127 +310,97 @@ export default function About({ onOpenAppointment }) {
       {/* =====================================================
           STATISTICS
       ====================================================== */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="relative group">
+          <div className="absolute -inset-1.5 bg-linear-to-r from-purple-400 via-indigo-300 to-fuchsia-400 rounded-4xl blur-xl opacity-40 group-hover:opacity-75 transition duration-500 pointer-events-none" />
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-white rounded-4xl p-8 sm:p-12 border border-purple-100 shadow-xl shadow-purple-500/5"
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((st, idx) => {
-              const IconComp = st.icon;
-
-              return (
-                <motion.div
-                  key={idx}
-                  whileHover={{ y: -5 }}
-                  className="text-center space-y-3"
-                >
-                  <IconComp className={`w-8 h-8 ${st.color} mx-auto`} />
-                  <div className="text-3xl sm:text-4xl font-black text-slate-900">
-                    <AnimatedNumber end={st.value} duration={2500} />
-                    <span>{st.suffix}</span>
-                  </div>
-                  <p className="text-[10px] sm:text-xs font-bold uppercase text-slate-500 tracking-wider">
-                    {st.label}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative bg-white/95 backdrop-blur-xl rounded-4xl p-8 sm:p-12 border border-purple-200 shadow-2xl shadow-purple-500/15"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {stats.map((st, idx) => {
+                const IconComp = st.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ y: -5 }}
+                    className="text-center space-y-3 p-4 rounded-2xl transition-all bg-linear-to-b from-purple-50/50 to-white border border-purple-100/60 shadow-sm"
+                  >
+                    <div className={`w-14 h-14 rounded-2xl mx-auto flex items-center justify-center border shadow-inner ${st.color}`}>
+                      <IconComp className="w-7 h-7" />
+                    </div>
+                    <div className="text-3xl sm:text-4xl font-black text-slate-900">
+                      <AnimatedNumber end={st.value} duration={2500} />
+                      <span>{st.suffix}</span>
+                    </div>
+                    <p className="text-[10px] sm:text-xs font-bold uppercase text-slate-500 tracking-wider">
+                      {st.label}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* =====================================================
           MISSION & VISION
       ====================================================== */}
-
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-          {/* MISSION */}
+          
+          {/* Mission */}
           <motion.div
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ duration: 0.35 }}
-            className="relative overflow-hidden rounded-4xl shadow-2xl group min-h-107.5"
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.3 }}
+            className="relative overflow-hidden rounded-4xl shadow-xl group min-h-105 border border-purple-100"
           >
-            {/* Background Image */}
             <img
               src={Missionimg}
-              alt="Sakthi Dental Clinic"
+              alt="Mission"
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
+            <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px]" />
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-linear-to-br from-purple-900/85 via-purple-800/70 to-slate-900/80" />
-
-            {/* Content */}
-            <div className="relative z-10 p-8 h-full flex flex-col justify-between text-white space-y-5">
-              <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-                <Target className="w-7 h-7 text-white" />
+            <div className="relative z-10 p-8 sm:p-10 h-full flex flex-col justify-between space-y-6">
+              <div className="w-14 h-14 rounded-2xl bg-white/90 backdrop-blur-md flex items-center justify-center border border-purple-200 shadow-md">
+                <Target className="w-7 h-7 text-purple-700" />
               </div>
-
-              <div>
-                <h3 className="text-3xl font-bold mb-4">Our Mission</h3>
-
-                <p className="text-sm sm:text-base leading-7 text-slate-100">
-                  At Sakthi Dental Clinic, our mission is to redefine oral healthcare
-                  by delivering personalized, compassionate, and advanced dental
-                  services. We are committed to creating a welcoming environment where
-                  patients feel comfortable and confident in taking charge of their
-                  dental health.
-                </p>
-
-                <p className="mt-3 text-sm sm:text-base leading-7 text-slate-100">
-                  By integrating state-of-the-art technology with patient-centric care,
-                  we ensure every treatment enhances not only your smile but also your
-                  overall well-being. Continuous learning and innovation drive us to
-                  provide comprehensive solutions for lifelong oral health.
+              <div className="space-y-3 bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-white/80 shadow-lg">
+                <h3 className="text-3xl font-black text-slate-900">Our Mission</h3>
+                <p className="text-sm sm:text-base leading-relaxed text-slate-700 font-medium">
+                  To redefine oral healthcare by delivering personalized, compassionate, and advanced dental services. We create a welcoming environment where patients feel comfortable and confident taking charge of their health.
                 </p>
               </div>
             </div>
           </motion.div>
 
-          {/* VISION */}
+          {/* Vision */}
           <motion.div
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ duration: 0.35 }}
-            className="relative overflow-hidden rounded-4xl shadow-2xl group min-h-107.5"
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.3 }}
+            className="relative overflow-hidden rounded-4xl shadow-xl group min-h-105 border border-indigo-100"
           >
-            {/* Background Image */}
             <img
               src={Visionimg}
-              alt="Sakthi Dental Clinic"
+              alt="Vision"
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
+            <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px]" />
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-linear-to-br from-indigo-900/85 via-indigo-800/70 to-slate-900/80" />
-
-            {/* Content */}
-            <div className="relative z-10 p-8 h-full flex flex-col justify-between text-white space-y-5">
-              <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-                <Eye className="w-7 h-7 text-white" />
+            <div className="relative z-10 p-8 sm:p-10 h-full flex flex-col justify-between space-y-6">
+              <div className="w-14 h-14 rounded-2xl bg-white/90 backdrop-blur-md flex items-center justify-center border border-indigo-200 shadow-md">
+                <Eye className="w-7 h-7 text-indigo-700" />
               </div>
-
-              <div>
-                <h3 className="text-3xl font-bold mb-4">Our Vision</h3>
-
-                <p className="text-sm sm:text-base leading-7 text-slate-100">
-                  Our vision is to be a leading force in modern dentistry, known for
-                  setting new standards in patient care, innovation, and community
-                  engagement. We believe building trust and encouraging preventive care
-                  are essential for healthier smiles.
-                </p>
-
-                <p className="mt-3 text-sm sm:text-base leading-7 text-slate-100">
-                  We aspire to deliver exceptional dental outcomes while contributing
-                  positively to the community through awareness initiatives and outreach
-                  programs, ensuring every smile reflects confidence, health, and
-                  happiness.
+              <div className="space-y-3 bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-white/80 shadow-lg">
+                <h3 className="text-3xl font-black text-slate-900">Our Vision</h3>
+                <p className="text-sm sm:text-base leading-relaxed text-slate-700 font-medium">
+                  To be a leading force in modern dentistry, known for setting new standards in patient care, technological innovation, and community engagement for healthier, confident smiles.
                 </p>
               </div>
             </div>
@@ -374,28 +412,19 @@ export default function About({ onOpenAppointment }) {
       {/* =====================================================
           TIMELINE
       ====================================================== */}
-
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto mb-12 space-y-3"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-700 text-xs font-bold uppercase tracking-wider">
-            <Award className="w-4 h-4" />
-            Our Journey
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100/80 text-purple-700 text-xs font-bold uppercase tracking-wider border border-purple-200">
+            <Award className="w-4 h-4" /> Our Journey
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">
-            20+ Years Journey of{" "}
-            <span className="bg-linear-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Excellence
-            </span>
+            20+ Years Journey of <span className="bg-linear-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Excellence</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600">
-            A timeline of trust, innovation, and important milestones.
-          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -406,194 +435,68 @@ export default function About({ onOpenAppointment }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="bg-white rounded-3xl p-6 relative space-y-4 border border-purple-100 shadow-md hover:shadow-xl hover:shadow-purple-500/10 transition-shadow"
+              whileHover={{ y: -6 }}
+              className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 relative space-y-3 border border-purple-100 shadow-md hover:shadow-xl transition-all"
             >
               <span className="text-3xl font-black bg-linear-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 {item.year}
               </span>
-              <h4 className="text-base font-bold text-slate-800">
-                {item.title}
-              </h4>
-              <p className="text-xs text-slate-600 leading-6">
-                {item.desc}
-              </p>
+              <h4 className="text-base font-bold text-slate-800">{item.title}</h4>
+              <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* =====================================================
-          DOCTORS & SPECIALTIES
-      ====================================================== */}
-      <DoctorsAndSpecialties />
+      {/* Doctors & Specialties */}
+      <div className="relative z-10">
+        <DoctorsAndSpecialties onOpenAppointment={onOpenAppointment} />
+      </div>
 
-      {/* =====================================================
-          DOCTORS
-      ====================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-12 space-y-3"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider">
-            <Stethoscope className="w-4 h-4" />
-            Our Experts
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">
-            Meet Our{" "}
-            <span className="bg-linear-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Specialist Doctors
-            </span>
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600">
-            Experienced dental professionals dedicated to your oral health.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {DOCTORS_DATA.map((doc) => (
-            <DoctorCard
-              key={doc.id}
-              doctor={doc}
-              onOpenAppointment={onOpenAppointment}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* =====================================================
-          FAQ SECTION
-      ====================================================== */}
-      <section className="relative overflow-hidden py-20 bg-linear-to-br from-purple-50 via-white to-indigo-50">
-        <div className="absolute top-10 left-0 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl pointer-events-none" />
-
+      {/* FAQ SECTION */}
+      <section className="relative overflow-hidden py-20 bg-linear-to-br from-purple-50/60 via-white to-indigo-50/60 border-y border-purple-100 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-12 space-y-4"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-700 border border-purple-200 text-xs font-bold uppercase tracking-wider">
-              <HelpCircle className="w-4 h-4 text-purple-600" />
-              Patient Guidance & FAQs
+              <HelpCircle className="w-4 h-4 text-purple-600" /> Patient Guidance
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900">
-              Frequently Asked{" "}
-              <span className="bg-linear-to-r from-purple-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent">
-                Questions
-              </span>
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900">
+              Frequently Asked <span className="bg-linear-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Questions</span>
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-7 max-w-2xl mx-auto">
-              Everything you need to know about dental treatments, pain relief, scaling, root canals, implants, braces, and oral hygiene.
-            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            {/* LEFT IMAGE */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="relative"
-            >
-              <div className="absolute -inset-6 bg-purple-500/20 blur-3xl rounded-full" />
-              <motion.div
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3 }}
-                className="relative bg-white p-3 rounded-4xl border border-purple-200 shadow-2xl shadow-purple-500/20 overflow-hidden"
-              >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div className="relative">
+              <div className="bg-white p-3 rounded-4xl border border-purple-200 shadow-xl overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&q=85&w=900"
-                  alt="Dental patient care"
-                  className="w-full h-96 sm:h-112 object-cover rounded-3xl"
+                  alt="Dental care"
+                  className="w-full h-100 object-cover rounded-2xl"
                 />
-                <div className="absolute inset-3 rounded-3xl bg-linear-to-t from-purple-950/70 via-transparent to-transparent pointer-events-none" />
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                  className="absolute bottom-8 left-8 right-8 p-5 rounded-2xl bg-white/90 backdrop-blur-xl border border-purple-100 shadow-xl"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-xl bg-purple-100 flex items-center justify-center">
-                      <HelpCircle className="w-5 h-5 text-purple-600" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-extrabold text-slate-900">
-                        Have Questions?
-                      </p>
-                      <p className="text-xs text-purple-600 font-semibold">
-                        We are here to help you.
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, -12, 0], rotate: [0, 8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-5 -right-5 w-16 h-16 rounded-2xl bg-linear-to-br from-purple-600 to-indigo-600 shadow-xl shadow-purple-500/30 flex items-center justify-center"
-              >
-                <Sparkles className="w-7 h-7 text-white" />
-              </motion.div>
-            </motion.div>
-
-            {/* RIGHT FAQ */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="relative"
-            >
-              <div className="absolute -inset-4 bg-purple-500/10 blur-3xl rounded-4xl" />
-              <div className="relative bg-white/95 backdrop-blur-xl rounded-4xl border border-purple-200 shadow-2xl shadow-purple-500/10 overflow-hidden">
-                <div className="px-5 sm:px-6 py-5 bg-linear-to-r from-purple-600 via-violet-600 to-indigo-600 text-white">
-                  <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center">
-                      <HelpCircle className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="font-extrabold text-sm sm:text-base">
-                        Dental FAQs
-                      </h3>
-                      <p className="text-[11px] sm:text-xs text-white/80">
-                        Find answers to common dental questions
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-4 sm:p-5 bg-linear-to-b from-white to-purple-50/40 max-h-107.5 overflow-y-auto">
-                  <FAQAccordion />
-                </div>
-
-                <div className="px-5 py-3 border-t border-purple-100 bg-purple-50 text-center">
-                  <p className="text-[10px] sm:text-xs font-bold text-purple-600 uppercase tracking-wider">
-                    Tap a question to view the answer
-                  </p>
-                </div>
               </div>
-            </motion.div>
+            </div>
+
+            <div className="bg-white/95 backdrop-blur-xl rounded-4xl border border-purple-200 shadow-xl overflow-hidden">
+              <div className="px-6 py-4 bg-linear-to-r from-purple-600 via-indigo-600 to-violet-600 text-white font-bold">
+                Dental FAQs & Support
+              </div>
+              <div className="p-4 sm:p-6 max-h-100 overflow-y-auto">
+                <FAQAccordion />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* =====================================================
-          FINAL CTA
-      ====================================================== */}
-      <CTA onOpenAppointment={onOpenAppointment} />
+      {/* FINAL CTA */}
+      <div className="relative z-10">
+        <CTA onOpenAppointment={onOpenAppointment} />
+      </div>
     </div>
   );
 }
