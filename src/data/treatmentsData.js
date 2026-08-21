@@ -1,3 +1,19 @@
+import teethCleaningImg from "../assets/Treatments/Teeth Cleaning.png";
+import toothFillingImg from "../assets/Treatments/Tooth-Filling.jpg";
+import teethExtractionImg from "../assets/Treatments/Teeth Extraction.png";
+import artificialDentureImg from "../assets/Treatments/Artificial Complete Denture.png";
+import bleachingImg from "../assets/Treatments/Bleaching.png";
+import orthodonticsImg from "../assets/Treatments/Orthodonic-Treatment.png";
+import dentalImplantImg from "../assets/Treatments/Impants.png";
+import laserDentistryImg from "../assets/Treatments/Laser-Surgery.png";
+import rootCanalImg from "../assets/Treatments/Root Canal Treatment.png";
+import wisdomToothImg from "../assets/Treatments/Wisdom Teeth Removal.png";
+import bridgeImg from "../assets/Treatments/Fixed Partial Denture.png";
+import veneersImg from "../assets/Treatments/Veneer Treatment.jpg";
+import pediatricDentistryImg from "../assets/Treatments/Pediatric-dentistry.png";
+import flapSurgeryImg from "../assets/Treatments/Flap-surgery.png";
+import alignersImg from "../assets/Treatments/Aligner.png";
+
 export const TREATMENTS_CATEGORIES = [
   "All",
   "General Dentistry",
@@ -21,7 +37,7 @@ export const TREATMENTS_DATA = [
     recovery: "Immediate",
     painless: true,
     priceEstimate: "₹800 - ₹1,500",
-    image: "../src/assets/Treatments/Teeth Cleaning.png",
+    image: teethCleaningImg,
     benefits: [
       "Prevents Gingivitis",
       "Removes Tough Stains",
@@ -43,7 +59,7 @@ export const TREATMENTS_DATA = [
     recovery: "Same Day",
     painless: true,
     priceEstimate: "₹1,000 - ₹2,500",
-    image: "/src/assets/Treatments/Tooth-Filling.jpg",
+    image: toothFillingImg,
     benefits: [
       "Tooth-Colored Finish",
       "Mercury-Free Composite",
@@ -65,7 +81,7 @@ export const TREATMENTS_DATA = [
     recovery: "2 - 3 Days",
     painless: true,
     priceEstimate: "₹1,200 - ₹3,000",
-    image: "/src/assets/Treatments/Teeth Extraction.png",
+    image: teethExtractionImg,
     benefits: [
       "Zero Pain Anesthesia",
       "Rapid Healing Protocol",
@@ -87,7 +103,7 @@ export const TREATMENTS_DATA = [
     recovery: "Instant Adaptation",
     painless: true,
     priceEstimate: "₹8,000 - ₹25,000",
-    image: "/src/assets/Treatments/Artificial Complete Denture.png",
+    image: artificialDentureImg,
     benefits: [
       "Custom Ergonomic Fit",
       "Natural Facial Support",
@@ -109,7 +125,7 @@ export const TREATMENTS_DATA = [
     recovery: "Immediate",
     painless: true,
     priceEstimate: "₹5,000 - ₹12,000",
-    image: "/src/assets/Treatments/Bleaching.png",
+    image: bleachingImg,
     benefits: [
       "Up to 8 Shades Whiter",
       "Enamel-Safe Formula",
@@ -131,7 +147,7 @@ export const TREATMENTS_DATA = [
     recovery: "Gradual Alignment",
     painless: false,
     priceEstimate: "₹25,000 - ₹60,000",
-    image: "/src/assets/Treatments/Orthodonic-Treatment.png",
+    image: orthodonticsImg,
     benefits: [
       "Perfect Smile Alignment",
       "Corrects Overbite & Crossbite",
@@ -153,7 +169,7 @@ export const TREATMENTS_DATA = [
     recovery: "3 - 5 Days",
     painless: true,
     priceEstimate: "₹22,000 - ₹45,000",
-    image: "/src/assets/Treatments/Impants.png",
+    image: dentalImplantImg,
     benefits: [
       "Lifelong Durability",
       "Prevents Bone Loss",
@@ -175,7 +191,7 @@ export const TREATMENTS_DATA = [
     recovery: "Fast Healing",
     painless: true,
     priceEstimate: "₹3,000 - ₹8,000",
-    image: "/src/assets/Treatments/Laser-Surgery.png",
+    image: laserDentistryImg,
     benefits: [
       "Minimal to No Bleeding",
       "No Drill Noise",
@@ -197,7 +213,7 @@ export const TREATMENTS_DATA = [
     recovery: "1 - 2 Days",
     painless: true,
     priceEstimate: "₹3,500 - ₹7,000",
-    image: "/src/assets/Treatments/Root Canal Treatment.png",
+    image: rootCanalImg,
     benefits: [
       "Instant Pain Elimination",
       "Preserves Natural Tooth",
@@ -219,7 +235,7 @@ export const TREATMENTS_DATA = [
     recovery: "3 - 5 Days",
     painless: true,
     priceEstimate: "₹4,000 - ₹9,000",
-    image: "/src/assets/Treatments/Wisdom Teeth Removal.png",
+    image: wisdomToothImg,
     benefits: [
       "Prevents Jaw Crowding",
       "Relieves Deep Jaw Pain",
@@ -241,7 +257,7 @@ export const TREATMENTS_DATA = [
     recovery: "Immediate",
     painless: true,
     priceEstimate: "₹4,500 - ₹15,000",
-    image: "/src/assets/Treatments/Fixed Partial Denture.png",
+    image: bridgeImg,
     benefits: [
       "100% Metal-Free Options",
       "Custom Color Match",
@@ -263,7 +279,7 @@ export const TREATMENTS_DATA = [
     recovery: "Same Day",
     painless: true,
     priceEstimate: "₹8,000 - ₹18,000 / tooth",
-    image: "/src/assets/Treatments/Veneer Treatment.jpg",
+    image: veneersImg,
     benefits: [
       "Stain-Resistant Surface",
       "Hollywood Smile Aesthetics",
@@ -285,7 +301,7 @@ export const TREATMENTS_DATA = [
     recovery: "Immediate",
     painless: true,
     priceEstimate: "₹600 - ₹2,000",
-    image: "/src/assets/Treatments/Pediatric-dentistry.png",
+    image: pediatricDentistryImg,
     benefits: [
       "Playful Environment",
       "Preventative Cavity Shield",
@@ -307,7 +323,7 @@ export const TREATMENTS_DATA = [
     recovery: "4 - 7 Days",
     painless: true,
     priceEstimate: "₹10,000 - ₹22,000",
-    image: "/src/assets/Treatments/Flap-surgery.png",
+    image: flapSurgeryImg,
     benefits: [
       "Stops Gum Bleeding",
       "Firms Up Loose Teeth",
@@ -329,7 +345,7 @@ export const TREATMENTS_DATA = [
     recovery: "Convenient",
     painless: true,
     priceEstimate: "₹45,000 - ₹1,20,000",
-    image: "/src/assets/Treatments/Aligner.png",
+    image: alignersImg,
     benefits: [
       "Virtually Invisible",
       "Removable for Dining",

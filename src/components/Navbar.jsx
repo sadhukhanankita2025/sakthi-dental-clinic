@@ -15,6 +15,8 @@ import {
   Stethoscope,
 } from "lucide-react";
 
+import sdcLogo from "../assets/SDC Logo.png";
+
 export default function Navbar({ onOpenAppointment }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -199,7 +201,7 @@ export default function Navbar({ onOpenAppointment }) {
                 "
               >
                 <img
-                  src="/src/assets/SDC%20Logo.png"
+                  src={sdcLogo}
                   alt="Sakthi Dental Clinic"
                   className="
                     h-full

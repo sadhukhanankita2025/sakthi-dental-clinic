@@ -14,6 +14,9 @@ import {
   Star,
 } from "lucide-react";
 
+import bannerImg1 from "../assets/Banner Images/Banner_img_1.jpg";
+import bannerImg2 from "../assets/Banner Images/Banner_img_2.jpg";
+
 const fadeUp = {
   hidden: {
     opacity: 0,
@@ -308,7 +311,7 @@ export default function WhyChooseUs({ onOpenAppointment }) {
 
             <div className="absolute inset-0 z-0 overflow-hidden">
               <motion.img
-                src="../src/assets/Banner Images/Banner_img_2.jpg"
+                src={bannerImg2}
                 alt="Modern Dental Clinic"
                 initial={{
                   scale: 1.05,
@@ -699,7 +702,7 @@ export default function WhyChooseUs({ onOpenAppointment }) {
             <div className="absolute inset-0 z-0 overflow-hidden">
 
               <motion.img
-                src="../src/assets/Banner Images/Banner_img_1.jpg"
+                src={bannerImg1}
                 alt="Dental Technology"
                 initial={{
                   scale: 1.05,
