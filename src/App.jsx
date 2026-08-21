@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AppointmentModal from "./components/AppointmentModal";
 import ScrollToTop from "./components/ScrollToTop";
+import CookieConsent from "./components/CookieConsent";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -124,6 +125,9 @@ export default function App() {
         selectedDoctor={selectedDoctor}
         selectedTreatment={selectedTreatment}
       />
+
+      {/* ================= COOKIE CONSENT BANNER ================= */}
+      <CookieConsent />
     </div>
   );
 }

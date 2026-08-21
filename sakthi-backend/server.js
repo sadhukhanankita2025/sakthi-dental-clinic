@@ -97,3 +97,18 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Sakthi Dental Clinic backend running on port ${PORT}`);
 });
+
+// ==========================================
+// COOKIE POLICY API ENDPOINT
+// ==========================================
+app.get('/api/cookies/policy', (req, res) => {
+    res.json({
+        title: "Cookies & User Experience Policy",
+        statement: "Our website may use 'cookies' to enhance the user experience. Cookies are small files stored on a user’s device for record-keeping purposes and to track preferences or site activity.",
+        categories: [
+            { id: "essential", name: "Strictly Essential", defaultState: true, configurable: false },
+            { id: "preferences", name: "Preference & Doctor Selection", defaultState: true, configurable: true },
+            { id: "analytics", name: "Anonymous Telemetry", defaultState: true, configurable: true }
+        ]
+    });
+});
