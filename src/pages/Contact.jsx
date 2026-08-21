@@ -209,7 +209,7 @@ export default function Contact() {
                 amount: 0.1,
               }}
               transition={{ duration: 0.7 }}
-              className="relative min-w-0 overflow-hidden rounded-3xl border border-white bg-white/90 p-4 shadow-xl shadow-purple-900/5 backdrop-blur-xl sm:p-6 lg:p-8"
+              className="group relative min-w-0 overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-4 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-all duration-500 hover:border-purple-300 hover:bg-white/95 hover:shadow-2xl hover:shadow-purple-500/20 sm:p-6 lg:p-8"
             >
               {/* Glow */}
               <motion.div
@@ -326,7 +326,7 @@ export default function Contact() {
                 amount: 0.1,
               }}
               transition={{ duration: 0.7 }}
-              className="relative min-w-0 overflow-hidden rounded-3xl border border-white bg-white/90 p-4 shadow-xl shadow-purple-900/5 backdrop-blur-xl sm:p-6 lg:p-8"
+              className="group relative min-w-0 overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-4 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-all duration-500 hover:border-purple-300 hover:bg-white/95 hover:shadow-2xl hover:shadow-purple-500/20 sm:p-6 lg:p-8"
             >
               {/* Glow */}
               <motion.div
@@ -422,7 +422,7 @@ export default function Contact() {
               transition={{
                 duration: 0.7,
               }}
-              className="min-w-0 w-full overflow-hidden rounded-3xl border border-white bg-white/90 p-4 shadow-xl shadow-purple-900/5 backdrop-blur-xl sm:p-6 lg:p-8"
+              className="group min-w-0 w-full overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-4 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-all duration-500 hover:border-purple-300 hover:bg-white/95 hover:shadow-2xl hover:shadow-purple-500/20 sm:p-6 lg:p-8"
             >
               <div className="min-w-0 w-full max-w-full">
                 <ContactForm />
@@ -446,7 +446,7 @@ export default function Contact() {
               transition={{
                 duration: 0.7,
               }}
-              className="group relative min-h-72 w-full overflow-hidden rounded-3xl border border-white bg-slate-900 shadow-2xl shadow-purple-900/10 sm:min-h-96 lg:min-h-140"
+              className="group relative min-h-72 w-full overflow-hidden rounded-3xl border border-white/80 bg-slate-900 shadow-2xl shadow-purple-900/10 transition-all duration-500 hover:shadow-purple-500/30 sm:min-h-96 lg:min-h-140"
             >
               <motion.img
                 src={contactDental}
@@ -540,7 +540,7 @@ export default function Contact() {
             transition={{
               duration: 0.7,
             }}
-            className="w-full overflow-hidden rounded-3xl border border-white bg-white shadow-2xl shadow-purple-900/10"
+            className="group w-full overflow-hidden rounded-3xl border border-white/80 bg-white shadow-2xl shadow-purple-900/10 transition-all duration-500 hover:border-purple-300 hover:shadow-purple-500/20"
           >
             {/* Map Header */}
             <div className="flex flex-col gap-4 bg-slate-950 p-4 text-white sm:p-6 lg:flex-row lg:items-center lg:justify-between">
@@ -627,7 +627,7 @@ function ContactInfoCard({
         stiffness: 300,
         damping: 20,
       }}
-      className="flex min-w-0 w-full items-start gap-3 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm transition-shadow hover:shadow-lg sm:gap-4 sm:p-4"
+      className="flex min-w-0 w-full items-start gap-3 rounded-2xl border border-slate-100 bg-white/9ontal p-3.5 shadow-sm transition-all duration-300 hover:border-purple-200 hover:bg-white hover:shadow-lg hover:shadow-purple-500/10 sm:gap-4 sm:p-4"
     >
       {/* Icon */}
       <div
