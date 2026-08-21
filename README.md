@@ -388,73 +388,6 @@ Returns all patient inquiries.
 
 ---
 
-# 📱 Responsive Design
-
-The website is optimized for:
-
-- Desktop
-- Laptop
-- Tablet
-- Mobile Phones
-
-Features include:
-
-- Sticky Navbar
-- Mobile Navigation Drawer
-- Responsive Cards
-- Responsive Grid Layouts
-- Smooth Scroll
-- Floating Buttons
-
----
-
-# 🎨 UI Components
-
-### Navigation
-
-- Sticky Navbar
-- Mobile Menu
-- Active Page Highlight
-
-### Hero Section
-
-- Animated Headline
-- Statistics Counter
-- CTA Buttons
-
-### Doctor Cards
-
-- Qualifications
-- Experience
-- Registration Number
-- Specialization
-
-### Treatment Cards
-
-- Icons
-- Description
-- Hover Animation
-- Appointment Button
-
-### Facilities
-
-- Parking
-- Digital X-Ray
-- Sterilization
-- Waiting Lounge
-- Accessibility
-- Emergency Care
-
-### Footer
-
-- Contact Details
-- Social Links
-- Opening Hours
-- Google Map
-- Copyright
-
----
-
 # 🔒 Environment Variables
 
 Backend `.env`
@@ -562,33 +495,5 @@ Application URL.
 Frontend : http://localhost:5173
 Backend  : http://localhost:5000
 ```
-
----
-
-# 🧪 Testing Checklist
-
-- Home page loads correctly.
-- Navbar works on mobile.
-- Treatments search works.
-- Appointment modal opens.
-- Appointment saved in PostgreSQL.
-- Contact form saved in PostgreSQL.
-- API returns successful responses.
-- Responsive layout works across devices.
-
----
-
-# 👨‍⚕️ Clinic Information
-
-**Sakthi Dental Clinic**
-
-- Comprehensive Dental Care
-- Cosmetic Dentistry
-- Dental Implants
-- Root Canal Treatment
-- Pediatric Dentistry
-- Orthodontics
-- Oral Surgery
-- Preventive Dental Care
 
 ---
