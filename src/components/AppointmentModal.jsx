@@ -48,6 +48,7 @@ export default function AppointmentModal({
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   // =========================================================
   // UPDATE SELECTED TREATMENT
@@ -77,6 +78,7 @@ export default function AppointmentModal({
     if (isOpen) {
       setSubmitted(false);
       setLoading(false);
+      setErrorMessage("");
 
       setFormData((previous) => ({
         ...previous,
@@ -89,18 +91,34 @@ export default function AppointmentModal({
   }, [isOpen, selectedTreatment]);
 
   // =========================================================
-  // SUBMIT
+  // SUBMIT (POSTGRESQL DATABASE CONNECTION)
   // =========================================================
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
+    setErrorMessage("");
 
-    setTimeout(() => {
+    try {
+      const response = await fetch("http://localhost:5000/api/appointments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save appointment to the database.");
+      }
+
       setLoading(false);
       setSubmitted(true);
-    }, 1000);
+    } catch (error) {
+      console.error("Database connection error:", error);
+      setLoading(false);
+      setErrorMessage("Could not connect to the backend server. Please make sure your server is running.");
+    }
   };
 
   // =========================================================
@@ -110,6 +128,7 @@ export default function AppointmentModal({
   const handleReset = () => {
     setSubmitted(false);
     setLoading(false);
+    setErrorMessage("");
     onClose();
   };
 
@@ -125,7 +144,7 @@ export default function AppointmentModal({
 
         {/* =====================================================
             BACKDROP
-        ====================================================== */}
+        ===================================================== */}
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -142,7 +161,7 @@ export default function AppointmentModal({
 
         {/* =====================================================
             MODAL WINDOW
-        ====================================================== */}
+        ===================================================== */}
 
         <motion.div
           initial={{
@@ -182,13 +201,13 @@ export default function AppointmentModal({
 
           {/* =====================================================
               TOP DECORATIVE GRADIENT
-          ====================================================== */}
+          ===================================================== */}
 
           <div className="h-2.5 bg-linear-to-r from-[#0D9488] via-[#0284C7] to-[#059669]" />
 
           {/* =====================================================
               CLOSE BUTTON
-          ====================================================== */}
+          ===================================================== */}
 
           <button
             type="button"
@@ -257,6 +276,13 @@ export default function AppointmentModal({
                   We will confirm your slot instantly.
                 </p>
               </div>
+
+              {/* Error Notification */}
+              {errorMessage && (
+                <div className="mb-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs font-semibold text-rose-600">
+                  {errorMessage}
+                </div>
+              )}
 
               {/* =================================================
                   FORM
@@ -369,14 +395,16 @@ export default function AppointmentModal({
                       <input
                         type="tel"
                         required
-                        placeholder="+91 98765 43210"
+                        maxLength="15"
+                        placeholder="9876543210"
                         value={formData.phone}
-                        onChange={(e) =>
+                        onChange={(e) => {
+                          const numericValue = e.target.value.replace(/[^0-9+\s-]/g, "");
                           setFormData({
                             ...formData,
-                            phone: e.target.value,
-                          })
-                        }
+                            phone: numericValue,
+                          });
+                        }}
                         className="
                           w-full
                           rounded-xl
@@ -813,8 +841,8 @@ export default function AppointmentModal({
           ) : (
 
             /* =====================================================
-               SUCCESS CONFIRMATION
-            ====================================================== */
+                SUCCESS CONFIRMATION
+            ===================================================== */
 
             <div className="space-y-6 p-8 text-center">
 
@@ -845,8 +873,7 @@ export default function AppointmentModal({
                   <span className="font-semibold text-slate-900">
                     {formData.patientName}
                   </span>
-                  . Your slot request has been sent to
-                  Sakthi Dental Clinic.
+                  . Your slot request has been successfully saved to the database.
                 </p>
               </div>
 
