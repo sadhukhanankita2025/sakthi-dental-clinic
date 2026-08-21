@@ -21,6 +21,7 @@ export default function ContactForm() {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   // ==========================================
   // VALIDATE FORM
@@ -84,12 +85,15 @@ export default function ContactForm() {
         [field]: "",
       }));
     }
+    if (serverError) {
+      setServerError("");
+    }
   };
 
   // ==========================================
-  // HANDLE SUBMIT
+  // HANDLE SUBMIT (POSTGRESQL DATABASE)
   // ==========================================
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (loading) return;
@@ -99,12 +103,28 @@ export default function ContactForm() {
     if (!isValid) return;
 
     setLoading(true);
+    setServerError("");
 
-    // Simulated submission
-    setTimeout(() => {
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message to the server.");
+      }
+
       setLoading(false);
       setSubmitted(true);
-    }, 1200);
+    } catch (error) {
+      console.error("Database connection error:", error);
+      setLoading(false);
+      setServerError("Could not connect to the backend server. Make sure your server is running.");
+    }
   };
 
   // ==========================================
@@ -114,6 +134,7 @@ export default function ContactForm() {
     setSubmitted(false);
     setFormData(initialFormData);
     setErrors({});
+    setServerError("");
   };
 
   return (
@@ -137,6 +158,13 @@ export default function ContactForm() {
               Send us a message and our patient desk will reply promptly.
             </p>
           </div>
+
+          {/* Server Error Banner */}
+          {serverError && (
+            <div className="rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs font-semibold text-rose-600">
+              {serverError}
+            </div>
+          )}
 
           {/* ==================================
               NAME FIELD
@@ -233,11 +261,12 @@ export default function ContactForm() {
                   type="tel"
                   inputMode="numeric"
                   autoComplete="tel"
-                  placeholder="+91 98765 43210"
+                  placeholder="9876543210"
                   value={formData.phone}
-                  onChange={(e) =>
-                    handleChange("phone", e.target.value)
-                  }
+                  onChange={(e) => {
+                    const numericValue = e.target.value.replace(/[^0-9+\s-]/g, "");
+                    handleChange("phone", numericValue);
+                  }}
                   className={`w-full pl-10 pr-4 py-3 rounded-2xl bg-slate-50 border text-slate-800 text-xs font-medium focus:outline-none focus:ring-2 focus:bg-white transition-all ${
                     errors.phone
                       ? "border-rose-400 focus:ring-rose-400/50"
@@ -320,7 +349,7 @@ export default function ContactForm() {
         </form>
       ) : (
         /* ==================================
-           SUCCESS MESSAGE
+            SUCCESS MESSAGE
         ================================== */
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -352,8 +381,7 @@ export default function ContactForm() {
             <span className="font-bold text-slate-900">
               {formData.name}
             </span>
-            . Our desk officer will review your inquiry and get back to you
-            shortly.
+            . Your message has been saved to the database. Our desk officer will review your inquiry and get back to you shortly.
           </p>
 
           {/* RESET BUTTON */}
