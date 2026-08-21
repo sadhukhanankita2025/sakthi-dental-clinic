@@ -1,84 +1,172 @@
 export const DOCTORS_DATA = [
   {
-    id: "dr-sakthi",
-    name: "Dr. Sakthi Saravanan",
-    role: "Chief Dental Surgeon & Lead Implantologist",
-    qualifications: "BDS, MDS (Oral & Maxillofacial Surgery)",
+    id: "dr-anupriya",
+    name: "Dr. Anupriya",
+    role: "Founder & Chief Dental Surgeon",
+    qualifications: "BDS",
     experience: "20+ Years Clinical Practice",
-    regNo: "TN Dental Council Reg. No. 12845",
-    specialty: "3D Guided Implants, Laser Surgery, Complex Wisdom Teeth",
-    rating: 4.9,
-    reviewsCount: 1420,
-    proceduresDone: "5,000+ Implants Placed",
-    memberships: [
-      "Fellow, International Congress of Oral Implantologists (FICOI - USA)",
-      "Member, Indian Dental Association (IDA)",
-      "Life Member, Association of Oral & Maxillofacial Surgeons of India (AOMSI)"
-    ],
-    availableDays: "Mon - Sat (9:00 AM - 8:00 PM)",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
-    bio: "Pioneer in flapless 3D computer-guided dental implants and painless laser oral surgery. Dr. Sakthi has trained internationally in Germany & Switzerland."
-  },
-  {
-    id: "dr-ananya",
-    name: "Dr. Ananya Sakthi",
-    role: "Senior Consultant - Women & Pediatric Dentistry",
-    qualifications: "BDS, MDS (Pedodontics & Preventive Dentistry)",
-    experience: "14+ Years Clinical Practice",
-    regNo: "TN Dental Council Reg. No. 18920",
-    specialty: "Anxiety-Free Pediatric Dentistry, Smile Design, Maternity Care",
+    regNo: "Tamil Nadu Dental Council Registered",
+    specialty:
+      "General Dentistry, Family Dentistry, Cosmetic Dentistry & Preventive Dental Care",
     rating: 5.0,
-    reviewsCount: 980,
-    proceduresDone: "10,000+ Happy Kids Treated",
+    reviewsCount: 2500,
+    proceduresDone: "15,000+ Happy Smiles Treated",
     memberships: [
-      "Executive Member, Indian Society of Pedodontics & Preventive Dentistry (ISPPD)",
-      "Certified Conscious Sedation Specialist",
-      "Member, International Association of Paediatric Dentistry (IAPD)"
+      "Member, Indian Dental Association (IDA)",
+      "Dental Consultant – Primary Health Center, Chandara Hospital",
+      "Founder, Sakthi Dental Clinic, Hosur",
     ],
-    availableDays: "Mon - Sat (10:00 AM - 7:00 PM)",
-    image: "https://images.unsplash.com/photo-1594824813566-788534771db6?auto=format&fit=crop&q=80&w=600",
-    bio: "Renowned for her empathetic approach toward children and pregnant women. Specializes in preventive fluoride therapies and painless cavity treatments."
+    availableDays: "Monday – Saturday (9:00 AM – 8:00 PM)",
+    image: "/images/doctors/dr-anupriya.jpg",
+    bio: "Founder of Sakthi Dental Clinic, Hosur. With over two decades of experience, Dr. Anupriya is known for gentle, patient-centered dentistry and advanced treatment planning for families and individuals.",
   },
+
   {
-    id: "dr-rohit",
-    name: "Dr. Rohit Verma",
-    role: "Senior Orthodontist & Aligner Specialist",
-    qualifications: "BDS, MDS (Orthodontics & Dentofacial Orthopedics)",
+    id: "dr-ananya-iyer",
+    name: "Dr. Ananya Iyer",
+    role: "Prosthodontist",
+    qualifications: "BDS, MDS (Prosthodontics)",
     experience: "12+ Years Clinical Practice",
-    regNo: "TN Dental Council Reg. No. 21450",
-    specialty: "3D Clear Aligners, Ceramic Braces, Jaw Growth Modulation",
+    regNo: "Tamil Nadu Dental Council Registered",
+    specialty:
+      "Dental Crowns, Bridges, Dentures, Smile Rehabilitation & Full Mouth Restoration",
     rating: 4.9,
-    reviewsCount: 760,
-    proceduresDone: "3,200+ Aligner & Braces Cases",
+    reviewsCount: 860,
+    proceduresDone: "3,500+ Prosthodontic Procedures",
     memberships: [
-      "Invisalign Certified Diamond Provider",
-      "Active Member, Indian Orthodontic Society (IOS)",
-      "Member, World Federation of Orthodontists (WFO - USA)"
+      "Indian Prosthodontic Society",
+      "Indian Dental Association",
     ],
-    availableDays: "Tue, Thu, Sat (2:00 PM - 8:00 PM)",
-    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
-    bio: "Expert in digital clear aligner treatment planning. Uses 3D intraoral optical scanners to simulate smile transformations before treatment begins."
+    availableDays: "Monday, Wednesday & Friday",
+    image: "/images/doctors/dr-ananya-iyer.jpg",
+    bio: "Specialist in restoring missing and damaged teeth with advanced prosthetic and cosmetic dental solutions for long-lasting smiles.",
   },
+
   {
-    id: "dr-priya",
-    name: "Dr. Priya Ramakrishnan",
-    role: "Endodontist (Root Canal Specialist)",
+    id: "dr-meera-subramanian",
+    name: "Dr. Meera Subramanian",
+    role: "Endodontist",
     qualifications: "BDS, MDS (Conservative Dentistry & Endodontics)",
     experience: "10+ Years Clinical Practice",
-    regNo: "TN Dental Council Reg. No. 24110",
-    specialty: "Single-Sitting Micro-Endodontics, Laser Disinfection",
-    rating: 4.8,
-    reviewsCount: 650,
-    proceduresDone: "8,000+ Painless Root Canals",
+    regNo: "Tamil Nadu Dental Council Registered",
+    specialty:
+      "Single-Sitting Root Canal Treatment, Rotary Endodontics & Dental Trauma Care",
+    rating: 4.9,
+    reviewsCount: 790,
+    proceduresDone: "7,000+ Root Canal Treatments",
     memberships: [
-      "Member, Indian Endodontic Society (IES)",
-      "Certified Microscopic Endodontics Specialist",
-      "Member, Federation of Operative Dentistry of India (FODI)"
+      "Indian Endodontic Society",
+      "Federation of Operative Dentistry of India",
     ],
-    availableDays: "Mon - Fri (11:00 AM - 6:00 PM)",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600",
-    bio: "Master of single-visit rotary root canals performed under surgical operating microscopes, saving severely infected natural teeth with 99.4% success."
-  }
+    availableDays: "Monday – Friday",
+    image: "/images/doctors/dr-meera-subramanian.jpg",
+    bio: "Expert in painless microscopic root canal treatments using advanced rotary endodontic technology for maximum tooth preservation.",
+  },
+
+  {
+    id: "dr-arvind-kumar",
+    name: "Dr. Arvind Kumar",
+    role: "Dental Surgeon",
+    qualifications: "BDS",
+    experience: "11+ Years Clinical Practice",
+    regNo: "Tamil Nadu Dental Council Registered",
+    specialty:
+      "Tooth Extraction, Wisdom Tooth Surgery, Restorative Dentistry & Oral Care",
+    rating: 4.8,
+    reviewsCount: 720,
+    proceduresDone: "5,500+ Dental Surgical Procedures",
+    memberships: [
+      "Indian Dental Association",
+      "Association of Dental Surgeons",
+    ],
+    availableDays: "Tuesday – Saturday",
+    image: "/images/doctors/dr-arvind-kumar.jpg",
+    bio: "Experienced dental surgeon providing painless extractions, restorative procedures, and comprehensive oral healthcare.",
+  },
+
+  {
+    id: "dr-sneha-n",
+    name: "Dr. Sneha N",
+    role: "Orthodontist",
+    qualifications: "BDS, MDS (Orthodontics)",
+    experience: "9+ Years Clinical Practice",
+    regNo: "Tamil Nadu Dental Council Registered",
+    specialty:
+      "Braces, Clear Aligners, Teeth Alignment & Jaw Correction",
+    rating: 5.0,
+    reviewsCount: 690,
+    proceduresDone: "2,800+ Orthodontic Cases",
+    memberships: [
+      "Indian Orthodontic Society",
+      "Indian Dental Association",
+    ],
+    availableDays: "Wednesday, Friday & Saturday",
+    image: "/images/doctors/dr-sneha-n.jpg",
+    bio: "Specializes in modern orthodontic treatments including ceramic braces and clear aligners for children, teenagers, and adults.",
+  },
+
+  {
+    id: "dr-srinivas-rohit-ramanujam",
+    name: "Dr. Srinivas Rohit Ramanujam",
+    role: "Implantologist",
+    qualifications: "BDS, MDS (Implantology)",
+    experience: "14+ Years Clinical Practice",
+    regNo: "Tamil Nadu Dental Council Registered",
+    specialty:
+      "Dental Implants, Full Mouth Implants, Bone Grafting & Smile Restoration",
+    rating: 5.0,
+    reviewsCount: 980,
+    proceduresDone: "4,000+ Dental Implants Placed",
+    memberships: [
+      "International Congress of Oral Implantologists",
+      "Indian Society of Oral Implantologists",
+    ],
+    availableDays: "Monday, Thursday & Saturday",
+    image: "/images/doctors/dr-srinivas-rohit.jpg",
+    bio: "Advanced implantologist experienced in single-tooth implants, full-mouth rehabilitation, and digital implant planning.",
+  },
+
+  {
+    id: "dr-balu",
+    name: "Dr. Balu",
+    role: "Laser Surgeon",
+    qualifications: "BDS, MDS (Laser Dentistry)",
+    experience: "13+ Years Clinical Practice",
+    regNo: "Tamil Nadu Dental Council Registered",
+    specialty:
+      "Laser Gum Surgery, Frenectomy, Soft Tissue Laser Procedures & Painless Dentistry",
+    rating: 4.9,
+    reviewsCount: 640,
+    proceduresDone: "2,500+ Laser Dental Procedures",
+    memberships: [
+      "Indian Dental Association",
+      "Academy of Laser Dentistry",
+    ],
+    availableDays: "Tuesday, Thursday & Saturday",
+    image: "/images/doctors/dr-balu.jpg",
+    bio: "Expert in minimally invasive laser dental procedures with faster healing, less bleeding, and greater patient comfort.",
+  },
+
+  {
+    id: "dr-vikram-raj-kishore",
+    name: "Dr. Vikram Raj Kishore",
+    role: "Aligners Partner",
+    qualifications: "BDS, Certified Clear Aligner Specialist",
+    experience: "10+ Years Clinical Practice",
+    regNo: "Tamil Nadu Dental Council Registered",
+    specialty:
+      "Invisible Aligners, Digital Smile Design & Cosmetic Orthodontics",
+    rating: 4.9,
+    reviewsCount: 710,
+    proceduresDone: "3,000+ Clear Aligner Treatments",
+    memberships: [
+      "Indian Orthodontic Society",
+      "Certified Clear Aligner Provider",
+    ],
+    availableDays: "Friday & Saturday",
+    image: "/images/doctors/dr-vikram-raj-kishore.jpg",
+    bio: "Partner specialist for invisible aligner treatments, helping patients achieve straighter smiles with digital treatment planning.",
+  },
 ];
 
 export const CLINIC_SPECIALTIES = [
