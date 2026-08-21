@@ -472,7 +472,8 @@ export default function Navbar({ onOpenAppointment }) {
                 </motion.span>
 
                 <span className="hidden xl:block">
-                  +91 98765 43210
+                  +91 9862890897
+
                 </span>
               </motion.a>
 

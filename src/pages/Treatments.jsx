@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { motion } from "motion/react";
 import {
   Search,
   Stethoscope,
   Layers,
+  Sparkles,
 } from "lucide-react";
 
 import TreatmentCard from "../components/TreatmentCard";
@@ -125,13 +127,20 @@ export default function Treatments({ onOpenAppointment }) {
   // =====================================================
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-24 pb-16">
+    <div className="min-h-screen pt-24 pb-16 space-y-20 bg-linear-to-b from-purple-50/40 via-white to-slate-50 relative overflow-hidden">
+      
+      {/* =====================================================
+          SOFT PASTEL AMBIENT GLOW EFFECTS
+      ====================================================== */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-200 h-125 bg-linear-to-br from-purple-200/40 via-indigo-100/30 to-transparent rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 -right-20 w-125 h-125 bg-purple-100/60 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/3 -left-20 w-125 h-125 bg-indigo-100/50 rounded-full blur-[120px] pointer-events-none" />
 
       {/* =====================================================
           HERO SECTION
       ====================================================== */}
 
-      <section className="bg-gradient-hero py-12 sm:py-16">
+      <section className="relative overflow-hidden py-16 sm:py-20 z-10">
         <div
           className="
             mx-auto
@@ -145,7 +154,10 @@ export default function Treatments({ onOpenAppointment }) {
 
           {/* Badge */}
 
-          <div
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
             className="
               mx-auto
               inline-flex
@@ -153,48 +165,54 @@ export default function Treatments({ onOpenAppointment }) {
               gap-2
               rounded-full
               border
-              border-slate-200
-              bg-white/80
+              border-purple-200
+              bg-white/90
               px-4
               py-2
               text-xs
-              font-bold
+              font-extrabold
               uppercase
               tracking-wider
-              text-[#0D9488]
+              text-purple-800
               shadow-sm
               backdrop-blur-md
             "
           >
-            <Stethoscope className="h-4 w-4" />
-
+            <Sparkles className="h-4 w-4 text-purple-600" />
             Complete Dental Care Directory
-          </div>
+          </motion.div>
 
-          {/* Heading */}
+          {/* Heading with Colorful Accent */}
 
-          <h1
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6 }}
             className="
               mt-5
-              text-4xl
+              text-3xl
               font-black
               tracking-tight
               text-slate-900
               sm:text-5xl
+              lg:text-6xl
             "
           >
-            Specialized Treatments & Procedures
-          </h1>
+            Specialized <span className="bg-linear-to-r from-purple-700 via-indigo-600 to-teal-600 bg-clip-text text-transparent">Treatments & Procedures</span>
+          </motion.h1>
 
           {/* Description */}
 
-          <p
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
             className="
               mx-auto
               mt-4
               max-w-2xl
               text-sm
-              leading-7
+              leading-relaxed
               text-slate-600
               sm:text-base
             "
@@ -204,7 +222,7 @@ export default function Treatments({ onOpenAppointment }) {
             discover international quality dental
             treatments designed for comfortable
             and confident care.
-          </p>
+          </motion.p>
 
         </div>
       </section>
@@ -216,22 +234,25 @@ export default function Treatments({ onOpenAppointment }) {
       <section
         className="
           mx-auto
-          mt-12
           max-w-7xl
           px-4
           sm:px-6
           lg:px-8
+          relative
+          z-10
         "
       >
         <div
           className="
-            rounded-3xl
+            rounded-4xl
             border
-            border-slate-200/80
-            bg-white
-            p-5
-            shadow-md
-            sm:p-6
+            border-purple-100/80
+            bg-white/90
+            backdrop-blur-xl
+            p-6
+            shadow-xl
+            shadow-purple-500/5
+            sm:p-8
           "
         >
 
@@ -277,26 +298,27 @@ export default function Treatments({ onOpenAppointment }) {
                     event.target.value
                   )
                 }
-                placeholder="Search treatments..."
+                placeholder="Search treatments by name or keyword..."
                 className="
                   w-full
                   rounded-2xl
                   border
                   border-slate-200
-                  bg-white
-                  py-3
+                  bg-slate-50/50
+                  py-3.5
                   pl-11
                   pr-4
-                  text-sm
-                  font-medium
+                  text-xs
+                  font-bold
                   text-slate-800
                   outline-none
                   shadow-sm
                   transition
                   placeholder:text-slate-400
-                  focus:border-[#0D9488]
+                  focus:border-purple-600
+                  focus:bg-white
                   focus:ring-2
-                  focus:ring-[#0D9488]/20
+                  focus:ring-purple-600/20
                 "
               />
             </div>
@@ -306,16 +328,18 @@ export default function Treatments({ onOpenAppointment }) {
             <div
               className="
                 text-xs
-                font-bold
+                font-extrabold
                 text-slate-500
+                uppercase
+                tracking-wider
               "
             >
               Showing{" "}
 
               <span
                 className="
-                  font-extrabold
-                  text-slate-900
+                  font-black
+                  text-purple-700
                 "
               >
                 {filteredTreatments.length}
@@ -325,7 +349,7 @@ export default function Treatments({ onOpenAppointment }) {
 
               <span
                 className="
-                  font-extrabold
+                  font-black
                   text-slate-900
                 "
               >
@@ -348,6 +372,7 @@ export default function Treatments({ onOpenAppointment }) {
               gap-2
               overflow-x-auto
               pb-2
+              scrollbar-none
             "
           >
             {TREATMENTS_CATEGORIES.map(
@@ -362,17 +387,20 @@ export default function Treatments({ onOpenAppointment }) {
                   }
                   className={`
                     whitespace-nowrap
-                    rounded-xl
-                    px-4
-                    py-2.5
+                    rounded-2xl
+                    px-5
+                    py-3
                     text-xs
-                    font-bold
+                    font-extrabold
+                    uppercase
+                    tracking-wider
                     transition-all
-                    duration-200
+                    duration-300
+                    cursor-pointer
                     ${
                       activeCategory === category
-                        ? "bg-linear-to-r from-[#0D9488] to-[#0284C7] text-white shadow-md shadow-[#0D9488]/20"
-                        : "border border-slate-200 bg-white text-slate-600 hover:bg-slate-100"
+                        ? "bg-linear-to-r from-purple-600 via-indigo-600 to-teal-600 text-white shadow-lg shadow-purple-500/25"
+                        : "border border-purple-100 bg-white text-slate-600 hover:bg-purple-50/50 hover:text-purple-700"
                     }
                   `}
                 >
@@ -392,11 +420,12 @@ export default function Treatments({ onOpenAppointment }) {
       <section
         className="
           mx-auto
-          mt-12
           max-w-7xl
           px-4
           sm:px-6
           lg:px-8
+          relative
+          z-10
         "
       >
 
@@ -428,37 +457,33 @@ export default function Treatments({ onOpenAppointment }) {
         ) : (
 
           /* =================================================
-             NO RESULTS
+              NO RESULTS
           ================================================== */
 
           <div
             className="
-              rounded-3xl
+              rounded-4xl
               border
-              border-slate-200
-              bg-white
+              border-purple-100
+              bg-white/90
+              backdrop-blur-xl
               px-6
               py-16
               text-center
-              shadow-sm
+              shadow-xl
+              shadow-purple-500/5
             "
           >
 
-            <Layers
-              className="
-                mx-auto
-                h-12
-                w-12
-                text-slate-300
-              "
-            />
+            <div className="w-16 h-16 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center mx-auto mb-4 border border-purple-100">
+              <Layers className="h-7 w-7" />
+            </div>
 
             <h3
               className="
-                mt-4
-                text-lg
-                font-extrabold
-                text-slate-800
+                text-xl
+                font-black
+                text-slate-900
               "
             >
               No treatments found
@@ -467,12 +492,14 @@ export default function Treatments({ onOpenAppointment }) {
             <p
               className="
                 mt-2
-                text-sm
+                text-xs
+                font-medium
                 text-slate-500
+                max-w-sm
+                mx-auto
               "
             >
-              Try another keyword or select
-              the "All" category.
+              Try adjusting your search query or selecting a different category tab above.
             </p>
 
             <button
@@ -481,20 +508,23 @@ export default function Treatments({ onOpenAppointment }) {
                 handleClearFilters
               }
               className="
-                mt-5
-                rounded-xl
+                mt-6
+                rounded-2xl
                 bg-linear-to-r
-                from-[#0D9488]
-                to-[#0284C7]
-                px-5
-                py-2.5
+                from-purple-600
+                to-indigo-600
+                px-6
+                py-3
                 text-xs
-                font-bold
+                font-extrabold
+                uppercase
+                tracking-wider
                 text-white
-                shadow-md
-                transition
-                hover:scale-[1.02]
-                active:scale-[0.98]
+                shadow-lg
+                shadow-purple-500/20
+                transition-all
+                hover:shadow-xl
+                cursor-pointer
               "
             >
               Clear Filters
@@ -509,7 +539,7 @@ export default function Treatments({ onOpenAppointment }) {
           CTA SECTION
       ====================================================== */}
 
-      <section className="mt-16">
+      <section className="relative z-10">
         <CTA
           onOpenAppointment={
             handleAppointment
