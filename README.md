@@ -82,6 +82,7 @@ sakthi-dental-clinic/
 │   ├── components/
 │   │   ├── AppointmentModal.jsx
 │   │   ├── ContactForm.jsx
+|   |   |── CookieConsent.jsx
 │   │   ├── CTA.jsx
 │   │   ├── DoctorCard.jsx
 │   │   ├── DoctorsAndSpecialties.jsx
