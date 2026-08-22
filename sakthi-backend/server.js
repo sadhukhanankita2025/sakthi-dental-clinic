@@ -1,6 +1,7 @@
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 const app = express();
@@ -8,7 +9,6 @@ const app = express();
 // ==========================================
 // MIDDLEWARE
 // ==========================================
-// Using cors() allows requests from any frontend port (like Vite 5173 or React 3000)
 app.use(cors());
 app.use(express.json());
 
@@ -29,7 +29,94 @@ pool.connect((err, client, release) => {
 });
 
 // ==========================================
-// 1. APPOINTMENTS API ENDPOINT
+// 1. SIGNUP API ENDPOINT
+// ==========================================
+app.post('/api/signup', async (req, res) => {
+    const { name, emailOrPhone, password } = req.body;
+
+    if (!name || !emailOrPhone || !password) {
+        return res.status(400).json({ error: 'All fields are required.' });
+    }
+
+    if (password.length < 6) {
+        return res.status(400).json({ error: 'Password must be at least 6 characters long.' });
+    }
+
+    try {
+        // Hash password securely
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+        const query = `
+            INSERT INTO users (name, email_or_phone, password)
+            VALUES ($1, $2, $3)
+            RETURNING id, name, email_or_phone;
+        `;
+        const values = [name, emailOrPhone, hashedPassword];
+
+        const result = await pool.query(query, values);
+
+        res.status(201).json({
+            success: true,
+            message: 'User registered successfully!',
+            user: {
+                id: result.rows[0].id,
+                name: result.rows[0].name,
+                email: result.rows[0].email_or_phone
+            }
+        });
+    } catch (err) {
+        console.error('Database insertion error (Signup):', err.message);
+        if (err.code === '23505') { // PostgreSQL unique violation code
+            return res.status(400).json({ error: 'Email or Phone already registered.' });
+        }
+        res.status(500).json({ error: 'Internal server error during registration.' });
+    }
+});
+
+// ==========================================
+// 2. LOGIN API ENDPOINT
+// ==========================================
+app.post('/api/login', async (req, res) => {
+    const { emailOrPhone, password } = req.body;
+
+    if (!emailOrPhone || !password) {
+        return res.status(400).json({ error: 'Email/Phone and password are required.' });
+    }
+
+    try {
+        const query = `SELECT * FROM users WHERE email_or_phone = $1;`;
+        const result = await pool.query(query, [emailOrPhone]);
+
+        if (result.rows.length === 0) {
+            return res.status(401).json({ error: 'Invalid credentials or user not found.' });
+        }
+
+        const user = result.rows[0];
+
+        // Compare submitted password with hashed password in database
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+            return res.status(401).json({ error: 'Invalid credentials.' });
+        }
+
+        res.json({
+            success: true,
+            message: 'Login successful!',
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email_or_phone
+            }
+        });
+    } catch (err) {
+        console.error('Database query error (Login):', err.message);
+        res.status(500).json({ error: 'Internal server error during login.' });
+    }
+});
+
+// ==========================================
+// 3. APPOINTMENTS API ENDPOINT
 // ==========================================
 app.post('/api/appointments', async (req, res) => {
     const { patientName, phone, email, doctor, treatment, date, time, notes } = req.body;
@@ -60,7 +147,7 @@ app.post('/api/appointments', async (req, res) => {
 });
 
 // ==========================================
-// 2. CONTACT MESSAGES API ENDPOINT
+// 4. CONTACT MESSAGES API ENDPOINT
 // ==========================================
 app.post('/api/contact', async (req, res) => {
     const { name, email, phone, message } = req.body;
@@ -91,15 +178,7 @@ app.post('/api/contact', async (req, res) => {
 });
 
 // ==========================================
-// START SERVER
-// ==========================================
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Sakthi Dental Clinic backend running on port ${PORT}`);
-});
-
-// ==========================================
-// COOKIE POLICY API ENDPOINT
+// 5. COOKIE POLICY API ENDPOINT
 // ==========================================
 app.get('/api/cookies/policy', (req, res) => {
     res.json({
@@ -111,4 +190,12 @@ app.get('/api/cookies/policy', (req, res) => {
             { id: "analytics", name: "Anonymous Telemetry", defaultState: true, configurable: true }
         ]
     });
+});
+
+// ==========================================
+// START SERVER
+// ==========================================
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Sakthi Dental Clinic backend running on port ${PORT}`);
 });

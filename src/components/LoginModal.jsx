@@ -22,6 +22,13 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+
+      // Verify if server actually responded with JSON (prevents HTML crash)
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Server error or backend is offline. Please check port 5000.");
+      }
+
       const data = await response.json();
 
       if (!response.ok) {
