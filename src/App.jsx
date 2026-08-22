@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AppointmentModal from "./components/AppointmentModal";
-import LoginModal from "./components/LoginModal"; // <--- IMPORT LOGIN MODAL
+import LoginModal from "./components/LoginModal";
 import ScrollToTop from "./components/ScrollToTop";
 import CookieConsent from "./components/CookieConsent";
 
@@ -41,10 +41,8 @@ export default function App() {
 
   // =====================================================
   // OPEN APPOINTMENT MODAL
-  // Works for Hero Button, Doctor Cards, Treatments, CTA
   // =====================================================
   const handleOpenAppointment = (doctorOrTreatment = null, treatment = "") => {
-    // If first argument is a doctor object
     if (
       doctorOrTreatment &&
       typeof doctorOrTreatment === "object" &&
@@ -53,7 +51,6 @@ export default function App() {
       setSelectedDoctor(doctorOrTreatment);
       setSelectedTreatment(treatment || "");
     } else {
-      // If first argument is a treatment string
       setSelectedDoctor(null);
       setSelectedTreatment(doctorOrTreatment || "");
     }
@@ -148,6 +145,8 @@ export default function App() {
         onClose={handleCloseAppointment}
         selectedDoctor={selectedDoctor}
         selectedTreatment={selectedTreatment}
+        isLoggedIn={isLoggedIn}
+        onOpenAuth={() => setAuthModalOpen(true)}
       />
 
       {/* ================= LOGIN / SIGNUP MODAL ================= */}

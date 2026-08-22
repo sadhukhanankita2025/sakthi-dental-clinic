@@ -19,6 +19,8 @@ export default function AppointmentModal({
   isOpen,
   onClose,
   selectedTreatment = "",
+  isLoggedIn = false,       // <--- NEW PROP TO CHECK LOGIN STATUS
+  onOpenAuth = () => {},    // <--- NEW PROP TO OPEN LOGIN/SIGNUP MODAL
 }) {
   // =========================================================
   // DEFAULT TREATMENT
@@ -96,6 +98,14 @@ export default function AppointmentModal({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Check if user is logged in before booking
+    if (!isLoggedIn) {
+      onClose();       // Close appointment modal
+      onOpenAuth();    // Open login/signup modal
+      return;
+    }
+
     setLoading(true);
     setErrorMessage("");
 
@@ -829,7 +839,7 @@ export default function AppointmentModal({
                   ) : (
                     <>
                       <span>
-                        Confirm Appointment Request
+                        {isLoggedIn ? "Confirm Appointment Request" : "Login / Signup to Book"}
                       </span>
 
                       <ChevronRight className="h-4 w-4" />
