@@ -13,7 +13,7 @@ import {
   CircleCheck,
 } from "lucide-react";
 
-import doctorImage from "../assets/doc.png";
+import doctorImage from "../assets/1doc.jpg";
 
 export default function Hero({ onOpenAppointment }) {
   return (
@@ -813,11 +813,11 @@ export default function Hero({ onOpenAppointment }) {
 
               <div>
                 <p className="text-xs font-bold text-slate-900">
-                  Dr. Sakthi Saravanan
+                   Dr. Anupriya
                 </p>
 
                 <p className="text-[10px] font-medium text-purple-600">
-                  Chief Implantologist
+                  Founder & Chief Dental Surgeon
                 </p>
               </div>
 
