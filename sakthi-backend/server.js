@@ -43,14 +43,13 @@ app.post('/api/signup', async (req, res) => {
     }
 
     try {
-        // Hash password securely
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         const query = `
-            INSERT INTO users (name, email_or_phone, password)
-            VALUES ($1, $2, $3)
-            RETURNING id, name, email_or_phone;
+            INSERT INTO users (name, email_or_phone, password, role)
+            VALUES ($1, $2, $3, 'patient')
+            RETURNING id, name, email_or_phone, role;
         `;
         const values = [name, emailOrPhone, hashedPassword];
 
@@ -62,12 +61,13 @@ app.post('/api/signup', async (req, res) => {
             user: {
                 id: result.rows[0].id,
                 name: result.rows[0].name,
-                email: result.rows[0].email_or_phone
+                email: result.rows[0].email_or_phone,
+                role: result.rows[0].role
             }
         });
     } catch (err) {
         console.error('Database insertion error (Signup):', err.message);
-        if (err.code === '23505') { // PostgreSQL unique violation code
+        if (err.code === '23505') {
             return res.status(400).json({ error: 'Email or Phone already registered.' });
         }
         res.status(500).json({ error: 'Internal server error during registration.' });
@@ -75,7 +75,7 @@ app.post('/api/signup', async (req, res) => {
 });
 
 // ==========================================
-// 2. LOGIN API ENDPOINT
+// 2. LOGIN API ENDPOINT (With Doctor Role Check)
 // ==========================================
 app.post('/api/login', async (req, res) => {
     const { emailOrPhone, password } = req.body;
@@ -94,11 +94,15 @@ app.post('/api/login', async (req, res) => {
 
         const user = result.rows[0];
 
-        // Compare submitted password with hashed password in database
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
             return res.status(401).json({ error: 'Invalid credentials.' });
         }
+
+        // Specifically assign Dr. Anupriya as a doctor role
+        const role = (user.email_or_phone === 'anupriya@sakthidental.com' || user.role === 'doctor') 
+            ? 'doctor' 
+            : 'patient';
 
         res.json({
             success: true,
@@ -106,7 +110,8 @@ app.post('/api/login', async (req, res) => {
             user: {
                 id: user.id,
                 name: user.name,
-                email: user.email_or_phone
+                email: user.email_or_phone,
+                role: role
             }
         });
     } catch (err) {
@@ -147,10 +152,10 @@ app.post('/api/appointments', async (req, res) => {
 });
 
 // ==========================================
-// 4. GET USER APPOINTMENTS ENDPOINT (NEW)
+// 4. GET USER APPOINTMENTS ENDPOINT
 // ==========================================
 app.get('/api/my-appointments', async (req, res) => {
-    const { query } = req.query; // email or phone number passed from frontend
+    const { query } = req.query;
 
     if (!query) {
         return res.status(400).json({ error: 'User query identifier is required.' });
@@ -182,7 +187,57 @@ app.get('/api/my-appointments', async (req, res) => {
 });
 
 // ==========================================
-// 5. CONTACT MESSAGES API ENDPOINT
+// 5. DOCTOR ADMIN: GET ALL APPOINTMENTS
+// ==========================================
+app.get('/api/admin/appointments', async (req, res) => {
+    try {
+        const dbQuery = `
+            SELECT 
+                id, 
+                patient_name AS "patientName", 
+                phone, 
+                email, 
+                treatment, 
+                doctor, 
+                appointment_date AS "date", 
+                appointment_time AS "time", 
+                status, 
+                admin_message AS "adminMessage"
+            FROM appointments 
+            ORDER BY appointment_date DESC, appointment_time DESC;
+        `;
+        const result = await pool.query(dbQuery);
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Database error fetching admin appointments:', err.message);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
+});
+
+// ==========================================
+// 6. DOCTOR ADMIN: UPDATE PATIENT ADMIN MESSAGE
+// ==========================================
+app.put('/api/admin/appointments/:id/message', async (req, res) => {
+    const { id } = req.params;
+    const { adminMessage } = req.body;
+
+    try {
+        const query = `
+            UPDATE appointments 
+            SET admin_message = $1, admin_message_date = CURRENT_TIMESTAMP 
+            WHERE id = $2 
+            RETURNING *;
+        `;
+        const result = await pool.query(query, [adminMessage, id]);
+        res.json({ success: true, data: result.rows[0] });
+    } catch (err) {
+        console.error('Error updating admin message:', err.message);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
+});
+
+// ==========================================
+// 7. CONTACT MESSAGES API ENDPOINT
 // ==========================================
 app.post('/api/contact', async (req, res) => {
     const { name, email, phone, message } = req.body;
@@ -213,7 +268,7 @@ app.post('/api/contact', async (req, res) => {
 });
 
 // ==========================================
-// 6. COOKIE POLICY API ENDPOINT
+// 8. COOKIE POLICY API ENDPOINT
 // ==========================================
 app.get('/api/cookies/policy', (req, res) => {
     res.json({

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -14,9 +14,16 @@ import Treatments from "./pages/Treatments";
 import Privacy from "./pages/Privacy";
 import Contact from "./pages/Contact";
 import MyAppointments from "./pages/MyAppointments";
-import Reports from "./pages/Reports"; // <--- IMPORTED REPORTS PAGE HERE
+import Reports from "./pages/Reports";
+
+// IMPORT DOCTOR DASHBOARD PAGES
+import DoctorDashboard from "./pages/DoctorDashboard";
+import DoctorSchedule from "./pages/DoctorSchedule";
+import DoctorUploadReport from "./pages/DoctorUploadReport";
 
 export default function App() {
+  const navigate = useNavigate();
+
   // =====================================================
   // APPOINTMENT MODAL STATE
   // =====================================================
@@ -43,6 +50,14 @@ export default function App() {
     setIsLoggedIn(true);
     localStorage.setItem("sakthi_user", JSON.stringify(userData));
     localStorage.setItem("sakthi_isLoggedIn", "true");
+    setAuthModalOpen(false);
+
+    // If Dr. Anupriya or any doctor logs in, route them to doctor dashboard
+    if (userData.role === "doctor" || userData.email === "anupriya@sakthidental.com") {
+      navigate("/doctor/schedule");
+    } else {
+      navigate("/");
+    }
   };
 
   const handleLogout = () => {
@@ -50,6 +65,7 @@ export default function App() {
     setIsLoggedIn(false);
     localStorage.removeItem("sakthi_user");
     localStorage.removeItem("sakthi_isLoggedIn");
+    navigate("/");
   };
 
   // =====================================================
@@ -158,6 +174,12 @@ export default function App() {
               />
             }
           />
+
+          {/* ================= DOCTOR DASHBOARD ROUTES ================= */}
+          <Route path="/doctor" element={<DoctorDashboard onLogout={handleLogout} />}>
+            <Route path="schedule" element={<DoctorSchedule />} />
+            <Route path="upload" element={<DoctorUploadReport />} />
+          </Route>
 
           <Route path="/privacy" element={<Privacy />} />
 
