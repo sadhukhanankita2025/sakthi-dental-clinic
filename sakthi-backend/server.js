@@ -127,8 +127,8 @@ app.post('/api/appointments', async (req, res) => {
 
     try {
         const query = `
-            INSERT INTO appointments (patient_name, phone, email, treatment, doctor, appointment_date, appointment_time, notes)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            INSERT INTO appointments (patient_name, phone, email, treatment, doctor, appointment_date, appointment_time, notes, status)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 'Confirmed')
             RETURNING *;
         `;
         const values = [patientName, phone, email || null, treatment, doctor, date, time, notes || null];
@@ -147,7 +147,42 @@ app.post('/api/appointments', async (req, res) => {
 });
 
 // ==========================================
-// 4. CONTACT MESSAGES API ENDPOINT
+// 4. GET USER APPOINTMENTS ENDPOINT (NEW)
+// ==========================================
+app.get('/api/my-appointments', async (req, res) => {
+    const { query } = req.query; // email or phone number passed from frontend
+
+    if (!query) {
+        return res.status(400).json({ error: 'User query identifier is required.' });
+    }
+
+    try {
+        const dbQuery = `
+            SELECT 
+                id, 
+                patient_name AS "patientName", 
+                treatment, 
+                doctor, 
+                appointment_date AS "date", 
+                appointment_time AS "time", 
+                status, 
+                admin_message AS "adminMessage", 
+                admin_message_date AS "adminMessageDate"
+            FROM appointments 
+            WHERE email = $1 OR phone = $1 
+            ORDER BY appointment_date DESC, appointment_time DESC;
+        `;
+        
+        const result = await pool.query(dbQuery, [query]);
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Database query error (My Appointments):', err.message);
+        res.status(500).json({ error: 'Internal server error while fetching appointments.' });
+    }
+});
+
+// ==========================================
+// 5. CONTACT MESSAGES API ENDPOINT
 // ==========================================
 app.post('/api/contact', async (req, res) => {
     const { name, email, phone, message } = req.body;
@@ -178,7 +213,7 @@ app.post('/api/contact', async (req, res) => {
 });
 
 // ==========================================
-// 5. COOKIE POLICY API ENDPOINT
+// 6. COOKIE POLICY API ENDPOINT
 // ==========================================
 app.get('/api/cookies/policy', (req, res) => {
     res.json({

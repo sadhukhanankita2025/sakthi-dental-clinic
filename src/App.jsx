@@ -13,6 +13,7 @@ import About from "./pages/About";
 import Treatments from "./pages/Treatments";
 import Privacy from "./pages/Privacy";
 import Contact from "./pages/Contact";
+import MyAppointments from "./pages/MyAppointments";
 
 export default function App() {
   // =====================================================
@@ -23,20 +24,31 @@ export default function App() {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
   // =====================================================
-  // AUTHENTICATION MODAL & USER STATE
+  // AUTHENTICATION MODAL & PERSISTENT USER STATE
   // =====================================================
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem("sakthi_isLoggedIn") === "true";
+  });
+  
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("sakthi_user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
   const handleLoginSuccess = (userData) => {
     setUser(userData);
     setIsLoggedIn(true);
+    localStorage.setItem("sakthi_user", JSON.stringify(userData));
+    localStorage.setItem("sakthi_isLoggedIn", "true");
   };
 
   const handleLogout = () => {
     setUser(null);
     setIsLoggedIn(false);
+    localStorage.removeItem("sakthi_user");
+    localStorage.removeItem("sakthi_isLoggedIn");
   };
 
   // =====================================================
@@ -121,6 +133,19 @@ export default function App() {
             element={<Treatments onOpenAppointment={handleOpenAppointment} />}
           />
 
+          {/* ================= MY APPOINTMENTS ROUTE ================= */}
+          <Route
+            path="/appointments"
+            element={
+              <MyAppointments
+                isLoggedIn={isLoggedIn}
+                user={user}
+                onOpenAuth={() => setAuthModalOpen(true)}
+                onOpenAppointment={handleOpenAppointment}
+              />
+            }
+          />
+
           <Route path="/privacy" element={<Privacy />} />
 
           <Route
@@ -152,6 +177,7 @@ export default function App() {
         selectedDoctor={selectedDoctor}
         selectedTreatment={selectedTreatment}
         isLoggedIn={isLoggedIn}
+        user={user} 
         onOpenAuth={() => setAuthModalOpen(true)}
       />
 

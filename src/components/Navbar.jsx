@@ -15,7 +15,6 @@ import {
   User,
   LogOut,
   FileText,
-  Settings,
   ChevronDown,
 } from "lucide-react";
 
@@ -207,13 +206,6 @@ export default function Navbar({ onOpenAppointment, onOpenAuth, isLoggedIn, user
                         >
                           <FileText className="h-4 w-4 text-purple-600" />
                           Medical Records
-                        </Link>
-                        <Link
-                          to="/settings"
-                          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-purple-50 hover:text-purple-700"
-                        >
-                          <Settings className="h-4 w-4 text-purple-600" />
-                          Account Settings
                         </Link>
                         <div className="my-1 h-px bg-purple-50" />
                         <button

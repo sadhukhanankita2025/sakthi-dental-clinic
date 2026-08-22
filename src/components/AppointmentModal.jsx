@@ -6,6 +6,7 @@ import {
   Clock,
   User,
   Phone,
+  Mail,
   Sparkles,
   CheckCircle2,
   Stethoscope,
@@ -19,8 +20,9 @@ export default function AppointmentModal({
   isOpen,
   onClose,
   selectedTreatment = "",
-  isLoggedIn = false,       // <--- NEW PROP TO CHECK LOGIN STATUS
-  onOpenAuth = () => {},    // <--- NEW PROP TO OPEN LOGIN/SIGNUP MODAL
+  isLoggedIn = false,
+  onOpenAuth = () => {},
+  user = null, // <--- Added user prop to grab logged-in email/name
 }) {
   // =========================================================
   // DEFAULT TREATMENT
@@ -38,9 +40,9 @@ export default function AppointmentModal({
   // =========================================================
 
   const [formData, setFormData] = useState({
-    patientName: "",
+    patientName: user?.name || "",
     phone: "",
-    email: "",
+    email: user?.email || "", // Automatically fill user email
     doctor: DOCTORS_DATA[0]?.name || "",
     treatment: defaultTreatment,
     date: new Date().toISOString().split("T")[0],
@@ -51,6 +53,19 @@ export default function AppointmentModal({
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // =========================================================
+  // SYNC USER DATA WHEN MODAL OPENS
+  // =========================================================
+  useEffect(() => {
+    if (user) {
+      setFormData((previous) => ({
+        ...previous,
+        patientName: user.name || previous.patientName,
+        email: user.email || previous.email,
+      }));
+    }
+  }, [user]);
 
   // =========================================================
   // UPDATE SELECTED TREATMENT
@@ -84,13 +99,15 @@ export default function AppointmentModal({
 
       setFormData((previous) => ({
         ...previous,
+        patientName: user?.name || previous.patientName,
+        email: user?.email || previous.email,
         treatment:
           selectedTreatment ||
           TREATMENTS_DATA[0]?.title ||
           "",
       }));
     }
-  }, [isOpen, selectedTreatment]);
+  }, [isOpen, selectedTreatment, user]);
 
   // =========================================================
   // SUBMIT (POSTGRESQL DATABASE CONNECTION)
@@ -232,6 +249,7 @@ export default function AppointmentModal({
               transition-colors
               hover:bg-slate-100
               hover:text-slate-700
+              cursor-pointer
             "
             aria-label="Close appointment modal"
           >
@@ -347,8 +365,7 @@ export default function AppointmentModal({
                         onChange={(e) =>
                           setFormData({
                             ...formData,
-                            patientName:
-                              e.target.value,
+                            patientName: e.target.value,
                           })
                         }
                         className="
@@ -438,6 +455,69 @@ export default function AppointmentModal({
                 </div>
 
                 {/* =================================================
+                    EMAIL ADDRESS (Auto-filled & Linked to Account)
+                ================================================= */}
+
+                <div>
+                  <label
+                    className="
+                      mb-1
+                      block
+                      text-xs
+                      font-semibold
+                      uppercase
+                      tracking-wider
+                      text-slate-700
+                    "
+                  >
+                    Email Address *
+                  </label>
+
+                  <div className="relative">
+                    <Mail
+                      className="
+                        absolute
+                        left-3.5
+                        top-3
+                        h-4
+                        w-4
+                        text-slate-400
+                      "
+                    />
+
+                    <input
+                      type="email"
+                      required
+                      placeholder="abc@gmail.com"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          email: e.target.value,
+                        })
+                      }
+                      className="
+                        w-full
+                        rounded-xl
+                        border
+                        border-slate-200
+                        bg-slate-50
+                        py-2.5
+                        pl-10
+                        pr-4
+                        text-sm
+                        text-slate-800
+                        transition-all
+                        focus:bg-white
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-[#0D9488]/50
+                      "
+                    />
+                  </div>
+                </div>
+
+                {/* =================================================
                     TREATMENT + DOCTOR
                 ================================================= */}
 
@@ -479,8 +559,7 @@ export default function AppointmentModal({
                         onChange={(e) =>
                           setFormData({
                             ...formData,
-                            treatment:
-                              e.target.value,
+                            treatment: e.target.value,
                           })
                         }
                         className="
@@ -553,8 +632,7 @@ export default function AppointmentModal({
                         onChange={(e) =>
                           setFormData({
                             ...formData,
-                            doctor:
-                              e.target.value,
+                            doctor: e.target.value,
                           })
                         }
                         className="

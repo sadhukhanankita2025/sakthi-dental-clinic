@@ -70,14 +70,16 @@ export default function DoctorCard({ doctor, onOpenAppointment }) {
 
         <div className="absolute left-4 top-4">
           <span
-            className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold shadow-md backdrop-blur-md ${available
-              ? "bg-emerald-500/90 text-white"
-              : "bg-slate-700/90 text-white"
-              }`}
+            className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold shadow-md backdrop-blur-md ${
+              available
+                ? "bg-emerald-500/90 text-white"
+                : "bg-slate-700/90 text-white"
+            }`}
           >
             <span
-              className={`h-2 w-2 rounded-full ${available ? "bg-white" : "bg-slate-300"
-                }`}
+              className={`h-2 w-2 rounded-full ${
+                available ? "bg-white" : "bg-slate-300"
+              }`}
             />
 
             {available ? "Available Today" : "Currently Unavailable"}
@@ -206,8 +208,8 @@ export default function DoctorCard({ doctor, onOpenAppointment }) {
         </motion.div>
 
         {/* =========================
-           Appointment Button
-          ========================== */}
+            Appointment Button
+          ========================= */}
 
         <div className="mt-6">
           <motion.button
@@ -215,10 +217,9 @@ export default function DoctorCard({ doctor, onOpenAppointment }) {
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => {
-              // Open Appointment Modal with selected doctor
               onOpenAppointment?.(doctor);
             }}
-            className="w-full flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 px-5 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-purple-600/30 transition-all duration-300 hover:shadow-xl hover:shadow-purple-700/40 hover:from-purple-700 hover:via-violet-700 hover:to-indigo-700"
+            className="w-full flex items-center justify-center gap-3 rounded-2xl bg-linear-to-r from-purple-600 via-violet-600 to-indigo-600 px-5 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-purple-600/30 transition-all duration-300 hover:shadow-xl hover:shadow-purple-700/40 hover:from-purple-700 hover:via-violet-700 hover:to-indigo-700 cursor-pointer"
           >
             <Calendar className="h-5 w-5" />
             Book Appointment
