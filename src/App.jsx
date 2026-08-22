@@ -14,6 +14,7 @@ import Treatments from "./pages/Treatments";
 import Privacy from "./pages/Privacy";
 import Contact from "./pages/Contact";
 import MyAppointments from "./pages/MyAppointments";
+import Reports from "./pages/Reports"; // <--- IMPORTED REPORTS PAGE HERE
 
 export default function App() {
   // =====================================================
@@ -142,6 +143,18 @@ export default function App() {
                 user={user}
                 onOpenAuth={() => setAuthModalOpen(true)}
                 onOpenAppointment={handleOpenAppointment}
+              />
+            }
+          />
+
+          {/* ================= REPORTS & PRESCRIPTIONS ROUTE ================= */}
+          <Route
+            path="/records"
+            element={
+              <Reports
+                isLoggedIn={isLoggedIn}
+                user={user}
+                onOpenAuth={() => setAuthModalOpen(true)}
               />
             }
           />

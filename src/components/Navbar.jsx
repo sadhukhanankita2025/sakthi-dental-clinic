@@ -205,7 +205,7 @@ export default function Navbar({ onOpenAppointment, onOpenAuth, isLoggedIn, user
                           className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-purple-50 hover:text-purple-700"
                         >
                           <FileText className="h-4 w-4 text-purple-600" />
-                          Medical Records
+                          Reports & Prescription
                         </Link>
                         <div className="my-1 h-px bg-purple-50" />
                         <button
@@ -330,7 +330,7 @@ export default function Navbar({ onOpenAppointment, onOpenAuth, isLoggedIn, user
                       <Calendar className="h-4 w-4 text-purple-600" /> My Appointments
                     </Link>
                     <Link to="/records" className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold text-slate-700 hover:bg-purple-50">
-                      <FileText className="h-4 w-4 text-purple-600" /> Medical Records
+                      <FileText className="h-4 w-4 text-purple-600" /> Reports & Prescription
                     </Link>
                     <button onClick={onLogout} className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50">
                       <LogOut className="h-4 w-4" /> Logout
