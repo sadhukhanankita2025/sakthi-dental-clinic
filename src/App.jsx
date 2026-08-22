@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AppointmentModal from "./components/AppointmentModal";
+import LoginModal from "./components/LoginModal"; // <--- IMPORT LOGIN MODAL
 import ScrollToTop from "./components/ScrollToTop";
 import CookieConsent from "./components/CookieConsent";
 
@@ -20,6 +21,23 @@ export default function App() {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
   const [selectedTreatment, setSelectedTreatment] = useState("");
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+
+  // =====================================================
+  // AUTHENTICATION MODAL & USER STATE
+  // =====================================================
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setIsLoggedIn(false);
+  };
 
   // =====================================================
   // OPEN APPOINTMENT MODAL
@@ -70,17 +88,23 @@ export default function App() {
     };
   }, []);
 
-  // Prevent background scroll while modal is open
+  // Prevent background scroll while any modal is open
   useEffect(() => {
-    document.body.style.overflow = appointmentOpen ? "hidden" : "auto";
-  }, [appointmentOpen]);
+    document.body.style.overflow = (appointmentOpen || authModalOpen) ? "hidden" : "auto";
+  }, [appointmentOpen, authModalOpen]);
 
   return (
     <div className="min-h-screen bg-[#FAF5FF] text-[#1E1B4B]">
       <ScrollToTop />
 
       {/* ================= NAVBAR ================= */}
-      <Navbar onOpenAppointment={handleOpenAppointment} />
+      <Navbar
+        onOpenAppointment={handleOpenAppointment}
+        onOpenAuth={() => setAuthModalOpen(true)}
+        isLoggedIn={isLoggedIn}
+        user={user}
+        onLogout={handleLogout}
+      />
 
       {/* ================= ROUTES ================= */}
       <main>
@@ -124,6 +148,13 @@ export default function App() {
         onClose={handleCloseAppointment}
         selectedDoctor={selectedDoctor}
         selectedTreatment={selectedTreatment}
+      />
+
+      {/* ================= LOGIN / SIGNUP MODAL ================= */}
+      <LoginModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        onLoginSuccess={handleLoginSuccess}
       />
 
       {/* ================= COOKIE CONSENT BANNER ================= */}
