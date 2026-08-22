@@ -125,7 +125,13 @@ export default function App() {
 
           <Route
             path="/contact"
-            element={<Contact onOpenAppointment={handleOpenAppointment} />}
+            element={
+              <Contact
+                onOpenAppointment={handleOpenAppointment}
+                isLoggedIn={isLoggedIn}
+                onOpenAuth={() => setAuthModalOpen(true)}
+              />
+            }
           />
 
           {/* Fallback */}

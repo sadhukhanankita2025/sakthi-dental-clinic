@@ -18,7 +18,7 @@ import FAQAccordion from "../components/FAQAccordion";
 
 import contactDental from "../assets/Banner Images/contact-dental.jpg";
 
-export default function Contact() {
+export default function Contact({ isLoggedIn, onOpenAuth, onOpenAppointment }) {
   return (
     <main className="relative min-h-screen w-full overflow-x-hidden bg-slate-50 pt-20 text-slate-900 sm:pt-24">
       {/* =====================================================
@@ -103,7 +103,7 @@ export default function Contact() {
 
       {/* =====================================================
           HERO
-      ====================================================== */}
+      ===================================================== */}
 
       <section className="relative overflow-hidden bg-linear-to-br from-purple-50 via-white to-teal-50 py-10 sm:py-14 md:py-16 lg:py-20">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -192,15 +192,12 @@ export default function Contact() {
 
       {/* =====================================================
           REACH US + FAQ
-      ====================================================== */}
+      ===================================================== */}
 
       <section className="relative py-10 sm:py-14 md:py-16 lg:py-20">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
-            {/* =================================================
-                REACH US
-            ================================================== */}
-
+            {/* REACH US */}
             <motion.section
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -226,7 +223,6 @@ export default function Contact() {
               />
 
               <div className="relative min-w-0">
-                {/* Badge */}
                 <div className="inline-flex max-w-full items-center gap-2 rounded-full bg-purple-100 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-purple-700 sm:text-xs">
                   <MapPin className="h-3.5 w-3.5 shrink-0" />
                   Reach Us
@@ -245,7 +241,6 @@ export default function Contact() {
 
               {/* Contact cards */}
               <div className="relative mt-6 space-y-3">
-                {/* Address */}
                 <ContactInfoCard
                   icon={<MapPin className="h-5 w-5" />}
                   iconClass="bg-purple-100 text-purple-600"
@@ -260,7 +255,6 @@ export default function Contact() {
                   </span>
                 </ContactInfoCard>
 
-                {/* Phone */}
                 <ContactInfoCard
                   icon={<Phone className="h-5 w-5" />}
                   iconClass="bg-teal-100 text-teal-600"
@@ -283,7 +277,6 @@ export default function Contact() {
                   </div>
                 </ContactInfoCard>
 
-                {/* Email */}
                 <ContactInfoCard
                   icon={<Mail className="h-5 w-5" />}
                   iconClass="bg-blue-100 text-blue-600"
@@ -297,7 +290,6 @@ export default function Contact() {
                   </a>
                 </ContactInfoCard>
 
-                {/* Timing */}
                 <ContactInfoCard
                   icon={<Clock className="h-5 w-5" />}
                   iconClass="bg-emerald-100 text-emerald-600"
@@ -314,10 +306,7 @@ export default function Contact() {
               </div>
             </motion.section>
 
-            {/* =================================================
-                FAQ
-            ================================================== */}
-
+            {/* FAQ */}
             <motion.section
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -328,7 +317,6 @@ export default function Contact() {
               transition={{ duration: 0.7 }}
               className="group relative min-w-0 overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-4 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-all duration-500 hover:border-purple-300 hover:bg-white/95 hover:shadow-2xl hover:shadow-purple-500/20 sm:p-6 lg:p-8"
             >
-              {/* Glow */}
               <motion.div
                 animate={{
                   scale: [1, 1.15, 1],
@@ -358,7 +346,6 @@ export default function Contact() {
                 </p>
               </div>
 
-              {/* Important: min-w-0 prevents horizontal overflow */}
               <div className="relative min-w-0 w-full max-w-full overflow-hidden">
                 <FAQAccordion />
               </div>
@@ -369,11 +356,10 @@ export default function Contact() {
 
       {/* =====================================================
           CONTACT FORM + IMAGE
-      ====================================================== */}
+      ===================================================== */}
 
       <section className="relative py-10 sm:py-14 md:py-16 lg:py-20">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Heading */}
           <motion.div
             initial={{
               opacity: 0,
@@ -403,9 +389,8 @@ export default function Contact() {
             </p>
           </motion.div>
 
-          {/* Form + Image */}
           <div className="grid w-full grid-cols-1 items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
-            {/* Contact Form */}
+            {/* Contact Form with Passed Props */}
             <motion.div
               initial={{
                 opacity: 0,
@@ -425,7 +410,7 @@ export default function Contact() {
               className="group min-w-0 w-full overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-4 shadow-xl shadow-purple-900/5 backdrop-blur-xl transition-all duration-500 hover:border-purple-300 hover:bg-white/95 hover:shadow-2xl hover:shadow-purple-500/20 sm:p-6 lg:p-8"
             >
               <div className="min-w-0 w-full max-w-full">
-                <ContactForm />
+                <ContactForm isLoggedIn={isLoggedIn} onOpenAuth={onOpenAuth} />
               </div>
             </motion.div>
 
@@ -467,10 +452,8 @@ export default function Contact() {
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
-              {/* Image overlay */}
               <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/25 to-transparent" />
 
-              {/* Floating badge */}
               <motion.div
                 animate={{
                   y: [0, -8, 0],
@@ -497,7 +480,6 @@ export default function Contact() {
                 </div>
               </motion.div>
 
-              {/* Image text */}
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-7 lg:p-8">
                 <div className="mb-3 inline-flex max-w-full items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-[10px] font-bold text-white backdrop-blur-md sm:text-xs">
                   <Sparkles className="h-3.5 w-3.5 shrink-0 text-teal-300" />
@@ -520,7 +502,7 @@ export default function Contact() {
 
       {/* =====================================================
           MAP
-      ====================================================== */}
+      ===================================================== */}
 
       <section className="relative pb-12 pt-4 sm:pb-16 lg:pb-20">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -542,7 +524,6 @@ export default function Contact() {
             }}
             className="group w-full overflow-hidden rounded-3xl border border-white/80 bg-white shadow-2xl shadow-purple-900/10 transition-all duration-500 hover:border-purple-300 hover:shadow-purple-500/20"
           >
-            {/* Map Header */}
             <div className="flex flex-col gap-4 bg-slate-950 p-4 text-white sm:p-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="min-w-0">
                 <div className="flex items-center gap-2">
@@ -569,7 +550,6 @@ export default function Contact() {
               </a>
             </div>
 
-            {/* Map */}
             <div className="relative h-72 w-full overflow-hidden sm:h-96 lg:h-125">
               <iframe
                 title="Sakthi Dental Clinic Location Map"
@@ -583,7 +563,6 @@ export default function Contact() {
                 className="h-full w-full grayscale-15 opacity-90 transition-all duration-500 hover:grayscale-0 hover:opacity-100"
               />
 
-              {/* Treatments button */}
               <motion.a
                 href="/treatments"
                 whileHover={{
@@ -606,16 +585,7 @@ export default function Contact() {
   );
 }
 
-/* ============================================================
-   CONTACT INFORMATION CARD
-============================================================ */
-
-function ContactInfoCard({
-  icon,
-  iconClass,
-  title,
-  children,
-}) {
+function ContactInfoCard({ icon, iconClass, title, children }) {
   return (
     <motion.div
       whileHover={{
@@ -627,16 +597,14 @@ function ContactInfoCard({
         stiffness: 300,
         damping: 20,
       }}
-      className="flex min-w-0 w-full items-start gap-3 rounded-2xl border border-slate-100 bg-white/9ontal p-3.5 shadow-sm transition-all duration-300 hover:border-purple-200 hover:bg-white hover:shadow-lg hover:shadow-purple-500/10 sm:gap-4 sm:p-4"
+      className="flex min-w-0 w-full items-start gap-3 rounded-2xl border border-slate-100 bg-white/90 p-3.5 shadow-sm transition-all duration-300 hover:border-purple-200 hover:bg-white hover:shadow-lg hover:shadow-purple-500/10 sm:gap-4 sm:p-4"
     >
-      {/* Icon */}
       <div
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl sm:h-11 sm:w-11 ${iconClass}`}
       >
         {icon}
       </div>
 
-      {/* Content */}
       <div className="min-w-0 flex-1">
         <h3 className="text-[10px] font-black uppercase tracking-wider text-slate-900 sm:text-xs">
           {title}
