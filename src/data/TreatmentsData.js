@@ -17,7 +17,7 @@ export const TREATMENTS_DATA = [
     fullDesc:
       "Professional dental scaling and polishing eliminates stubborn plaque, calculus deposits, and surface discoloration. It prevents gum disease, maintains fresh breath, and brightens your natural smile in a single comfortable visit.",
     iconName: "Sparkles",
-    duration: "30 - 45 Mins",
+    duration: "30 - 40 Mins",
     recovery: "Immediate",
     painless: true,
     priceEstimate: "₹800 - ₹1,500",
