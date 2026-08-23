@@ -20,6 +20,7 @@ import Reports from "./pages/Reports";
 import DoctorDashboard from "./pages/DoctorDashboard";
 import DoctorSchedule from "./pages/DoctorSchedule";
 import DoctorUploadReport from "./pages/DoctorUploadReport";
+import ManageDoctors from "./pages/ManageDoctors"; // <-- 1. IMPORT MANAGE DOCTORS PAGE
 
 export default function App() {
   const navigate = useNavigate();
@@ -52,7 +53,6 @@ export default function App() {
     localStorage.setItem("sakthi_isLoggedIn", "true");
     setAuthModalOpen(false);
 
-    // If Dr. Anupriya or any doctor logs in, route them to doctor dashboard
     if (userData.role === "doctor" || userData.email === "anupriya@sakthidental.com") {
       navigate("/doctor/schedule");
     } else {
@@ -68,9 +68,6 @@ export default function App() {
     navigate("/");
   };
 
-  // =====================================================
-  // OPEN APPOINTMENT MODAL
-  // =====================================================
   const handleOpenAppointment = (doctorOrTreatment = null, treatment = "") => {
     if (
       doctorOrTreatment &&
@@ -87,18 +84,12 @@ export default function App() {
     setAppointmentOpen(true);
   };
 
-  // =====================================================
-  // CLOSE APPOINTMENT MODAL
-  // =====================================================
   const handleCloseAppointment = () => {
     setAppointmentOpen(false);
     setSelectedDoctor(null);
     setSelectedTreatment("");
   };
 
-  // =====================================================
-  // LISTEN FOR CUSTOM EVENT (Treatment Cards)
-  // =====================================================
   useEffect(() => {
     const openAppointment = (event) => {
       const doctor = event?.detail?.doctor || null;
@@ -114,7 +105,6 @@ export default function App() {
     };
   }, []);
 
-  // Prevent background scroll while any modal is open
   useEffect(() => {
     document.body.style.overflow = (appointmentOpen || authModalOpen) ? "hidden" : "auto";
   }, [appointmentOpen, authModalOpen]);
@@ -123,7 +113,6 @@ export default function App() {
     <div className="min-h-screen bg-[#FAF5FF] text-[#1E1B4B]">
       <ScrollToTop />
 
-      {/* ================= NAVBAR ================= */}
       <Navbar
         onOpenAppointment={handleOpenAppointment}
         onOpenAuth={() => setAuthModalOpen(true)}
@@ -132,25 +121,12 @@ export default function App() {
         onLogout={handleLogout}
       />
 
-      {/* ================= ROUTES ================= */}
       <main>
         <Routes>
-          <Route
-            path="/"
-            element={<Home onOpenAppointment={handleOpenAppointment} />}
-          />
-
-          <Route
-            path="/about"
-            element={<About onOpenAppointment={handleOpenAppointment} />}
-          />
-
-          <Route
-            path="/treatments"
-            element={<Treatments onOpenAppointment={handleOpenAppointment} />}
-          />
-
-          {/* ================= MY APPOINTMENTS ROUTE ================= */}
+          <Route path="/" element={<Home onOpenAppointment={handleOpenAppointment} />} />
+          <Route path="/about" element={<About onOpenAppointment={handleOpenAppointment} />} />
+          <Route path="/treatments" element={<Treatments onOpenAppointment={handleOpenAppointment} />} />
+          
           <Route
             path="/appointments"
             element={
@@ -163,7 +139,6 @@ export default function App() {
             }
           />
 
-          {/* ================= REPORTS & PRESCRIPTIONS ROUTE ================= */}
           <Route
             path="/records"
             element={
@@ -179,6 +154,7 @@ export default function App() {
           <Route path="/doctor" element={<DoctorDashboard onLogout={handleLogout} />}>
             <Route path="schedule" element={<DoctorSchedule />} />
             <Route path="upload" element={<DoctorUploadReport />} />
+            <Route path="doctors" element={<ManageDoctors />} /> {/* <-- 2. ADD ROUTE HERE */}
           </Route>
 
           <Route path="/privacy" element={<Privacy />} />
@@ -194,18 +170,12 @@ export default function App() {
             }
           />
 
-          {/* Fallback */}
-          <Route
-            path="*"
-            element={<Home onOpenAppointment={handleOpenAppointment} />}
-          />
+          <Route path="*" element={<Home onOpenAppointment={handleOpenAppointment} />} />
         </Routes>
       </main>
 
-      {/* ================= FOOTER ================= */}
       <Footer onOpenAppointment={handleOpenAppointment} />
 
-      {/* ================= APPOINTMENT MODAL ================= */}
       <AppointmentModal
         isOpen={appointmentOpen}
         onClose={handleCloseAppointment}
@@ -216,14 +186,12 @@ export default function App() {
         onOpenAuth={() => setAuthModalOpen(true)}
       />
 
-      {/* ================= LOGIN / SIGNUP MODAL ================= */}
       <LoginModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         onLoginSuccess={handleLoginSuccess}
       />
 
-      {/* ================= COOKIE CONSENT BANNER ================= */}
       <CookieConsent />
     </div>
   );

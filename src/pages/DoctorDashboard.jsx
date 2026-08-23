@@ -16,6 +16,7 @@ export default function DoctorDashboard({ onLogout }) {
   const sidebarLinks = [
     { name: "Patient Schedule", path: "/doctor/schedule", icon: Calendar },
     { name: "Upload Reports & Rx", path: "/doctor/upload", icon: UploadCloud },
+    { name: "Manage Doctors", path: "/doctor/doctors", icon: Users },
   ];
 
   return (
