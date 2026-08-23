@@ -99,7 +99,6 @@ app.post('/api/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials.' });
         }
 
-        // Specifically assign Dr. Anupriya as a doctor role
         const role = (user.email_or_phone === 'anupriya@sakthidental.com' || user.role === 'doctor') 
             ? 'doctor' 
             : 'patient';
@@ -121,7 +120,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 // ==========================================
-// 3. APPOINTMENTS API ENDPOINT
+// 3. APPOINTMENTS (POST: Create, GET: Fetch All)
 // ==========================================
 app.post('/api/appointments', async (req, res) => {
     const { patientName, phone, email, doctor, treatment, date, time, notes } = req.body;
@@ -148,6 +147,32 @@ app.post('/api/appointments', async (req, res) => {
     } catch (err) {
         console.error('Database insertion error (Appointments):', err.message);
         res.status(500).json({ error: 'Internal server error while saving appointment.' });
+    }
+});
+
+app.get('/api/appointments', async (req, res) => {
+    try {
+        const query = `
+            SELECT 
+                id, 
+                patient_name AS "patientName", 
+                phone, 
+                email, 
+                treatment, 
+                doctor, 
+                appointment_date AS "date", 
+                appointment_time AS "time", 
+                status, 
+                notes,
+                created_at AS "createdAt"
+            FROM appointments 
+            ORDER BY appointment_date DESC, appointment_time DESC;
+        `;
+        const result = await pool.query(query);
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Database error fetching appointments:', err.message);
+        res.status(500).json({ error: 'Internal server error while fetching appointments.' });
     }
 });
 
@@ -280,6 +305,88 @@ app.get('/api/cookies/policy', (req, res) => {
             { id: "analytics", name: "Anonymous Telemetry", defaultState: true, configurable: true }
         ]
     });
+});
+
+// ==========================================
+// 9. MANAGE DOCTORS: GET ALL DOCTORS FROM DATABASE
+// ==========================================
+app.get('/api/doctors', async (req, res) => {
+    try {
+        const query = `
+            SELECT 
+                id, 
+                name, 
+                role, 
+                qualifications, 
+                experience, 
+                rating, 
+                specialty, 
+                assigned_room AS "assignedRoom", 
+                custom_schedule AS "customSchedule", 
+                image 
+            FROM doctors 
+            ORDER BY id ASC;
+        `;
+        const result = await pool.query(query);
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Database error fetching doctors:', err.message);
+        res.status(500).json({ error: 'Internal server error while fetching doctors.' });
+    }
+});
+
+// ==========================================
+// 10. MANAGE DOCTORS: UPDATE ROOM & SCHEDULE
+// ==========================================
+app.put('/api/doctors/:id', async (req, res) => {
+    const { id } = req.params;
+    const { assignedRoom, customSchedule } = req.body;
+
+    try {
+        const query = `
+            UPDATE doctors 
+            SET assigned_room = $1, custom_schedule = $2 
+            WHERE id = $3 
+            RETURNING 
+                id, 
+                name, 
+                role, 
+                qualifications, 
+                experience, 
+                rating, 
+                specialty, 
+                assigned_room AS "assignedRoom", 
+                custom_schedule AS "customSchedule", 
+                image;
+        `;
+        const result = await pool.query(query, [assignedRoom, customSchedule, id]);
+        res.json({ success: true, data: result.rows[0] });
+    } catch (err) {
+        console.error('Error updating doctor room/schedule:', err.message);
+        res.status(500).json({ error: 'Internal server error while updating doctor.' });
+    }
+});
+
+// ==========================================
+// 11. MANAGE DOCTORS: UPDATE APPOINTMENT STATUS
+// ==========================================
+app.patch('/api/appointments/:id/status', async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    try {
+        const query = `
+            UPDATE appointments 
+            SET status = $1 
+            WHERE id = $2 
+            RETURNING *;
+        `;
+        const result = await pool.query(query, [status, id]);
+        res.json({ success: true, data: result.rows[0] });
+    } catch (err) {
+        console.error('Error updating appointment status:', err.message);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
 });
 
 // ==========================================

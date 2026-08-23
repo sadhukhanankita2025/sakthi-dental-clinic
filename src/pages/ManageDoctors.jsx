@@ -11,77 +11,124 @@ import {
   CalendarDays,
   Loader2
 } from "lucide-react";
-import { DOCTORS_DATA } from "../data/doctorsData";
 
-const initialRooms = {
-  "dr-anupriya": "Room 101",
-  "dr-ananya-iyer": "Room 102",
-  "dr-meera-subramanian": "Room 103",
-  "dr-arvind-kumar": "Room 104",
-  "dr-sneha-n": "Room 105",
-  "dr-srinivas-rohit-ramanujam": "Room 106",
-  "dr-balu": "Room 107",
-  "dr-vikram-raj-kishore": "Room 108"
+// Doctor Images
+import drAnupriya from "../assets/1doc.jpg";
+import drArvind from "../assets/doc.png";
+import drSrinivas from "../assets/doc2.png";
+import drAnanya from "../assets/doc3.jpg";
+import drSneha from "../assets/doc4.jpg";
+import drMeera from "../assets/doc5.jpg";
+import drBalu from "../assets/doc6.png";
+import drVikram from "../assets/doc7.jpg";
+
+// Map local image assets to doctor IDs
+const doctorImages = {
+  "dr-anupriya": drAnupriya,
+  "dr-ananya-iyer": drAnanya,
+  "dr-meera-subramanian": drMeera,
+  "dr-arvind-kumar": drArvind,
+  "dr-sneha-n": drSneha,
+  "dr-srinivas-rohit-ramanujam": drSrinivas,
+  "dr-balu": drBalu,
+  "dr-vikram-raj-kishore": drVikram
 };
 
-const initialAppointments = [
-  { id: 101, doctorId: "dr-anupriya", patientName: "Rahul Sharma", time: "10:30 AM", status: "Confirmed" },
-  { id: 102, doctorId: "dr-anupriya", patientName: "Priya Patel", time: "11:15 AM", status: "Pending" },
-  { id: 103, doctorId: "dr-ananya-iyer", patientName: "Amit Kumar", time: "02:00 PM", status: "Pending" },
-  { id: 104, doctorId: "dr-arvind-kumar", patientName: "Sneha Roy", time: "01:30 PM", status: "Confirmed" },
-  { id: 105, doctorId: "dr-srinivas-rohit-ramanujam", patientName: "Karthik V", time: "11:00 AM", status: "Pending" }
-];
-
 export default function ManageDoctors() {
-  const [doctors, setDoctors] = useState(() => {
-    const saved = localStorage.getItem("sakthi_manage_doctors");
-    if (saved) return JSON.parse(saved);
-    return DOCTORS_DATA.map((doc) => ({
-      ...doc,
-      assignedRoom: initialRooms[doc.id] || "Room 100",
-      customSchedule: doc.availableDays
-    }));
-  });
+  const [doctors, setDoctors] = useState([]);
+  const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const [appointments, setAppointments] = useState(() => {
-    const saved = localStorage.getItem("sakthi_manage_appointments");
-    return saved ? JSON.parse(saved) : initialAppointments;
-  });
-
-  const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [roomInput, setRoomInput] = useState("");
   const [scheduleInput, setScheduleInput] = useState("");
 
-  // Save updates to localStorage whenever they change
   useEffect(() => {
-    localStorage.setItem("sakthi_manage_doctors", JSON.stringify(doctors));
-  }, [doctors]);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
 
-  useEffect(() => {
-    localStorage.setItem("sakthi_manage_appointments", JSON.stringify(appointments));
-  }, [appointments]);
+        const [docRes, appRes] = await Promise.all([
+          fetch("http://localhost:5000/api/doctors"),
+          fetch("http://localhost:5000/api/appointments")
+        ]);
+
+        if (!docRes.ok || !appRes.ok) {
+          throw new Error("Failed to retrieve live data from the database server.");
+        }
+
+        const docData = await docRes.json();
+        const appData = await appRes.json();
+
+        // Attach local asset images to each doctor based on their ID
+        const enhancedDoctors = docData.map((doc) => ({
+          ...doc,
+          image: doctorImages[doc.id] || doc.image
+        }));
+
+        setDoctors(enhancedDoctors);
+        setAppointments(appData);
+      } catch (err) {
+        console.error("Database fetch error:", err);
+        setError(err.message || "Could not connect to the database server.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleEdit = (doc) => {
     setEditingId(doc.id);
-    setRoomInput(doc.assignedRoom || "");
-    setScheduleInput(doc.customSchedule || "");
+    setRoomInput(doc.assignedRoom || doc.room || "");
+    setScheduleInput(doc.customSchedule || doc.schedule || "");
   };
 
-  const handleSave = (id) => {
-    setDoctors(
-      doctors.map((d) => 
-        d.id === id ? { ...d, assignedRoom: roomInput, customSchedule: scheduleInput } : d
-      )
-    );
-    setEditingId(null);
+  const handleSave = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/doctors/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ assignedRoom: roomInput, customSchedule: scheduleInput }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update doctor details in the database.");
+      }
+
+      setDoctors(
+        doctors.map((d) => 
+          d.id === id ? { ...d, assignedRoom: roomInput, customSchedule: scheduleInput } : d
+        )
+      );
+      setEditingId(null);
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
-  const handleStatusChange = (appId, newStatus) => {
-    setAppointments(
-      appointments.map((a) => (a.id === appId ? { ...a, status: newStatus } : a))
-    );
+  const handleStatusChange = async (appId, newStatus) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/appointments/${appId}/status`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update appointment status in the database.");
+      }
+
+      setAppointments(
+        appointments.map((a) => (a.id === appId ? { ...a, status: newStatus } : a))
+      );
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   const filteredDoctors = doctors.filter(
@@ -95,19 +142,33 @@ export default function ManageDoctors() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] gap-3">
         <Loader2 className="h-8 w-8 text-purple-600 animate-spin" />
-        <p className="text-xs font-bold text-slate-500">Loading doctor profiles...</p>
+        <p className="text-xs font-bold text-slate-500">Fetching records from PostgreSQL database...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="mx-auto max-w-lg mt-12 rounded-2xl border border-rose-200 bg-rose-50 p-6 text-center shadow-xs">
+        <h3 className="text-sm font-bold text-rose-800">Database Connection Error</h3>
+        <p className="mt-1 text-xs text-rose-600">{error}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-4 rounded-xl bg-rose-600 px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-rose-700 cursor-pointer"
+        >
+          Retry Connection
+        </button>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      {/* Top Header & Search Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-xl font-black text-slate-900 tracking-tight">Doctors Directory & Management</h1>
           <p className="text-xs font-semibold text-slate-500 mt-1">
-            Manage consultation rooms, update schedules, and review patient appointments for Sakthi Dental Clinic specialists.
+            Manage consultation rooms, update schedules, and review live patient appointments for Sakthi Dental Clinic specialists.
           </p>
         </div>
         
@@ -123,16 +184,16 @@ export default function ManageDoctors() {
         </div>
       </div>
 
-      {/* Doctors Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {filteredDoctors.map((doc) => {
           const isEditing = editingId === doc.id;
-          const docAppointments = appointments.filter((app) => app.doctorId === doc.id);
+          const docAppointments = appointments.filter(
+            (app) => app.doctorId === doc.id || app.doctor === doc.name
+          );
 
           return (
             <div key={doc.id} className="bg-white rounded-2xl border border-slate-200 p-6 shadow-2xs flex flex-col justify-between">
               <div>
-                {/* Header Profile with Avatar */}
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-3.5">
                     <img
@@ -144,7 +205,7 @@ export default function ManageDoctors() {
                       <div className="flex items-center gap-2">
                         <h3 className="text-sm font-bold text-slate-900">{doc.name}</h3>
                         <span className="text-[10px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
-                          ⭐ {doc.rating}
+                          ⭐ {doc.rating || "5.0"}
                         </span>
                       </div>
                       <p className="text-[11px] font-bold text-purple-700 mt-0.5">{doc.role}</p>
@@ -169,12 +230,10 @@ export default function ManageDoctors() {
                   )}
                 </div>
 
-                {/* Specialty Snippet */}
                 <p className="text-xs text-slate-600 mt-3.5 line-clamp-2 bg-purple-50/40 p-2.5 rounded-xl border border-purple-100/50">
                   <span className="font-bold text-purple-900">Expertise: </span>{doc.specialty}
                 </p>
 
-                {/* Room & Schedule Editing Section */}
                 <div className="mt-3.5 space-y-2.5 text-xs bg-slate-50 p-3.5 rounded-xl border border-slate-100">
                   <div className="flex items-center gap-2 text-slate-600">
                     <MapPin className="h-4 w-4 text-purple-600 shrink-0" />
@@ -188,7 +247,7 @@ export default function ManageDoctors() {
                       />
                     ) : (
                       <span className="font-bold text-slate-900 px-2 py-0.5 bg-white border border-slate-200 rounded-md shadow-2xs">
-                        {doc.assignedRoom}
+                        {doc.assignedRoom || "Not Assigned"}
                       </span>
                     )}
                   </div>
@@ -204,12 +263,11 @@ export default function ManageDoctors() {
                         className="bg-white border border-slate-300 rounded px-2 py-1 text-xs font-medium text-slate-900 flex-1 focus:outline-purple-600"
                       />
                     ) : (
-                      <span className="font-medium text-slate-700">{doc.customSchedule}</span>
+                      <span className="font-medium text-slate-700">{doc.customSchedule || "Flexible Schedule"}</span>
                     )}
                   </div>
                 </div>
 
-                {/* Patient Appointments Queue */}
                 <div className="mt-4">
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
@@ -222,15 +280,17 @@ export default function ManageDoctors() {
 
                   {docAppointments.length === 0 ? (
                     <div className="text-center py-3 bg-slate-50 rounded-xl border border-dashed border-slate-200 text-xs text-slate-400">
-                      No appointments booked for this specialist.
+                      No appointments booked for this specialist in the database.
                     </div>
                   ) : (
                     <div className="space-y-2 max-h-36 overflow-y-auto pr-1">
-                      {docAppointments.appMap || docAppointments.map((app) => (
+                      {docAppointments.map((app) => (
                         <div key={app.id} className="flex items-center justify-between bg-white p-2.5 rounded-xl border border-slate-200 text-xs shadow-2xs">
                           <div>
                             <p className="font-bold text-slate-800">{app.patientName}</p>
-                            <p className="text-[10px] font-medium text-slate-500">Time: {app.time}</p>
+                            <p className="text-[10px] font-medium text-slate-500">
+                              {app.date ? `${app.date.split("T")[0]} at ` : ""} {app.time}
+                            </p>
                           </div>
 
                           <div className="flex items-center gap-2">
