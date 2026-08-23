@@ -18,8 +18,9 @@ import Reports from "./pages/Reports";
 
 // IMPORT DOCTOR DASHBOARD PAGES
 import DoctorDashboard from "./pages/DoctorDashboard";
-import DoctorOverview from "./pages/DoctorOverview"; // <-- 1. IMPORT OVERVIEW PAGE
+import DoctorOverview from "./pages/DoctorOverview";
 import DoctorSchedule from "./pages/DoctorSchedule";
+import AppointmentHistory from "./pages/AppointmentHistory"; // <-- 1. IMPORT HISTORY PAGE
 import DoctorUploadReport from "./pages/DoctorUploadReport";
 import ManageDoctors from "./pages/ManageDoctors";
 
@@ -153,8 +154,9 @@ export default function App() {
 
           {/* ================= DOCTOR DASHBOARD ROUTES ================= */}
           <Route path="/doctor" element={<DoctorDashboard onLogout={handleLogout} />}>
-            <Route index element={<DoctorOverview />} /> {/* <-- 2. DEFAULT INDEX ROUTE */}
+            <Route index element={<DoctorOverview />} />
             <Route path="schedule" element={<DoctorSchedule />} />
+            <Route path="history" element={<AppointmentHistory />} /> {/* <-- 2. ROUTE ADDED HERE */}
             <Route path="upload" element={<DoctorUploadReport />} />
             <Route path="doctors" element={<ManageDoctors />} />
           </Route>

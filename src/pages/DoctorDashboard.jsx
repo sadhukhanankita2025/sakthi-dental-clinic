@@ -7,8 +7,7 @@ import {
   LogOut,
   Stethoscope,
   LayoutDashboard,
-  ShieldCheck,
-  UserCheck
+  History
 } from "lucide-react";
 
 const doctorsList = [
@@ -28,6 +27,7 @@ export default function DoctorDashboard({ onLogout }) {
   const sidebarLinks = [
     { name: "Dashboard Home", path: "/doctor", icon: LayoutDashboard, end: true },
     { name: "Patient Schedule", path: "/doctor/schedule", icon: Calendar },
+    { name: "Appointment History", path: "/doctor/history", icon: History },
     { name: "Upload Reports & Rx", path: "/doctor/upload", icon: UploadCloud },
     { name: "Manage Doctors", path: "/doctor/doctors", icon: Users },
   ];
