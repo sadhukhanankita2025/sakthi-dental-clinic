@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import { Outlet, NavLink, useNavigate, useLocation } from "react-router-dom";
 import {
   Calendar,
   UploadCloud,
@@ -7,7 +7,9 @@ import {
   LogOut,
   Stethoscope,
   LayoutDashboard,
-  History
+  History,
+  Menu,
+  X
 } from "lucide-react";
 
 const doctorsList = [
@@ -23,6 +25,8 @@ const doctorsList = [
 
 export default function DoctorDashboard({ onLogout }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const sidebarLinks = [
     { name: "Dashboard Home", path: "/doctor", icon: LayoutDashboard, end: true },
@@ -32,21 +36,51 @@ export default function DoctorDashboard({ onLogout }) {
     { name: "Manage Doctors", path: "/doctor/doctors", icon: Users },
   ];
 
-  return (
-    <div className="min-h-screen bg-slate-50 pt-20 flex">
-      {/* SIDEBAR NAVIGATION */}
-      <aside className="w-72 bg-white border-r border-slate-200 hidden md:flex flex-col justify-between p-6 shadow-xs overflow-y-auto max-h-[calc(100vh-80px)] sticky top-20">
-        <div className="space-y-6">
-          <div className="flex items-center gap-3 px-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-600 text-white shadow-md shrink-0">
-              <Stethoscope className="h-5 w-5" />
-            </div>
-            <div>
-              <h2 className="text-sm font-black text-slate-900">Doctor Portal</h2>
-              <p className="text-[10px] font-semibold text-purple-600">Sakthi Dental Clinic</p>
-            </div>
-          </div>
+  // Close mobile menu automatically on route change
+  React.useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
+  return (
+    <div className="min-h-screen bg-slate-50 pt-20 flex flex-col md:flex-row relative">
+      
+      {/* MOBILE TOP NAVIGATION BAR */}
+      <div className="md:hidden flex items-center justify-between bg-white border-b border-slate-200 px-4 py-3 sticky top-20 z-30 shadow-2xs">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-600 text-white shadow-xs">
+            <Stethoscope className="h-4 w-4" />
+          </div>
+          <div>
+            <h2 className="text-xs font-black text-slate-900">Doctor Portal</h2>
+            <p className="text-[9px] font-bold text-purple-600">Sakthi Dental Clinic</p>
+          </div>
+        </div>
+
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="p-2 text-slate-700 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
+          aria-label="Toggle Mobile Menu"
+        >
+          {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {/* MOBILE BACKDROP OVERLAY */}
+      {mobileMenuOpen && (
+        <div 
+          onClick={() => setMobileMenuOpen(false)}
+          className="fixed inset-0 bg-slate-900/40 z-40 md:hidden backdrop-blur-xs transition-opacity"
+        />
+      )}
+
+      {/* SIDEBAR NAVIGATION (Properly positioned below navbar) */}
+      <aside className={`
+        fixed md:sticky top-20 z-30 h-[calc(100vh-5rem)] w-72 bg-white border-r border-slate-200 
+        flex flex-col justify-between p-6 shadow-xl md:shadow-xs transition-transform duration-300 ease-in-out
+        overflow-y-auto
+        ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+      `}>
+        <div className="space-y-6 pt-2">
           {/* Core Navigation */}
           <nav className="space-y-1.5">
             <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider px-3 mb-1">Main Menu</p>
@@ -75,7 +109,7 @@ export default function DoctorDashboard({ onLogout }) {
           {/* Individual Doctor Shortcuts */}
           <div className="pt-2 border-t border-slate-100">
             <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider px-3 mb-2">Clinic Specialists</p>
-            <div className="space-y-1 max-h-56 overflow-y-auto pr-1">
+            <div className="space-y-1 max-h-48 md:max-h-64 overflow-y-auto pr-1">
               {doctorsList.map((doc) => (
                 <NavLink
                   key={doc.id}
@@ -110,7 +144,7 @@ export default function DoctorDashboard({ onLogout }) {
       </aside>
 
       {/* MAIN CONTENT AREA */}
-      <main className="flex-1 p-6 sm:p-10 max-w-6xl mx-auto overflow-y-auto">
+      <main className="flex-1 p-4 sm:p-6 md:p-10 max-w-6xl mx-auto w-full overflow-y-auto">
         <Outlet />
       </main>
     </div>
