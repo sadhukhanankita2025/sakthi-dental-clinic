@@ -18,9 +18,10 @@ import Reports from "./pages/Reports";
 
 // IMPORT DOCTOR DASHBOARD PAGES
 import DoctorDashboard from "./pages/DoctorDashboard";
+import DoctorOverview from "./pages/DoctorOverview"; // <-- 1. IMPORT OVERVIEW PAGE
 import DoctorSchedule from "./pages/DoctorSchedule";
 import DoctorUploadReport from "./pages/DoctorUploadReport";
-import ManageDoctors from "./pages/ManageDoctors"; // <-- 1. IMPORT MANAGE DOCTORS PAGE
+import ManageDoctors from "./pages/ManageDoctors";
 
 export default function App() {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ export default function App() {
     setAuthModalOpen(false);
 
     if (userData.role === "doctor" || userData.email === "anupriya@sakthidental.com") {
-      navigate("/doctor/schedule");
+      navigate("/doctor");
     } else {
       navigate("/");
     }
@@ -152,9 +153,10 @@ export default function App() {
 
           {/* ================= DOCTOR DASHBOARD ROUTES ================= */}
           <Route path="/doctor" element={<DoctorDashboard onLogout={handleLogout} />}>
+            <Route index element={<DoctorOverview />} /> {/* <-- 2. DEFAULT INDEX ROUTE */}
             <Route path="schedule" element={<DoctorSchedule />} />
             <Route path="upload" element={<DoctorUploadReport />} />
-            <Route path="doctors" element={<ManageDoctors />} /> {/* <-- 2. ADD ROUTE HERE */}
+            <Route path="doctors" element={<ManageDoctors />} />
           </Route>
 
           <Route path="/privacy" element={<Privacy />} />

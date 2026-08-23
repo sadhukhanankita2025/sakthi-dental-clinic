@@ -9,7 +9,8 @@ import {
   Save, 
   Search,
   CalendarDays,
-  Loader2
+  Loader2,
+  RefreshCw
 } from "lucide-react";
 
 // Doctor Images
@@ -38,6 +39,7 @@ export default function ManageDoctors() {
   const [doctors, setDoctors] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(null);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -45,40 +47,42 @@ export default function ManageDoctors() {
   const [roomInput, setRoomInput] = useState("");
   const [scheduleInput, setScheduleInput] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
+  const fetchData = async (isManualRefresh = false) => {
+    try {
+      if (isManualRefresh) setRefreshing(true);
+      else setLoading(true);
+      setError(null);
 
-        const [docRes, appRes] = await Promise.all([
-          fetch("http://localhost:5000/api/doctors"),
-          fetch("http://localhost:5000/api/appointments")
-        ]);
+      const [docRes, appRes] = await Promise.all([
+        fetch("http://localhost:5000/api/doctors"),
+        fetch("http://localhost:5000/api/appointments")
+      ]);
 
-        if (!docRes.ok || !appRes.ok) {
-          throw new Error("Failed to retrieve live data from the database server.");
-        }
-
-        const docData = await docRes.json();
-        const appData = await appRes.json();
-
-        // Attach local asset images to each doctor based on their ID
-        const enhancedDoctors = docData.map((doc) => ({
-          ...doc,
-          image: doctorImages[doc.id] || doc.image
-        }));
-
-        setDoctors(enhancedDoctors);
-        setAppointments(appData);
-      } catch (err) {
-        console.error("Database fetch error:", err);
-        setError(err.message || "Could not connect to the database server.");
-      } finally {
-        setLoading(false);
+      if (!docRes.ok || !appRes.ok) {
+        throw new Error("Failed to retrieve live data from the database server.");
       }
-    };
 
+      const docData = await docRes.json();
+      const appData = await appRes.json();
+
+      // Attach local asset images to each doctor based on their ID
+      const enhancedDoctors = docData.map((doc) => ({
+        ...doc,
+        image: doctorImages[doc.id] || doc.image
+      }));
+
+      setDoctors(enhancedDoctors);
+      setAppointments(appData);
+    } catch (err) {
+      console.error("Database fetch error:", err);
+      setError(err.message || "Could not connect to the database server.");
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -140,7 +144,7 @@ export default function ManageDoctors() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] gap-3">
+      <div className="flex flex-col items-center justify-center min-h-100 gap-3">
         <Loader2 className="h-8 w-8 text-purple-600 animate-spin" />
         <p className="text-xs font-bold text-slate-500">Fetching records from PostgreSQL database...</p>
       </div>
@@ -153,7 +157,7 @@ export default function ManageDoctors() {
         <h3 className="text-sm font-bold text-rose-800">Database Connection Error</h3>
         <p className="mt-1 text-xs text-rose-600">{error}</p>
         <button
-          onClick={() => window.location.reload()}
+          onClick={() => fetchData()}
           className="mt-4 rounded-xl bg-rose-600 px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-rose-700 cursor-pointer"
         >
           Retry Connection
@@ -172,15 +176,27 @@ export default function ManageDoctors() {
           </p>
         </div>
         
-        <div className="relative w-full sm:w-80">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-          <input
-            type="text"
-            placeholder="Search by doctor name or specialty..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs font-medium focus:outline-purple-600 shadow-2xs"
-          />
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => fetchData(true)}
+            disabled={refreshing}
+            className="flex items-center gap-1.5 px-3.5 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-bold shadow-2xs transition-colors cursor-pointer shrink-0"
+            title="Refresh Data"
+          >
+            <RefreshCw className={`h-3.5 w-3.5 ${refreshing ? "animate-spin text-purple-600" : ""}`} />
+            Refresh
+          </button>
+
+          <div className="relative w-full sm:w-80">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+            <input
+              type="text"
+              placeholder="Search by doctor name or specialty..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs font-medium focus:outline-purple-600 shadow-2xs"
+            />
+          </div>
         </div>
       </div>
 

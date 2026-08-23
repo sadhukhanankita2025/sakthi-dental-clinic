@@ -133,7 +133,7 @@ app.post('/api/appointments', async (req, res) => {
         const query = `
             INSERT INTO appointments (patient_name, phone, email, treatment, doctor, appointment_date, appointment_time, notes, status)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 'Confirmed')
-            RETURNING *;
+            RETURNING *, TO_CHAR(appointment_date, 'YYYY-MM-DD') AS "date";
         `;
         const values = [patientName, phone, email || null, treatment, doctor, date, time, notes || null];
         
@@ -160,7 +160,7 @@ app.get('/api/appointments', async (req, res) => {
                 email, 
                 treatment, 
                 doctor, 
-                appointment_date AS "date", 
+                TO_CHAR(appointment_date, 'YYYY-MM-DD') AS "date", 
                 appointment_time AS "time", 
                 status, 
                 notes,
@@ -193,7 +193,7 @@ app.get('/api/my-appointments', async (req, res) => {
                 patient_name AS "patientName", 
                 treatment, 
                 doctor, 
-                appointment_date AS "date", 
+                TO_CHAR(appointment_date, 'YYYY-MM-DD') AS "date", 
                 appointment_time AS "time", 
                 status, 
                 admin_message AS "adminMessage", 
@@ -212,7 +212,7 @@ app.get('/api/my-appointments', async (req, res) => {
 });
 
 // ==========================================
-// 5. DOCTOR ADMIN: GET ALL APPOINTMENTS
+// 5. DOCTOR ADMIN: GET ALL APPOINTMENTS (FIXED TO_CHAR)
 // ==========================================
 app.get('/api/admin/appointments', async (req, res) => {
     try {
@@ -224,12 +224,12 @@ app.get('/api/admin/appointments', async (req, res) => {
                 email, 
                 treatment, 
                 doctor, 
-                appointment_date AS "date", 
+                TO_CHAR(appointment_date, 'YYYY-MM-DD') AS "date", 
                 appointment_time AS "time", 
                 status, 
                 admin_message AS "adminMessage"
             FROM appointments 
-            ORDER BY appointment_date DESC, appointment_time DESC;
+            ORDER BY appointment_date ASC, appointment_time ASC;
         `;
         const result = await pool.query(dbQuery);
         res.json(result.rows);
@@ -251,7 +251,7 @@ app.put('/api/admin/appointments/:id/message', async (req, res) => {
             UPDATE appointments 
             SET admin_message = $1, admin_message_date = CURRENT_TIMESTAMP 
             WHERE id = $2 
-            RETURNING *;
+            RETURNING *, TO_CHAR(appointment_date, 'YYYY-MM-DD') AS "date";
         `;
         const result = await pool.query(query, [adminMessage, id]);
         res.json({ success: true, data: result.rows[0] });
@@ -379,7 +379,7 @@ app.patch('/api/appointments/:id/status', async (req, res) => {
             UPDATE appointments 
             SET status = $1 
             WHERE id = $2 
-            RETURNING *;
+            RETURNING *, TO_CHAR(appointment_date, 'YYYY-MM-DD') AS "date";
         `;
         const result = await pool.query(query, [status, id]);
         res.json({ success: true, data: result.rows[0] });
