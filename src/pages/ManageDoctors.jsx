@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   Stethoscope, 
   MapPin, 
@@ -8,12 +8,11 @@ import {
   Edit3, 
   Save, 
   Search,
-  Award,
-  CalendarDays
+  CalendarDays,
+  Loader2
 } from "lucide-react";
-import { DOCTORS_DATA } from "../data/doctorsData"; // Adjust the import path to your data file if needed
+import { DOCTORS_DATA } from "../data/doctorsData";
 
-// Initial room assignments and mock appointments mapped to the doctors
 const initialRooms = {
   "dr-anupriya": "Room 101",
   "dr-ananya-iyer": "Room 102",
@@ -34,25 +33,40 @@ const initialAppointments = [
 ];
 
 export default function ManageDoctors() {
-  // Enhance DOCTORS_DATA with mutable room and schedule state
-  const [doctors, setDoctors] = useState(
-    DOCTORS_DATA.map((doc) => ({
+  const [doctors, setDoctors] = useState(() => {
+    const saved = localStorage.getItem("sakthi_manage_doctors");
+    if (saved) return JSON.parse(saved);
+    return DOCTORS_DATA.map((doc) => ({
       ...doc,
       assignedRoom: initialRooms[doc.id] || "Room 100",
       customSchedule: doc.availableDays
-    }))
-  );
+    }));
+  });
 
-  const [appointments, setAppointments] = useState(initialAppointments);
+  const [appointments, setAppointments] = useState(() => {
+    const saved = localStorage.getItem("sakthi_manage_appointments");
+    return saved ? JSON.parse(saved) : initialAppointments;
+  });
+
+  const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [roomInput, setRoomInput] = useState("");
   const [scheduleInput, setScheduleInput] = useState("");
 
+  // Save updates to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("sakthi_manage_doctors", JSON.stringify(doctors));
+  }, [doctors]);
+
+  useEffect(() => {
+    localStorage.setItem("sakthi_manage_appointments", JSON.stringify(appointments));
+  }, [appointments]);
+
   const handleEdit = (doc) => {
     setEditingId(doc.id);
-    setRoomInput(doc.assignedRoom);
-    setScheduleInput(doc.customSchedule);
+    setRoomInput(doc.assignedRoom || "");
+    setScheduleInput(doc.customSchedule || "");
   };
 
   const handleSave = (id) => {
@@ -72,10 +86,19 @@ export default function ManageDoctors() {
 
   const filteredDoctors = doctors.filter(
     (doc) =>
-      doc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doc.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doc.specialty.toLowerCase().includes(searchTerm.toLowerCase())
+      doc.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      doc.role?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      doc.specialty?.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px] gap-3">
+        <Loader2 className="h-8 w-8 text-purple-600 animate-spin" />
+        <p className="text-xs font-bold text-slate-500">Loading doctor profiles...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -203,7 +226,7 @@ export default function ManageDoctors() {
                     </div>
                   ) : (
                     <div className="space-y-2 max-h-36 overflow-y-auto pr-1">
-                      {docAppointments.map((app) => (
+                      {docAppointments.appMap || docAppointments.map((app) => (
                         <div key={app.id} className="flex items-center justify-between bg-white p-2.5 rounded-xl border border-slate-200 text-xs shadow-2xs">
                           <div>
                             <p className="font-bold text-slate-800">{app.patientName}</p>
