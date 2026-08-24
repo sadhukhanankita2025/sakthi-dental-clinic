@@ -29,8 +29,10 @@ export default function DoctorOverview() {
       .catch(() => setLoading(false));
   }, []);
 
-  const todayStr = "2026-08-23";
-  const todayDate = new Date("2026-08-23");
+  // FIXED: Using dynamic current date instead of a hardcoded value
+  const todayObj = new Date();
+  const todayStr = todayObj.toISOString().split("T")[0];
+  const todayDate = new Date(todayStr);
 
   const tomorrowDate = new Date(todayDate);
   tomorrowDate.setDate(todayDate.getDate() + 1);
@@ -70,7 +72,7 @@ export default function DoctorOverview() {
     { day: "Thursday", short: "Thu", patients: 9, date: "Aug 20", load: "High" },
     { day: "Friday", short: "Fri", patients: 6, date: "Aug 21", load: "Moderate" },
     { day: "Saturday", short: "Sat", patients: 8, date: "Aug 22", load: "High" },
-    { day: "Sunday (Today)", short: "Sun", patients: countToday || 3, date: "Aug 23", load: "Peak" },
+    { day: "Sunday", short: "Sun", patients: countToday || 3, date: "Aug 23", load: "Peak" },
   ];
 
   if (loading) {
@@ -155,7 +157,7 @@ export default function DoctorOverview() {
         </div>
       </div>
 
-      {/* NEW STYLE: ENTERPRISE PROGRESS MATRIX ANALYTICS CARD */}
+      {/* WEEKLY PATIENT FLOW ANALYTICS */}
       <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xs p-6 sm:p-8 space-y-6">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-slate-100 pb-6">
           <div className="flex items-center gap-3.5">
@@ -175,7 +177,6 @@ export default function DoctorOverview() {
           </div>
         </div>
 
-        {/* Horizontal Progress Matrix List */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
           {trendData.map((item, index) => {
             const maxPatients = 10;
@@ -201,7 +202,6 @@ export default function DoctorOverview() {
                   </div>
                 </div>
 
-                {/* Progress Bar */}
                 <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
                   <div 
                     className="bg-linear-to-r from-purple-600 to-indigo-600 h-2 rounded-full transition-all duration-500" 
@@ -213,7 +213,6 @@ export default function DoctorOverview() {
           })}
         </div>
 
-        {/* Quick Analytics Summary Footer */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100">
           <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500">Daily Average</span>
@@ -230,7 +229,7 @@ export default function DoctorOverview() {
         </div>
       </div>
 
-      {/* NEW STYLE: BENTO GRID NAVIGATION CARDS */}
+      {/* BENTO GRID NAVIGATION CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Link to="/doctor/schedule" className="relative overflow-hidden bg-linear-to-br from-purple-900 to-indigo-950 p-7 rounded-3xl text-white shadow-xl hover:shadow-2xl transition-all duration-300 group flex flex-col justify-between">
           <div className="absolute -right-6 -bottom-6 w-32 h-32 bg-purple-600/30 rounded-full blur-2xl pointer-events-none" />
