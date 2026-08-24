@@ -98,7 +98,7 @@ export default function Navbar({ onOpenAppointment, onOpenAuth, isLoggedIn, user
                 className="flex h-13 w-37.5 items-center justify-center overflow-hidden rounded-2xl bg-transparent sm:h-14 sm:w-42.5"
               >
                 <img
-                  src="/src/assets/SDC%20Logo.png"
+                  src="/SDC%20Logo.png"
                   alt="Sakthi Dental Clinic"
                   className="h-full w-full object-contain"
                 />

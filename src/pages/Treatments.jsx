@@ -14,7 +14,7 @@ import CTA from "../components/CTA";
 import {
   TREATMENTS_DATA,
   TREATMENTS_CATEGORIES,
-} from "../data/treatmentsData";
+} from "../data/TreatmentsData";
 
 export default function Treatments({ onOpenAppointment }) {
   const [searchParams] = useSearchParams();

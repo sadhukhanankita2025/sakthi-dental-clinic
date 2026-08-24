@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { UploadCloud, FileText, CheckCircle2, User, Calendar } from "lucide-react";
-import { TREATMENTS_DATA } from "../data/treatmentsData";
+import { TREATMENTS_DATA } from "../data/TreatmentsData";
 
 export default function DoctorUploadReport() {
   const [formData, setFormData] = useState({

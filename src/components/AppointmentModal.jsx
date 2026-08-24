@@ -13,7 +13,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-import { TREATMENTS_DATA } from "../data/treatmentsData";
+import { TREATMENTS_DATA } from "../data/TreatmentsData";
 import { DOCTORS_DATA } from "../data/doctorsData";
 
 export default function AppointmentModal({
