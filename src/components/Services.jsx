@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 import TreatmentCard from "./TreatmentCard";
-import { TREATMENTS_DATA } from "../data/treatmentsData";
+import { TREATMENTS_DATA } from "../data/TreatmentsData";
 
 export default function Services({ onOpenAppointment }) {
   const scrollRef = useRef(null);

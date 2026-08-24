@@ -308,7 +308,7 @@ export default function WhyChooseUs({ onOpenAppointment }) {
 
             <div className="absolute inset-0 z-0 overflow-hidden">
               <motion.img
-                src="../src/assets/Banner Images/Banner_img_2.jpg"
+                src="/Banner Images/Banner_img_2.jpg"
                 alt="Modern Dental Clinic"
                 initial={{
                   scale: 1.05,
@@ -699,7 +699,7 @@ export default function WhyChooseUs({ onOpenAppointment }) {
             <div className="absolute inset-0 z-0 overflow-hidden">
 
               <motion.img
-                src="../src/assets/Banner Images/Banner_img_1.jpg"
+                src="/Banner Images/Banner_img_1.jpg"
                 alt="Dental Technology"
                 initial={{
                   scale: 1.05,
