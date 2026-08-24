@@ -20,7 +20,7 @@ export default function AppointmentHistory() {
       }
 
       const data = await response.json();
-      
+
       // Optional: Filter for past or completed appointments, or show all historical records
       setHistory(data);
     } catch (err) {
