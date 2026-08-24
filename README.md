@@ -58,7 +58,7 @@ The Sakthi Dental Clinic website is designed to provide a seamless digital exper
 
 ---
 
-# 📂 Project Structure
+# 📂 Project Structures 
 
 ```text
 sakthi-dental-clinic/
