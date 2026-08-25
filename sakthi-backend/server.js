@@ -9,7 +9,10 @@ const app = express();
 // ==========================================
 // MIDDLEWARE
 // ==========================================
-app.use(cors());
+app.use(cors({
+    origin: '*', // Or restrict to your Vercel frontend URL in production
+    credentials: true
+}));
 app.use(express.json());
 
 // ==========================================
@@ -17,6 +20,7 @@ app.use(express.json());
 // ==========================================
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
 
 // Test Database Connection on startup
@@ -212,7 +216,7 @@ app.get('/api/my-appointments', async (req, res) => {
 });
 
 // ==========================================
-// 5. DOCTOR ADMIN: GET ALL APPOINTMENTS (FIXED TO_CHAR)
+// 5. DOCTOR ADMIN: GET ALL APPOINTMENTS
 // ==========================================
 app.get('/api/admin/appointments', async (req, res) => {
     try {
@@ -336,7 +340,7 @@ app.get('/api/doctors', async (req, res) => {
 });
 
 // ==========================================
-// 10. MANAGE DOCTORS: UPDATE ROOM & SCHEDULE
+// 10. MANAGE DOCTORS: UPDATE ROOM & SCHEDULE (FIXED)
 // ==========================================
 app.put('/api/doctors/:id', async (req, res) => {
     const { id } = req.params;
@@ -359,7 +363,13 @@ app.put('/api/doctors/:id', async (req, res) => {
                 custom_schedule AS "customSchedule", 
                 image;
         `;
+        // Fixed: Added [assignedRoom, customSchedule, id] array parameters properly
         const result = await pool.query(query, [assignedRoom, customSchedule, id]);
+        
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Doctor not found.' });
+        }
+
         res.json({ success: true, data: result.rows[0] });
     } catch (err) {
         console.error('Error updating doctor room/schedule:', err.message);

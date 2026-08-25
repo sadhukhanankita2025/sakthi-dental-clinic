@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Lock, Mail, User, ArrowRight, Sparkles } from "lucide-react";
+import { X, Lock, Mail, User, ArrowRight } from "lucide-react";
+
+// Automatically uses local backend for npm run dev, and your production backend when deployed
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -14,7 +17,7 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const endpoint = isSignUp ? "http://localhost:5000/api/signup" : "http://localhost:5000/api/login";
+    const endpoint = isSignUp ? `${API_BASE_URL}/api/signup` : `${API_BASE_URL}/api/login`;
 
     try {
       const response = await fetch(endpoint, {
@@ -26,7 +29,7 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
       // Verify if server actually responded with JSON (prevents HTML crash)
       const contentType = response.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Server error or backend is offline. Please check port 5000.");
+        throw new Error("Server error or backend is offline. Please check your backend deployment.");
       }
 
       const data = await response.json();
