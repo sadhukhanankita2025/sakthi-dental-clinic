@@ -103,8 +103,8 @@ app.post('/api/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials.' });
         }
 
-        const role = (user.email_or_phone === 'anupriya@sakthidental.com' || user.role === 'doctor') 
-            ? 'doctor' 
+        const role = (user.email_or_phone === 'anupriya@sakthidental.com' || user.role === 'doctor')
+            ? 'doctor'
             : 'patient';
 
         res.json({
@@ -140,9 +140,9 @@ app.post('/api/appointments', async (req, res) => {
             RETURNING *, TO_CHAR(appointment_date, 'YYYY-MM-DD') AS "date";
         `;
         const values = [patientName, phone, email || null, treatment, doctor, date, time, notes || null];
-        
+
         const result = await pool.query(query, values);
-        
+
         res.status(201).json({
             success: true,
             message: 'Appointment booked successfully!',
@@ -206,7 +206,7 @@ app.get('/api/my-appointments', async (req, res) => {
             WHERE email = $1 OR phone = $1 
             ORDER BY appointment_date DESC, appointment_time DESC;
         `;
-        
+
         const result = await pool.query(dbQuery, [query]);
         res.json(result.rows);
     } catch (err) {
@@ -282,9 +282,9 @@ app.post('/api/contact', async (req, res) => {
             RETURNING *;
         `;
         const values = [name, email, phone, message];
-        
+
         const result = await pool.query(query, values);
-        
+
         res.status(201).json({
             success: true,
             message: 'Message sent successfully!',
@@ -365,7 +365,7 @@ app.put('/api/doctors/:id', async (req, res) => {
         `;
         // Fixed: Added [assignedRoom, customSchedule, id] array parameters properly
         const result = await pool.query(query, [assignedRoom, customSchedule, id]);
-        
+
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Doctor not found.' });
         }
